@@ -1,0 +1,35 @@
+{
+  "adapter": "trustlesswork",
+  "recorded_at": "2026-10-25T18:17:40.000Z",
+  "mode": "live",
+  "input": { "endpoint": "GET /helper/get-escrow-by-contract-ids?contractIds[]=CCYBZTQGKQBXU7NT6RDC3ZFGBGAZ5MNDPUKXKYSM3BWNO5U6CQMZKWAR&validateOnChain=true", "note": "SP10 run 3 after the direct funding and the agent's approval of milestone 1 (docs/SPIKES-s2.md)" },
+  "response": [
+    {
+      "contractId": "CCYBZTQGKQBXU7NT6RDC3ZFGBGAZ5MNDPUKXKYSM3BWNO5U6CQMZKWAR",
+      "contractBaseId": "CAZZOSFFNQQSDOLPPGN5BDITMNSLZITXW4S7V5ISM5EAB2THBD7F2AHR",
+      "signer": "GBSS55ONJ5DVZVVZOLTI4KEQCYDZVURG6FPQFQEEYJEB4JGWOI3HVPRU",
+      "type": "multi-release",
+      "engagementId": "qafila-sp10-1792952117668",
+      "title": "Qafila SP10 supplier escrow",
+      "description": "Murabaha purchase: 30% deposit at order, 70% balance on shipment (SP10 spike)",
+      "platformFee": 0,
+      "roles": {
+        "approver": "GBSS55ONJ5DVZVVZOLTI4KEQCYDZVURG6FPQFQEEYJEB4JGWOI3HVPRU",
+        "serviceProvider": "GBYSSXTCZJR25UNUTE7S7FUOLMXHL4JFUXWSWCXACXX4BZXKOKCSMVI3",
+        "platformAddress": "GCRLD7ZL5HKXFEUZNYYHSGVOC443RNHT4S34LRQ2F7KX2NDPPGXTFQBH",
+        "releaseSigner": "GBSS55ONJ5DVZVVZOLTI4KEQCYDZVURG6FPQFQEEYJEB4JGWOI3HVPRU",
+        "disputeResolver": "GCRLD7ZL5HKXFEUZNYYHSGVOC443RNHT4S34LRQ2F7KX2NDPPGXTFQBH"
+      },
+      "trustline": { "address": "GDZE4PY2VVPCOTERMIETEB73XA5KDHI25ZGDAINMCTEXYBJCG76H63VA", "contractId": "CB7WLKU45NHMLECCZGP5H6RH5IHMSHJXA7U4JSNM4MQT7WT46LZMC3KZ", "symbol": "qUSD" },
+      "isActive": true,
+      "createdAt": { "_seconds": 1792952123, "_nanoseconds": 205000000 },
+      "milestones": [
+        { "description": "Supplier deposit", "amount": 30, "status": "pending", "evidence": "", "flags": { "disputed": false, "released": false, "resolved": false, "approved": true }, "receiver": "GBYSSXTCZJR25UNUTE7S7FUOLMXHL4JFUXWSWCXACXX4BZXKOKCSMVI3" },
+        { "description": "Balance on shipment", "amount": 70, "status": "pending", "evidence": "", "flags": { "disputed": false, "released": false, "resolved": false, "approved": false }, "receiver": "GBYSSXTCZJR25UNUTE7S7FUOLMXHL4JFUXWSWCXACXX4BZXKOKCSMVI3" }
+      ],
+      "updatedAt": { "_seconds": 1792952132, "_nanoseconds": 769000000 },
+      "balance": 30,
+      "inconsistencies": { "inconsistencyFound": false, "message": "No inconsistencies were found in this escrow.", "differences": [] }
+    }
+  ]
+}
