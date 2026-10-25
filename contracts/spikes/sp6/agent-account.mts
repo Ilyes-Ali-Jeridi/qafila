@@ -245,6 +245,12 @@ async function main(): Promise<void> {
     out['fundTx'] = await fundWithQusd(sa, 100n * 10_000_000n);
   } else if (mode === 'rule') {
     out['addRuleTx'] = await addAgentRule(sa); // account already deployed and funded
+  } else if (mode === 'rule-only') {
+    // Production use: add `CallContract(TARGET)` for the agent signer and stop (no ping tests).
+    out['addRuleTx'] = await addAgentRule(sa);
+    out['smartAccountId'] = sa;
+    console.log('RESULT ' + JSON.stringify(out, null, 2));
+    return;
   }
   out['smartAccountId'] = sa;
   // Test A: agent calls TARGET.ping(caller = smart account) under rule 1

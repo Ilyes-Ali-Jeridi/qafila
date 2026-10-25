@@ -37,3 +37,11 @@ Note for anyone running the stellar CLI from the repo root: the CLI reads `.env`
 `contracts/spikes/ttl/rent-probe.mts`. Uploading the 50 KB `qafila_deals` wasm cost 8,129 XLM (fee-bump tx `4a5320accff78e2c62695e9ac82e6d639167738a349e219a8bae0a91e0df3208`, min persistent TTL 120,960 ledgers = 7 days). Simulating `ExtendFootprintTtl` on that code entry: to 121,000 ledgers 7.8 XLM, 125,000 → 328 XLM, 138,240 (8 days) → 1,386 XLM, 172,800 (10 days) → 4,149 XLM, 259,200 (15 days) → 11,057 XLM, 518,400 (30 days) → 31,778 XLM. Rent for large entries is about 0.08 XLM per ledger per 50 KB at the current testnet state size, so the PLAN 3.3.2 policy ("about 30 days") made the constructor's `extend_instance` cost 30,855 XLM and exceed the uint32 fee cap.
 
 Decision: `TTL_THRESHOLD = 1 day`, `TTL_EXTEND_TO = 7 days` (the testnet minimum). New entries keep their minimum TTL, the extension only fires in the last day before expiry, every write still calls `extend_ttl` (CLAUDE.md rule). The code entry expires about 1 Nov 2026 unless bumped; `pnpm doctor` should warn when the instance TTL falls under 2 days. Revisit for mainnet, where rent is far cheaper and a 30 to 120 day policy is right.
+
+## SP6 follow-up (17:45): production rules on the agent smart account
+
+`contracts/spikes/sp6/agent-account.mts rule-only <SA>` with `SP6_TARGET_CONTRACT_ID` set to each deployed contract: rule 2 `CallContract(CAJW4MIEZXIUFHGLQISXLDF3XIHJOLGSKGDQQHBIQJ2BJU34ZT3COSPV)` tx `ac0583a6df7d7f234aef086e3ee18fce48d6cd73eaf83668e4648fc4f6d0d3b7`; rule 3 `CallContract(CCGDMYX62UDKXJJD5RCFEPOPODJCL4XS43SLRXDDMK7HKGGD4SJH3AG6)` tx `64b5b8ee55b91153ef827dbda0f2545cbe02bce9cfc376d5310122c881a2508b`. The contract's agent role stays the G key until the API signs as the smart account (`set_agent` switches it).
+
+## SP10 Trustless Work (not run)
+
+`TRUSTLESS_WORK_API_KEY` is not in `.env`, so the escrow spike cannot be run. S2 keeps the PLAN 3.2 fallback: `PaymentMode::Native`, `FF_TRUSTLESS_WORK=false`. The contract is already escrow-agnostic (in TrustlessWork mode the API sets `terms.supplier` to the escrow's funding address and the on-chain path is unchanged), so S2 later needs only the API adapter and SP10 once a key exists.
