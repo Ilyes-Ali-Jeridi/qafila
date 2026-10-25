@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "pnpm -r --parallel --filter ./apps/web --filter ./services/api dev",
     "build": "pnpm -r build",
-    "test": "pnpm -r --filter ./packages/shared --filter ./services/api test",
+    "test": "pnpm -r --filter ./packages/shared --filter ./packages/chain --filter ./services/api test",
     "e2e": "pnpm --filter ./apps/web e2e",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
@@ -19,11 +19,22 @@
     "seed": "tsx scripts/seed.ts",
     "demo-reset": "tsx scripts/demo-reset.ts",
     "doctor": "tsx scripts/doctor.ts",
-    "golden-vectors": "tsx scripts/golden-vectors.ts"
+    "golden-vectors": "tsx scripts/golden-vectors.ts",
+    "share-token": "tsx scripts/share-token.ts",
+    "e2e:chain": "tsx scripts/e2e-chain.ts",
+    "typecheck:scripts": "tsc --noEmit -p scripts/tsconfig.json"
   },
   "devDependencies": {
+    "@qafila/chain": "workspace:*",
+    "@qafila/contract-client": "workspace:*",
+    "@qafila/shared": "workspace:*",
+    "@types/node": "22.20.5",
     "tsx": "4.23.15",
-    "typescript": "5.9.3",
-    "@types/node": "22.20.5"
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "17.4.0",
+    "dotenv": "17.2.3",
+    "smart-account-kit": "0.8.0"
   }
 }

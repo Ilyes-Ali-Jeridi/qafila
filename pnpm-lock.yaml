@@ -7,7 +7,26 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@stellar/stellar-sdk':
+        specifier: 17.4.0
+        version: 17.4.0
+      dotenv:
+        specifier: 17.2.3
+        version: 17.2.3
+      smart-account-kit:
+        specifier: 0.8.0
+        version: 0.8.0(@stellar/stellar-sdk@17.4.0)
     devDependencies:
+      '@qafila/chain':
+        specifier: workspace:*
+        version: link:packages/chain
+      '@qafila/contract-client':
+        specifier: workspace:*
+        version: link:packages/contract-client
+      '@qafila/shared':
+        specifier: workspace:*
+        version: link:packages/shared
       '@types/node':
         specifier: 22.20.5
         version: 22.20.5
@@ -106,17 +125,45 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  packages/chain:
+    dependencies:
+      '@qafila/contract-client':
+        specifier: workspace:*
+        version: link:../contract-client
+      '@qafila/shared':
+        specifier: workspace:*
+        version: link:../shared
+      '@stellar/stellar-sdk':
+        specifier: 17.4.0
+        version: 17.4.0
+      dotenv:
+        specifier: 17.2.3
+        version: 17.2.3
+      zod:
+        specifier: 4.6.7
+        version: 4.6.7
+    devDependencies:
+      '@types/node':
+        specifier: 22.20.5
+        version: 22.20.5
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: 5.0.5
+        version: 5.0.5(@types/node@22.20.5)(vite@8.3.5(@types/node@22.20.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
+
   packages/contract-client:
     dependencies:
       '@stellar/stellar-sdk':
-        specifier: 17.4.0
+        specifier: ^17.4.0
         version: 17.4.0
       buffer:
         specifier: 6.0.3
         version: 6.0.3
     devDependencies:
       typescript:
-        specifier: 5.9.3
+        specifier: ^5.9.0
         version: 5.9.3
 
   packages/shared:
@@ -2978,6 +3025,10 @@ packages:
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
+
+  dotenv@17.2.3:
+    resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
+    engines: {node: '>=12'}
 
   drizzle-kit@0.31.11:
     resolution: {integrity: sha512-YCYqxTLIB2OCqf6w9/Vef13baBVbwQIPcbT4Y56AfO6B9ajZhDhD8Jkveg/hJvT/iuMloKD/IYYkyMMNhr7Kqg==}
@@ -8705,6 +8756,8 @@ snapshots:
     dependencies:
       esutils: 2.0.3
 
+  dotenv@17.2.3: {}
+
   drizzle-kit@0.31.11:
     dependencies:
       '@drizzle-team/brocli': 0.10.2
@@ -10563,12 +10616,24 @@ snapshots:
       '@stellar/stellar-sdk': 16.4.1
       buffer: 6.0.3
 
+  smart-account-kit-bindings@0.4.0(@stellar/stellar-sdk@17.4.0):
+    dependencies:
+      '@stellar/stellar-sdk': 17.4.0
+      buffer: 6.0.3
+
   smart-account-kit@0.8.0(@stellar/stellar-sdk@16.4.1):
     dependencies:
       '@simplewebauthn/browser': 13.3.0
       '@stellar/stellar-sdk': 16.4.1
       base64url: 3.0.1
       smart-account-kit-bindings: 0.4.0(@stellar/stellar-sdk@16.4.1)
+
+  smart-account-kit@0.8.0(@stellar/stellar-sdk@17.4.0):
+    dependencies:
+      '@simplewebauthn/browser': 13.3.0
+      '@stellar/stellar-sdk': 17.4.0
+      base64url: 3.0.1
+      smart-account-kit-bindings: 0.4.0(@stellar/stellar-sdk@17.4.0)
 
   smol-toml@1.9.1: {}
 

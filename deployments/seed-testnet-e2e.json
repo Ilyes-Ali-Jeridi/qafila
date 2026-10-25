@@ -1,0 +1,86 @@
+{
+  "network": "testnet",
+  "instance": "e2e",
+  "contractId": "CCGDMYX62UDKXJJD5RCFEPOPODJCL4XS43SLRXDDMK7HKGGD4SJH3AG6",
+  "tag": "seed-20261025153307",
+  "importer": "GB67IU7IUZHXWFIKUDBGQTYYXMJEBCQGDSFGIOFY2X5SW24DVY2EXAKN",
+  "supplier": "GAT237PNUTBSCR3WKOVQBIJOPQKEC4VNTEDJ6U2VFGXD6UDGQUKR4RKY",
+  "investors": {
+    "coinvest": "GAEMRXOVTBKYXBT45CVAZQE5VTRFHUVSSGNVG5CU3O3JWXWH3TELNOFN",
+    "a": "GD63K6XCZNBZ57BYYZQOTT5WMG5WVR447XRLBO6CAXUQK7RYIRUE2KR2",
+    "b": "GADXB3VALLGZJKRMQA474IAJIPJ7VUMENZ7AHTN3WWPD4QR6Y7JDV7K2"
+  },
+  "deals": [
+    {
+      "name": "venue",
+      "dealId": "1",
+      "state": "Listed",
+      "shareToken": "CAZNATCDHS4QMLSQA5VT6OBSY2AH3CYMUI2CKAEHN67NZ4IP4SV6C2W4",
+      "shareIssuer": "GANWJ2LLZIPQC7SOB7HITYAEHWJEWQI2GOBKTUEAMW2JFBMTIF4K674K",
+      "assetCode": "QF00000001",
+      "cost": "20000000000",
+      "security": "4000000000",
+      "listingFingerprintHex": "90e8d9f85d0a26935caf4fb07973b876817ca7deea0b274b8f81c45b278ecc38",
+      "txs": {
+        "promise": "9f5ad3e30fb618b8ddbf8221da629b559aa06e2d4d512a23e8524132a75a28fd",
+        "factory_createIssuer": "a7be03f638b5766f3cb2f3a6ec6cc867603ec0e96e32369a6f5bbfa5d56924ad",
+        "factory_setFlags": "a135998dec114914069a92defc6aae712c7dc24303ff60441b20570313e22831",
+        "factory_deploySac": "d0a1a63730fe8f8063042b9078fedb1f1bb831f23cd8f539c5796827dfff77ef",
+        "factory_setAdmin": "6fa6f739ecc68382379f52b99091630e99141f8fb9b6af23e694ebbfcd4f4460",
+        "factory_lockIssuer": "2b86a7edd29cbf853660f220be46aaf2f9cd9c8e34f2eb34b8d926ed374fa155",
+        "list": "8f8be5e99124ea2a90bdc3d090b3e96a04b3b3d5bfd728d3cf70625852109ae7",
+        "coinvest": "3c51dcd8a959b242ec3d7d874f7a432bdc98238c4fe2f5595d023dfed355e02b"
+      }
+    },
+    {
+      "name": "shipping",
+      "dealId": "2",
+      "state": "DepositPaid",
+      "shareToken": "CBW7VKPKGLCV43JI42PAO6J3VCNIUW7QGQWR73VC6QREDGZ7RI2V4UNK",
+      "shareIssuer": "GBXBKOELX7YWKZ4L3QAG3I2VCBRSD45LJV4Y4VUSGZTLG4JZZO3QUN7M",
+      "assetCode": "QF00000002",
+      "cost": "100000000000",
+      "security": "20000000000",
+      "listingFingerprintHex": "ccd0d6701445a79010a25259fef3b17ffed29eef54adc4069e0f121bd5ec688a",
+      "txs": {
+        "promise": "33531925e703258cf209c23860f8b985b021a05949cabed63c46eec572556a21",
+        "factory_createIssuer": "1ad8d1d8e3722ba0e8c95502d794eb18d370213896812b024d39546afff72ca2",
+        "factory_setFlags": "4780b316dc97ab17ad494c198bb6ac07a05e889a143bf98f33698e3fde14eec8",
+        "factory_deploySac": "46ccb2de7774fd4d666572dce0b8f9e111a3631cf9cc04563dd2a726d1463e76",
+        "factory_setAdmin": "c7c202b4a9695f9baeffbf5e37010e798b03b74402e522265794a7bc0fbe8615",
+        "factory_lockIssuer": "89b7cd318c175d29110639b66932cf2914077009dba8099a227618d19e18cf5c",
+        "list": "623fc59bee771bf536a822cc58fa023c53ec6bd7fe45bd26e92d68b0e06866f0",
+        "coinvest": "7349af1cdeb0ade0a30f9f17398357d867cb8717897e1d29bb7711c62ed9cbef",
+        "investA": "6557481561a09d1a6d11b740f33120814c45c5208afdaa4a8a807f3a4ab365db",
+        "investB": "68819ffe53a6bc83e4d250bbe63ec47b76a4a372b5164b938924db2e3601e52f",
+        "deposit": "8caa7c1e2ce3bfedfdeba5020ad26c01a2e4929d258221537393445f759880d4"
+      }
+    },
+    {
+      "name": "late",
+      "dealId": "3",
+      "state": "Owned",
+      "shareToken": "CBMBRWAMYUURGBMNOGI2IH4AZTMOYRH5KIQVL5P5SNJJNWF6TMF4F5F7",
+      "shareIssuer": "GD3IKVNC2E2MCZC3UJPSHEAGX47E6VW43FOHPQIOUTCEK5I7K2JDBKDG",
+      "assetCode": "QF00000003",
+      "cost": "50000000000",
+      "security": "10000000000",
+      "listingFingerprintHex": "9d82bcb943d52f2c4d05319ec4d5fd94c3f3b5f39388533bf6fb6129f1aca808",
+      "txs": {
+        "promise": "56434b9f1d41365ed0cc109208e8cc341e1d64c5fd5f6d7941d745dd40685188",
+        "factory_createIssuer": "98610ac2d99b8efdf56eebbe5109740741990b79a916f1837b31759ee5fc2b23",
+        "factory_setFlags": "60890176e2e9a830bce1899664bc9c0fcfe526a2cab666b916327165313befeb",
+        "factory_deploySac": "ea666569d9ce58ddf13f647241aeca87b57cc903dcfb858886eeb9a07617ea89",
+        "factory_setAdmin": "30a5471a5d3bed0cca40c4254b67e65227df87b2ae0b7258da32dbc21c0b4531",
+        "factory_lockIssuer": "4d7cec74e3b2218e78402e178946eb176573ffb3f14f4d6ade327e7f5b2feb2e",
+        "list": "5442315780a03d409231050f4ad3478e55f37f832a2c442e062112af4ec01845",
+        "coinvest": "20455602c40ee65d801c0857b87c8e717e8e5cc62830e5a158637038a01bb36f",
+        "investA": "e720e39fb980d6dec77e85ab5e3b0142122d4fb1743e8ac9ad9a058e8d9c2fa8",
+        "investB": "2c267e3f322b97e778e2822d9ec069d1d1e100150b0f3b654df7ab1bf07b024b",
+        "deposit": "91658099e1e7f03d9c4e7b049d94a2b762ac21efc94ef83cb9e17492174a56d1",
+        "confirm": "c352dfc60ac2adf225332d1f65c98963acd50740625bb39dd5aa07f7734e9a2f"
+      }
+    }
+  ],
+  "seededAt": "2026-10-25T15:36:47.276Z"
+}

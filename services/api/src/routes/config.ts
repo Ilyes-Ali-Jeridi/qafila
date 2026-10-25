@@ -22,7 +22,7 @@ export function publicConfig(env: Env): PublicConfig {
     x402UsdcTokenId: env.X402_USDC_TOKEN_ID ?? null,
     charityAddress: env.CHARITY_ADDRESS ?? dep.charity ?? null,
     treasuryAddress: env.TREASURY_ADDRESS ?? dep.treasury ?? null,
-    verifierPublicKey: dep.verifierPublicKey ?? null,
+    verifierPublicKey: dep.verifierPublicKeyHex ?? null,
     smartAccount: {
       wasmHash: env.SMART_ACCOUNT_WASM_HASH ?? null,
       webauthnVerifier: env.WEBAUTHN_VERIFIER_ADDRESS ?? null,

@@ -1,0 +1,26 @@
+{
+  "name": "@qafila/chain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Node-only chain helpers for Qafila: share-token factory, submit queue, contract calls, attestation signing, DealTerms XDR, deployments, qUSD faucet.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@qafila/contract-client": "workspace:*",
+    "@qafila/shared": "workspace:*",
+    "@stellar/stellar-sdk": "17.4.0",
+    "dotenv": "17.2.3",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
+  }
+}
