@@ -2,7 +2,7 @@
   "network": "testnet",
   "instance": "e2e",
   "contractId": "CCGDMYX62UDKXJJD5RCFEPOPODJCL4XS43SLRXDDMK7HKGGD4SJH3AG6",
-  "wasmHash": "cdf7d75a199c796f8ede6928410348bc8f847d2e795bd8dd95e1fa15cc22e5c7",
+  "wasmHash": "e71eaf0bf4ca320b899d2be3fcef14d6f03f8cc70e8b90d9af4237cced1e0d45",
   "verifierPublicKeyHex": "13e701cd10653aab7fd5216973217f0a92ea3dd6455c878d2c0bec936f107a6e",
   "verifierPublicKey": "GAJ6OAONCBSTVK372UQWS4ZBP4FJF2R52ZCVZB4NFQF6ZE3PCB5G4MKG",
   "admin": "GCRLD7ZL5HKXFEUZNYYHSGVOC443RNHT4S34LRQ2F7KX2NDPPGXTFQBH",
@@ -17,7 +17,7 @@
   },
   "coinvest": "GAEMRXOVTBKYXBT45CVAZQE5VTRFHUVSSGNVG5CU3O3JWXWH3TELNOFN",
   "probeContractId": "CD7JYELMF6W5LLWINWJ7XO6BYAMDFBYLJ4VTMTOZ3LWCFH2MZ7MQWXZP",
-  "gitCommit": "d55bafe043b67d43a6045e5fe12256ad5668e485",
+  "gitCommit": "b9e8295840eca024ba751a6201380472b1b72f47",
   "deployedAt": "2026-10-25T15:26:14.264Z",
   "config": {
     "max_markup_bps": 1500,
@@ -35,6 +35,7 @@
   "txs": {
     "deploy": "0624a5a707398230b9edef7e797bce5d96da971cdfe7c8bb1981e1dcac4f6b06",
     "setAgent": "a7ff009776ceec471e8a45aa526ac487a5ee382d09d6ec76883229494064a45e",
-    "approveCoinvest": "8941f3cd932e568c6b9a8b45fc51cfaefb6a224eafbcbd58b2bbd042eb5921ed"
+    "approveCoinvest": "8941f3cd932e568c6b9a8b45fc51cfaefb6a224eafbcbd58b2bbd042eb5921ed",
+    "upgradedAt": "2026-10-25T16:01:48.755449Z"
   }
 }
