@@ -5,8 +5,8 @@
  * queues notifications and agent ticks. Backfill: with no cursor it starts about a day
  * back (or INDEXER_START_LEDGER).
  */
-import { eq } from 'drizzle-orm';
-import { deals, indexerCursor, onchainEvents } from '../db/schema.js';
+import { eq, and, isNull } from 'drizzle-orm';
+import { deals, indexerCursor, onchainEvents, promises } from '../db/schema.js';
 import { enqueue } from '../db/repo.js';
 import { logger } from '../lib/logger.js';
 import type { Services } from '../services.js';
@@ -56,6 +56,8 @@ export async function indexOnce(svc: Services): Promise<{ events: number; cursor
       const fp = e.data['listing_fingerprint'];
       const d = await svc.db.query.deals.findFirst({ where: eq(deals.listingFingerprint, fp) });
       if (d && ['approved', 'review'].includes(d.status)) await svc.db.update(deals).set({ status: 'promised', updatedAt: new Date() }).where(eq(deals.id, d.id));
+      // Record the signing transaction on the promise so the importer's page can link it even when the browser's best-effort report did not arrive.
+      await svc.db.update(promises).set({ onchainTxHash: e.txHash, signedAt: new Date() }).where(and(eq(promises.listingFingerprint, fp), isNull(promises.onchainTxHash)));
     }
   }
   for (const onchainId of touched) {

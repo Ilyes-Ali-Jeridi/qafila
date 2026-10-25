@@ -151,7 +151,11 @@ Live counters are on https://qafila.dev and `GET https://api.qafila.dev/stats`. 
 
 See [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) and [`docs/REVIEW.md`](docs/REVIEW.md). Highlights: attestations bound to purpose, network, contract and deal; the agent can only call the two fixed-path functions and still needs a verifier signature; the relayer only sponsors the Qafila contract, the settlement token and accounts running the audited smart-account wasm; testnet keys live only in env files; testnet rent is unusually high right now (2 to 70 XLM per heavy call), so the keys are topped up and `pnpm run doctor` checks balances.
 
-## 12. Run it locally
+## 12. Interface
+
+Dark "obsidian ledger" design: Bricolage Grotesque display type, Figtree body, JetBrains Mono numerals, glass surfaces with grain and an aurora. Motion (`motion/react`) drives page reveals, presence and springs; GSAP ScrollTrigger drives the landing's pinned four-step story; ReactBits components (Aurora, SplitText, CountUp, SpotlightCard, ShinyText, DecryptedText, Magnet) are vendored under `apps/web/components/bits`. Every animation respects reduced motion; contrast meets WCAG AA; every number is tabular and comes from the API or the chain.
+
+## 13. Run it locally
 
 ```bash
 pnpm install
@@ -167,11 +171,11 @@ pnpm --filter ./apps/web e2e:mock           # Playwright against the mock API
 
 Deploy: `pnpm deploy:testnet`, `pnpm seed`, `pnpm demo-reset`, `pnpm run doctor` (see `docs/API.md` and `deploy/README.md`).
 
-## 13. Roadmap and production checklist
+## 14. Roadmap and production checklist
 
 Next: Sharia board review and fatwa, a pilot in one corridor (China to Nigeria), crowdfunding licence path (CMVM in Portugal, SEC in Nigeria), Stellar Community Fund application, cargo and credit insurance, goods pledged to Qafila after the sale, a takaful protection pool, USDT0 payouts, anchors for local currency. The full checklist is in [`docs/PLAN.md`](docs/PLAN.md#17-production-readiness-checklist-before-real-money-at-scale) section 17.
 
-## 14. Built during the hackathon
+## 15. Built during the hackathon
 
 The repository was created on Sunday 25 October 2026. The first commit (`abc4b2a`, 12:50 WET) holds the plan; code starts with the scaffold (`bbc9fb9`, 14:30 WET). Three engineers worked in parallel worktrees on the chain, intelligence and product tracks, with an integrator merging and deploying; a fresh-eyes reviewer audited the result. The timed log is [`docs/PROGRESS.md`](docs/PROGRESS.md) with per-track detail in `docs/PROGRESS-*.md` and spike results in `docs/SPIKES-*.md`.
 

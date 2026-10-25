@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T22:22:22.009Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:9ae0416e-5125-44fd-bb71-42295c04bffa:listing:f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa:extraction.business_licence=pass,extraction.packing_list=pass,extraction.invoice=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,halal.line_3=pass,price.phone_cases=pass,price.tempered_glass_protectors=pass,price.usb_cables=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal is approved for listing because all required checks passed. The invoice buyer references the wrong deal number, but this is the only issue. No further action is needed.",
+      "fixes": [
+        "The invoice must reference deal 4."
+      ],
+      "category": null
+    },
+    "tokensIn": 2253,
+    "tokensOut": 73,
+    "repaired": false
+  }
+}

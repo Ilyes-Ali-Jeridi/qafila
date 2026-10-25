@@ -19,7 +19,8 @@ export function WithdrawPromise({ deal }: { deal: ImporterDealDetail }) {
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
   const p = deal.promise;
-  if (!p || !p.txHash) return null;
+  // The promise is on-chain once the deal is in the promised stage; the hash arrives with the indexer and may lag by a few seconds.
+  if (!p) return null;
   async function withdraw() {
     if (!w.address || !p) return;
     if (!window.confirm('Withdraw the promise? The deposit comes back now and the deal will not be listed.')) return;

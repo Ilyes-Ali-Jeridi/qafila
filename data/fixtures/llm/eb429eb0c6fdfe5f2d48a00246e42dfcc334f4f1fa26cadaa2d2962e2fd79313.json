@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T19:43:44.203Z",
+  "recorded_at": "2026-10-25T22:22:21.278Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -15,14 +15,14 @@
         {
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
-          "reason": "The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese characters in invoice, English only in packing list).",
+          "reason": "The goods descriptions are identical in substance across both documents, with only minor formatting or language differences (e.g., Chinese characters in invoice, omitted in packing list).",
           "evidence_a": "1. TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款 | 2. Tempered glass screen protectors 9H, retail packed 9H钢化玻璃膜，零售包装 | 3. USB-C charging and data cables, 1 m, nylon braided USB-C充电数据线 1米 尼龙编织",
           "evidence_b": "1. TPU protective cases for smartphones, assorted models | 2. Tempered glass screen protectors 9H, retail packed | 3. USB-C charging and data cables, 1 m, nylon braided"
         }
       ]
     },
     "tokensIn": 876,
-    "tokensOut": 207,
+    "tokensOut": 212,
     "repaired": false
   }
 }

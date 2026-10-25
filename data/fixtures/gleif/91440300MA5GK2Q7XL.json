@@ -1,6 +1,6 @@
 {
   "adapter": "gleif",
-  "recorded_at": "2026-10-25T19:43:41.793Z",
+  "recorded_at": "2026-10-25T22:22:17.952Z",
   "mode": "live",
   "input": {
     "uscc": "91440300MA5GK2Q7XL"
@@ -8,7 +8,7 @@
   "response": {
     "meta": {
       "goldenCopy": {
-        "publishDate": "2026-10-25T08:00:00Z"
+        "publishDate": "2026-10-25T16:00:00Z"
       },
       "pagination": {
         "currentPage": 1,

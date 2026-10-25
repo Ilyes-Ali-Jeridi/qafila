@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T19:43:41.183Z",
+  "recorded_at": "2026-10-25T22:22:17.678Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -304,8 +304,8 @@
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 16595,
-    "tokensOut": 3653,
+    "tokensIn": 16758,
+    "tokensOut": 3822,
     "repaired": true
   }
 }

@@ -1,11 +1,11 @@
 {
   "adapter": "reflector",
-  "recorded_at": "2026-10-25T19:42:21.448Z",
+  "recorded_at": "2026-10-25T22:21:20.701Z",
   "mode": "live",
   "input": {
     "feed": "CCSSOHTBL3LEWUCBBEB5NJFC2OKFRC74OWEIJIZLRJBGAAU4VMU5NV4W",
     "symbol": "NGN",
-    "hour": "2026-10-25T19"
+    "hour": "2026-10-25T22"
   },
   "response": null
 }

@@ -1,0 +1,11 @@
+{
+  "adapter": "resend",
+  "recorded_at": "2026-10-25T22:22:22.393Z",
+  "mode": "live",
+  "input": {
+    "key": "edb6344c-127a-4e68-9850-4f590bc32093"
+  },
+  "response": {
+    "id": "01a17528-5ea2-76a3-b985-65b858c23ae5"
+  }
+}
