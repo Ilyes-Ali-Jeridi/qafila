@@ -156,7 +156,14 @@ export async function releaseEscrowMilestone(svc: Services, deal: DealRow, index
       await recordAction(svc, deal.id, action, 'noop', `milestone ${index + 1} was already released`, inputs, null, false);
       return { decision: 'noop', txHash: null, approveTxHash: null, reasoning: 'already released' };
     }
-    if (!ms?.approved) approveTxHash = (await tw.approveMilestone(deal.escrowId, index, keys.agent)).txHash;
+    if (!ms?.approved) {
+      try {
+        approveTxHash = (await tw.approveMilestone(deal.escrowId, index, keys.agent)).txHash;
+      } catch (e) {
+        // The indexer can lag the chain by a few seconds (SP10): an approval that already landed is fine.
+        if (!(e instanceof TrustlessWorkError && /already been approved/i.test(e.message))) throw e;
+      }
+    }
     const released = await tw.releaseMilestone(deal.escrowId, index, keys.agent);
     const reasoning = `Agent approved and released escrow milestone ${index + 1} (${amount ?? 'amount on-chain'}) to the supplier after ${opts.trigger}; Trustless Work keeps ${terms?.feeBps ?? tw.feeBps} bps.`;
     await recordAction(svc, deal.id, action, 'paid', reasoning, { ...inputs, approveTxHash }, released.txHash, false);
