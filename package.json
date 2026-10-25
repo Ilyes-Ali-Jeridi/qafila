@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "pnpm -r --parallel --filter ./apps/web --filter ./services/api dev",
     "build": "pnpm -r build",
-    "test": "pnpm -r --filter ./packages/shared --filter ./services/api test",
+    "test": "pnpm -r --filter ./packages/shared --filter ./packages/chain --filter ./services/api test",
     "e2e": "pnpm --filter ./apps/web e2e",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
