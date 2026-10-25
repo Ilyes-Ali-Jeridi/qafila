@@ -84,15 +84,15 @@ export function Onboarding() {
   }
 
   return (
-    <div className="mx-auto max-w-xl space-y-6">
+    <div className="mx-auto max-w-xl space-y-8">
       <Steps current={shown} />
 
       {shown === 'wallet' ? (
-        <Card className="rise">
+        <Card className="glass-strong hairline-top rise">
           <CardBody className="space-y-5 p-6">
             <div>
               <p className="eyebrow">Step 1</p>
-              <h1 className="mt-1 text-2xl font-semibold tracking-tight">{mode === 'signin' ? 'Sign in' : 'Your wallet is a passkey'}</h1>
+              <h1 className="mt-1 font-display text-3xl font-bold tracking-tight">{mode === 'signin' ? 'Sign in' : 'Your wallet is a passkey'}</h1>
               <p className="mt-2 text-sm text-ink-muted">
                 {mode === 'signin'
                   ? 'Use the passkey you created before. Your wallet comes back with it.'
@@ -141,12 +141,12 @@ export function Onboarding() {
       ) : null}
 
       {shown !== 'wallet' && w.address ? (
-        <div className="flex items-center justify-between rounded-card border border-success/30 bg-success-100 px-4 py-2.5 text-sm" data-testid="onb-wallet-ready">
+        <div className="flex items-center justify-between gap-3 rounded-full border border-success/30 bg-success-100 py-2 pl-4 pr-2 text-sm shadow-[0_0_24px_-8px_rgba(61,220,151,0.6)]" data-testid="onb-wallet-ready">
           <span className="flex items-center gap-2">
             <Check className="size-4 text-success" />
             Wallet ready{elapsed !== null ? ` in ${elapsed} s` : ''}
           </span>
-          <span className="font-mono text-xs" title={w.address}>
+          <span className="rounded-full border border-line bg-page/60 px-2.5 py-1 font-mono text-xs" title={w.address}>
             {shortAddress(w.address, 6, 6)}
           </span>
         </div>
@@ -190,29 +190,35 @@ export function Onboarding() {
 
 function Steps({ current }: { current: Step }) {
   const order: Step[] = ['wallet', 'role', 'investor', 'done'];
-  const idx = current === 'importer' ? 2 : order.indexOf(current);
+  const idx = current === 'importer' || current === 'email' ? 2 : order.indexOf(current);
   const labels = ['Wallet', 'Role', 'Details', 'Ready'];
   return (
-    <ol className="flex items-center gap-2 text-xs text-ink-muted" aria-label="Progress">
-      {labels.map((l, i) => (
-        <li key={l} className="flex items-center gap-2">
-          <span className={cn('flex size-5 items-center justify-center rounded-full border text-[10px] font-medium', i < idx ? 'border-success bg-success text-white' : i === idx ? 'border-indigo text-indigo' : 'border-line')}>{i < idx ? <Check className="size-3" /> : i + 1}</span>
-          <span className={i === idx ? 'font-medium text-ink' : ''}>{l}</span>
-          {i < labels.length - 1 ? <span aria-hidden className="h-px w-4 bg-line sm:w-8" /> : null}
-        </li>
-      ))}
+    <ol className="grid grid-cols-4 gap-2" aria-label="Progress">
+      {labels.map((l, i) => {
+        const done = i < idx;
+        const now = i === idx;
+        return (
+          <li key={l} className="min-w-0">
+            <span aria-hidden className={cn('block h-1 rounded-full transition-colors duration-500', done ? 'bg-teal/70' : now ? 'aurora-line shadow-[0_0_12px_rgba(45,226,195,0.6)]' : 'bg-white/10')} />
+            <span className={cn('mt-2 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.1em]', now ? 'text-ink' : done ? 'text-teal' : 'text-ink-faint')}>
+              {done ? <Check className="size-3" aria-label="done" /> : <span className="tabular font-mono">{i + 1}</span>}
+              <span className="truncate">{l}</span>
+            </span>
+          </li>
+        );
+      })}
     </ol>
   );
 }
 
 function RoleCard({ icon, title, body, onClick, testId }: { icon: React.ReactNode; title: string; body: string; onClick: () => void; testId: string }) {
   return (
-    <button type="button" onClick={onClick} data-testid={testId} className="rounded-card border border-line bg-surface p-5 text-left shadow-card transition-colors hover:border-indigo-300 hover:bg-sand-100">
-      <span className="flex size-9 items-center justify-center rounded-full bg-indigo-50 text-indigo">{icon}</span>
-      <p className="mt-3 font-semibold">{title}</p>
+    <button type="button" onClick={onClick} data-testid={testId} className="glass hairline-top group rounded-card p-5 text-left transition-[transform,border-color,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:border-white/20 hover:shadow-pop motion-reduce:hover:translate-y-0">
+      <span className="halo halo-teal flex size-10 items-center justify-center rounded-full border border-teal/30 bg-teal-100 text-teal">{icon}</span>
+      <p className="mt-4 font-display text-lg font-semibold tracking-tight">{title}</p>
       <p className="mt-1 text-sm text-ink-muted">{body}</p>
-      <span className="mt-3 inline-flex items-center gap-1 text-sm text-indigo">
-        Continue <ArrowRight className="size-4" />
+      <span className="mt-3 inline-flex items-center gap-1 text-sm text-saffron">
+        Continue <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
       </span>
     </button>
   );
@@ -241,7 +247,7 @@ function InvestorForm({ defaultName, onDone, onBack }: { defaultName: string; on
       <form onSubmit={submit} className="space-y-4 p-6" noValidate>
         <div>
           <p className="eyebrow">Step 3</p>
-          <h2 className="mt-1 text-xl font-semibold">A few details</h2>
+          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight">A few details</h2>
           <p className="mt-1 text-sm text-ink-muted">Testnet sign-up: your wallet is approved to invest right away and receives test dollars.</p>
         </div>
         <Field label="Name" htmlFor="displayName" error={form.formState.errors.displayName?.message}>
@@ -316,11 +322,11 @@ function EmailSignIn({ walletAddress, walletKind, onDone, onBack }: { walletAddr
     }
   }
   return (
-    <Card className="rise" data-testid="email-step">
+    <Card className="glass-strong hairline-top rise" data-testid="email-step">
       <CardBody className="space-y-4">
         <div>
           <p className="eyebrow">Step 3</p>
-          <h2 className="text-xl font-semibold">Your email</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight">Your email</h2>
           <p className="mt-1 text-sm text-ink-muted">Importers sign in with a one-time code so Qafila can reach you about your deals. No password.</p>
         </div>
         <Field label="Email" htmlFor="email-input">
@@ -328,7 +334,7 @@ function EmailSignIn({ walletAddress, walletKind, onDone, onBack }: { walletAddr
         </Field>
         {sent ? (
           <Field label="Code from the email (6 digits)" htmlFor="otp-input">
-            <Input id="otp-input" data-testid="otp-input" inputMode="numeric" autoComplete="one-time-code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="123456" />
+            <Input id="otp-input" data-testid="otp-input" inputMode="numeric" autoComplete="one-time-code" maxLength={6} pattern="[0-9]*" value={code} onChange={(e) => setCode(e.target.value)} placeholder="123456" className="h-14 text-center text-2xl font-semibold tracking-[0.4em] sm:h-14 sm:text-2xl" />
           </Field>
         ) : null}
         {error ? <InlineError>{error}</InlineError> : null}
@@ -384,7 +390,7 @@ function ImporterForm({ defaultName, onDone, onBack }: { defaultName: string; on
       <form onSubmit={submit} className="space-y-4 p-6" noValidate>
         <div>
           <p className="eyebrow">Step 3</p>
-          <h2 className="mt-1 text-xl font-semibold">Register your company</h2>
+          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight">Register your company</h2>
           <p className="mt-1 text-sm text-ink-muted">Ops checks the registration before your first deal. On testnet, approval also sends you enough test dollars for a deposit and a repayment.</p>
         </div>
         <Field label="Your name" htmlFor="displayName" error={form.formState.errors.displayName?.message}>
@@ -431,11 +437,11 @@ function Done({ result, kind, next }: { result: KycResponse | null; kind: 'inves
   const token = useToken();
   const pending = result?.kycStatus === 'pending';
   return (
-    <Card className="rise" data-testid="onb-done">
+    <Card className="glass-strong hairline-top rise border-success/30" data-testid="onb-done">
       <CardBody className="space-y-4 p-6">
         <div>
           <p className="eyebrow">Ready</p>
-          <h2 className="mt-1 text-xl font-semibold">{pending ? 'Thanks. Ops will check your registration.' : kind === 'importer' ? 'You are set up as an importer.' : 'You can invest.'}</h2>
+          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight">{pending ? 'Thanks. Ops will check your registration.' : kind === 'importer' ? 'You are set up as an importer.' : 'You can invest.'}</h2>
         </div>
         {result?.approveTxHash ? (
           <Callout tone="success" title="Your wallet is approved to invest">
