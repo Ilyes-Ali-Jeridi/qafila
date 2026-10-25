@@ -36,6 +36,17 @@ export {
   type SubmitResult,
 } from './queue.ts';
 export { qafilaSpec } from './spec.ts';
+export {
+  rpcHealth,
+  rpcLatestLedger,
+  horizonRoot,
+  RpcHealthSchema,
+  LatestLedgerSchema,
+  HorizonRootSchema,
+  type RpcHealth,
+  type LatestLedger,
+  type HorizonRoot,
+} from './health.ts';
 export { encodeDealTerms, decodeDealTerms, dealTermsToScVal, listPayloadHashOf, dealTermsFieldOrder } from './terms.ts';
 export {
   signList,
