@@ -79,6 +79,16 @@ test('importer: new deal, documents, screening, promise with the security deposi
   await page.getByTestId('kyb-reg').fill('RC-E2E-001');
   await page.getByTestId('kyb-submit').click();
   await expect(page.getByTestId('onb-done')).toBeVisible({ timeout: 60_000 });
+  if (!MOCK) {
+    // Real API: ops approves the KYB (dev headers, non-production only), which also sends the importer's test-dollar grant for the deposit.
+    const api = process.env['E2E_API_URL'] ?? 'http://localhost:8787';
+    const ops = { 'x-dev-user': 'ops-e2e', 'x-dev-roles': 'ops,sharia' };
+    const pending = (await (await page.request.get(`${api}/ops/kyc`, { headers: ops })).json()) as Array<{ id: string; legalName?: string | null }>;
+    const mine = pending.find((k) => k.legalName === 'E2E Trading Ltd');
+    expect(mine, 'pending KYB in the ops queue').toBeTruthy();
+    const ok = await page.request.post(`${api}/ops/kyc/${mine!.id}/approve`, { headers: ops, data: {} });
+    expect(ok.ok(), 'KYB approval').toBeTruthy();
+  }
 
   await page.goto('/importer/new');
   await page.getByTestId('nd-supplier').fill(MOCK ? 'Shenzhen E2E Electronics Co., Ltd.' : 'Shenzhen Lanwan Electronics Co., Ltd.');
@@ -101,11 +111,11 @@ test('importer: new deal, documents, screening, promise with the security deposi
   await expect(page.getByTestId('promise-step')).toContainText('Security deposit to lock now');
   await expect(page.getByTestId('promise-step')).toContainText('20%');
   await page.getByTestId('promise-agree').check();
-  if (MOCK) {
+  {
     await page.getByTestId('promise-sign').click();
     // Right after signing the step shows "done"; once the deal refreshes to "promised" the withdraw card takes over.
     const signed = page.getByTestId('promise-done').or(page.getByTestId('withdraw-promise'));
-    await expect(signed.first()).toBeVisible({ timeout: 120_000 });
+    await expect(signed.first()).toBeVisible({ timeout: MOCK ? 120_000 : 240_000 });
     await expect(signed.first()).toContainText('locked');
   }
 });

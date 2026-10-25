@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T18:53:53.136Z",
+  "recorded_at": "2026-10-25T19:01:18.164Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -16,13 +16,13 @@
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
           "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
-          "evidence_a": "1. TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款 | 2. Tempered glass screen protectors 9H, retail packed 9H钢化玻璃膜，零售包装 | 3. USB-C charging and data cables, 1 m, nylon braided USB-C充电数据线 1米 尼龙编织",
-          "evidence_b": "1. TPU protective cases for smartphones, assorted models | 2. Tempered glass screen protectors 9H, retail packed | 3. USB-C charging and data cables, 1 m, nylon braided"
+          "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
+          "evidence_b": "TPU protective cases for smartphones, assorted models"
         }
       ]
     },
     "tokensIn": 876,
-    "tokensOut": 200,
+    "tokensOut": 106,
     "repaired": false
   }
 }
