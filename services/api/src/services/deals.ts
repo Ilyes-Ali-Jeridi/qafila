@@ -18,6 +18,7 @@ import { usdRate } from '../pipeline/price.js';
 import { runPipeline } from '../pipeline/run.js';
 import type { DealContext, InputDocument } from '../pipeline/types.js';
 import type { Services } from '../services.js';
+import { deployDealEscrow, escrowClient, escrowDetail, type TermsWithEscrow } from './escrow.js';
 import { PORTS } from './ports.js';
 
 const log = logger.child({ module: 'deals' });
@@ -228,12 +229,26 @@ export async function listDealOnChain(svc: Services, deal: DealRow, actor: strin
   if (onchainPromise.importer !== importer.walletAddress || onchainPromise.promiseHash !== promise.textHash) throw new ApiError(409, 'promise_mismatch', 'the on-chain promise does not match the stored text or wallet');
   if (onchainPromise.listed) throw new ApiError(409, 'already_listed', 'this promise is already listed');
   const terms = deal.terms as DraftTerms;
+  // S2 (PLAN 10.1): with FF_TRUSTLESS_WORK the supplier is paid through a Trustless Work escrow. The deal
+  // raises the invoice cost grossed up by the protocol fee so the supplier nets the invoice; the fee is
+  // disclosed on the deal page. The escrow is deployed first so `terms.supplier` can be its address.
+  const tw = escrowClient(svc);
+  let onchainCost = BigInt(terms.cost);
+  let supplierAddress: string = supplier.payoutAddress;
+  let paymentMode: DealTerms['payment_mode'] = 'Native';
+  let escrow: Awaited<ReturnType<typeof deployDealEscrow>> | null = null;
+  if (tw) {
+    escrow = await deployDealEscrow(svc, deal, { supplier: supplier.payoutAddress, depositBps: terms.deposit_bps, invoiceCost: BigInt(terms.cost), actor });
+    onchainCost = escrow.plan.grossCost;
+    supplierAddress = escrow.escrowId;
+    paymentMode = 'TrustlessWork';
+  }
   // Importer limit (PLAN 3.3.4 list_deal): say by how much the deal is over before spending rent on the factory (FLOWS 5.1).
   const [limit, stats] = await Promise.all([svc.chain.importerLimit(importer.walletAddress).catch(() => null), svc.chain.importerStats(importer.walletAddress).catch(() => null)]);
   if (limit !== null && stats) {
-    const exposure = BigInt(stats.open_exposure) + BigInt(terms.cost);
+    const exposure = BigInt(stats.open_exposure) + onchainCost;
     if (stats.defaulted > 0) throw new ApiError(409, 'importer_in_default', 'the importer has a default on record; the contract will not list a new deal');
-    if (exposure > limit) throw new ApiError(409, 'limit_exceeded', `this deal (${formatAmount(terms.cost, svc.env.SETTLEMENT_TOKEN_CODE)}) plus the importer's open exposure (${formatAmount(stats.open_exposure, svc.env.SETTLEMENT_TOKEN_CODE)}) is ${formatAmount(exposure - limit, svc.env.SETTLEMENT_TOKEN_CODE)} over the importer's limit of ${formatAmount(limit, svc.env.SETTLEMENT_TOKEN_CODE)}; split the order or wait for an open deal to be repaid`, { cost: terms.cost, openExposure: stats.open_exposure, limit: limit.toString() });
+    if (exposure > limit) throw new ApiError(409, 'limit_exceeded', `this deal (${formatAmount(onchainCost, svc.env.SETTLEMENT_TOKEN_CODE)}) plus the importer's open exposure (${formatAmount(stats.open_exposure, svc.env.SETTLEMENT_TOKEN_CODE)}) is ${formatAmount(exposure - limit, svc.env.SETTLEMENT_TOKEN_CODE)} over the importer's limit of ${formatAmount(limit, svc.env.SETTLEMENT_TOKEN_CODE)}; split the order or wait for an open deal to be repaid`, { cost: onchainCost.toString(), openExposure: stats.open_exposure, limit: limit.toString() });
   }
   const settlement = svc.env.SETTLEMENT_TOKEN_ID ?? (await import('../env.js')).loadDeployment(svc.env.STELLAR_NETWORK).settlementToken?.id;
   if (!settlement) throw new ApiError(503, 'no_settlement_token', 'SETTLEMENT_TOKEN_ID is not configured');
@@ -250,10 +265,10 @@ export async function listDealOnChain(svc: Services, deal: DealRow, actor: strin
   const now = Math.floor(Date.now() / 1000);
   const dealTerms: DealTerms = DealTermsSchema.parse({
     importer: importer.walletAddress,
-    supplier: supplier.payoutAddress,
+    supplier: supplierAddress,
     share_token: share.sacId,
     payout_token: settlement,
-    cost: terms.cost,
+    cost: onchainCost.toString(),
     deposit_bps: terms.deposit_bps,
     markup: terms.markup,
     platform_fee: terms.platform_fee,
@@ -265,15 +280,16 @@ export async function listDealOnChain(svc: Services, deal: DealRow, actor: strin
     report_hash: report.hash,
     promise_hash: promise.textHash,
     halal_ok: true,
-    payment_mode: 'Native',
+    payment_mode: paymentMode,
     security: onchainPromise.security.toString(),
   });
   const xdrBytes = svc.chain.dealTermsXdr(dealTerms);
   const { signature } = signList({ verifierSecret: svc.verifierSecret, contractId: svc.contractId, networkPassphrase: svc.env.NETWORK_PASSPHRASE, dealTermsXdr: xdrBytes });
   const listed = await svc.chain.listDeal(dealTerms, signature);
-  await svc.db.update(deals).set({ onchainId: listed.dealId, status: 'listed', shareToken: share.sacId, issuerPublicKey: share.issuerPublicKey, factoryTxHashes: [...share.txHashes, listed.txHash], terms: { ...terms, onchain: dealTerms }, security: dealTerms.security, updatedAt: new Date() }).where(eq(deals.id, deal.id));
+  const storedTerms: TermsWithEscrow & { onchain: DealTerms } = { ...terms, ...(escrow ? { escrow: escrow.terms } : {}), onchain: dealTerms };
+  await svc.db.update(deals).set({ onchainId: listed.dealId, status: 'listed', shareToken: share.sacId, issuerPublicKey: share.issuerPublicKey, factoryTxHashes: [...share.txHashes, listed.txHash], terms: storedTerms, paymentMode, escrowId: escrow?.escrowId ?? deal.escrowId, security: dealTerms.security, updatedAt: new Date() }).where(eq(deals.id, deal.id));
   await svc.db.update(promises).set({ onchainTxHash: promise.onchainTxHash ?? listed.txHash, signedAt: promise.signedAt ?? new Date(onchainPromise.at * 1000) }).where(eq(promises.id, promise.id));
-  await audit(svc.db, { actor, action: 'list_deal', target: deal.id, after: { onchainId: listed.dealId, txHash: listed.txHash, shareToken: share.sacId } });
+  await audit(svc.db, { actor, action: 'list_deal', target: deal.id, after: { onchainId: listed.dealId, txHash: listed.txHash, shareToken: share.sacId, paymentMode, escrowId: escrow?.escrowId ?? null } });
   await enqueue(svc.db, 'notify', { kind: 'deal_listed', dealId: deal.id });
   return { onchainId: listed.dealId, txHash: listed.txHash, shareToken: share.sacId, issuerPublicKey: share.issuerPublicKey, factoryTxHashes: share.txHashes, terms: dealTerms };
 }
@@ -373,6 +389,7 @@ export async function toDetail(svc: Services, deal: DealRow): Promise<DealDetail
     payments,
     issuer: deal.issuerPublicKey ? { publicKey: deal.issuerPublicKey, locked: true, flags: ['AUTH_REQUIRED', 'AUTH_REVOCABLE', 'AUTH_CLAWBACK_ENABLED'] } : null,
     escrowId: deal.escrowId ?? null,
+    escrow: await escrowDetail(svc, deal).catch(() => null),
     lossOrder: ["The importer's own money: the security deposit, and after the sale everything they have paid.", 'Recoveries: from the supplier, insurance, resale of the goods, legal collection.', `Investors pro rata, ${svc.env.QAFILA_ENTITY_NAME}'s own ${(svc.env.COINVEST_BPS / 100).toFixed(0)}% included.`],
     worstCase: { investorRecoveryBps: cost > 0n ? Number((security * 10000n) / cost) : 0, note: cost > 0n ? `If the importer pays nothing after buying and nothing is recovered, investors get back the deposit's share: ${(Number((security * 10000n) / cost) / 100).toFixed(1)}% of what they put in.` : 'Amounts are not known yet.' },
     localCurrency: await localCurrency(svc, deal, cost, cost + BigInt(summary.markup || '0')),

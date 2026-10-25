@@ -75,6 +75,7 @@ export function OpsActions({ deal }: { deal: OpsDealDetail }) {
   if (s === 'sold' && deal.onchain && nowSecs() > deal.onchain.due_at + 60 && BigInt(deal.onchain.principal_repaid) < BigInt(deal.onchain.sale_price)) panels.push(<MarkDefault key="default" deal={deal} a={a} />);
   if (['listed', 'funded', 'deposit_paid', 'owned'].includes(s)) panels.push(<Abort key="abort" deal={deal} a={a} />);
   if (s === 'defaulted') panels.push(<Recovery key="recovery" deal={deal} a={a} />);
+  if (deal.escrow && ['funded', 'deposit_paid', 'owned', 'defaulted'].includes(s)) panels.push(<Escrow key="escrow" deal={deal} a={a} />);
 
   if (panels.length === 0) {
     panels.push(
@@ -101,6 +102,55 @@ function ActionCard({ eyebrow, title, children }: { eyebrow: string; title: stri
 }
 
 type A = ReturnType<typeof useAction>;
+
+/** S2 (FLOWS 5.2): dispute an escrow milestone and send it back to Qafila, then record it as a recovery. */
+function Escrow({ deal, a }: { deal: OpsDealDetail; a: A }) {
+  const escrow = deal.escrow!;
+  const [index, setIndex] = useState<'0' | '1'>('0');
+  const [amount, setAmount] = useState('');
+  const [refundTo, setRefundTo] = useState('');
+  const [note, setNote] = useState('');
+  const milestone = escrow.milestones.find((m) => m.index === Number(index));
+  let parsed: bigint | null = null;
+  try {
+    parsed = amount ? parseAmount(amount) : null;
+  } catch {
+    parsed = null;
+  }
+  return (
+    <ActionCard eyebrow="S2" title="Escrow dispute">
+      <p className="text-sm text-ink-muted">
+        Milestones sit in the Trustless Work escrow until the agent releases them. If the supplier does not deliver, dispute the funded milestone, then resolve it back to a Qafila account and record that amount as a recovery.
+        {milestone ? <> Selected milestone: {milestone.released ? 'released' : milestone.resolved ? 'resolved' : milestone.disputed ? 'in dispute' : milestone.approved ? 'approved' : 'pending'}.</> : null}
+      </p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Field label="Milestone" htmlFor="es-index">
+          <Select id="es-index" value={index} onChange={(e) => setIndex(e.target.value as '0' | '1')}>
+            <option value="0">1: deposit</option>
+            <option value="1">2: balance</option>
+          </Select>
+        </Field>
+        <Field label="Amount to send back" htmlFor="es-amount" hint="Trustless Work keeps 0.3%.">
+          <Input id="es-amount" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} />
+        </Field>
+      </div>
+      <Field label="Refund to (G address, optional; default admin)" htmlFor="es-to">
+        <Input id="es-to" value={refundTo} onChange={(e) => setRefundTo(e.target.value.trim())} className="font-mono" />
+      </Field>
+      <Field label="Note" htmlFor="es-note">
+        <Textarea id="es-note" value={note} onChange={(e) => setNote(e.target.value)} />
+      </Field>
+      <div className="flex flex-wrap gap-2">
+        <Button variant="outline" onClick={() => a.run('escrow-dispute', 'escrow/dispute', { milestoneIndex: Number(index), note }, 'Milestone disputed')} loading={a.busy === 'escrow-dispute'} disabled={note.trim().length < 3 || Boolean(milestone?.released || milestone?.resolved || milestone?.disputed)}>
+          Dispute milestone
+        </Button>
+        <Button variant="danger" onClick={() => a.run('escrow-resolve', 'escrow/resolve', { milestoneIndex: Number(index), amount: parsed?.toString(), refundTo: refundTo || undefined, note }, 'Escrow resolved')} loading={a.busy === 'escrow-resolve'} disabled={!parsed || parsed <= 0n || note.trim().length < 3 || !milestone?.disputed}>
+          Resolve to Qafila
+        </Button>
+      </div>
+    </ActionCard>
+  );
+}
 
 function Override({ deal, a }: { deal: OpsDealDetail; a: A }) {
   const [decision, setDecision] = useState<'approve' | 'review' | 'reject'>(deal.reportSummary?.decision ?? 'review');

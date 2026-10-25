@@ -37,13 +37,13 @@ Production (EC2): `NODE_ENV=production WORKER=true STORAGE_MODE=supabase` with `
 
 ## Routes
 
-Public: `GET /health`, `GET /config`, `GET /.well-known/qafila-verifier.json`, `GET /stats`, `GET /events?limit=`, `GET /charity`, `GET /deals`, `GET /deals/:id` (uuid or number), `GET /deals/:id/tracking`, `GET /jobs/:id`, `GET /files/*` (local storage links), `GET|POST /supplier/confirm/:token` (`FF_SUPPLIER_CONFIRM`).
+Public: `GET /health`, `GET /config`, `GET /.well-known/qafila-verifier.json`, `GET /stats`, `GET /events?limit=`, `GET /charity`, `GET /deals`, `GET /deals/:id` (uuid or number; with `FF_TRUSTLESS_WORK` the detail carries an `escrow` block: id and funding address, `feeBps`, `fee`, `invoiceCost`, `grossCost`, viewer `url`, milestones, roles, mode; `null` for native deals), `GET /deals/:id/tracking`, `GET /jobs/:id`, `GET /files/*` (local storage links), `GET|POST /supplier/confirm/:token` (`FF_SUPPLIER_CONFIRM`).
 
 Session: `POST /auth/otp`, `POST /auth/verify`, `GET /me`, `GET /me/portfolio`, `POST /wallet/link`, `POST /kyc`, `POST /join`, `POST /faucet`, `POST /kyb`, `POST /kyb/documents`.
 
 Importer: `POST /deals`, `PATCH /deals/:id`, `GET /deals/:id/documents`, `POST /deals/:id/documents` (JSON registration then `PUT /deals/:id/documents/:docId` with the bytes, or multipart `type` + `file`), `POST /deals/:id/verify` (job), `GET /deals/:id/report?stage=`, `POST /deals/:id/promise`, `POST /deals/:id/promise/submitted`, `POST /deals/:id/shipment` (job), `GET /importer/deals`, `GET /importer/deals/:id`, `POST /deals/:id/extension-request`, `GET /deals/:id/purchase-order`, `GET /deals/:id/tradefile`.
 
-Ops: `GET /ops/queue`, `GET /ops/deals/:id`, `POST /ops/deals/:id/{list,pay-deposit,confirm-shipment,abort,override,default,recovery,recovery-note,finalize,extend,refuse-extension,release-bl,incident}`, `POST /ops/deals/import-onchain` (adopt a seeded on-chain deal), `GET /ops/kyc`, `POST /ops/kyc/:id/approve` (investor: `approve_investor`; importer: KYB plus the 1.35 x limit faucet grant), `GET /ops/agent`, `GET|PUT /ops/policy`, `POST /ops/incidents/:id/resolve`.
+Ops: `GET /ops/queue`, `GET /ops/deals/:id`, `POST /ops/deals/:id/{list,pay-deposit,confirm-shipment,abort,override,default,recovery,recovery-note,finalize,extend,refuse-extension,release-bl,incident}`, `POST /ops/deals/:id/escrow/{dispute,resolve}` (S2, `FF_TRUSTLESS_WORK`: `{ milestoneIndex, note }` disputes a milestone with the agent key; `{ milestoneIndex, amount, refundTo?, note }` resolves it to a Qafila account, then record it with `recovery`), `POST /ops/deals/import-onchain` (adopt a seeded on-chain deal), `GET /ops/kyc`, `POST /ops/kyc/:id/approve` (investor: `approve_investor`; importer: KYB plus the 1.35 x limit faucet grant), `GET /ops/agent`, `GET|PUT /ops/policy`, `POST /ops/incidents/:id/resolve`.
 
 x402 (`FF_X402`): `POST /x402/v1/verify` (paid, multipart `form` JSON + `invoice`, `packing_list`, `business_licence`, optional `bill_of_lading`; returns `{ job_id, job_token }`), `GET /x402/v1/jobs/:id?job_token=` (signed report, purpose 10).
 

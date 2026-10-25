@@ -13,6 +13,7 @@ import { EmptyState, ErrorState, Skeleton, SkeletonCard } from '@/components/ui/
 import { DecisionBadge, StateBadge } from './badges';
 import { ChecksList } from './checks-list';
 import { DealTerms } from './deal-terms';
+import { EscrowCard } from './escrow-card';
 import { IfThingsGoWrong } from './if-things-go-wrong';
 import { InvestPanel } from './invest-panel';
 import { IssuerBadge } from './issuer-badge';
@@ -110,6 +111,7 @@ export function DealScreen({ id }: { id: string }) {
             <InvestPanel deal={deal} />
           </div>
           <IfThingsGoWrong deal={deal} />
+          <EscrowCard deal={deal} />
           {deal.issuer ? (
             <Card>
               <CardHeader eyebrow="Share token" title="Who controls the shares" />

@@ -33,6 +33,7 @@ export function adapterModes(env: Env): Record<string, 'live' | 'mock' | 'off'> 
     opensanctions: mode(env.OPENSANCTIONS_MODE, env.OPENSANCTIONS_API_KEY),
     registry: mode(env.REGISTRY_MODE, undefined, true),
     reflector: env.FF_REFLECTOR ? 'live' : 'off',
+    trustlesswork: env.FF_TRUSTLESS_WORK ? mode(env.TRUSTLESS_WORK_MODE, env.TRUSTLESS_WORK_API_KEY) : 'off',
     resend: env.RESEND_API_KEY ? 'live' : 'off',
   };
 }
