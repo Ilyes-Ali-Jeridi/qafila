@@ -1,0 +1,19 @@
+[Unit]
+Description=Qafila API (Hono) and job worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/qafila/repo/services/api
+EnvironmentFile=/opt/qafila/.env
+Environment=NODE_ENV=production
+Environment=WORKER=1
+ExecStart=/usr/bin/pnpm start
+Restart=always
+RestartSec=3
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

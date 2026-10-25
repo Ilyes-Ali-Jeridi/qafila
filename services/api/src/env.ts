@@ -118,7 +118,9 @@ export type Env = z.infer<typeof EnvSchema> & Record<(typeof FEATURE_FLAGS)[numb
 export interface Deployment {
   contractId?: string;
   wasmHash?: string;
-  verifierPublicKey?: string;
+  verifierPublicKey?: string; // G address
+  verifierPublicKeyHex?: string; // raw 32 bytes, what the contract stores
+  agentSmartAccountId?: string;
   admin?: string;
   agent?: string;
   charity?: string;
