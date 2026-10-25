@@ -3,12 +3,13 @@ import { PackageSearch } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import type { DealSummary } from '@qafila/shared';
 import { DealCard } from '@/components/deal/deal-card';
+import { Reveal } from '@/components/motion/reveal';
 import { PageHeader } from '@/components/ui/page-header';
-import { Select } from '@/components/ui/input';
 import { EmptyState, ErrorState, SkeletonList } from '@/components/ui/states';
 import { ButtonLink } from '@/components/ui/button';
 import { describeError } from '@/lib/api/client';
 import { useDeals } from '@/lib/api/hooks';
+import { cn } from '@/lib/utils';
 
 type Tenor = 'any' | 'short' | 'mid' | 'long';
 type Risk = 'any' | 'high' | 'mid' | 'low';
@@ -33,6 +34,33 @@ function stageOk(d: DealSummary, s: Stage) {
   return ['Repaid', 'Cancelled', 'Defaulted', 'Liquidated', 'Closed'].includes(d.state ?? '');
 }
 
+function Pills<K extends string>({ label, value, onChange, options }: { label: string; value: K; onChange: (k: K) => void; options: Array<[K, string]> }) {
+  return (
+    <div className="flex flex-wrap items-center gap-1.5">
+      <span className="eyebrow mr-1">{label}</span>
+      <div role="group" aria-label={label} className="flex flex-wrap gap-1.5">
+        {options.map(([k, text]) => {
+          const on = k === value;
+          return (
+            <button
+              key={k}
+              type="button"
+              aria-pressed={on}
+              onClick={() => onChange(k)}
+              className={cn(
+                'h-8 rounded-full border px-3 text-xs font-medium transition-[background-color,border-color,color,box-shadow] duration-200',
+                on ? 'border-teal/50 bg-teal-100 text-teal shadow-[0_0_16px_-6px_rgba(45,226,195,0.8)]' : 'border-line bg-white/[0.03] text-ink-muted hover:border-white/25 hover:text-ink',
+              )}
+            >
+              {text}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 /** Marketplace (FLOWS V-2): compare deals by goods, route, return, tenor, risk, importer history and deposit; filter by tenor and risk. */
 export function Marketplace() {
   const q = useDeals();
@@ -44,37 +72,51 @@ export function Marketplace() {
 
   return (
     <div className="space-y-6">
-      <PageHeader eyebrow="Marketplace" title="Shipments to fund" lead="Each deal buys real goods for a named importer and sells them on at a price fixed from day one. You fund the purchase and share the fixed profit." />
-      <div className="flex flex-wrap items-end gap-3">
-        <label className="text-xs text-ink-muted">
-          Status
-          <Select value={stage} onChange={(e) => setStage(e.target.value as Stage)} className="mt-1 w-44" aria-label="Filter by status">
-            <option value="all">All deals</option>
-            <option value="open">Open for funding{q.data ? ` (${openCount})` : ''}</option>
-            <option value="running">Running</option>
-            <option value="finished">Finished</option>
-          </Select>
-        </label>
-        <label className="text-xs text-ink-muted">
-          Tenor
-          <Select value={tenor} onChange={(e) => setTenor(e.target.value as Tenor)} className="mt-1 w-40" aria-label="Filter by tenor">
-            <option value="any">Any tenor</option>
-            <option value="short">Up to 60 days</option>
-            <option value="mid">61 to 90 days</option>
-            <option value="long">Over 90 days</option>
-          </Select>
-        </label>
-        <label className="text-xs text-ink-muted">
-          Risk score
-          <Select value={risk} onChange={(e) => setRisk(e.target.value as Risk)} className="mt-1 w-40" aria-label="Filter by risk score">
-            <option value="any">Any score</option>
-            <option value="high">90 and above</option>
-            <option value="mid">70 to 89</option>
-            <option value="low">Below 70</option>
-          </Select>
-        </label>
-        {q.data ? <p className="pb-2.5 text-xs text-ink-muted tabular">{deals.length} of {q.data.length} deals</p> : null}
-      </div>
+      <Reveal>
+        <PageHeader eyebrow="Marketplace" title="Shipments to fund" lead="Each deal buys real goods for a named importer and sells them on at a price fixed from day one. You fund the purchase and share the fixed profit." />
+      </Reveal>
+      <Reveal delay={0.08} className="glass flex flex-col gap-3 rounded-card p-3 sm:p-4">
+        <Pills
+          label="Status"
+          value={stage}
+          onChange={setStage}
+          options={[
+            ['all', 'All deals'],
+            ['open', q.data ? `Open for funding (${openCount})` : 'Open for funding'],
+            ['running', 'Running'],
+            ['finished', 'Finished'],
+          ]}
+        />
+        <Pills
+          label="Tenor"
+          value={tenor}
+          onChange={setTenor}
+          options={[
+            ['any', 'Any tenor'],
+            ['short', 'Up to 60 days'],
+            ['mid', '61 to 90 days'],
+            ['long', 'Over 90 days'],
+          ]}
+        />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Pills
+            label="Risk score"
+            value={risk}
+            onChange={setRisk}
+            options={[
+              ['any', 'Any score'],
+              ['high', '90 and above'],
+              ['mid', '70 to 89'],
+              ['low', 'Below 70'],
+            ]}
+          />
+          {q.data ? (
+            <p className="tabular font-mono text-xs text-ink-muted" aria-live="polite">
+              {deals.length} of {q.data.length} deals
+            </p>
+          ) : null}
+        </div>
+      </Reveal>
 
       {q.isPending ? (
         <SkeletonList count={6} lines={4} />

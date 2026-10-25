@@ -1,8 +1,8 @@
 'use client';
 import type { DealDetail } from '@qafila/shared';
 import { Card, CardBody, CardHeader } from '@/components/ui/card';
+import { HashReveal } from '@/components/ui/hash-reveal';
 import { Timeline } from '@/components/ui/timeline';
-import { TxLink } from '@/components/ui/tx-link';
 import { EmptyState } from '@/components/ui/states';
 import { formatDateTime } from '@/lib/utils';
 import { formatAmount } from '@qafila/shared';
@@ -36,7 +36,7 @@ const TITLES: Record<string, string> = {
   bl_released: 'Bill of lading released to the importer',
 };
 
-const TONES: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'saffron'> = {
+const TONES: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'saffron' | 'teal'> = {
   funded: 'success',
   shipment_confirmed: 'success',
   repaid: 'success',
@@ -50,6 +50,7 @@ const TONES: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'saff
   security_used: 'warning',
 };
 
+/** Vertical ledger timeline of every contract event, newest first, each with its hash revealing and a stellar.expert link. */
 export function OnchainTimeline({ timeline, title = 'On-chain timeline' }: { timeline: DealDetail['timeline']; title?: string }) {
   const token = useToken();
   const items = [...timeline]
@@ -61,13 +62,13 @@ export function OnchainTimeline({ timeline, title = 'On-chain timeline' }: { tim
         title: TITLES[e.type] ?? e.type.replaceAll('_', ' '),
         body: typeof amt === 'string' && /^\d+$/.test(amt) ? formatAmount(amt, token.code) : undefined,
         when: formatDateTime(e.at),
-        tone: TONES[e.type] ?? 'default',
-        action: <TxLink hash={e.txHash} short />,
+        tone: TONES[e.type] ?? 'teal',
+        action: <HashReveal hash={e.txHash} className="text-xs" head={6} tail={4} />,
       };
     });
   return (
     <Card>
-      <CardHeader eyebrow={`${items.length} events`} title={title} />
+      <CardHeader eyebrow={<span className="text-teal">{items.length} events on Stellar</span>} title={title} />
       <CardBody>{items.length ? <Timeline items={items} /> : <EmptyState title="Nothing on-chain yet" body="The first event appears when the importer signs the purchase promise." />}</CardBody>
     </Card>
   );

@@ -245,3 +245,8 @@ dialog::backdrop { background: rgba(7, 10, 18, 0.7); -webkit-backdrop-filter: bl
 .maplibregl-ctrl-group button { filter: invert(1) hue-rotate(180deg); }
 .maplibregl-ctrl-attrib { background: rgba(14, 19, 34, 0.8) !important; color: var(--color-ink-muted) !important; font-size: 10px; }
 .maplibregl-ctrl-attrib a { color: var(--color-ink-muted) !important; }
+
+/* Route map: the light basemap is inverted on the canvas so the panel reads as dark glass; markers are HTML and stay as drawn. */
+.route-map .maplibregl-canvas { filter: invert(1) hue-rotate(180deg) brightness(0.82) saturate(0.55); }
+.route-map .maplibregl-ctrl-group button { filter: none; }
+.route-map .maplibregl-ctrl-group button span { filter: invert(1); }

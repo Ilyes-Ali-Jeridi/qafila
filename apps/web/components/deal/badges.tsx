@@ -16,7 +16,7 @@ export const STATE_LABEL: Record<DealStateName, string> = {
 };
 
 const STATE_TONE: Record<DealStateName, BadgeTone> = {
-  Listed: 'saffron',
+  Listed: 'teal',
   Funded: 'indigo',
   DepositPaid: 'indigo',
   Owned: 'indigo',

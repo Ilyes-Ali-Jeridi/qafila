@@ -6,6 +6,7 @@
  * 10 seconds through query invalidation plus the deal's refetch interval.
  */
 import { Check, KeyRound } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { expectedProfit, formatAmount, parseAmount, type DealDetail } from '@qafila/shared';
@@ -13,6 +14,7 @@ import { Amount } from '@/components/ui/amount';
 import { Button, buttonClasses } from '@/components/ui/button';
 import { Callout, Card, CardBody, CardHeader } from '@/components/ui/card';
 import { Countdown } from '@/components/ui/countdown';
+import { HashReveal } from '@/components/ui/hash-reveal';
 import { Field, Input } from '@/components/ui/input';
 import { InlineError } from '@/components/ui/states';
 import { TxLink } from '@/components/ui/tx-link';
@@ -21,8 +23,9 @@ import { useMe, usePortfolio, useRefreshDeal } from '@/lib/api/hooks';
 import { useToken } from '@/lib/config';
 import { calls } from '@/lib/stellar/calls';
 import { useWallet } from '@/lib/wallet/provider';
-import { humanDuration, nowSecs } from '@/lib/utils';
+import { cn, humanDuration, nowSecs } from '@/lib/utils';
 import { FundingProgress } from './funding-progress';
+import { LossRail } from './loss-rail';
 import { ShareTrustline, useShareTrustline } from './share-trustline';
 
 export function InvestPanel({ deal }: { deal: DealDetail }) {
@@ -31,6 +34,7 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
   const portfolio = usePortfolio();
   const token = useToken();
   const refresh = useRefreshDeal();
+  const reduce = useReducedMotion();
   const [raw, setRaw] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<{ hash: string; amount: bigint } | null>(null);
@@ -70,11 +74,25 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
     }
   }
 
-  const header = <CardHeader eyebrow={open ? 'Open for funding' : 'Funding'} title={open ? 'Invest in this shipment' : 'Funding status'} />;
+  const header = (
+    <CardHeader
+      eyebrow={
+        open ? (
+          <span className="flex items-center gap-1.5 text-teal">
+            <span aria-hidden className="live-dot size-1.5 rounded-full bg-teal shadow-[0_0_8px_rgba(45,226,195,0.9)]" /> Open for funding
+          </span>
+        ) : (
+          'Funding'
+        )
+      }
+      title={open ? 'Invest in this shipment' : 'Funding status'}
+    />
+  );
+  const frame = cn('glass-strong', open && 'border-saffron/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_24px_60px_-24px_rgba(242,178,62,0.35)]');
 
   if (!open) {
     return (
-      <Card data-testid="invest-panel">
+      <Card data-testid="invest-panel" className={frame}>
         {header}
         <CardBody className="space-y-3">
           <FundingProgress funded={deal.funded} cost={deal.cost} />
@@ -86,7 +104,7 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
 
   if (w.status !== 'connected') {
     return (
-      <Card data-testid="invest-panel">
+      <Card data-testid="invest-panel" className={frame}>
         {header}
         <CardBody className="space-y-4">
           <FundingProgress funded={deal.funded} cost={deal.cost} />
@@ -111,7 +129,7 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
 
   if (me.data && !me.data.investorApproved) {
     return (
-      <Card data-testid="invest-panel">
+      <Card data-testid="invest-panel" className={frame}>
         {header}
         <CardBody className="space-y-4">
           <FundingProgress funded={deal.funded} cost={deal.cost} />
@@ -127,7 +145,7 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
   }
 
   return (
-    <Card data-testid="invest-panel">
+    <Card data-testid="invest-panel" className={frame}>
       {header}
       <CardBody className="space-y-4">
         <FundingProgress funded={deal.funded} cost={deal.cost} />
@@ -137,74 +155,78 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
           </p>
         ) : null}
 
-        {done ? (
-          <Callout tone="success" title={`You now own a share of ${deal.goodsSummary}`}>
-            <p>
-              <Amount value={done.amount} /> invested. Your shares and the progress bar update within 10 seconds. <TxLink hash={done.hash} />
-            </p>
-            <Button variant="outline" size="sm" className="mt-2" onClick={() => setDone(null)}>
-              Invest more
-            </Button>
-          </Callout>
-        ) : (
-          <>
-            <Field label={`Amount in ${token.label || 'test dollars'}`} htmlFor="invest-amount" error={parsed.error ?? undefined} hint={`Up to ${formatAmount(left, token.code)} left to fund.`}>
-              <Input id="invest-amount" inputMode="decimal" placeholder="25" value={raw} onChange={(e) => setRaw(e.target.value)} aria-invalid={Boolean(parsed.error)} data-testid="invest-amount" />
-            </Field>
-            <div className="flex flex-wrap gap-2">
-              {[10n, 50n, 100n].map((n) => {
-                const v = n * 10_000_000n;
-                if (v > left) return null;
-                return (
-                  <Button key={String(n)} variant="outline" size="sm" onClick={() => setRaw(String(n))}>
-                    {String(n)}
-                  </Button>
-                );
-              })}
-              <Button variant="outline" size="sm" onClick={() => setRaw(formatAmount(left, '').trim().replaceAll(',', ''))}>
-                All that is left
-              </Button>
-            </div>
-
-            <div className="rounded-md border border-line bg-surface-2 p-3 text-sm" data-testid="invest-summary">
-              <div className="flex justify-between">
-                <span className="text-ink-muted">Expected profit</span>
-                <Amount value={profit} sign className="font-semibold text-success" />
-              </div>
-              <div className="flex justify-between">
-                <span className="text-ink-muted">You get back on repayment</span>
-                <Amount value={(parsed.amount ?? 0n) + profit} className="font-semibold" />
-              </div>
-              <div className="flex justify-between">
-                <span className="text-ink-muted">When</span>
-                <span className="tabular">about {humanDuration(deal.tenorSecs)} after the sale is signed</span>
-              </div>
-            </div>
-
-            <Callout tone="warning" title="You can lose money">
-              <p>If the importer does not repay and nothing is recovered, losses are shared by all holders. Who loses first:</p>
-              <ol className="list-decimal pl-5">
-                {deal.lossOrder.map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ol>
-              <p>Your shares cannot be sold before the deal ends.</p>
-            </Callout>
-            {concentration > 25 && invested !== null && invested > 0n ? (
-              <Callout tone="warning" title="More than a quarter of your portfolio">
-                <p>This deal would be {concentration}% of everything you have invested. Spreading across deals lowers the risk of one default.</p>
+        <AnimatePresence mode="wait" initial={false}>
+          {done ? (
+            <motion.div key="done" initial={{ opacity: 0, y: reduce ? 0 : 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}>
+              <Callout tone="success" title={`You now own a share of ${deal.goodsSummary}`}>
+                <p>
+                  <Amount value={done.amount} className="text-ink" /> invested. Your shares and the progress bar update within 10 seconds.
+                </p>
+                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1">
+                  <HashReveal hash={done.hash} />
+                  <TxLink hash={done.hash} className="text-xs" />
+                </p>
+                <Button variant="outline" size="sm" className="mt-2" onClick={() => setDone(null)}>
+                  Invest more
+                </Button>
               </Callout>
-            ) : null}
+            </motion.div>
+          ) : (
+            <motion.div key="form" className="space-y-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+              <Field label={`Amount in ${token.label || 'test dollars'}`} htmlFor="invest-amount" error={parsed.error ?? undefined} hint={`Up to ${formatAmount(left, token.code)} left to fund.`}>
+                <Input id="invest-amount" inputMode="decimal" placeholder="25" value={raw} onChange={(e) => setRaw(e.target.value)} aria-invalid={Boolean(parsed.error)} data-testid="invest-amount" className="h-14 text-2xl font-semibold sm:h-14 sm:text-2xl" autoComplete="off" />
+              </Field>
+              <div className="flex flex-wrap gap-2">
+                {[10n, 50n, 100n].map((n) => {
+                  const v = n * 10_000_000n;
+                  if (v > left) return null;
+                  return (
+                    <Button key={String(n)} variant="secondary" size="sm" className="rounded-full font-mono" onClick={() => setRaw(String(n))}>
+                      {String(n)}
+                    </Button>
+                  );
+                })}
+                <Button variant="secondary" size="sm" className="rounded-full" onClick={() => setRaw(formatAmount(left, '').trim().replaceAll(',', ''))}>
+                  All that is left
+                </Button>
+              </div>
 
-            <ShareTrustline deal={deal} />
-            {error ? <InlineError>{error}</InlineError> : null}
-            {!w.contractReady ? <InlineError>The Qafila contract is not deployed on this network yet. Investing opens when it is.</InlineError> : null}
-            <Button size="lg" className="w-full" onClick={confirm} loading={w.busy} disabled={!parsed.amount || !w.contractReady || deal.onchainId === null || (trust.needed && !trust.has)} icon={w.kind === 'passkey' ? <KeyRound className="size-4" /> : <Check className="size-4" />} data-testid="invest-confirm">
-              {w.kind === 'passkey' ? 'Confirm with my passkey' : 'Confirm in my wallet'}
-            </Button>
-            <p className="text-center text-xs text-ink-muted">Fees are paid for you. Nothing moves until you confirm.</p>
-          </>
-        )}
+              <div className="rounded-[calc(var(--radius-card)-4px)] border border-line bg-white/[0.03] p-3 text-sm" data-testid="invest-summary">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-ink-muted">Expected profit</span>
+                  <Amount value={profit} sign size="lg" className="text-success" />
+                </div>
+                <div className="mt-1 flex justify-between gap-3">
+                  <span className="text-ink-muted">You get back on repayment</span>
+                  <Amount value={(parsed.amount ?? 0n) + profit} className="font-semibold" />
+                </div>
+                <div className="mt-1 flex justify-between gap-3">
+                  <span className="text-ink-muted">When</span>
+                  <span className="tabular text-right">about {humanDuration(deal.tenorSecs)} after the sale is signed</span>
+                </div>
+              </div>
+
+              <Callout tone="warning" title="You can lose money">
+                <p>If the importer does not repay and nothing is recovered, losses are shared by all holders. Who loses first:</p>
+                <LossRail steps={deal.lossOrder} className="my-2" />
+                <p>Your shares cannot be sold before the deal ends.</p>
+              </Callout>
+              {concentration > 25 && invested !== null && invested > 0n ? (
+                <Callout tone="warning" title="More than a quarter of your portfolio">
+                  <p>This deal would be {concentration}% of everything you have invested. Spreading across deals lowers the risk of one default.</p>
+                </Callout>
+              ) : null}
+
+              <ShareTrustline deal={deal} />
+              {error ? <InlineError>{error}</InlineError> : null}
+              {!w.contractReady ? <InlineError>The Qafila contract is not deployed on this network yet. Investing opens when it is.</InlineError> : null}
+              <Button size="lg" className="w-full" onClick={confirm} loading={w.busy} disabled={!parsed.amount || !w.contractReady || deal.onchainId === null || (trust.needed && !trust.has)} icon={w.kind === 'passkey' ? <KeyRound className="size-4" /> : <Check className="size-4" />} data-testid="invest-confirm">
+                {w.kind === 'passkey' ? 'Confirm with my passkey' : 'Confirm in my wallet'}
+              </Button>
+              <p className="text-center text-xs text-ink-muted">Fees are paid for you. Nothing moves until you confirm.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </CardBody>
     </Card>
   );
