@@ -1,0 +1,43 @@
+{
+  "deal_number": 8,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Adewale Trading Ltd",
+    "country": "NG",
+    "address": "14 Balogun Street, Lagos Island, Lagos, Nigeria",
+    "registration_number": "RC 1456789"
+  },
+  "supplier": {
+    "name_en": "Dongguan Jiucheng Trading Co., Ltd.",
+    "name_zh": "东莞市旧城贸易有限公司",
+    "uscc": "91441900MA4Y7P2D5P",
+    "country": "CN"
+  },
+  "goods_summary": "LED bulbs",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Shenzhen (Yantian)",
+  "origin_unlocode": "CNYTN",
+  "destination_port": "Lagos (Apapa), Nigeria",
+  "destination_unlocode": "NGAPP",
+  "destination_country": "NG",
+  "carrier": null,
+  "containers": [
+    "HLXU8300215"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

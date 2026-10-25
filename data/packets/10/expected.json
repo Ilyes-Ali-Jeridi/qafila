@@ -1,0 +1,8 @@
+{
+  "decision": "reject",
+  "stage": "shipment",
+  "failing_checks": [
+    "tracking.loading_vessel"
+  ],
+  "notes": "B/L says shipped on COSCO SHIPPING ARIES at Shanghai; the carrier's loading event at Shanghai (fixture) names MSC AURORA. Listing stage is clean."
+}

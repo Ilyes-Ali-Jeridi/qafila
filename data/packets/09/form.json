@@ -1,0 +1,44 @@
+{
+  "deal_number": 9,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Adewale Trading Ltd",
+    "country": "NG",
+    "address": "14 Balogun Street, Lagos Island, Lagos, Nigeria",
+    "registration_number": "RC 1456789"
+  },
+  "supplier": {
+    "name_en": "Tianjin Beichen Heavy Industry Co., Ltd.",
+    "name_zh": "天津市北辰重工有限公司",
+    "uscc": "91120113MA06R4F7KT",
+    "country": "CN"
+  },
+  "goods_summary": "Water pumps and PVC pipes",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Tianjin (Xingang)",
+  "origin_unlocode": "CNTXG",
+  "destination_port": "Lagos (Apapa), Nigeria",
+  "destination_unlocode": "NGAPP",
+  "destination_country": "NG",
+  "carrier": null,
+  "containers": [
+    "MSKU9070323",
+    "MSKU7731208"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

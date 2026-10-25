@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "重庆市力拓摩托车配件有限公司",
+    "legalNameEn": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+    "entityStatus": "ACTIVE",
+    "leiStatus": "ISSUED",
+    "registeredAt": "2015-09-09",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+    "country": "CN",
+    "legalRepresentative": "Liu Qiang",
+    "businessScope": "Manufacture and sale of motorcycle parts; sale of tyres; import and export of goods.",
+    "registeredAs": "91500100MA5UE9K1RR"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "deal_number": 1,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Adewale Trading Ltd",
+    "country": "NG",
+    "address": "14 Balogun Street, Lagos Island, Lagos, Nigeria",
+    "registration_number": "RC 1456789"
+  },
+  "supplier": {
+    "name_en": "Shenzhen Lanwan Electronics Co., Ltd.",
+    "name_zh": "深圳市蓝湾电子有限公司",
+    "uscc": "91440300MA5GK2Q7XL",
+    "country": "CN"
+  },
+  "goods_summary": "Phone accessories: TPU cases, tempered glass protectors, USB-C cables",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Shenzhen (Yantian)",
+  "origin_unlocode": "CNYTN",
+  "destination_port": "Lagos (Apapa), Nigeria",
+  "destination_unlocode": "NGAPP",
+  "destination_country": "NG",
+  "carrier": null,
+  "containers": [
+    "TGHU6120042"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

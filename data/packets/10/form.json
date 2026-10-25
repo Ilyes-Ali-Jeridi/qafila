@@ -1,0 +1,48 @@
+{
+  "deal_number": 10,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Mwangi Imports Ltd",
+    "country": "KE",
+    "address": "Plot 22, Mombasa Road, Nairobi, Kenya",
+    "registration_number": "PVT-5KUXQ2"
+  },
+  "supplier": {
+    "name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+    "name_zh": "江苏光耀新能源有限公司",
+    "uscc": "91320500MA1XQ6L3BR",
+    "country": "CN"
+  },
+  "goods_summary": "Solar panels 550 W",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Shanghai",
+  "origin_unlocode": "CNSHA",
+  "destination_port": "Mombasa, Kenya",
+  "destination_unlocode": "KEMBA",
+  "destination_country": "KE",
+  "carrier": "COSCO",
+  "containers": [
+    "COSU8123403",
+    "COSU8123419"
+  ],
+  "bl_number": "COSU6412345678",
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    },
+    {
+      "type": "bill_of_lading",
+      "file": "bill_of_lading.pdf"
+    }
+  ]
+}

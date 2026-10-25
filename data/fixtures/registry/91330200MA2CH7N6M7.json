@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "宁波市海川塑业有限公司",
+    "legalNameEn": "Ningbo Haichuan Plastics Co., Ltd.",
+    "entityStatus": "ACTIVE",
+    "leiStatus": "ISSUED",
+    "registeredAt": "2014-11-20",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+    "country": "CN",
+    "legalRepresentative": "Wang Hai",
+    "businessScope": "Manufacture and sale of plastic products and stainless steel kitchenware; import and export of goods.",
+    "registeredAs": "91330200MA2CH7N6M7"
+  }
+}

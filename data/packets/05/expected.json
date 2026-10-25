@@ -1,0 +1,8 @@
+{
+  "decision": "review",
+  "stage": "listing",
+  "failing_checks": [
+    "price.motorcycle_tyres"
+  ],
+  "notes": "Tyres at USD 48 against a reference of 7 to 16 (about 4x the midpoint): price ratio outside 0.5x to 2x."
+}

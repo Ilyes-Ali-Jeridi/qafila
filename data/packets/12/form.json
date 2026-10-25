@@ -1,0 +1,43 @@
+{
+  "deal_number": 12,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Mwangi Imports Ltd",
+    "country": "KE",
+    "address": "Plot 22, Mombasa Road, Nairobi, Kenya",
+    "registration_number": "PVT-5KUXQ2"
+  },
+  "supplier": {
+    "name_en": "Shenzhen Lanwan Electronics Co., Ltd.",
+    "name_zh": "深圳市蓝湾电子有限公司",
+    "uscc": "91440300MA5GK2Q7XL",
+    "country": "CN"
+  },
+  "goods_summary": "Power banks and wired earphones",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Shenzhen (Yantian)",
+  "origin_unlocode": "CNYTN",
+  "destination_port": "Mombasa, Kenya",
+  "destination_unlocode": "KEMBA",
+  "destination_country": "KE",
+  "carrier": null,
+  "containers": [
+    "TGHU6120905"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.jpg"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

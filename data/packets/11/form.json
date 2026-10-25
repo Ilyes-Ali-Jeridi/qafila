@@ -1,0 +1,44 @@
+{
+  "deal_number": 11,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Adewale Trading Ltd",
+    "country": "NG",
+    "address": "14 Balogun Street, Lagos Island, Lagos, Nigeria",
+    "registration_number": "RC 1456789"
+  },
+  "supplier": {
+    "name_en": "Foshan Jingxin Ceramics Co., Ltd.",
+    "name_zh": "佛山市晶鑫陶瓷有限公司",
+    "uscc": "91440600MA4WJ3T8YU",
+    "country": "CN"
+  },
+  "goods_summary": "Ceramic floor tiles and glass mosaics",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Foshan (via Shenzhen Shekou)",
+  "origin_unlocode": "CNSHK",
+  "destination_port": "Lagos (Apapa), Nigeria",
+  "destination_unlocode": "NGAPP",
+  "destination_country": "NG",
+  "carrier": null,
+  "containers": [
+    "CSQU3054383",
+    "CSQU4401928"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

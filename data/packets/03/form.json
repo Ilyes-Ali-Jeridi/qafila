@@ -1,0 +1,48 @@
+{
+  "deal_number": 3,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Adewale Trading Ltd",
+    "country": "NG",
+    "address": "14 Balogun Street, Lagos Island, Lagos, Nigeria",
+    "registration_number": "RC 1456789"
+  },
+  "supplier": {
+    "name_en": "Ningbo Haichuan Plastics Co., Ltd.",
+    "name_zh": "宁波市海川塑业有限公司",
+    "uscc": "91330200MA2CH7N6M7",
+    "country": "CN"
+  },
+  "goods_summary": "Stainless steel cookware sets and plastic food containers",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Ningbo",
+  "origin_unlocode": "CNNGB",
+  "destination_port": "Lagos (Apapa), Nigeria",
+  "destination_unlocode": "NGAPP",
+  "destination_country": "NG",
+  "carrier": "OOCL",
+  "containers": [
+    "COSU6319486",
+    "COSU6319505"
+  ],
+  "bl_number": "OOLU2609881030",
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    },
+    {
+      "type": "bill_of_lading",
+      "file": "bill_of_lading.pdf"
+    }
+  ]
+}

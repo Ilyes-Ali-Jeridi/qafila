@@ -1,0 +1,8 @@
+{
+  "decision": "reject",
+  "stage": "listing",
+  "failing_checks": [
+    "registry.status"
+  ],
+  "notes": "Registry fixture: entity INACTIVE (deregistered 2025-11-30), LEI RETIRED."
+}
