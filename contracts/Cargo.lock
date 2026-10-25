@@ -1565,6 +1565,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "sac_admin"
+version = "0.1.0"
+dependencies = [
+ "soroban-sdk",
+]
+
+[[package]]
 name = "schemars"
 version = "0.8.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
