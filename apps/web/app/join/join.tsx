@@ -7,7 +7,8 @@
 import { QRCodeSVG } from 'qrcode.react';
 import { Check, KeyRound, QrCode } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useMemo, useState } from 'react';
 import { formatAmount, parseAmount } from '@qafila/shared';
 import { Amount } from '@/components/ui/amount';
 import { Button, ButtonLink } from '@/components/ui/button';
@@ -25,10 +26,10 @@ import { useWallet } from '@/lib/wallet/provider';
 export function JoinScreen() {
   const { data: config, isPending } = usePublicConfig();
   const on = useFlag('FF_QR_JOIN');
-  const [mode, setMode] = useState<'phone' | 'screen'>('phone');
-  useEffect(() => {
-    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('screen') === '1') setMode('screen');
-  }, []);
+  const params = useSearchParams();
+  const [override, setMode] = useState<'phone' | 'screen' | null>(null);
+  // ?screen=1 opens the booth view (the QR for the venue screen); a tap on the phone toggles it.
+  const mode: 'phone' | 'screen' = override ?? (params.get('screen') === '1' ? 'screen' : 'phone');
   if (isPending) return <SkeletonCard lines={4} />;
   if (!config || !on) return <EmptyState title="The venue join is not open" body="This page is switched on during the event." action={<ButtonLink href="/invest" variant="outline">See the deals</ButtonLink>} />;
   if (mode === 'screen') return <BoothScreen />;
