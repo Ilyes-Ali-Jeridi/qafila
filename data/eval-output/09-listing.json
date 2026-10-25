@@ -3,29 +3,29 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-09",
-    "created_at": "2026-10-25T16:02:21.105Z",
-    "decision": "approve",
-    "risk_score": 100,
+    "created_at": "2026-10-25T16:06:04.615Z",
+    "decision": "reject",
+    "risk_score": 60,
     "checks": [
       {
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -277,18 +277,21 @@
       },
       {
         "name": "sanctions.supplier",
-        "status": "pass",
+        "status": "fail",
         "severity": "critical",
-        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Tianjin Beichen Heavy Industry Co., Ltd.\".",
+        "detail": "OpenSanctions (mock fixture): company \"Tianjin Beichen Heavy Industry Co., Ltd.\" matches \"Beichen Heavy Industry Co Ltd\" at 0.96 (demo_fictional_sanctions).",
         "weight": 40,
         "evidence": {
           "party": "supplier",
           "schema": "Company",
-          "score": 0,
-          "match_id": null,
-          "match_name": null,
-          "datasets": []
-        }
+          "score": 0.96,
+          "match_id": "Q-DEMO-BEICHEN-HI-0001",
+          "match_name": "Beichen Heavy Industry Co Ltd",
+          "datasets": [
+            "demo_fictional_sanctions"
+          ]
+        },
+        "fix": "A sanctioned party cannot take part in a deal. The account goes under review."
       },
       {
         "name": "sanctions.importer",
@@ -341,9 +344,15 @@
         "name": "decision.policy",
         "status": "pass",
         "severity": "info",
-        "detail": "approve by policy 5.6: no flags.",
+        "detail": "reject by policy 5.6: reject:sanctions_match.",
         "weight": 0,
-        "evidence": []
+        "evidence": [
+          {
+            "rule": "sanctions_match",
+            "level": "reject",
+            "detail": "A sanctions match scores 0.96."
+          }
+        ]
       }
     ],
     "extracted": {
@@ -895,10 +904,12 @@
       {
         "party": "supplier",
         "schema": "Company",
-        "score": 0,
-        "match_id": null,
-        "match_name": null,
-        "datasets": []
+        "score": 0.96,
+        "match_id": "Q-DEMO-BEICHEN-HI-0001",
+        "match_name": "Beichen Heavy Industry Co Ltd",
+        "datasets": [
+          "demo_fictional_sanctions"
+        ]
       },
       {
         "party": "importer",
@@ -1030,8 +1041,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16315,
         "tokens_out": 3305,
-        "latency_ms": 58710,
-        "cost_usd": 0.008861
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -1040,8 +1051,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6135,
         "tokens_out": 1519,
-        "latency_ms": 29852,
-        "cost_usd": 0.003663
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -1050,8 +1061,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4318,
         "tokens_out": 768,
-        "latency_ms": 18275,
-        "cost_usd": 0.002217
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -1060,8 +1071,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 852,
         "tokens_out": 176,
-        "latency_ms": 3156,
-        "cost_usd": 0.000467
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -1070,8 +1081,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1174,
         "tokens_out": 92,
-        "latency_ms": 1293,
-        "cost_usd": 0.000231
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -1080,22 +1091,22 @@
         "prompt_version": "price.v1",
         "tokens_in": 1911,
         "tokens_out": 126,
-        "latency_ms": 1796,
-        "cost_usd": 0.000362
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2168,
-        "tokens_out": 66,
-        "latency_ms": 878,
-        "cost_usd": 0.000365
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1103,22 +1114,28 @@
       "fx": "skipped"
     },
     "fixtures_used": [
-      "opensanctions/<fallback>",
+      "llm/18af1af6fde371f0992acbac7b8b0b154e494d2462757f86f371d1f0796e472e.json",
+      "llm/1a09de2c25e0a99ac3bf21a2e185f7526764f6f48e875d9e2889d0322889406c.json",
+      "llm/1ae15a29d8368233d95fb1027904f7883357619b28462cbc2e5df697e5d8cb2f.json",
+      "llm/4e6d5f9a504d43ba76554c749d25d72d4280fd30dc2aae7a5cf4af51c6459551.json",
+      "llm/956e89299f3b9d7da88d79d3617e7b6acb788fac83b9d6b16749200435051bd8.json",
+      "llm/b83fe486032d5657d0940c996b286939fe8bf3221342d19867959e1f13ee4434.json",
+      "opensanctions/tianjin-beichen-heavy-industry-co-ltd.json",
       "registry/91120113MA06R4F7KT.json"
     ],
     "timings_ms": {
-      "intake": 604,
-      "extract": 58710,
-      "validate": 1,
-      "stages": 3157,
+      "intake": 833,
+      "extract": 1,
+      "validate": 0,
+      "stages": 3,
       "fingerprint": 0,
-      "explain": 879,
-      "total": 63351
+      "explain": 0,
+      "total": 837
     },
-    "cost_usd": 0.016166,
+    "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and document consistency are all valid. No further action is needed."
+    "explanation": "Your deal was rejected: OpenSanctions (mock fixture): company \"Tianjin Beichen Heavy Industry Co., Ltd.\" matches \"Beichen Heavy Industry Co Ltd\" at 0.96 (demo_fictional_sanctions).\n\nWhat to fix:\n- A sanctioned party cannot take part in a deal. The account goes under review.\n\nCategory: sanctions"
   },
-  "report_hash": "678e705b9b56d7e6b21be3e3028f0c613f143560287fa94c16184e2865438bd8",
-  "signature": "3ea7de9234db299e14b73b56892c4dd6438e342c59a14d5021172836bc859e3ffa5010abb1c072faf1848a82b21c9afc003ef650894ab13ef7297772a558a105"
+  "report_hash": "04ad7de3e0336c6c7984fcee4d11b0aee4de1bf6468f9b53627bee5d3d23f5c2",
+  "signature": "9b37046c18091f1602e5a03aafa011114e8611d4f0da70767893432f6469ac6d0bb095e1fa7bd9fee96b31670a0ed50982fcd826ac58b9d3e5f636e9da999e07"
 }

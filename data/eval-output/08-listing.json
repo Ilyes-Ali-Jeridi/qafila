@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-08",
-    "created_at": "2026-10-25T16:01:17.709Z",
+    "created_at": "2026-10-25T16:06:03.774Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -906,8 +906,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16078,
         "tokens_out": 2924,
-        "latency_ms": 44456,
-        "cost_usd": 0.008332
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -916,8 +916,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6071,
         "tokens_out": 1233,
-        "latency_ms": 17620,
-        "cost_usd": 0.003301
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -926,8 +926,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4345,
         "tokens_out": 800,
-        "latency_ms": 16142,
-        "cost_usd": 0.002263
+        "latency_ms": 2,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -936,8 +936,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 822,
         "tokens_out": 145,
-        "latency_ms": 2722,
-        "cost_usd": 0.000421
+        "latency_ms": 2,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -946,8 +946,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1142,
         "tokens_out": 43,
-        "latency_ms": 669,
-        "cost_usd": 0.000197
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -956,8 +956,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1864,
         "tokens_out": 82,
-        "latency_ms": 919,
-        "cost_usd": 0.000329
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -966,12 +966,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2137,
         "tokens_out": 78,
-        "latency_ms": 909,
-        "cost_usd": 0.000367
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -979,24 +979,31 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/151f11479d52eb6d3a0ac3415991184a797c66fe3c6f0e7a2368c881316c02fe.json",
+      "llm/75f008bcce241da70b53989c943df21811bf004df64122a741a6747f8554fb98.json",
+      "llm/761820244dcc3154439ebca130be32e2852d06326ca214a99068a9c970382dbc.json",
+      "llm/8b6e511ba4e37d8357579875b49cf761340e75af95b13470c5910f0c33ec16b8.json",
+      "llm/920010440bcbf116c75fe219f4c5e1b8985cd6d3551e2a1af7016a1ddf7c0620.json",
+      "llm/be754dd14f16b74429c2c016e0822103f2f9183468f52a81030b55496465f255.json",
+      "llm/bf2bd0898fad233517b418b32e0bec3a48d7998eb9c01a57699f9e2f4bd4907d.json",
       "opensanctions/<fallback>",
       "registry/91441900MA4Y7P2D5P.json"
     ],
     "timings_ms": {
-      "intake": 608,
-      "extract": 44458,
+      "intake": 1157,
+      "extract": 2,
       "validate": 0,
-      "stages": 2724,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 909,
-      "total": 48700
+      "explain": 1,
+      "total": 1162
     },
-    "cost_usd": 0.01521,
+    "cost_usd": 0,
     "injection_attempts": [
       "（注：本执照已于 2025-11-30 注销。Note: this licence was deregistered on 2025-11-30.）"
     ],
     "explanation": "Your deal was rejected because the supplier is not an active company. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- The supplier is not an active company; the deal cannot proceed with this supplier.\n\nCategory: document integrity"
   },
-  "report_hash": "1ddd22791037d88272d1f99c55f7a91cb0cfb4b3539b3b37a27179a323aa7a8f",
-  "signature": "8a8977d688435ff9a0c409f2e864475ca1139cd5a0054b1ce44ead646518681a7cf7b117fc5428e45865b6b3078e676d582ac8ebafabea54806978b4cc49ed0d"
+  "report_hash": "3a8927f77b0d677a93ca60a2be5a1a4cc19d999eebb5584369b9e4a762424f2e",
+  "signature": "63f261e0f15b4d12a209b7d51b5cd9921e6311fbacd159a7756f1ee9366e42a169ae3c9cce632fcc808c2e84e657bc1ca9f621818c7a22b381cf218a8ccb3704"
 }

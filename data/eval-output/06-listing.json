@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-06",
-    "created_at": "2026-10-25T15:39:47.627Z",
+    "created_at": "2026-10-25T16:06:01.884Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live).",
+        "detail": "invoice read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -1170,8 +1170,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 7526,
         "tokens_out": 2177,
-        "latency_ms": 28739,
-        "cost_usd": 0.00487
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -1180,8 +1180,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6192,
         "tokens_out": 1748,
-        "latency_ms": 23117,
-        "cost_usd": 0.003955
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -1190,8 +1190,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4317,
         "tokens_out": 765,
-        "latency_ms": 10604,
-        "cost_usd": 0.002213
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -1200,8 +1200,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 930,
         "tokens_out": 255,
-        "latency_ms": 4357,
-        "cost_usd": 0.000585
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -1210,8 +1210,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1236,
         "tokens_out": 108,
-        "latency_ms": 1436,
-        "cost_usd": 0.00025
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -1220,8 +1220,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1990,
         "tokens_out": 155,
-        "latency_ms": 1888,
-        "cost_usd": 0.000391
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -1230,12 +1230,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2382,
         "tokens_out": 76,
-        "latency_ms": 982,
-        "cost_usd": 0.000403
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1243,22 +1243,29 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/077abda841d0d11d1466befbbe77d17980205e272477ab5674eb2792883ebdf5.json",
+      "llm/22fab91c5d8a7bbbbb7636d36fa69849a6aaec81688eba804a8e0ab06671a196.json",
+      "llm/28e1471e9345eea8f4eb8bcc95bf1e206a9dd275307b76369d979af41943c354.json",
+      "llm/2e431b0a5e31803bda13b547e4f48bbbca7ce6b86e939973be4df1c0a9925f41.json",
+      "llm/4bc73ecd14da168183ff84656b922776908cbb144f1f9652ef73081dede1ecbf.json",
+      "llm/78f83b7b6f30e87c6968628789b58b67418a22458559f21a7c05a92a792c4386.json",
+      "llm/f8bd488b37e2238efc773a4116f03ce518b267e7859742dcf1b4bd8eb596e892.json",
       "opensanctions/<fallback>",
       "registry/91330782MA2A3G9H8J.json"
     ],
     "timings_ms": {
-      "intake": 590,
-      "extract": 28739,
-      "validate": 1,
-      "stages": 4358,
+      "intake": 973,
+      "extract": 1,
+      "validate": 0,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 982,
-      "total": 34671
+      "explain": 0,
+      "total": 976
     },
-    "cost_usd": 0.012667,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because it includes a prohibited item. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- Remove the red wine line from the invoice; Qafila cannot finance it.\n\nCategory: prohibited goods"
   },
-  "report_hash": "ea237a01c2d12d6bc3dd5a8b967453c70f276bbd13a64814e8db4b9332922bbe",
-  "signature": "76e427dbc811d6a83a1e9bfd0d5178faa97b77a20576088af1cd5f33065cb828cbed35926d67c12819b0b017a8922c768f9531f84763a4396540ddc829d01b02"
+  "report_hash": "f91eb616ee94dd4d906e5ff49da9d9829381f8818f32e267f50c7d0ef5063939",
+  "signature": "93b54a8bed8fee96b18e6a8a2dddc74858c017a473d03262c9fc625ca252cfbceb71138df4c70cc349a0b877d9f9f3cfcab8142fdb9547082947122f2e0f6505"
 }

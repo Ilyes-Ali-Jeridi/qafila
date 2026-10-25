@@ -5,7 +5,7 @@ import { reply } from '../lib/http.js';
 
 export const health = new Hono<{ Variables: { env: Env } }>();
 
-async function rpcProbe(url: string): Promise<{ ok: boolean; latencyMs: number | null; protocol: number | null }> {
+export async function rpcProbe(url: string): Promise<{ ok: boolean; latencyMs: number | null; protocol: number | null }> {
   const t = Date.now();
   try {
     const r = await fetch(url, {

@@ -29,7 +29,7 @@ export function createServices(env: Env, opts: { db?: Db } = {}): Services {
   const chain = createChain(env);
   const dep = loadDeployment(env.STELLAR_NETWORK);
   const verifierSecret = env.VERIFIER_ED25519_SECRET ?? (chain.mode === 'mock' ? Keypair.fromRawEd25519Seed(Buffer.alloc(32, 7)).secret() : null);
-  const verifierPublicKeyHex = verifierSecret ? Buffer.from(Keypair.fromSecret(verifierSecret).rawPublicKey()).toString('hex') : (dep.verifierPublicKey ?? null);
+  const verifierPublicKeyHex = verifierSecret ? Buffer.from(Keypair.fromSecret(verifierSecret).rawPublicKey()).toString('hex') : (dep.verifierPublicKeyHex ?? null);
   const contractId = env.QAFILA_CONTRACT_ID ?? dep.contractId ?? chain.contractId;
   logger.info({ chain: chain.mode, adapters: adapters.modes, storage: adapters.storage.mode, contract: contractId }, 'services ready');
   return {

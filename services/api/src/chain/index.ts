@@ -18,7 +18,7 @@ export function chainMode(env: Env): 'live' | 'mock' {
 export function createChain(env: Env): Chain {
   const dep = loadDeployment(env.STELLAR_NETWORK);
   const contractId = env.QAFILA_CONTRACT_ID ?? dep.contractId ?? null;
-  const verifierHex = env.VERIFIER_ED25519_SECRET ? toHex(new Uint8Array(Keypair.fromSecret(env.VERIFIER_ED25519_SECRET).rawPublicKey())) : (dep.verifierPublicKey ?? null);
+  const verifierHex = env.VERIFIER_ED25519_SECRET ? toHex(new Uint8Array(Keypair.fromSecret(env.VERIFIER_ED25519_SECRET).rawPublicKey())) : (dep.verifierPublicKeyHex ?? null);
   if (chainMode(env) === 'mock' || !contractId) {
     return new MockChain({
       contractId: contractId ?? 'CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA',

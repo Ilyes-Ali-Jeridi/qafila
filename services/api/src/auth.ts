@@ -12,6 +12,7 @@ import { ApiError } from './lib/http.js';
 import { verifyJwt } from './lib/jwt.js';
 import type { Db } from './db/index.js';
 import { profiles } from './db/schema.js';
+import type { Services } from './services.js';
 
 export type Role = 'investor' | 'importer' | 'ops' | 'sharia';
 
@@ -25,7 +26,7 @@ export interface AuthUser {
   displayName: string;
 }
 
-export type Vars = { env: Env; user?: AuthUser };
+export type Vars = { env: Env; svc: Services; user?: AuthUser };
 
 export async function profileFor(db: Db, authUserId: string, email: string | null, roles: Role[] = []): Promise<AuthUser> {
   let row = await db.query.profiles.findFirst({ where: eq(profiles.authUserId, authUserId) });

@@ -135,7 +135,7 @@ export async function verifyDeal(svc: Services, dealId: string, stage: 'listing'
   const patch: Partial<DealRow> = { updatedAt: new Date() };
   if (stage === 'listing') {
     patch.reportId = reportId;
-    patch.status = result.report.decision === 'approve' ? 'approved' : result.report.decision;
+    patch.status = result.report.decision === 'approve' ? 'approved' : result.report.decision === 'reject' ? 'rejected' : 'review';
     if (result.report.listing_fingerprint && result.report.decision !== 'reject') patch.listingFingerprint = result.report.listing_fingerprint;
     const inv = result.extracted.invoice;
     if (inv?.total.value !== null && inv?.total.value !== undefined) {

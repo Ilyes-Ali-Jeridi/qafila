@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-12",
-    "created_at": "2026-10-25T16:05:24.035Z",
+    "created_at": "2026-10-25T16:06:07.030Z",
     "decision": "review",
     "risk_score": 0,
     "checks": [
@@ -11,7 +11,7 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
@@ -35,14 +35,14 @@
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -1057,8 +1057,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 15028,
         "tokens_out": 3075,
-        "latency_ms": 45259,
-        "cost_usd": 0.008198
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -1067,8 +1067,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6122,
         "tokens_out": 1508,
-        "latency_ms": 20024,
-        "cost_usd": 0.003646
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -1077,8 +1077,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4324,
         "tokens_out": 759,
-        "latency_ms": 13321,
-        "cost_usd": 0.002208
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -1087,8 +1087,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 859,
         "tokens_out": 117,
-        "latency_ms": 2629,
-        "cost_usd": 0.000398
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -1097,8 +1097,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1179,
         "tokens_out": 87,
-        "latency_ms": 1079,
-        "cost_usd": 0.000229
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -1107,8 +1107,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1916,
         "tokens_out": 135,
-        "latency_ms": 1151,
-        "cost_usd": 0.000368
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -1117,12 +1117,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2324,
         "tokens_out": 196,
-        "latency_ms": 1417,
-        "cost_usd": 0.000466
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1130,22 +1130,29 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/4e160c0776fb014f515dade81cec0a608b60b83991229c50c7fa19ada10e7233.json",
+      "llm/5096f7f47a7b870157bdfe548444465f40215d00fb108967c98b4bb03653cdc6.json",
+      "llm/7109aa27b27da023bef7dbbc4eb3dfccd9e19fc68ea5f68354c13268c3e2d48b.json",
+      "llm/97c82a99f82263780c145208c4005f2de1dac90eacb3d3b0a81134f94487f58c.json",
+      "llm/9c5b59483a96cd069146055fa7ee34c4e218c46c98063036e59f38bdd51c984c.json",
+      "llm/afde50cbad179ae10b0ad9ed577f535543893b10c4addbfc98593415b8456050.json",
+      "llm/b6f3177d4ee998a6ed70559c20d1d213af0ccb7fef66bfc180d63e8f6c97648b.json",
       "opensanctions/<fallback>",
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 875,
-      "extract": 45260,
+      "intake": 505,
+      "extract": 1,
       "validate": 0,
-      "stages": 2633,
-      "fingerprint": 3,
-      "explain": 1431,
-      "total": 50220
+      "stages": 2,
+      "fingerprint": 0,
+      "explain": 0,
+      "total": 509
     },
-    "cost_usd": 0.015513,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because key fields on the invoice are not readable and there are discrepancies in the goods description and invoice details. The container check, USCC validation, and price checks passed. Please correct the issues listed below to proceed.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Confirm the rounding with the supplier or upload a corrected invoice.\n- Use an Incoterms 2020 term, 6 to 10 digit HS codes and 5-character UN/LOCODEs.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice."
   },
-  "report_hash": "40ccf932f66aebb49cd8051ff31d24c377a5a4376a25f656e90fd0b8fb12fad3",
-  "signature": "b2a37784573b9c28eef0ceb414b23092d1141475f35e7c406155b7f9f305352c47d474ae29e7723b2320c990f86ca2cfbe2cd759f0cdcb9aaaf83ac7e7a02c08"
+  "report_hash": "4cd11f994c223505b755f48c4ac2de5bc7e0da8d1ae37533db041db34a1028d4",
+  "signature": "4421015849e8618ecae18778a67069126c5d00186ad5cce871c439ad6d8e121d3efaa459be584078a3c51efb464baff8ab9b3a0008628735899038eb2a696909"
 }

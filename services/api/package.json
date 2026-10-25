@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch --env-file-if-exists=../../.env src/index.ts",
     "start": "tsx --env-file-if-exists=../../.env src/index.ts",
-    "worker": "tsx --env-file-if-exists=../../.env src/jobs/worker.ts",
+    "worker": "tsx --env-file-if-exists=../../.env src/worker.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",

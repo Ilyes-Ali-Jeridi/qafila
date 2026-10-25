@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T16:03:12.274Z",
+    "created_at": "2026-10-25T16:06:05.557Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -892,8 +892,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16101,
         "tokens_out": 2985,
-        "latency_ms": 47343,
-        "cost_usd": 0.008412
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -902,8 +902,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6093,
         "tokens_out": 1303,
-        "latency_ms": 21547,
-        "cost_usd": 0.003391
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -912,8 +912,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4329,
         "tokens_out": 817,
-        "latency_ms": 12352,
-        "cost_usd": 0.002279
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -922,8 +922,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 821,
         "tokens_out": 140,
-        "latency_ms": 2265,
-        "cost_usd": 0.000414
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -932,8 +932,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1143,
         "tokens_out": 51,
-        "latency_ms": 802,
-        "cost_usd": 0.000202
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -942,8 +942,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1864,
         "tokens_out": 96,
-        "latency_ms": 976,
-        "cost_usd": 0.000337
+        "latency_ms": 2,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -952,12 +952,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2024,
         "tokens_out": 69,
-        "latency_ms": 1111,
-        "cost_usd": 0.000345
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -965,22 +965,29 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/0b6e62144db3325f6b32cefe1b9ac85367a44d091b7153e2aa82aad502e645bd.json",
+      "llm/1798fc6c8dccfc16b9647dcc6f91119335f629d0ea7d9319da84c3d1326a2428.json",
+      "llm/5264c8a131e465a749508cbb9db7aec09d5cf97759a89a089e2ad06b7d7323f6.json",
+      "llm/5c9e81ae5f587d9ee4b0070f4e822d6cabf93caf5d9fc8aece43fa281a87c0cf.json",
+      "llm/8820e14010e0f88b2ec73b69ba63e292fcaf3bad5764b95f28a8f4f0c68bb1eb.json",
+      "llm/c3e74dc7db468d813b7172443f5f50f56c1d6e4f282209d8908097fc28086293.json",
+      "llm/fb36e56b4cc6d839e389b196aa2f5343a6c668dc9b8bc470e75981bdcfcf48b7.json",
       "opensanctions/<fallback>",
       "registry/91320500MA1XQ6L3BR.json"
     ],
     "timings_ms": {
-      "intake": 670,
-      "extract": 47343,
+      "intake": 935,
+      "extract": 1,
       "validate": 1,
-      "stages": 2267,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 1111,
-      "total": 51393
+      "explain": 0,
+      "total": 939
     },
-    "cost_usd": 0.01538,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice details, and consistency across documents are all valid. No action is needed from your side."
   },
-  "report_hash": "a19737c45002c379fb7af057643eaf75e50b7d1ced1534202aeb49864b2d0d62",
-  "signature": "a6ef60950ff16a70bcc3dcd57dc7300b2f2a951b24e1c0fa2c79cb91d08ebe4da23e3a440cfae3695c5f22559519273bbc8eed0446453dfb0e4f1839d837dd00"
+  "report_hash": "099f4a6a15810b93c3a4a0c0910c5774e9c2b1cb74787e4487d080b8fc141b1a",
+  "signature": "ad5824c68dfcedf5b2d06fef0961b47f4bbb6c7c726348554b0bb308ebc5d8b8117a1022e7633f827fcbfb8b95cac89f7f799f87b3f22aa5fd6f87a5021aa705"
 }

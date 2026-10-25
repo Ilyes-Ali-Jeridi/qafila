@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T16:03:43.641Z",
+    "created_at": "2026-10-25T16:06:05.818Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -11,7 +11,7 @@
         "name": "extraction.bill_of_lading",
         "status": "pass",
         "severity": "info",
-        "detail": "bill of_lading read (1 page(s), live).",
+        "detail": "bill of_lading read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -1178,7 +1178,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T16:03:43.640Z"
+      "lastPolledAt": "2026-10-25T16:06:05.818Z"
     },
     "price": [],
     "halal": [],
@@ -1289,8 +1289,8 @@
         "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
         "tokens_in": 7552,
         "tokens_out": 1762,
-        "latency_ms": 25790,
-        "cost_usd": 0.00438
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.shipment",
@@ -1299,8 +1299,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 898,
         "tokens_out": 270,
-        "latency_ms": 3706,
-        "cost_usd": 0.000593
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -1309,12 +1309,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2703,
         "tokens_out": 83,
-        "latency_ms": 1155,
-        "cost_usd": 0.000455
+        "latency_ms": 1,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "live",
@@ -1322,24 +1322,27 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/21da975ccdf65ad4cd3fb12aa1fa518342a7e820c1b00f516355d1cdb9232d64.json",
+      "llm/738f67e7f3d3f36cef2827fc448057efd6759730e6947b50cac74312c6800156.json",
+      "llm/d6fe58c37c9de251c0409a4d2120d2a3f3a8a868798f4b4e906617b89d39bb65.json",
       "opensanctions/<fallback>",
       "registry/91320500MA1XQ6L3BR.json",
       "shipsgo-create/<fallback>",
       "shipsgo/COSU8123403.json"
     ],
     "timings_ms": {
-      "intake": 746,
-      "extract": 25791,
+      "intake": 256,
+      "extract": 1,
       "validate": 0,
-      "stages": 3709,
-      "fingerprint": 1,
-      "explain": 1155,
-      "total": 31402
+      "stages": 2,
+      "fingerprint": 0,
+      "explain": 1,
+      "total": 260
     },
-    "cost_usd": 0.005428,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed.\n\nWhat to fix:\n- Update the vessel name on the bill of lading to match the carrier tracking record (MSC AURORA).\n\nCategory: shipment mismatch"
   },
-  "report_hash": "0a2a423436ae0527ae791da52a54129ba21b6af816ea3ac365bec3e25962809a",
-  "signature": "618f3fd47824d46abd9acaab7823e2e78651c0a706d189c13bf0150e3ff86e3fe1ac9bc024d3fbd5478df706f1277aa83bc8a45546632b54850ea8011ebd2508"
+  "report_hash": "3367830b1ecf10a3b2334f8ef78b036cab061d8b9c645ff581d394ca227bb831",
+  "signature": "8c6f06afdc38553bfed39aa9afc874fae629313dacadf6fcd931f973cb6424b8147a695b7fb0f6ca79ff33cbfcf251960a1fffecc12d97a1e65be9d2fa093e02"
 }

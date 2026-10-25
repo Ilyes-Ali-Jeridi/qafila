@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T15:37:37.351Z",
+    "created_at": "2026-10-25T16:05:59.420Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -11,7 +11,7 @@
         "name": "extraction.bill_of_lading",
         "status": "pass",
         "severity": "info",
-        "detail": "bill of_lading read (1 page(s), live).",
+        "detail": "bill of_lading read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -1276,7 +1276,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T15:37:37.351Z"
+      "lastPolledAt": "2026-10-25T16:05:59.419Z"
     },
     "price": [],
     "halal": [],
@@ -1387,8 +1387,8 @@
         "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
         "tokens_in": 7555,
         "tokens_out": 1787,
-        "latency_ms": 25632,
-        "cost_usd": 0.004411
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.shipment",
@@ -1397,8 +1397,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 918,
         "tokens_out": 260,
-        "latency_ms": 3707,
-        "cost_usd": 0.000587
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -1407,12 +1407,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2669,
         "tokens_out": 67,
-        "latency_ms": 894,
-        "cost_usd": 0.000441
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "live",
@@ -1420,24 +1420,27 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/0bddaddddf6d94378390e82f8544e85e88fc129d4be55fdb6bf35a01570dc7cf.json",
+      "llm/105418267c4dd26a09ee821bd172ee345c5f25c33f400fc78ac35fe0fc2cf4fa.json",
+      "llm/4e193a0d9c03c2b62339378a27cb091c9cb851f04b7548166a47fc38607d1b00.json",
       "opensanctions/<fallback>",
       "registry/91330200MA2CH7N6M7.json",
       "shipsgo-create/<fallback>",
       "shipsgo/COSU6319486.json"
     ],
     "timings_ms": {
-      "intake": 203,
-      "extract": 25632,
-      "validate": 1,
-      "stages": 3710,
+      "intake": 158,
+      "extract": 2,
+      "validate": 0,
+      "stages": 3,
       "fingerprint": 0,
-      "explain": 894,
-      "total": 30440
+      "explain": 0,
+      "total": 164
     },
-    "cost_usd": 0.005439,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. All documents are consistent, the shipment is verified, and no sanctions or duplicates were found. You can proceed with the deal."
   },
-  "report_hash": "5f39113a562ed2b5dfeacdba20e2bba0fa38938265e538fe630895994e097e68",
-  "signature": "e1c0dd38c99df7628f47ce7eccf414a9dc3e7c52acb2bdb81019505ab6ce7d4b9ea4c9f69ad30b51d959cc18e75048d8aac25e0a29804d0d3ab0bb7de7742304"
+  "report_hash": "feae7a26012a07978a8f8814cfb1fafe59a76b9a8150d4983919ae94392e423a",
+  "signature": "db863d530673d62ed540938f7206acffa75596c288b53ba51164def3d1f3c1230c3b8e48590621b2ea6c328d328dfebb90d74ead6b90e79e75822d687fa2eb02"
 }

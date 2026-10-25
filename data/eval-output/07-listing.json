@@ -3,40 +3,30 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-07",
-    "created_at": "2026-10-25T16:00:28.856Z",
-    "decision": "review",
-    "risk_score": 0,
+    "created_at": "2026-10-25T16:06:02.600Z",
+    "decision": "reject",
+    "risk_score": 45,
     "checks": [
       {
         "name": "extraction.invoice",
-        "status": "unavailable",
-        "severity": "high",
-        "detail": "The invoice could not be read: AbortError: Request aborted.",
-        "weight": 25,
-        "fix": "Upload a clearer invoice (PDF or a sharp photo).",
-        "document": "invoice"
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
+        "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
-      },
-      {
-        "name": "documents.required",
-        "status": "fail",
-        "severity": "critical",
-        "detail": "No readable invoice.",
-        "weight": 40,
-        "fix": "Upload the pro-forma or commercial invoice."
       },
       {
         "name": "validators.container_check_digit",
@@ -58,13 +48,26 @@
         "field": "uscc"
       },
       {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "3 line amounts equal quantity x unit price and add up to the printed total 14700.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 14700,
+          "printed_total": 14700,
+          "missing_lines": 0
+        }
+      },
+      {
         "name": "validators.dates",
         "status": "pass",
         "severity": "medium",
-        "detail": "Dates are in order (invoice n/a).",
+        "detail": "Dates are in order (invoice 2026-09-28).",
         "weight": 15,
         "evidence": {
-          "invDate": null,
+          "invDate": "2026-09-28",
           "plDate": "2026-09-29",
           "shipped": null,
           "issued": null,
@@ -73,10 +76,22 @@
       },
       {
         "name": "validators.quantities",
-        "status": "skipped",
-        "severity": "medium",
-        "detail": "Invoice or packing list missing.",
-        "weight": 0
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 3 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            5000,
+            8000,
+            6000
+          ],
+          "packing_list": [
+            5000,
+            8000,
+            6000
+          ]
+        }
       },
       {
         "name": "validators.formats",
@@ -88,12 +103,46 @@
       {
         "name": "structure.buyer",
         "status": "review",
-        "severity": "high",
-        "detail": "The invoice names no buyer.",
-        "weight": 25,
-        "fix": "The invoice must be made out to \"Qafila Trade, deal 7\".",
+        "severity": "medium",
+        "detail": "The invoice buyer refers to deal 1 but this is deal 7.",
+        "weight": 15,
+        "evidence": "Qafila Trade, deal 1",
+        "fix": "The invoice must reference deal 7.",
         "document": "invoice",
         "field": "buyer"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "深圳市蓝湾电子有限公司",
+          "b": "深圳市蓝湾电子有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "b": "Shenzhen Lanwan Electronics Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91440300MA5GK2Q7XL",
+          "b": "91440300MA5GK2Q7XL"
+        }
       },
       {
         "name": "consistency.form_supplier_zh",
@@ -107,14 +156,128 @@
         }
       },
       {
-        "name": "halal.screen",
-        "status": "unavailable",
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "INV-LW-2026-1001",
+          "b": "INV-LW-2026-1001"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "weight": 25,
+        "evidence": {
+          "a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
+          "b": "TPU protective cases for smartphones, assorted models"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
         "severity": "critical",
-        "detail": "No invoice line items to screen.",
+        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is electronics and phone accessories: permitted.",
         "weight": 40,
-        "fix": "The invoice must list the goods.",
-        "document": "invoice",
-        "field": "line_items"
+        "evidence": {
+          "line": "1. TPU protective cases for smartphones, assorted models",
+          "category": "electronics",
+          "verdict": "permitted",
+          "reason": "TPU protective cases for smartphones are accessories for electronic devices."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (Tempered glass screen protectors 9H, retail packed) is electronics and phone accessories: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. Tempered glass screen protectors 9H, retail packed",
+          "category": "electronics",
+          "verdict": "permitted",
+          "reason": "Tempered glass screen protectors are accessories for electronic devices."
+        }
+      },
+      {
+        "name": "halal.line_3",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 3 (USB-C charging and data cables, 1 m, nylon braided) is electronics and phone accessories: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "3. USB-C charging and data cables, 1 m, nylon braided",
+          "category": "electronics",
+          "verdict": "permitted",
+          "reason": "USB-C charging and data cables are accessories for electronic devices."
+        }
+      },
+      {
+        "name": "price.phone_cases",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (TPU protective cases for smartphones, assorted models): 1.20 USD per piece vs reference 0.6 to 2.5 (phone_cases, 0.77x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. TPU protective cases for smartphones, assorted models",
+          "category": "phone_cases",
+          "unit_price_usd": 1.2,
+          "reference_low_usd": 0.6,
+          "reference_high_usd": 2.5,
+          "ratio_to_mid": 0.774,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.tempered_glass_protectors",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (Tempered glass screen protectors 9H, retail packed): 0.45 USD per piece vs reference 0.2 to 0.9 (tempered_glass_protectors, 0.82x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. Tempered glass screen protectors 9H, retail packed",
+          "category": "tempered_glass_protectors",
+          "unit_price_usd": 0.45,
+          "reference_low_usd": 0.2,
+          "reference_high_usd": 0.9,
+          "ratio_to_mid": 0.818,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.usb_cables",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 3 (USB-C charging and data cables, 1 m, nylon braided): 0.85 USD per piece vs reference 0.4 to 1.8 (usb_cables, 0.77x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "3. USB-C charging and data cables, 1 m, nylon braided",
+          "category": "usb_cables",
+          "unit_price_usd": 0.85,
+          "reference_low_usd": 0.4,
+          "reference_high_usd": 1.8,
+          "ratio_to_mid": 0.773,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
       },
       {
         "name": "registry.status",
@@ -197,29 +360,35 @@
       },
       {
         "name": "fingerprint.listing",
-        "status": "review",
-        "severity": "high",
-        "detail": "The listing fingerprint could not be computed (supplier code, invoice number, date, total or currency missing).",
-        "weight": 25,
-        "fix": "The invoice must show its number, date, total and currency.",
+        "status": "fail",
+        "severity": "critical",
+        "detail": "This invoice (INV-LW-2026-1001 of 2026-09-28, 14700.00 USD) was already financed (deal packet-01).",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa",
+          "parts": {
+            "supplier": "91440300MA5GK2Q7XL",
+            "invoice_number": "INV-LW-2026-1001",
+            "invoice_date": "2026-09-28",
+            "total": "14700.00",
+            "currency": "USD"
+          },
+          "used_by": "packet-01"
+        },
+        "fix": "The same invoice cannot be financed twice. The account goes under review.",
         "document": "invoice"
       },
       {
         "name": "decision.policy",
         "status": "pass",
         "severity": "info",
-        "detail": "review by policy 5.6: review:extraction_failed, review:low_confidence, review:deal_structure.",
+        "detail": "reject by policy 5.6: reject:duplicate_invoice, review:deal_structure.",
         "weight": 0,
         "evidence": [
           {
-            "rule": "extraction_failed",
-            "level": "review",
-            "detail": "A document could not be read."
-          },
-          {
-            "rule": "low_confidence",
-            "level": "review",
-            "detail": "A key field is missing or below 0.8 confidence."
+            "rule": "duplicate_invoice",
+            "level": "reject",
+            "detail": "The invoice fingerprint was already financed."
           },
           {
             "rule": "deal_structure",
@@ -230,7 +399,300 @@
       }
     ],
     "extracted": {
-      "invoice": null,
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "INV-LW-2026-1001",
+          "evidence": "INV-LW-2026-1001",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-09-28",
+          "evidence": "2026-09-28",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Shenzhen Lanwan Electronics Co., Ltd.",
+            "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "深圳市蓝湾电子有限公司",
+            "evidence": "深圳市蓝湾电子有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91440300MA5GK2Q7XL",
+            "evidence": "USCC 91440300MA5GK2Q7XL",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
+            "evidence": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 1",
+            "evidence": "Qafila Trade, deal 1",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 1",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 1",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Adewale Trading Ltd",
+          "evidence": "Adewale Trading Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
+          "evidence": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 14700,
+          "evidence": "USD 14,700.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "TPU protective cases for smartphones, assorted models",
+              "evidence": "TPU protective cases for smartphones, assorted models",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "手机TPU保护壳，多款",
+              "evidence": "手机TPU保护壳，多款",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "392690",
+              "evidence": "392690",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 5000,
+              "evidence": "5,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 1.2,
+              "evidence": "1.20",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 6000,
+              "evidence": "6,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Tempered glass screen protectors 9H, retail packed",
+              "evidence": "Tempered glass screen protectors 9H, retail packed",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "9H钢化玻璃膜，零售包装",
+              "evidence": "9H钢化玻璃膜，零售包装",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "700719",
+              "evidence": "700719",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 8000,
+              "evidence": "8,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 0.45,
+              "evidence": "0.45",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 3600,
+              "evidence": "3,600.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "USB-C charging and data cables, 1 m, nylon braided",
+              "evidence": "USB-C charging and data cables, 1 m, nylon braided",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "USB-C充电数据线 1米 尼龙编织",
+              "evidence": "USB-C充电数据线 1米 尼龙编织",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "854442",
+              "evidence": "854442",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 6000,
+              "evidence": "6,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 0.85,
+              "evidence": "0.85",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 5100,
+              "evidence": "5,100.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Shenzhen (Yantian), China (CNYTN)",
+          "evidence": "Shenzhen (Yantian), China (CNYTN)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Lagos (Apapa), Nigeria (NGAPP)",
+          "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
       "packing_list": {
         "type": "packing_list",
         "packing_list_number": {
@@ -584,18 +1046,115 @@
       }
     ],
     "tracking": null,
-    "price": [],
-    "halal": [],
+    "price": [
+      {
+        "line": "1. TPU protective cases for smartphones, assorted models",
+        "category": "phone_cases",
+        "unit_price_usd": 1.2,
+        "reference_low_usd": 0.6,
+        "reference_high_usd": 2.5,
+        "ratio_to_mid": 0.774,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "2. Tempered glass screen protectors 9H, retail packed",
+        "category": "tempered_glass_protectors",
+        "unit_price_usd": 0.45,
+        "reference_low_usd": 0.2,
+        "reference_high_usd": 0.9,
+        "ratio_to_mid": 0.818,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "3. USB-C charging and data cables, 1 m, nylon braided",
+        "category": "usb_cables",
+        "unit_price_usd": 0.85,
+        "reference_low_usd": 0.4,
+        "reference_high_usd": 1.8,
+        "ratio_to_mid": 0.773,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. TPU protective cases for smartphones, assorted models",
+        "category": "electronics",
+        "verdict": "permitted",
+        "reason": "TPU protective cases for smartphones are accessories for electronic devices."
+      },
+      {
+        "line": "2. Tempered glass screen protectors 9H, retail packed",
+        "category": "electronics",
+        "verdict": "permitted",
+        "reason": "Tempered glass screen protectors are accessories for electronic devices."
+      },
+      {
+        "line": "3. USB-C charging and data cables, 1 m, nylon braided",
+        "category": "electronics",
+        "verdict": "permitted",
+        "reason": "USB-C charging and data cables are accessories for electronic devices."
+      }
+    ],
     "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "深圳市蓝湾电子有限公司",
+        "evidence_b": "深圳市蓝湾电子有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Shenzhen Lanwan Electronics Co., Ltd.",
+        "evidence_b": "Shenzhen Lanwan Electronics Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91440300MA5GK2Q7XL",
+        "evidence_b": "91440300MA5GK2Q7XL"
+      },
       {
         "field": "form_supplier_zh",
         "match": "yes",
         "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
         "evidence_a": "深圳市蓝湾电子有限公司",
         "evidence_b": "深圳市蓝湾电子有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "INV-LW-2026-1001",
+        "evidence_b": "INV-LW-2026-1001"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
+        "evidence_b": "TPU protective cases for smartphones, assorted models"
       }
     ],
-    "listing_fingerprint": null,
+    "listing_fingerprint": "f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa",
     "shipment_fingerprint": null,
     "document_hashes": [
       {
@@ -617,10 +1176,10 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 7505,
-        "tokens_out": 1532,
-        "latency_ms": 1239620,
-        "cost_usd": 0.00409
+        "tokens_in": 16755,
+        "tokens_out": 3733,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -629,8 +1188,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6173,
         "tokens_out": 1701,
-        "latency_ms": 22413,
-        "cost_usd": 0.003893
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -639,22 +1198,52 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4332,
         "tokens_out": 759,
-        "latency_ms": 10593,
-        "cost_usd": 0.00221
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 876,
+        "tokens_out": 106,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1201,
+        "tokens_out": 108,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1960,
+        "tokens_out": 177,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 1552,
-        "tokens_out": 147,
-        "latency_ms": 1047,
-        "cost_usd": 0.000321
+        "tokens_in": 0,
+        "tokens_out": 0,
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -662,22 +1251,28 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/3e42875d123e552e53d73149909cc6c881c68853cc69039bb12cb68bb487fcfb.json",
+      "llm/41bca718858faa3df96008f6d2fb723e8fa552805709b39d228aa2b0dd0f2bdf.json",
+      "llm/6277988317617f9b71eed19329cd71af02a144f1fac47a0c5731fe5b2bfe347c.json",
+      "llm/6d099f39517e181ef576243df60489c891f53537e19fa5321d663b64aab786ef.json",
+      "llm/965ba17719e4a495b37723ebc75d2610b7b9a8ccb3b7efda139788385e121c09.json",
+      "llm/eb429eb0c6fdfe5f2d48a00246e42dfcc334f4f1fa26cadaa2d2962e2fd79313.json",
       "opensanctions/<fallback>",
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 609,
-      "extract": 1239622,
-      "validate": 1,
-      "stages": 5,
+      "intake": 709,
+      "extract": 2,
+      "validate": 0,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 1047,
-      "total": 1241287
+      "explain": 3,
+      "total": 717
     },
-    "cost_usd": 0.010514,
+    "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal needs a review by our team because the invoice could not be read and important details are missing. The container number and company details passed checks. Please upload a clearer invoice and ensure it includes the buyer name, invoice number, date, total, and currency.\n\nWhat to fix:\n- Upload a clearer invoice (PDF or a sharp photo).\n- Upload the pro-forma or commercial invoice.\n- The invoice must be made out to \"Qafila Trade, deal 7\".\n- The invoice must list the goods.\n- The invoice must show its number, date, total and currency."
+    "explanation": "Your deal was rejected: This invoice (INV-LW-2026-1001 of 2026-09-28, 14700.00 USD) was already financed (deal packet-01).\n\nWhat to fix:\n- invoice: The same invoice cannot be financed twice. The account goes under review.\n- invoice: The invoice must reference deal 7.\n\nCategory: duplicate"
   },
-  "report_hash": "5a02f7a291597a1726a556eebcf48428aae76210583076ee9915c30e765656ce",
-  "signature": "ee77b305702e0dddaf8bc6e6b3bf480ddf59807c46fcec1948b596692e0b73257e62128ff1eb51ca2015769def640d7c81c868a072316261cafd40b4d7000908"
+  "report_hash": "4ffc42aaa21a0c6a4621f12c935bf30d741af5647fb73ba941948c1d07216d82",
+  "signature": "6fd3cc807e549a4e7285960f0250bea2e7da7a91488acfd744cdb7440036e04412d4239c160879c5ae0a5505f2b3e57be3a87c4805f3d78b28245c45f99c7106"
 }

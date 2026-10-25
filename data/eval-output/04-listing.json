@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-04",
-    "created_at": "2026-10-25T15:38:21.952Z",
+    "created_at": "2026-10-25T16:05:59.971Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -898,8 +898,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16161,
         "tokens_out": 2969,
-        "latency_ms": 40716,
-        "cost_usd": 0.008411
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -908,8 +908,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6092,
         "tokens_out": 1269,
-        "latency_ms": 19597,
-        "cost_usd": 0.00335
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -918,8 +918,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4321,
         "tokens_out": 859,
-        "latency_ms": 12403,
-        "cost_usd": 0.002327
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -928,8 +928,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 818,
         "tokens_out": 139,
-        "latency_ms": 2378,
-        "cost_usd": 0.000412
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -938,8 +938,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1142,
         "tokens_out": 53,
-        "latency_ms": 1278,
-        "cost_usd": 0.000203
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -948,8 +948,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1865,
         "tokens_out": 63,
-        "latency_ms": 1384,
-        "cost_usd": 0.000318
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -958,12 +958,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2037,
         "tokens_out": 116,
-        "latency_ms": 936,
-        "cost_usd": 0.000375
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -971,22 +971,29 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/13990c5deb6b01a854340a34057d45db51a4422d03bb4001119e8e0443d11a4f.json",
+      "llm/1dbbf9a6dc2b4e023f1d3aea8f3a3c187524746fd9b92a1906603b80047ba6d6.json",
+      "llm/3ee7fcad033b4d02f62441a83b86894253da2d5c1dfcd69e5212ea3eae7af1ef.json",
+      "llm/41cfd79a3f61a9737c5f4b3d1a11ac49bd700a4e1d54bcc6d97900e5d2e8444c.json",
+      "llm/783d69b83075fd07aa8477c8eb993010b6bbb2b7b449a151ef0676231e75e9c2.json",
+      "llm/7995e6c7cbb777a8d9b7aff1b35631cd396644b0a2b76f0bd1119f4e4cb2cb96.json",
+      "llm/831d7628582673bee357f1bab2791a4f3ad1305e25b7cf61ee8acaadcbb22926.json",
       "opensanctions/<fallback>",
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 585,
-      "extract": 40716,
-      "validate": 2,
-      "stages": 2380,
+      "intake": 544,
+      "extract": 1,
+      "validate": 1,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 937,
-      "total": 44621
+      "explain": 0,
+      "total": 547
     },
-    "cost_usd": 0.015396,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the container number on the packing list failed the ISO 6346 check digit. All other checks passed, including the USCC code, pricing, and document consistency. Please correct the container number and resubmit the packing list.\n\nWhat to fix:\n- Correct the container number on the packing list. Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.\n\nCategory: document integrity"
   },
-  "report_hash": "d0aa7e58ec1105a65982ea7776cdcd6c657437ca238192c8432a44c34247cadd",
-  "signature": "a35a26145098d272e97a4a662b46ed106dffae6d7c7155c531ba8eb5ce963c7badeddbc82426cecdd1c3b015f560f6d4479b11dabf804a19f50e755e902d0a0c"
+  "report_hash": "9bb9af73fd3df88a8163fcd80eecc6c8f55cdfb7472cd2ec8157abe3490dc6b0",
+  "signature": "1efd10120dbdf96bf34176252928845873c2e9ee175571cfc9e5133f9209b3851c9ea0b2c65326bb71745760c225caa4334800bdd9ee6ea28711a0b6322d7e08"
 }

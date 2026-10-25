@@ -29,6 +29,7 @@ const NameJudge = z.object({ match: z.enum(['yes', 'no', 'unsure']), reason: z.s
 export async function fetchTracking(containers: string[], carrier: string, blNumber: string | undefined, adapters: Adapters): Promise<{ raw: Tracking | null; fixtures: string[]; error: string | null; cost: number }> {
   const first = containers[0];
   if (!first) return { raw: null, fixtures: [], error: 'no container number', cost: 0 };
+  const mode = adapters.ctx.shipsgo.mode;
   const fixtures: string[] = [];
   const created = await adapters.shipsgo.createTracking({ containerNumber: first, shippingLine: carrier, blNumber }, adapters.ctx.shipsgo);
   if (created.fixture) fixtures.push(created.fixture);
@@ -36,7 +37,7 @@ export async function fetchTracking(containers: string[], carrier: string, blNum
   const got = await adapters.shipsgo.getTracking({ requestId: created.data.requestId, containers }, adapters.ctx.shipsgo);
   if (got.fixture) fixtures.push(got.fixture);
   if (got.status !== 'ok' || !got.data) return { raw: null, fixtures, error: got.error ?? 'tracking fetch failed', cost: created.cost + got.cost };
-  return { raw: got.data, fixtures, error: null, cost: created.cost + got.cost };
+  return { raw: { ...got.data, mode: got.mode === 'mock' ? 'mock' : mode }, fixtures, error: null, cost: created.cost + got.cost };
 }
 
 export async function trackingStage(bl: BillOfLading | null, ctx: DealContext, adapters: Adapters): Promise<TrackingStageResult> {
