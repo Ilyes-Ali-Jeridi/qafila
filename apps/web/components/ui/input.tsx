@@ -2,7 +2,7 @@ import type { InputHTMLAttributes, LabelHTMLAttributes, ReactNode, SelectHTMLAtt
 import { cn } from '@/lib/utils';
 
 const control =
-  'w-full rounded-[var(--radius-control)] border border-line-strong bg-surface-2/80 px-3 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-[border-color,box-shadow] duration-200 placeholder:text-ink-faint hover:border-white/25 focus:border-teal/70 focus:outline-none focus:shadow-[0_0_0_3px_rgba(45,226,195,0.18)] disabled:opacity-60 aria-[invalid=true]:border-danger aria-[invalid=true]:focus:shadow-[0_0_0_3px_rgba(255,92,92,0.2)]';
+  'w-full rounded-[var(--radius-control)] border border-line-strong bg-surface-2/80 px-3 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-[border-color,box-shadow] duration-200 placeholder:text-ink-faint hover:border-white/25 focus:border-teal/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-saffron/70 focus-visible:border-saffron/60 focus:shadow-[0_0_0_3px_rgba(45,226,195,0.18)] disabled:opacity-60 aria-[invalid=true]:border-danger aria-[invalid=true]:focus:shadow-[0_0_0_3px_rgba(255,92,92,0.2)]';
 
 export function Input({ className, ...rest }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(control, 'h-11 text-base sm:h-10 sm:text-sm', rest.inputMode === 'decimal' || rest.inputMode === 'numeric' ? 'font-mono tabular' : '', className)} {...rest} />;

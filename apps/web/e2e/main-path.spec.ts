@@ -48,7 +48,7 @@ test('marketplace and public deal page work and show the risk box', async ({ pag
   await page.goto('/invest');
   await expect(page.getByTestId('deal-grid')).toBeVisible();
   await page.getByTestId('deal-card-1').click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('phone cases');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('phone cases', { timeout: 30_000 }); // first compile of the route in next dev
   await expect(page.getByTestId('if-things-go-wrong')).toContainText('Who loses first');
   await expect(visible(page, 'invest-panel')).toBeVisible();
 });
@@ -65,7 +65,7 @@ test('importer: new deal, documents, screening, promise with the security deposi
     await page.getByTestId('email-input').fill(email);
     await page.getByTestId('email-send').click();
     await expect(page.getByTestId('otp-input')).toBeVisible({ timeout: 30_000 });
-    const api = process.env['E2E_API_URL'] ?? 'http://localhost:8787';
+    const api = process.env['E2E_API_URL'] ?? (MOCK ? 'http://localhost:8788' : 'http://localhost:8787');
     let code: string | null = null;
     for (let i = 0; i < 20 && !code; i++) {
       await page.waitForTimeout(1500);

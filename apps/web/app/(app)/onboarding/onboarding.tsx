@@ -417,7 +417,7 @@ function ImporterForm({ defaultName, onDone, onBack }: { defaultName: string; on
           <Input id="kybdoc" type="file" accept="application/pdf,image/jpeg,image/png" onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="py-2" />
         </Field>
         <Field label="Email (optional)" htmlFor="kemail" hint="For notifications when your deal moves." error={form.formState.errors.email?.message}>
-          <Input id="kemail" type="email" {...form.register('email')} inputMode="email" />
+          <Input id="kemail" type="email" autoComplete="email" {...form.register('email')} inputMode="email" />
         </Field>
         {error ? <InlineError>{error}</InlineError> : null}
         <div className="flex flex-wrap gap-2">

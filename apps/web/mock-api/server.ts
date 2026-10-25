@@ -906,6 +906,20 @@ app.post('/join', async (c) => {
   }
   return reply(c, KycResponseSchema, { kycStatus: 'approved', approveTxHash: u.approveTxHash, faucet });
 });
+// Email one-time code, mocked: any email gets the code 123456; verify returns a mock session for the wallet given.
+app.post('/auth/otp', async (c) => {
+  const body = (await c.req.json().catch(() => ({}))) as { email?: string };
+  if (!body.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(body.email)) return c.json({ error: { code: 'invalid_body', message: 'email required' } }, 422);
+  return c.json({ ok: true });
+});
+app.post('/auth/verify', async (c) => {
+  const body = (await c.req.json().catch(() => ({}))) as { email?: string; code?: string; walletAddress?: string };
+  if (body.code !== '123456') return c.json({ error: { code: 'bad_code', message: 'the code is wrong or expired' } }, 401);
+  const address = body.walletAddress ?? c.req.header('x-wallet-address') ?? 'GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWE';
+  return c.json({ token: `mock.${address}`, expiresAt: new Date(Date.now() + 3_600_000).toISOString(), profile: { email: body.email ?? null } });
+});
+app.get('/auth/dev-otp', (c) => c.json({ code: '123456' }));
+
 app.post('/kyb', async (c) => {
   const u = requireUser(c);
   const b = await body(c, KybRequest);

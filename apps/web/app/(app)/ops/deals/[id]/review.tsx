@@ -186,7 +186,7 @@ function DocumentViewer({ doc }: { doc: OpsDealDetail['documents'][number] | und
   if (doc.mime === 'application/pdf') return <iframe src={doc.viewUrl} title={doc.filename} className="h-[520px] w-full" />;
   // Private, signed URL from the API; next/image cannot optimise it.
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={doc.viewUrl} alt={doc.filename} className="max-h-[520px] w-full object-contain" />;
+  return <img src={doc.viewUrl} alt={doc.filename} loading="lazy" decoding="async" className="max-h-[520px] w-full object-contain" />;
 }
 
 function ChainTab({ deal }: { deal: OpsDealDetail }) {
