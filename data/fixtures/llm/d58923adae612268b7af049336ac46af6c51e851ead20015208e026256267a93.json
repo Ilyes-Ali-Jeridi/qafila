@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:42:47.535Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-11:listing:ac652b42e093b0b421c7e6e0466d3f4bdcd9b1e033d278474761132df0346bf8:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=fail,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,price.ceramic_floor_tiles=pass,price.line_2=skipped,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,document.hidden_text=fail,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal was rejected because the invoice total does not match the sum of the line items. All other checks passed, including the container numbers, USCC code, dates, quantities, and goods descriptions. You should ask the supplier for a corrected invoice with accurate totals.",
+      "fixes": [
+        "Ask the supplier for a corrected invoice whose line amounts add up to the total."
+      ],
+      "category": "document_integrity"
+    },
+    "tokensIn": 2194,
+    "tokensOut": 102,
+    "repaired": false
+  }
+}

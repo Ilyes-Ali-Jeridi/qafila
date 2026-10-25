@@ -1,0 +1,70 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:36:35.659Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "309cc02f7b57b015938ce02d87ebd88289586d40326a7f6910b4e55640f55f58"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "ceramic_floor_tiles",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 1 matches ceramic_floor_tiles by description and HS code."
+        },
+        {
+          "line_index": 2,
+          "category": "ceramic_floor_tiles",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 2 matches ceramic_floor_tiles by description and HS code."
+        },
+        {
+          "line_index": 3,
+          "category": "ceramic_floor_tiles",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 3 matches ceramic_floor_tiles by HS code."
+        },
+        {
+          "line_index": 4,
+          "category": "none",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 4 lacks sufficient detail to map."
+        },
+        {
+          "line_index": 5,
+          "category": "ceramic_floor_tiles",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 5 matches ceramic_floor_tiles by unit and context."
+        },
+        {
+          "line_index": 6,
+          "category": "none",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 6 lacks sufficient detail to map."
+        },
+        {
+          "line_index": 7,
+          "category": "none",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": null,
+          "note": "Line 7 lacks sufficient detail to map."
+        }
+      ]
+    },
+    "tokensIn": 1980,
+    "tokensOut": 331,
+    "repaired": false
+  }
+}

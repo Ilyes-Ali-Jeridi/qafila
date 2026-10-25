@@ -1,0 +1,6 @@
+{
+  "decision": "approve",
+  "stage": "listing",
+  "failing_checks": [],
+  "notes": "Clean bilingual packet in CNY; price check converts through ECB (frankfurter), Reflector has no CNY (SP9)."
+}

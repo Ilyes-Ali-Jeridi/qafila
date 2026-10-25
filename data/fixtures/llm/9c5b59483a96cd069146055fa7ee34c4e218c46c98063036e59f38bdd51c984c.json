@@ -1,0 +1,267 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:43:29.871Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.invoice",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_invoice.v1",
+    "cacheKey": "extract:invoice:9630cbd657124f533b72088d7175be1b136a36aa3366e1b205e868177c3c4dec"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "invoice",
+      "invoice_number": {
+        "value": "INV-LW-2024-1002",
+        "evidence": "INV-LW-2024-1002",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_date": {
+        "value": "2024-10-09",
+        "evidence": "2024-10-09",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_kind": {
+        "value": "proforma",
+        "evidence": "PROFORMA INVOICE",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "seller": {
+        "name_en": {
+          "value": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "深圳市蓝湾电子有限公司",
+          "evidence": "深圳市蓝湾电子有限公司",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Building 3, Lanwan Industrial Park, Aoxing, Bao'an District, Shenzhen, Guangdong, China",
+          "evidence": "Building 3, Lanwan Industrial Park, Aoxing, Bao'an District, Shenzhen, Guangdong, China",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "CN",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Mwangi Imports Ltd",
+          "evidence": "Mwangi Imports Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "P.O. Box 22, Mombasa Road, Nairobi, Kenya",
+          "evidence": "P.O. Box 22, Mombasa Road, Nairobi, Kenya",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "KE",
+          "evidence": "Kenya",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "consignee": {
+        "name_en": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 12",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 12",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "country": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        }
+      },
+      "notify_party": {
+        "value": null,
+        "evidence": null,
+        "page": null,
+        "confidence": 0
+      },
+      "incoterms": {
+        "value": "FOB Shenzhen (Yantian), September 2022",
+        "evidence": "FOB Shenzhen (Yantian), September 2022",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "currency": {
+        "value": "USD",
+        "evidence": "USD",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total": {
+        "value": 18100,
+        "evidence": "USD 18,100.00",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "line_items": [
+        {
+          "description_en": {
+            "value": "Power banks 10,000 mAh, dual USB output, retail box",
+            "evidence": "Power banks 10,000 mAh, dual USB output, retail box",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "移动电源 10000mAh 双USB 输出",
+            "evidence": "移动电源 10000mAh 双USB 输出",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "850760",
+            "evidence": "850760",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 2000,
+            "evidence": "2,000 pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "pcs",
+            "evidence": "pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 6,
+            "evidence": "6.00",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 12000,
+            "evidence": "12,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        {
+          "description_en": {
+            "value": "Wired in-ear earphones with microphone, 2.5 mm",
+            "evidence": "Wired in-ear earphones with microphone, 2.5 mm",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "有线入耳式耳机带麦克 2.5mm",
+            "evidence": "有线入耳式耳机带麦克 2.5mm",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "851830",
+            "evidence": "851830",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 5000,
+            "evidence": "5,000 pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "pcs",
+            "evidence": "pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 1.2,
+            "evidence": "1.20",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 6000,
+            "evidence": "6,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        }
+      ],
+      "port_of_loading": {
+        "value": "Shenzhen, China (CNNTN)",
+        "evidence": "Shenzhen, China (CNNTN)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "port_of_discharge": {
+        "value": "Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "payment_terms": {
+        "value": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
+        "evidence": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 15001,
+    "tokensOut": 3021,
+    "repaired": true
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:38:32.277Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.invoice",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_invoice.v1",
+    "cacheKey": "extract:invoice:86413d846933b041c3ed40a6510d39e723faac4a07d2362b559b69d80f834e21"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "invoice",
+      "invoice_number": {
+        "value": "BH-2026-1003",
+        "evidence": "Invoice No. BH-2026-1003",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_date": {
+        "value": "2026-10-03",
+        "evidence": "Invoice date 2026-10-03",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_kind": {
+        "value": "proforma",
+        "evidence": "PROFORMA INVOICE",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "seller": {
+        "name_en": {
+          "value": "Yiwu Baihui Import & Export Co., Ltd.",
+          "evidence": "Yiwu Baihui Import & Export Co., Ltd.",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "义乌市百汇进出口有限公司",
+          "evidence": "义乌市百汇进出口有限公司",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": "91330782MA2A3G9H8J",
+          "evidence": "USCC 91330782MA2A3G9H8J",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "address": {
+          "value": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+          "evidence": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "CN",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 6",
+          "evidence": "Qafila Trade, deal 6",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "Qafila Trade, deal 6",
+          "evidence": "Qafila Trade, deal 6",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "PT",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "consignee": {
+        "name_en": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 6",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 6",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 6",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 6",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "country": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        }
+      },
+      "notify_party": {
+        "value": "Mwangi Imports Ltd",
+        "evidence": "Mwangi Imports Ltd",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "incoterms": {
+        "value": "FOB Ningbo (CNNGB), Incoterms 2020",
+        "evidence": "FOB Ningbo (CNNGB), Incoterms 2020",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "currency": {
+        "value": "USD",
+        "evidence": "USD",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total": {
+        "value": 26900,
+        "evidence": "USD 26,900.00",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "line_items": [
+        {
+          "description_en": {
+            "value": "Electric kettles 1.8 L, stainless steel, 1500 W",
+            "evidence": "Electric kettles 1.8 L, stainless steel, 1500 W",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "不锈钢电热水壶 1.8L 1500W",
+            "evidence": "不锈钢电热水壶 1.8L 1500W",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "851610",
+            "evidence": "851610",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 2000,
+            "evidence": "2,000 pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "pcs",
+            "evidence": "pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 5.5,
+            "evidence": "5.50",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 11000,
+            "evidence": "11,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        {
+          "description_en": {
+            "value": "Electric rice cookers 2.8 L, non-stick pot",
+            "evidence": "Electric rice cookers 2.8 L, non-stick pot",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "电饭煲 2.8L 不粘内胆",
+            "evidence": "电饭煲 2.8L 不粘内胆",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "851660",
+            "evidence": "851660",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 1000,
+            "evidence": "1,000 pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "pcs",
+            "evidence": "pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 12,
+            "evidence": "12.00",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 12000,
+            "evidence": "12,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        {
+          "description_en": {
+            "value": "Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+            "evidence": "Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "赤霞珠干红葡萄酒 750ml 13%",
+            "evidence": "赤霞珠干红葡萄酒 750ml 13%",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "220421",
+            "evidence": "220421",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 600,
+            "evidence": "600 bottles",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "bottles",
+            "evidence": "bottles",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 6.5,
+            "evidence": "6.50",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 3900,
+            "evidence": "3,900.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        }
+      ],
+      "port_of_loading": {
+        "value": "Ningbo, China (CNNGB)",
+        "evidence": "Ningbo, China (CNNGB)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "port_of_discharge": {
+        "value": "Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "payment_terms": {
+        "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 16689,
+    "tokensOut": 3723,
+    "repaired": true
+  }
+}

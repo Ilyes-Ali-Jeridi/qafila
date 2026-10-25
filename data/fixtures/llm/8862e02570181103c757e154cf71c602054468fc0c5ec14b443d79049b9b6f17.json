@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:37:34.631Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-05:listing:67fe8587e91d24bd41f7c829b84adda8ed982a272141951d1464c49d757e2c28:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,price.motorcycle_tyres=review,price.motorcycle_chain_sprocket_kits=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal needs a review by our team because the unit price for motorcycle tyres is far above the reference range. All other checks passed, including document consistency, format, and sanctions screening. Please provide a reason for the high price or a corrected quote.",
+      "fixes": [
+        "Provide a reason for the high unit price of motorcycle tyres (48.00 USD per piece) on the invoice or upload a corrected quote."
+      ],
+      "category": null
+    },
+    "tokensIn": 2220,
+    "tokensOut": 110,
+    "repaired": false
+  }
+}

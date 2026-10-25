@@ -1,0 +1,8 @@
+{
+  "decision": "reject",
+  "stage": "listing",
+  "failing_checks": [
+    "sanctions.supplier"
+  ],
+  "notes": "OpenSanctions fixture: the supplier name matches a fictional sanctioned entity at 0.96."
+}

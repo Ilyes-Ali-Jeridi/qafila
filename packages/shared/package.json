@@ -11,7 +11,8 @@
     "./format": "./src/format.ts",
     "./promise": "./src/promise.ts",
     "./documents": "./src/documents.ts",
-    "./report": "./src/report.ts"
+    "./report": "./src/report.ts",
+    "./api": "./src/api.ts"
   },
   "scripts": {
     "test": "vitest run",

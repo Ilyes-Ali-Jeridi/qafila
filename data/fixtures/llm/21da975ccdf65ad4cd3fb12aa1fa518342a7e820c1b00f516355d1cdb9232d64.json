@@ -1,0 +1,245 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:41:41.711Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.bill_of_lading",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_bill_of_lading.v1",
+    "cacheKey": "extract:bill_of_lading:f3d641f7b8fbcc089eff9769fa92b6736a2510a2aacf0ff8dc6a8bca4b3423ef"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "bill_of_lading",
+      "bl_number": {
+        "value": "COSU6412345678",
+        "evidence": "B/L No. COSU6412345678",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "bl_kind": {
+        "value": "original",
+        "evidence": "ORIGINAL",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "carrier": {
+        "value": "COSCO SHIPPING Lines",
+        "evidence": "COSCO SHIPPING Lines",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "scac": {
+        "value": "COSU",
+        "evidence": "SCAC COSU",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "shipper": {
+        "name_en": {
+          "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "江苏光耀新能源有限公司",
+          "evidence": "江苏光耀新能源有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "consignee": {
+        "value": "TO ORDER OF QAFILA TRADE, DEAL 10\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "consignee_to_order": {
+        "value": true,
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "notify_party": {
+        "value": "Mwangi Imports Ltd\nPlot 22, Mombasa Road, Nairobi, Kenya\nTel +254 20 822 1100",
+        "evidence": "Mwangi Imports Ltd\nPlot 22, Mombasa Road, Nairobi, Kenya\nTel +254 20 822 1100",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "vessel": {
+        "value": "COSCO SHIPPING ARIES",
+        "evidence": "COSCO SHIPPING ARIES V.052W",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "voyage": {
+        "value": "V.052W",
+        "evidence": "COSCO SHIPPING ARIES V.052W",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "imo": {
+        "value": "9783497",
+        "evidence": "IMO 9783497",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "port_of_loading": {
+        "value": "Shanghai, China (CNSHA)",
+        "evidence": "Shanghai, China (CNSHA)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "port_of_discharge": {
+        "value": "Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "place_of_receipt": {
+        "value": "Shanghai, China",
+        "evidence": "Shanghai, China",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "place_of_delivery": {
+        "value": "Mombasa, Kenya",
+        "evidence": "Mombasa, Kenya",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "shipped_on_board_date": {
+        "value": "2026-09-26",
+        "evidence": "2026-09-26",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2026-09-27",
+        "evidence": "Shanghai, 2026-09-27",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "containers": [
+        {
+          "number": {
+            "value": "COSU8123403",
+            "evidence": "COSU8123403",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "seal": {
+            "value": "CSL7781201",
+            "evidence": "CSL7781201",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 200,
+            "evidence": "200 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 5820,
+            "evidence": "5,820.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "size_type": {
+            "value": "40'HC",
+            "evidence": "40'HC",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        {
+          "number": {
+            "value": "COSU8123419",
+            "evidence": "COSU8123419",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "seal": {
+            "value": "CSL7781202",
+            "evidence": "CSL7781202",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 200,
+            "evidence": "200 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 5820,
+            "evidence": "5,820.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "size_type": {
+            "value": "40'HC",
+            "evidence": "40'HC",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "description_of_goods": {
+        "value": "SOLAR MODULES 550W",
+        "evidence": "SOLAR MODULES 550W",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_packages": {
+        "value": 400,
+        "evidence": "TOTAL: 400 CARTONS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "gross_weight_kg": {
+        "value": 11640,
+        "evidence": "GROSS WEIGHT 11,640.0 KGS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "measurement_cbm": {
+        "value": 60,
+        "evidence": "MEASUREMENT 60.00 CBM",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "freight_terms": {
+        "value": "FREIGHT PREPAID",
+        "evidence": "FREIGHT PREPAID",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 7552,
+    "tokensOut": 1789,
+    "repaired": false
+  }
+}

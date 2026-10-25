@@ -1,0 +1,6 @@
+{
+  "decision": "approve",
+  "stage": "shipment",
+  "failing_checks": [],
+  "notes": "Packing list 18,400 kg vs B/L 18,676 kg (1.5%): within the 2% pass band. B/L to order of Qafila Trade, deal 3; notify party the importer; tracking loading event on OOCL ZHUHAI at Ningbo matches."
+}

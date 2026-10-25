@@ -1,0 +1,219 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:40:15.157Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.packing_list",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_packing_list.v1",
+    "cacheKey": "extract:packing_list:ca8d166d51c68c7f56967951c695561f5ba800f625d96a367becb164f3c0107e"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "packing_list",
+      "packing_list_number": {
+        "value": "PL-BC-2026-0930",
+        "evidence": "No. PL-BC-2026-0930",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "date": {
+        "value": "2026-10-01",
+        "evidence": "Date 2026-10-01",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "invoice_number": {
+        "value": "BC-2026-0930",
+        "evidence": "Invoice No. BC-2026-0930",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "seller": {
+        "name_en": {
+          "value": "Tianjin Beichen Heavy Industry Co., Ltd.",
+          "evidence": "Tianjin Beichen Heavy Industry Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "天津市北辰重工有限公司",
+          "evidence": "天津市北辰重工有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91120113MA06R4F7KT",
+          "evidence": "USCC 91120113MA06R4F7KT",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+          "evidence": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 9, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 9, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "items": [
+        {
+          "description_en": {
+            "value": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
+            "evidence": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 400,
+            "evidence": "400 pcs",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 400,
+            "evidence": "400 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 7200,
+            "evidence": "7,200.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 6800,
+            "evidence": "6,800.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 22,
+            "evidence": "22.00",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        {
+          "description_en": {
+            "value": "PVC pressure pipes, 2 inch, 4 m lengths",
+            "evidence": "PVC pressure pipes, 2 inch, 4 m lengths",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 5000,
+            "evidence": "5,000 kg",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 250,
+            "evidence": "250 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 5200,
+            "evidence": "5,200.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 5000,
+            "evidence": "5,000.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 30,
+            "evidence": "30.00",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "total_packages": {
+        "value": 650,
+        "evidence": "650 CTNS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_gross_weight_kg": {
+        "value": 12400,
+        "evidence": "12,400.0",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_net_weight_kg": {
+        "value": 11800,
+        "evidence": "11,800.0",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_cbm": {
+        "value": 52,
+        "evidence": "52.00",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "container_numbers": [
+        {
+          "value": "MSKU9070323",
+          "evidence": "MSKU9070323",
+          "page": 1,
+          "confidence": 0.98
+        },
+        {
+          "value": "MSKU7731208",
+          "evidence": "MSKU7731208",
+          "page": 1,
+          "confidence": 0.98
+        }
+      ],
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 13495,
+    "tokensOut": 2941,
+    "repaired": true
+  }
+}

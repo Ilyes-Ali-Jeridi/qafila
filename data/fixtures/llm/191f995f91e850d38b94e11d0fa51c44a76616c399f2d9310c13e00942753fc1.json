@@ -1,0 +1,219 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:42:32.878Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.packing_list",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_packing_list.v1",
+    "cacheKey": "extract:packing_list:77ebdcbe1f90d522c9c4eecb75873605096274b5011990a833e17e71e5aa064d"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "packing_list",
+      "packing_list_number": {
+        "value": "PL-JX-2026-1011",
+        "evidence": "No. PL-JX-2026-1011",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "date": {
+        "value": "2026-10-12",
+        "evidence": "Date 2026-10-12",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_number": {
+        "value": "JX-2026-1011",
+        "evidence": "Invoice No. JX-2026-1011",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "seller": {
+        "name_en": {
+          "value": "Foshan Jingxin Ceramics Co., Ltd.",
+          "evidence": "Foshan Jingxin Ceramics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "佛山市晶鑫陶瓷有限公司",
+          "evidence": "佛山市晶鑫陶瓷有限公司",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": "91440600MA4WJ3T8YU",
+          "evidence": "USCC 91440600MA4WJ3T8YU",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "address": {
+          "value": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "evidence": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 11, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 11, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Qafila Trade, deal 11, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 11, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "items": [
+        {
+          "description_en": {
+            "value": "Glazed ceramic floor tiles 600 x 600 mm, polished",
+            "evidence": "Glazed ceramic floor tiles 600 x 600 mm, polished",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 3000,
+            "evidence": "3,000 sqm",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "packages": {
+            "value": 1500,
+            "evidence": "1500 CTNS",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "gross_weight_kg": {
+            "value": 39000,
+            "evidence": "39,000.0",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "net_weight_kg": {
+            "value": 38200,
+            "evidence": "38,200.0",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "cbm": {
+            "value": 65,
+            "evidence": "65.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        {
+          "description_en": {
+            "value": "Glass mosaic tiles 300 x 300 mm sheets",
+            "evidence": "Glass mosaic tiles 300 x 300 mm sheets",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 500,
+            "evidence": "500 sqm",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "packages": {
+            "value": 250,
+            "evidence": "250 CTNS",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "gross_weight_kg": {
+            "value": 4500,
+            "evidence": "4,500.0",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "net_weight_kg": {
+            "value": 4300,
+            "evidence": "4,300.0",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "cbm": {
+            "value": 9,
+            "evidence": "9.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        }
+      ],
+      "total_packages": {
+        "value": 1750,
+        "evidence": "Total packages: 1750 cartons",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total_gross_weight_kg": {
+        "value": 43500,
+        "evidence": "Total gross weight: 43,500.0 kg",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total_net_weight_kg": {
+        "value": 42500,
+        "evidence": "Total net weight: 42,500.0 kg",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total_cbm": {
+        "value": 74,
+        "evidence": "Total volume: 74.00 m3",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "container_numbers": [
+        {
+          "value": "CSQU3054383",
+          "evidence": "CSQU3054383 (40'HC)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        {
+          "value": "CSQU4401928",
+          "evidence": "CSQU4401928 (40'HC)",
+          "page": 1,
+          "confidence": 0.95
+        }
+      ],
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 13558,
+    "tokensOut": 2814,
+    "repaired": true
+  }
+}

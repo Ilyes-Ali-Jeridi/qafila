@@ -1,0 +1,15 @@
+{
+  "adapter": "reflector",
+  "recorded_at": "2026-10-25T14:49:57.982Z",
+  "mode": "live",
+  "input": {
+    "feed": "CCSSOHTBL3LEWUCBBEB5NJFC2OKFRC74OWEIJIZLRJBGAAU4VMU5NV4W",
+    "symbol": "GBP",
+    "hour": "2026-10-25T14"
+  },
+  "response": {
+    "price": "133742016984823",
+    "timestamp": "1792939500",
+    "decimals": 14
+  }
+}

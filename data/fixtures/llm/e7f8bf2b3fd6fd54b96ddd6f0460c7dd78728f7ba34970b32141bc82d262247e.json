@@ -1,0 +1,267 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:33:55.527Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.invoice",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_invoice.v1",
+    "cacheKey": "extract:invoice:c2c40b3afb0a0655d7968fe1ad8842c18f38dc7a76415f5021edb960b2423e02"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "invoice",
+      "invoice_number": {
+        "value": "HY-2026-0917",
+        "evidence": "HY-2026-0917",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_date": {
+        "value": "2026-09-17",
+        "evidence": "2026-09-17",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_kind": {
+        "value": "proforma",
+        "evidence": "PROFORMA INVOICE",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "seller": {
+        "name_en": {
+          "value": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "evidence": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "广州市恒远纺织有限公司",
+          "evidence": "广州市恒远纺织有限公司",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": "91440101MA59TQ8W23",
+          "evidence": "USCC 91440101MA59TQ8W23",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "address": {
+          "value": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+          "evidence": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "CN",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 2",
+          "evidence": "Qafila Trade, deal 2",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "PT",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "consignee": {
+        "name_en": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 2",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 2",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "country": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        }
+      },
+      "notify_party": {
+        "value": "Mwangi Imports Ltd",
+        "evidence": "Mwangi Imports Ltd",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "incoterms": {
+        "value": "FOB Guangzhou (Nansha) (CNNSA), Incoterms 2020",
+        "evidence": "FOB Guangzhou (Nansha) (CNNSA), Incoterms 2020",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "currency": {
+        "value": "CNY",
+        "evidence": "CNY",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total": {
+        "value": 318000,
+        "evidence": "CNY 318,000.00",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "line_items": [
+        {
+          "description_en": {
+            "value": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+            "evidence": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "纯棉印花布 150cm 120克",
+            "evidence": "纯棉印花布 150cm 120克",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "520852",
+            "evidence": "520852",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 12000,
+            "evidence": "12,000 m",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "m",
+            "evidence": "m",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 18.5,
+            "evidence": "18.50",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 222000,
+            "evidence": "222,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        {
+          "description_en": {
+            "value": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+            "evidence": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "涤纶染色面料 150cm 95克",
+            "evidence": "涤纶染色面料 150cm 95克",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "540752",
+            "evidence": "540752",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 8000,
+            "evidence": "8,000 m",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "m",
+            "evidence": "m",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 12,
+            "evidence": "12.00",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 96000,
+            "evidence": "96,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        }
+      ],
+      "port_of_loading": {
+        "value": "Guangzhou (Nansha), China (CNNSA)",
+        "evidence": "Guangzhou (Nansha), China (CNNSA)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "port_of_discharge": {
+        "value": "Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "payment_terms": {
+        "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 16545,
+    "tokensOut": 3447,
+    "repaired": true
+  }
+}

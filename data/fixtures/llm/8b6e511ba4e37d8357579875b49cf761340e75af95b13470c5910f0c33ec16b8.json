@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:39:29.035Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "975b73c7e90adfe5dce075d605bf2676644dab8a4fedd7ce5e63aae1dcae184d"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the meaning.",
+          "evidence_a": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton LED球泡灯 E27 9W 6500K",
+          "evidence_b": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton"
+        }
+      ]
+    },
+    "tokensIn": 822,
+    "tokensOut": 145,
+    "repaired": false
+  }
+}

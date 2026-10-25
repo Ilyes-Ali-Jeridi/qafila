@@ -1,51 +1,95 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { HTTPException } from 'hono/http-exception';
-import { logger } from './lib/logger.js';
+import { HealthSchema } from '@qafila/shared';
+import { authMiddleware } from './auth.js';
 import type { Env } from './env.js';
-import { health } from './routes/health.js';
-import { config } from './routes/config.js';
-import { stats } from './routes/stats.js';
+import { loadDeployment } from './env.js';
+import { indexerLagSecs } from './jobs/indexer.js';
+import { logger } from './lib/logger.js';
+import { reply } from './lib/http.js';
+import { relayerApp } from './relayer.js';
 import { auth } from './routes/auth.js';
-import { wallet } from './routes/wallet.js';
-import { kyc } from './routes/kyc.js';
-import { faucet } from './routes/faucet.js';
-import { deals } from './routes/deals.js';
-import { documents } from './routes/documents.js';
-import { reports } from './routes/reports.js';
-import { shipments } from './routes/shipments.js';
+import { config } from './routes/config.js';
+import { dealRoutes } from './routes/deals.js';
+import { adapterModes, rpcProbe } from './routes/health.js';
 import { ops } from './routes/ops.js';
-import { x402 } from './routes/x402.js';
+import { publicRoutes } from './routes/public.js';
 import { wellKnown } from './routes/wellknown.js';
+import { createX402Routes } from './routes/x402.js';
+import type { Vars } from './routes/_shared.js';
+import type { Services } from './services.js';
 
-export function createApp(env: Env) {
-  const app = new Hono<{ Variables: { env: Env } }>();
+export function createApp(env: Env, svc?: Services) {
+  const app = new Hono<{ Variables: Vars }>();
   app.use('*', async (c, next) => {
     c.set('env', env);
+    if (svc) c.set('svc', svc);
     await next();
   });
-  app.use('*', cors({ origin: (o) => o ?? '*', allowHeaders: ['Content-Type', 'Authorization', 'X-Payment', 'PAYMENT-SIGNATURE'], exposeHeaders: ['X-Payment-Response', 'PAYMENT-REQUIRED', 'PAYMENT-RESPONSE'] }));
+  app.use('*', cors({ origin: (o) => o ?? '*', allowHeaders: ['Content-Type', 'Authorization', 'X-Payment', 'PAYMENT-SIGNATURE', 'X-Wallet-Address', 'X-Dev-User', 'X-Dev-Roles', 'X-Dev-Email'], exposeHeaders: ['X-Payment-Response', 'PAYMENT-REQUIRED', 'PAYMENT-RESPONSE'] }));
 
-  app.route('/health', health);
+  app.get('/health', async (c) => {
+    const rpc = await rpcProbe(env.STELLAR_RPC_URL);
+    let db = { ok: false, latencyMs: null as number | null };
+    let lag: number | null = null;
+    if (svc) {
+      const t = Date.now();
+      try {
+        await svc.db.execute('select 1');
+        db = { ok: true, latencyMs: Date.now() - t };
+        lag = await indexerLagSecs(svc);
+      } catch {
+        db = { ok: false, latencyMs: null };
+      }
+    }
+    return reply(c, HealthSchema, { ok: rpc.ok && (svc ? db.ok : true), time: new Date().toISOString(), rpc, db, indexerLagSecs: lag, adapters: svc ? { ...svc.adapters.modes, chain: svc.chain.mode } : adapterModes(env), version: process.env['npm_package_version'] ?? '0.1.0' });
+  });
   app.route('/config', config);
-  app.route('/stats', stats);
-  app.route('/', auth); // GET /me
-  app.route('/wallet', wallet);
-  app.route('/kyc', kyc);
-  app.route('/faucet', faucet);
-  app.route('/deals', deals);
-  app.route('/deals', documents);
-  app.route('/deals', reports);
-  app.route('/deals', shipments);
-  app.route('/ops', ops);
-  app.route('/x402', x402);
   app.route('/.well-known', wellKnown);
+
+  if (svc) {
+    app.use('*', authMiddleware(svc.db, env));
+    app.route('/', auth);
+    app.route('/', dealRoutes);
+    app.route('/', publicRoutes);
+    app.route('/ops', ops);
+    if (env.FF_X402) app.route('/x402', createX402Routes(env));
+    if (env.RELAYER_SECRET) {
+      const dep = loadDeployment(env.STELLAR_NETWORK);
+      const contractId = env.QAFILA_CONTRACT_ID ?? dep.contractId;
+      app.route(
+        '/relayer',
+        relayerApp(
+          {
+            secret: env.RELAYER_SECRET,
+            rpcUrl: env.STELLAR_RPC_URL,
+            networkPassphrase: env.NETWORK_PASSPHRASE,
+            allowedContracts: [contractId, env.SETTLEMENT_TOKEN_ID ?? dep.settlementToken?.id, process.env['PROBE_CONTRACT_ID']].filter((x): x is string => Boolean(x)),
+            allowedWasmHashes: [env.SMART_ACCOUNT_WASM_HASH].filter((x): x is string => Boolean(x)),
+            maxResourceFeeStroops: BigInt(process.env['RELAYER_MAX_RESOURCE_FEE'] ?? '500000000'),
+            inclusionFeeStroops: process.env['RELAYER_INCLUSION_FEE'] ?? '100000',
+            perIpPerMinute: Number(process.env['RELAYER_PER_IP_PER_MINUTE'] ?? '30'),
+          },
+          (m) => logger.info(m),
+        ),
+      );
+    }
+  }
 
   app.notFound((c) => c.json({ error: { code: 'not_found', message: `no route ${c.req.method} ${c.req.path}` } }, 404));
   app.onError((err, c) => {
     if (err instanceof HTTPException) return err.getResponse();
+    if ((err as Error).name === 'ContractError' || /contract error \d+/.test((err as Error).message ?? '')) {
+      logger.warn({ err: (err as Error).message, path: c.req.path }, 'contract refused');
+      return c.json({ error: { code: 'contract_error', message: (err as Error).message.slice(0, 200), details: { hint: 'the Qafila contract refused the call; see the error label (for example LimitExceeded: the importer has too much open exposure for this deal)' } } }, 409);
+    }
+    if (/txBAD_SEQ|insufficient|underfunded|tx_insufficient_balance|resulting balance/i.test((err as Error).message ?? '')) {
+      logger.warn({ err: (err as Error).message, path: c.req.path }, 'chain submit failed');
+      return c.json({ error: { code: 'chain_submit_failed', message: (err as Error).message.slice(0, 200), details: { hint: 'check the signing account balance (testnet rent is 2 to 30 XLM per write) and the submit queue logs' } } }, 503);
+    }
     logger.error({ err, path: c.req.path }, 'unhandled');
-    return c.json({ error: { code: 'internal', message: 'internal error' } }, 500);
+    return c.json({ error: { code: 'internal', message: (err as Error).message?.slice(0, 200) || 'internal error' } }, 500);
   });
   return app;
 }

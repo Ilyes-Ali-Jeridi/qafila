@@ -24,11 +24,11 @@ describe('scaffold routes', () => {
     expect(body.adapters['shipsgo']).toBe('mock');
   });
 
-  it('unbuilt routes answer 501 with the error envelope', async () => {
+  it('data routes are not mounted without services (404 envelope)', async () => {
     const res = await app.request('/deals');
-    expect(res.status).toBe(501);
+    expect(res.status).toBe(404);
     const body = (await res.json()) as { error: { code: string } };
-    expect(body.error.code).toBe('not_implemented');
+    expect(body.error.code).toBe('not_found');
   });
 
   it('unknown routes answer 404', async () => {

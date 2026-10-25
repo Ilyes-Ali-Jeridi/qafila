@@ -1,0 +1,43 @@
+{
+  "deal_number": 5,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Adewale Trading Ltd",
+    "country": "NG",
+    "address": "14 Balogun Street, Lagos Island, Lagos, Nigeria",
+    "registration_number": "RC 1456789"
+  },
+  "supplier": {
+    "name_en": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+    "name_zh": "重庆市力拓摩托车配件有限公司",
+    "uscc": "91500100MA5UE9K1RR",
+    "country": "CN"
+  },
+  "goods_summary": "Motorcycle tyres and chain kits",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Chongqing (via Shanghai)",
+  "origin_unlocode": "CNSHA",
+  "destination_port": "Lagos (Apapa), Nigeria",
+  "destination_unlocode": "NGAPP",
+  "destination_country": "NG",
+  "carrier": null,
+  "containers": [
+    "CMAU7283102"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

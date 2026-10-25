@@ -1,0 +1,8 @@
+{
+  "decision": "review",
+  "stage": "listing",
+  "failing_checks": [
+    "extraction.confidence"
+  ],
+  "notes": "The invoice is a blurry, skewed phone photo (JPEG quality 22): key fields come back below 0.8 confidence or missing, so the deal goes to review."
+}

@@ -1,0 +1,239 @@
+{
+  "adapter": "gleif",
+  "recorded_at": "2026-10-25T14:49:56.312Z",
+  "mode": "live",
+  "input": {
+    "uscc": "914403001922038216"
+  },
+  "response": {
+    "meta": {
+      "goldenCopy": {
+        "publishDate": "2026-10-25T08:00:00Z"
+      },
+      "pagination": {
+        "currentPage": 1,
+        "perPage": 5,
+        "from": 1,
+        "to": 1,
+        "total": 1,
+        "lastPage": 1
+      }
+    },
+    "links": {
+      "first": "https://api.gleif.org/api/v1/lei-records?filter%5Bentity.registeredAs%5D=914403001922038216&page%5Bnumber%5D=1&page%5Bsize%5D=5",
+      "last": "https://api.gleif.org/api/v1/lei-records?filter%5Bentity.registeredAs%5D=914403001922038216&page%5Bnumber%5D=1&page%5Bsize%5D=5"
+    },
+    "data": [
+      {
+        "type": "lei-records",
+        "id": "300300G4NLFHF8PDPY52",
+        "attributes": {
+          "lei": "300300G4NLFHF8PDPY52",
+          "entity": {
+            "legalName": {
+              "name": "华为技术有限公司",
+              "language": "zh"
+            },
+            "otherNames": [
+              {
+                "name": "Huawei Technologies Co., Ltd.",
+                "language": "en",
+                "type": "ALTERNATIVE_LANGUAGE_LEGAL_NAME"
+              }
+            ],
+            "transliteratedOtherNames": [
+              {
+                "name": "hua wei ji shu you xian gong si",
+                "language": "zh",
+                "type": "AUTO_ASCII_TRANSLITERATED_LEGAL_NAME"
+              }
+            ],
+            "legalAddress": {
+              "language": "zh",
+              "addressLines": [
+                "深圳市龙岗区坂田华为总部办公楼"
+              ],
+              "addressNumber": null,
+              "addressNumberWithinBuilding": null,
+              "mailRouting": null,
+              "city": "深圳市",
+              "region": "CN-GD",
+              "country": "CN",
+              "postalCode": "518000"
+            },
+            "headquartersAddress": {
+              "language": "zh",
+              "addressLines": [
+                "深圳市龙岗区坂田华为总部办公楼"
+              ],
+              "addressNumber": null,
+              "addressNumberWithinBuilding": null,
+              "mailRouting": null,
+              "city": "深圳市",
+              "region": "CN-GD",
+              "country": "CN",
+              "postalCode": "518000"
+            },
+            "registeredAt": {
+              "id": "RA000092",
+              "other": null
+            },
+            "registeredAs": "914403001922038216",
+            "jurisdiction": "CN",
+            "category": "GENERAL",
+            "legalForm": {
+              "id": "ECAK",
+              "other": null
+            },
+            "associatedEntity": {
+              "lei": null,
+              "name": null
+            },
+            "status": "ACTIVE",
+            "expiration": {
+              "date": null,
+              "reason": null
+            },
+            "successorEntity": {
+              "lei": null,
+              "name": null
+            },
+            "successorEntities": [],
+            "creationDate": "1987-09-14T16:00:00Z",
+            "subCategory": null,
+            "otherAddresses": [],
+            "eventGroups": [
+              {
+                "groupType": "STANDALONE",
+                "events": [
+                  {
+                    "validationDocuments": "SUPPORTING_DOCUMENTS",
+                    "effectiveDate": "2025-10-20T16:00:00Z",
+                    "recordedDate": "2025-10-21T16:00:00Z",
+                    "type": "CHANGE_OTHER_NAMES",
+                    "status": "COMPLETED"
+                  }
+                ]
+              },
+              {
+                "groupType": "STANDALONE",
+                "events": [
+                  {
+                    "validationDocuments": "SUPPORTING_DOCUMENTS",
+                    "effectiveDate": "2025-10-20T16:00:00Z",
+                    "recordedDate": "2025-10-21T16:00:00Z",
+                    "type": "CHANGE_LEGAL_ADDRESS",
+                    "status": "COMPLETED"
+                  }
+                ]
+              },
+              {
+                "groupType": "STANDALONE",
+                "events": [
+                  {
+                    "validationDocuments": "SUPPORTING_DOCUMENTS",
+                    "effectiveDate": "2025-10-20T16:00:00Z",
+                    "recordedDate": "2025-10-21T16:00:00Z",
+                    "type": "CHANGE_HQ_ADDRESS",
+                    "status": "COMPLETED"
+                  }
+                ]
+              },
+              {
+                "groupType": "STANDALONE",
+                "events": [
+                  {
+                    "validationDocuments": "SUPPORTING_DOCUMENTS",
+                    "effectiveDate": "2022-12-19T16:00:00Z",
+                    "recordedDate": "2022-12-27T07:44:22Z",
+                    "type": "CHANGE_OTHER_NAMES",
+                    "status": "COMPLETED"
+                  }
+                ]
+              },
+              {
+                "groupType": "STANDALONE",
+                "events": [
+                  {
+                    "validationDocuments": "SUPPORTING_DOCUMENTS",
+                    "effectiveDate": "2022-12-19T16:00:00Z",
+                    "recordedDate": "2022-12-27T07:44:22Z",
+                    "type": "CHANGE_LEGAL_ADDRESS",
+                    "status": "COMPLETED"
+                  }
+                ]
+              },
+              {
+                "groupType": "STANDALONE",
+                "events": [
+                  {
+                    "validationDocuments": "SUPPORTING_DOCUMENTS",
+                    "effectiveDate": "2022-12-19T16:00:00Z",
+                    "recordedDate": "2022-12-27T07:44:22Z",
+                    "type": "CHANGE_HQ_ADDRESS",
+                    "status": "COMPLETED"
+                  }
+                ]
+              }
+            ]
+          },
+          "registration": {
+            "initialRegistrationDate": "2020-02-26T16:00:00Z",
+            "lastUpdateDate": "2026-09-22T07:22:59Z",
+            "status": "ISSUED",
+            "nextRenewalDate": "2027-10-23T01:07:22Z",
+            "managingLou": "655600IJ8LS3CCDA4421",
+            "corroborationLevel": "FULLY_CORROBORATED",
+            "validatedAt": {
+              "id": "RA000092",
+              "other": null
+            },
+            "validatedAs": "914403001922038216",
+            "otherValidationAuthorities": []
+          },
+          "bic": [
+            "HWTCCNBSXXX"
+          ],
+          "mic": null,
+          "ocid": null,
+          "qcc": "QCNKDF3905",
+          "gem": null,
+          "spglobal": [
+            "311550226"
+          ],
+          "conformityFlag": "CONFORMING"
+        },
+        "relationships": {
+          "managing-lou": {
+            "links": {
+              "related": "https://api.gleif.org/api/v1/lei-records/300300G4NLFHF8PDPY52/managing-lou"
+            }
+          },
+          "lei-issuer": {
+            "links": {
+              "related": "https://api.gleif.org/api/v1/lei-records/300300G4NLFHF8PDPY52/lei-issuer"
+            }
+          },
+          "field-modifications": {
+            "links": {
+              "related": "https://api.gleif.org/api/v1/lei-records/300300G4NLFHF8PDPY52/field-modifications"
+            }
+          },
+          "direct-parent": {
+            "links": {
+              "reporting-exception": "https://api.gleif.org/api/v1/lei-records/300300G4NLFHF8PDPY52/direct-parent-reporting-exception"
+            }
+          },
+          "ultimate-parent": {
+            "links": {
+              "reporting-exception": "https://api.gleif.org/api/v1/lei-records/300300G4NLFHF8PDPY52/ultimate-parent-reporting-exception"
+            }
+          }
+        },
+        "links": {
+          "self": "https://api.gleif.org/api/v1/lei-records/300300G4NLFHF8PDPY52"
+        }
+      }
+    ]
+  }
+}

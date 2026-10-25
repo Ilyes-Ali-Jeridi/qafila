@@ -1,0 +1,95 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:38:52.562Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:b1423e31369dbf18340a09c527035aa78ab95acb5bc992d2f85787d98b72ff3e"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "东莞市旧城贸易有限公司",
+        "evidence": "名称 东莞市旧城贸易有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Dongguan Jiucheng Trading Co., Ltd.",
+        "evidence": "Name Dongguan Jiucheng Trading Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91441900MA4Y7P2D5P",
+        "evidence": "统一社会信用代码 91441900MA4Y7P2D5P",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "赵磊 (Zhao Lei)",
+        "evidence": "法定代表人 赵磊 (Zhao Lei)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "类型 有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 100 万元 (RMB 1,000,000)",
+        "evidence": "注册资本 人民币 100 万元 (RMB 1,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2017-06-06",
+        "evidence": "成立日期 2017-06-06",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2017-06-06 至 长期 / to long-term",
+        "evidence": "营业期限 2017-06-06 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "照明器材、小家电的批发与零售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "经营范围 照明器材、小家电的批发与零售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "广东省东莞市南城区旧城路21号",
+        "evidence": "住所 广东省东莞市南城区旧城路21号",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "东莞市市场监督管理局 / Dongguan Administration for Market Regulation",
+        "evidence": "登记机关 Registration authority: 东莞市市场监督管理局 / Dongguan Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2017-03-01",
+        "evidence": "发照日期 Issue date: 2017-03-01",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": [
+        "（注：本执照已于 2025-11-30 注销。Note: this licence was deregistered on 2025-11-30.）"
+      ]
+    },
+    "tokensIn": 4345,
+    "tokensOut": 800,
+    "repaired": false
+  }
+}

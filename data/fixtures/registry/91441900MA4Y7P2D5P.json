@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "东莞市旧城贸易有限公司",
+    "legalNameEn": "Dongguan Jiucheng Trading Co., Ltd.",
+    "entityStatus": "INACTIVE",
+    "leiStatus": "RETIRED",
+    "registeredAt": "2017-06-06",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
+    "country": "CN",
+    "legalRepresentative": "Zhao Lei",
+    "businessScope": "Wholesale and retail of lighting equipment and small appliances; import and export of goods.",
+    "registeredAs": "91441900MA4Y7P2D5P"
+  }
+}

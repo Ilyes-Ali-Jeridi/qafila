@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:38:22.889Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-04:listing:86f2d1c65c73e600a333b3210bc4ce2ec6f312cf7b2f8b585b67d5de3482f09a:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=fail,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,price.ceramic_floor_tiles=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal was rejected because the container number on the packing list failed the ISO 6346 check digit. All other checks passed, including the USCC code, pricing, and document consistency. Please correct the container number and resubmit the packing list.",
+      "fixes": [
+        "Correct the container number on the packing list. Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit."
+      ],
+      "category": "document_integrity"
+    },
+    "tokensIn": 2037,
+    "tokensOut": 116,
+    "repaired": false
+  }
+}

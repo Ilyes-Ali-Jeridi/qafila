@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:43:34.119Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-12:listing:ef46dc5ac7814940d7e0ff034ecc7653745a2c62d5f8df3961eb7774f8a86e69:extraction.invoice=pass,extraction.confidence=review,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=review,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=review,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=review,consistency.goods_invoice_vs_packing_list=review,halal.line_1=pass,halal.line_2=pass,price.power_banks_10000mah=pass,price.wired_earphones=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal needs a review by our team because the invoice buyer is not the correct entity and some fields are not readable with confidence. The container check digit, USCC check digit, date order, quantity match, and other checks passed. Please fix the issues listed below.",
+      "fixes": [
+        "Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.",
+        "Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".",
+        "The packing list must reference this invoice number.",
+        "The packing list must list the same goods as the invoice.",
+        "Confirm the rounding with the supplier or upload a corrected invoice."
+      ],
+      "category": "document_integrity"
+    },
+    "tokensIn": 2291,
+    "tokensOut": 167,
+    "repaired": false
+  }
+}

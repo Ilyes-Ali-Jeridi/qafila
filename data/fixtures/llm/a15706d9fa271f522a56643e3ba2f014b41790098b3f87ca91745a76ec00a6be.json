@@ -1,0 +1,213 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:37:00.542Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.packing_list",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_packing_list.v1",
+    "cacheKey": "extract:packing_list:c09ff4cb8d4e8ce2afbf362ce019501a1408aedd0eabe5d56b0621f7d155431c"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "packing_list",
+      "packing_list_number": {
+        "value": "PL-LT-2026-0922",
+        "evidence": "No. PL-LT-2026-0922",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "date": {
+        "value": "2026-09-23",
+        "evidence": "Date 2026-09-23",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "invoice_number": {
+        "value": "LT-2026-0922",
+        "evidence": "Invoice No. LT-2026-0922",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "seller": {
+        "name_en": {
+          "value": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "evidence": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "重庆市力拓摩托车配件有限公司",
+          "evidence": "重庆市力拓摩托车配件有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91500100MA5UE9K1RR",
+          "evidence": "USCC 91500100MA5UE9K1RR",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+          "evidence": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 5, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 5, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "items": [
+        {
+          "description_en": {
+            "value": "Motorcycle tyres 2.75-18, 6PR, tube type",
+            "evidence": "Motorcycle tyres 2.75-18, 6PR, tube type",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 1500,
+            "evidence": "1,500 pcs",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 375,
+            "evidence": "375 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 6750,
+            "evidence": "6,750.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 6450,
+            "evidence": "6,450.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 36,
+            "evidence": "36.00",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        {
+          "description_en": {
+            "value": "Motorcycle chain and sprocket kits, 428H",
+            "evidence": "Motorcycle chain and sprocket kits, 428H",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 1000,
+            "evidence": "1,000 sets",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 100,
+            "evidence": "100 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 1900,
+            "evidence": "1,900.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 1800,
+            "evidence": "1,800.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 4.5,
+            "evidence": "4.50",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "total_packages": {
+        "value": 475,
+        "evidence": "475 CTNS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_gross_weight_kg": {
+        "value": 8650,
+        "evidence": "8,650.0",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_net_weight_kg": {
+        "value": 8250,
+        "evidence": "8,250.0",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_cbm": {
+        "value": 40.5,
+        "evidence": "40.50",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "container_numbers": [
+        {
+          "value": "CMAU7283102",
+          "evidence": "CMAU7283102",
+          "page": 1,
+          "confidence": 0.98
+        }
+      ],
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 6119,
+    "tokensOut": 1476,
+    "repaired": false
+  }
+}

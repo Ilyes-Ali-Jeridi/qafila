@@ -1,0 +1,18 @@
+{
+  "adapter": "opensanctions",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Recorded-style empty match response used for names without a fixture.",
+  "response": {
+    "responses": {
+      "supplier": {
+        "status": 200,
+        "results": [],
+        "total": {
+          "value": 0,
+          "relation": "eq"
+        }
+      }
+    }
+  }
+}

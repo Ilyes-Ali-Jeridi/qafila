@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "天津市北辰重工有限公司",
+    "legalNameEn": "Tianjin Beichen Heavy Industry Co., Ltd.",
+    "entityStatus": "ACTIVE",
+    "leiStatus": "ISSUED",
+    "registeredAt": "2008-10-10",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+    "country": "CN",
+    "legalRepresentative": "Sun Jianguo",
+    "businessScope": "Manufacture and sale of water pumps, pipes and heavy machinery; import and export of goods.",
+    "registeredAs": "91120113MA06R4F7KT"
+  }
+}

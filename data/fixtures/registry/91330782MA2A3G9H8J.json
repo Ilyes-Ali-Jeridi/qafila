@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "义乌市百汇进出口有限公司",
+    "legalNameEn": "Yiwu Baihui Import & Export Co., Ltd.",
+    "entityStatus": "ACTIVE",
+    "leiStatus": "ISSUED",
+    "registeredAt": "2018-01-12",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+    "country": "CN",
+    "legalRepresentative": "Zhou Li",
+    "businessScope": "Wholesale of daily goods, small appliances and foodstuffs; import and export of goods.",
+    "registeredAs": "91330782MA2A3G9H8J"
+  }
+}

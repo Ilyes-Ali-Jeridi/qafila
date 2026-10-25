@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:43:32.617Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "d790b76890f704367a258c108c17711aa2e2b05042ff7e4834cddff74171dd4b"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "no",
+          "reason": "The earphone connector size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
+          "evidence_a": "Wired in-ear earphones with microphone, 2.5 mm",
+          "evidence_b": "Wired in-ear earphones with microphone, 3.5 mm"
+        }
+      ]
+    },
+    "tokensIn": 859,
+    "tokensOut": 117,
+    "repaired": false
+  }
+}

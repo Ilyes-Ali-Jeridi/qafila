@@ -1,0 +1,43 @@
+{
+  "deal_number": 2,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Mwangi Imports Ltd",
+    "country": "KE",
+    "address": "Plot 22, Mombasa Road, Nairobi, Kenya",
+    "registration_number": "PVT-5KUXQ2"
+  },
+  "supplier": {
+    "name_en": "Guangzhou Hengyuan Textile Co., Ltd.",
+    "name_zh": "广州市恒远纺织有限公司",
+    "uscc": "91440101MA59TQ8W23",
+    "country": "CN"
+  },
+  "goods_summary": "Cotton and polyester fabrics for garment makers",
+  "currency": "CNY",
+  "incoterms": "FOB",
+  "origin_port": "Guangzhou (Nansha)",
+  "origin_unlocode": "CNNSA",
+  "destination_port": "Mombasa, Kenya",
+  "destination_unlocode": "KEMBA",
+  "destination_country": "KE",
+  "carrier": null,
+  "containers": [
+    "OOLU9845110"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

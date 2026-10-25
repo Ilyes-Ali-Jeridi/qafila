@@ -1,0 +1,22 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:35:28.900Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-03:shipment:44a12363afe3986126dd369e67c7b5a52b38473a13b545d1b097c718be7a9167:extraction.bill_of_lading=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.weights=pass,structure.buyer=pass,structure.consignee=pass,structure.notify_party=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.shipper_vs_supplier=pass,consistency.containers=pass,consistency.bl_number=pass,consistency.port_of_loading=pass,consistency.goods_invoice_vs_packing_list=pass,consistency.goods_bl_vs_invoice=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,sanctions.vessel=pass,tracking.availability=pass,tracking.container_present=pass,tracking.loading_vessel=pass,tracking.status=pass,fingerprint.listing=pass,fingerprint.shipment=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal is approved for listing because all required checks passed. All documents are consistent, the company is active and not sanctioned, and the shipment details match. You can proceed with the deal.",
+      "fixes": [],
+      "category": null
+    },
+    "tokensIn": 2711,
+    "tokensOut": 68,
+    "repaired": false
+  }
+}

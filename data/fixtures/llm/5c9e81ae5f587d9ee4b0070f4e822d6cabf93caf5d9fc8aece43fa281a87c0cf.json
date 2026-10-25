@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:41:11.318Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "2eced61587d0c2954482bcb7ab92b539089c4ec4bb1bbcfc7a89c50d6e7f1a99"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "solar_panel_modules_400_600w",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 82.5,
+          "note": "Monocrystalline solar modules 550 W match the solar_panel_modules_400_600w category."
+        }
+      ]
+    },
+    "tokensIn": 1864,
+    "tokensOut": 95,
+    "repaired": false
+  }
+}

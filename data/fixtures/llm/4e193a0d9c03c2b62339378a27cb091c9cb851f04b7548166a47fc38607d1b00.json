@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:35:27.988Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.shipment",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "f19649c10ad470093bd4ae26063656fa4e536f7acdc147dc0a35731e5821d22e"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "Both documents list identical goods descriptions line by line, with only minor formatting differences (Chinese characters in invoice are descriptive and do not alter the goods identity).",
+          "evidence_a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
+          "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
+        },
+        {
+          "field": "goods_bl_vs_invoice",
+          "match": "yes",
+          "reason": "The B/L lists the same categories of goods as the invoice, albeit in abbreviated form; 'STAINLESS STEEL COOKWARE SETS' and 'PLASTIC FOOD CONTAINERS' correspond to the detailed descriptions in the invoice.",
+          "evidence_a": "STAINLESS STEEL COOKWARE SETS; COOKWARE SETS; PLASTIC FOOD CONTAINERS",
+          "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
+        }
+      ]
+    },
+    "tokensIn": 918,
+    "tokensOut": 290,
+    "repaired": false
+  }
+}

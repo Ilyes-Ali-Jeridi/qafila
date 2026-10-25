@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "广州市恒远纺织有限公司",
+    "legalNameEn": "Guangzhou Hengyuan Textile Co., Ltd.",
+    "entityStatus": "ACTIVE",
+    "leiStatus": "ISSUED",
+    "registeredAt": "2012-07-02",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+    "country": "CN",
+    "legalRepresentative": "Lin Meiling",
+    "businessScope": "Production, processing and sale of textiles and fabrics; import and export of goods.",
+    "registeredAs": "91440101MA59TQ8W23"
+  }
+}

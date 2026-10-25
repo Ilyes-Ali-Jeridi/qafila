@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:32:58.703Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "12f103aefe8be55dd1b78d12e27b429f04ff41edcef87edbee0acf5146f8dcfc"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese translations in invoice).",
+          "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
+          "evidence_b": "TPU protective cases for smartphones, assorted models"
+        }
+      ]
+    },
+    "tokensIn": 876,
+    "tokensOut": 107,
+    "repaired": false
+  }
+}

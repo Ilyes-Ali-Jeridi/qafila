@@ -1,0 +1,93 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:39:42.195Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:cf75a740f6e2c116d19a9a75c9b2de56a807ad7f8e52b4c8211273b0a3f4cb89"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "天津市北辰重工有限公司",
+        "evidence": "名称 天津市北辰重工有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Tianjin Beichen Heavy Industry Co., Ltd.",
+        "evidence": "Name Tianjin Beichen Heavy Industry Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91120113MA06R4F7KT",
+        "evidence": "统一社会信用代码 91120113MA06R4F7KT",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "孙建国 (Sun Jianguo)",
+        "evidence": "法定代表人 孙建国 (Sun Jianguo)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "类型 有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 3,000 万元 (RMB 30,000,000)",
+        "evidence": "注册资本 人民币 3,000 万元 (RMB 30,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2008-10-10",
+        "evidence": "成立日期 2008-10-10",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2008-10-10 至 长期 / to long-term",
+        "evidence": "营业期限 2008-10-10 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "水泵、管道及重型机械的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "经营范围 水泵、管道及重型机械的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "天津市北辰区双街镇北辰工业园7号",
+        "evidence": "住所 天津市北辰区双街镇北辰工业园7号",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "天津市市场监督管理委员会 / Tianjin Administration for Market Regulation",
+        "evidence": "登记机关 Registration authority: 天津市市场监督管理委员会 / Tianjin Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2008-06-30",
+        "evidence": "发照日期 Issue date: 2008-06-30",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 4318,
+    "tokensOut": 768,
+    "repaired": false
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:37:47.242Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:f883df5044054608f6bcd72e9697767d176b8b33b3b43a89b363d3b51aa8d158"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "义乌市百汇进出口有限公司",
+        "evidence": "名称 义乌市百汇进出口有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Yiwu Baihui Import & Export Co., Ltd.",
+        "evidence": "Name Yiwu Baihui Import & Export Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91330782MA2A3G9H8J",
+        "evidence": "统一社会信用代码 91330782MA2A3G9H8J",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "周丽 (Zhou Li)",
+        "evidence": "法定代表人 周丽 (Zhou Li)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "类型 有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 300 万元 (RMB 3,000,000)",
+        "evidence": "注册资本 人民币 300 万元 (RMB 3,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2018-01-12",
+        "evidence": "成立日期 2018-01-12",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2018-01-12 至 长期 / to long-term",
+        "evidence": "营业期限 2018-01-12 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "日用百货、小家电、食品的批发；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "经营范围 日用百货、小家电、食品的批发；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "浙江省义乌市稠城街道百汇路5号",
+        "evidence": "住所 浙江省义乌市稠城街道百汇路5号",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "义乌市市场监督管理局 / Yiwu Administration for Market Regulation",
+        "evidence": "登记机关 Registration authority: 义乌市市场监督管理局 / Yiwu Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2018-06-30",
+        "evidence": "发照日期 Issue date: 2018-06-30",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 4317,
+    "tokensOut": 765,
+    "repaired": false
+  }
+}

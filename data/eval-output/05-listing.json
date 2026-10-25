@@ -1,0 +1,1133 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-05",
+    "created_at": "2026-10-25T16:43:51.214Z",
+    "decision": "review",
+    "risk_score": 75,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), mock).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), mock).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "CMAU7283102"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91500100MA5UE9K1RR passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 line amounts equal quantity x unit price and add up to the printed total 80000.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 80000,
+          "printed_total": 80000,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-09-22).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-09-22",
+          "plDate": "2026-09-23",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 2 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            1500,
+            1000
+          ],
+          "packing_list": [
+            1500,
+            1000
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 5\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 5"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "重庆市力拓摩托车配件有限公司",
+          "b": "重庆市力拓摩托车配件有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "b": "Chongqing Lituo Motorcycle Parts Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91500100MA5UE9K1RR",
+          "b": "91500100MA5UE9K1RR"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "重庆市力拓摩托车配件有限公司",
+          "b": "重庆市力拓摩托车配件有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "LT-2026-0922",
+          "b": "LT-2026-0922"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not contradict the match.",
+        "weight": 25,
+        "evidence": {
+          "a": "1. Motorcycle tyres 2.75-18, 6PR, tube type 摩托车轮胎 2.75-18 6PR | 2. Motorcycle chain and sprocket kits, 428H 摩托车链条链轮套件 428H",
+          "b": "1. Motorcycle tyres 2.75-18, 6PR, tube type | 2. Motorcycle chain and sprocket kits, 428H"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Motorcycle tyres 2.75-18, 6PR, tube type) is machinery, tools, vehicles and parts: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Motorcycle tyres 2.75-18, 6PR, tube type",
+          "category": "machinery",
+          "verdict": "permitted",
+          "reason": "Motorcycle tyres are categorized under machinery, tools, and vehicle parts."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (Motorcycle chain and sprocket kits, 428H) is machinery, tools, vehicles and parts: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. Motorcycle chain and sprocket kits, 428H",
+          "category": "machinery",
+          "verdict": "permitted",
+          "reason": "Motorcycle chain and sprocket kits fall under machinery and vehicle parts."
+        }
+      },
+      {
+        "name": "price.motorcycle_tyres",
+        "status": "review",
+        "severity": "high",
+        "detail": "Line 1 (Motorcycle tyres 2.75-18, 6PR, tube type): 48.00 USD per piece vs reference 7 to 16 (motorcycle_tyres, 4.17x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Motorcycle tyres 2.75-18, 6PR, tube type",
+          "category": "motorcycle_tyres",
+          "unit_price_usd": 48,
+          "reference_low_usd": 7,
+          "reference_high_usd": 16,
+          "ratio_to_mid": 4.174,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "review"
+        },
+        "fix": "The unit price is far above the reference: provide a reason (brand, specification) or a corrected quote.",
+        "document": "invoice",
+        "field": "line_items[0].unit_price"
+      },
+      {
+        "name": "price.motorcycle_chain_sprocket_kits",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (Motorcycle chain and sprocket kits, 428H): 8.00 USD per set vs reference 4 to 12 (motorcycle_chain_sprocket_kits, 1.00x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. Motorcycle chain and sprocket kits, 428H",
+          "category": "motorcycle_chain_sprocket_kits",
+          "unit_price_usd": 8,
+          "reference_low_usd": 4,
+          "reference_high_usd": 12,
+          "ratio_to_mid": 1,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91500100MA5UE9K1RR (重庆市力拓摩托车配件有限公司 / Chongqing Lituo Motorcycle Parts Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91500100MA5UE9K1RR",
+          "legal_name_zh": "重庆市力拓摩托车配件有限公司",
+          "legal_name_en": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91500100MA5UE9K1RR",
+          "legal_name_zh": "重庆市力拓摩托车配件有限公司",
+          "legal_name_en": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Chongqing Lituo Motorcycle Parts Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Adewale Trading Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Liu Qiang\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "67fe8587e91d24bd41f7c829b84adda8ed982a272141951d1464c49d757e2c28",
+          "parts": {
+            "supplier": "91500100MA5UE9K1RR",
+            "invoice_number": "LT-2026-0922",
+            "invoice_date": "2026-09-22",
+            "total": "80000.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "review by policy 5.6: review:price_out_of_range.",
+        "weight": 0,
+        "evidence": [
+          {
+            "rule": "price_out_of_range",
+            "level": "review",
+            "detail": "A unit price is 4.17x the reference midpoint."
+          }
+        ]
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "LT-2026-0922",
+          "evidence": "LT-2026-0922",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-09-22",
+          "evidence": "2026-09-22",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+            "evidence": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "重庆市力拓摩托车配件有限公司",
+            "evidence": "重庆市力拓摩托车配件有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91500100MA5UE9K1RR",
+            "evidence": "USCC 91500100MA5UE9K1RR",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+            "evidence": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 5",
+            "evidence": "Qafila Trade, deal 5",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 5",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 5",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Adewale Trading Ltd",
+          "evidence": "Adewale Trading Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Chongqing (via Shanghai) (CNSHA), Incoterms 2020",
+          "evidence": "FOB Chongqing (via Shanghai) (CNSHA), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 80000,
+          "evidence": "USD 80,000.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Motorcycle tyres 2.75-18, 6PR, tube type",
+              "evidence": "Motorcycle tyres 2.75-18, 6PR, tube type",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "摩托车轮胎 2.75-18 6PR",
+              "evidence": "摩托车轮胎 2.75-18 6PR",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "401140",
+              "evidence": "401140",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 1500,
+              "evidence": "1,500 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 48,
+              "evidence": "48.00",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 72000,
+              "evidence": "72,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Motorcycle chain and sprocket kits, 428H",
+              "evidence": "Motorcycle chain and sprocket kits, 428H",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "摩托车链条链轮套件 428H",
+              "evidence": "摩托车链条链轮套件 428H",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "871410",
+              "evidence": "871410",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 1000,
+              "evidence": "1,000 sets",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "sets",
+              "evidence": "sets",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 8,
+              "evidence": "8.00",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 8000,
+              "evidence": "8,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Chongqing (via Shanghai), China (CNSHA)",
+          "evidence": "Chongqing (via Shanghai), China (CNSHA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Lagos (Apapa), Nigeria (NGAPP)",
+          "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-LT-2026-0922",
+          "evidence": "No. PL-LT-2026-0922",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-09-23",
+          "evidence": "Date 2026-09-23",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "LT-2026-0922",
+          "evidence": "Invoice No. LT-2026-0922",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+            "evidence": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "重庆市力拓摩托车配件有限公司",
+            "evidence": "重庆市力拓摩托车配件有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91500100MA5UE9K1RR",
+            "evidence": "USCC 91500100MA5UE9K1RR",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+            "evidence": "No. 9 Lituo Road, Huaxi Industrial Park, Banan District, Chongqing, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 5, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 5, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Motorcycle tyres 2.75-18, 6PR, tube type",
+              "evidence": "Motorcycle tyres 2.75-18, 6PR, tube type",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 1500,
+              "evidence": "1,500 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 375,
+              "evidence": "375 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 6750,
+              "evidence": "6,750.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 6450,
+              "evidence": "6,450.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 36,
+              "evidence": "36.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "description_en": {
+              "value": "Motorcycle chain and sprocket kits, 428H",
+              "evidence": "Motorcycle chain and sprocket kits, 428H",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 1000,
+              "evidence": "1,000 sets",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 100,
+              "evidence": "100 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 1900,
+              "evidence": "1,900.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 1800,
+              "evidence": "1,800.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 4.5,
+              "evidence": "4.50",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 475,
+          "evidence": "475 CTNS",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 8650,
+          "evidence": "8,650.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 8250,
+          "evidence": "8,250.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 40.5,
+          "evidence": "40.50",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "CMAU7283102",
+            "evidence": "CMAU7283102",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "重庆市力拓摩托车配件有限公司",
+          "evidence": "名称 重庆市力拓摩托车配件有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "evidence": "Name Chongqing Lituo Motorcycle Parts Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91500100MA5UE9K1RR",
+          "evidence": "统一社会信用代码 91500100MA5UE9K1RR",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "刘强 (Liu Qiang)",
+          "evidence": "法定代表人 刘强 (Liu Qiang)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 600 万元 (RMB 6,000,000)",
+          "evidence": "注册资本 人民币 600 万元 (RMB 6,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2015-09-09",
+          "evidence": "成立日期 2015-09-09",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2015-09-09 至 长期 / to long-term",
+          "evidence": "营业期限 2015-09-09 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "摩托车零部件的制造与销售；轮胎销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 摩托车零部件的制造与销售；轮胎销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "重庆市巴南区花溪工业园区力拓路9号",
+          "evidence": "住所 重庆市巴南区花溪工业园区力拓路9号",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "重庆市市场监督管理局 / Chongqing Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 重庆市市场监督管理局 / Chongqing Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2015-06-30",
+          "evidence": "发照日期 Issue date: 2015-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "重庆市力拓摩托车配件有限公司",
+      "legal_name_en": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Motorcycle tyres 2.75-18, 6PR, tube type",
+        "category": "motorcycle_tyres",
+        "unit_price_usd": 48,
+        "reference_low_usd": 7,
+        "reference_high_usd": 16,
+        "ratio_to_mid": 4.174,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "review"
+      },
+      {
+        "line": "2. Motorcycle chain and sprocket kits, 428H",
+        "category": "motorcycle_chain_sprocket_kits",
+        "unit_price_usd": 8,
+        "reference_low_usd": 4,
+        "reference_high_usd": 12,
+        "ratio_to_mid": 1,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Motorcycle tyres 2.75-18, 6PR, tube type",
+        "category": "machinery",
+        "verdict": "permitted",
+        "reason": "Motorcycle tyres are categorized under machinery, tools, and vehicle parts."
+      },
+      {
+        "line": "2. Motorcycle chain and sprocket kits, 428H",
+        "category": "machinery",
+        "verdict": "permitted",
+        "reason": "Motorcycle chain and sprocket kits fall under machinery and vehicle parts."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "重庆市力拓摩托车配件有限公司",
+        "evidence_b": "重庆市力拓摩托车配件有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Chongqing Lituo Motorcycle Parts Co., Ltd.",
+        "evidence_b": "Chongqing Lituo Motorcycle Parts Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91500100MA5UE9K1RR",
+        "evidence_b": "91500100MA5UE9K1RR"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "重庆市力拓摩托车配件有限公司",
+        "evidence_b": "重庆市力拓摩托车配件有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "LT-2026-0922",
+        "evidence_b": "LT-2026-0922"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not contradict the match.",
+        "evidence_a": "1. Motorcycle tyres 2.75-18, 6PR, tube type 摩托车轮胎 2.75-18 6PR | 2. Motorcycle chain and sprocket kits, 428H 摩托车链条链轮套件 428H",
+        "evidence_b": "1. Motorcycle tyres 2.75-18, 6PR, tube type | 2. Motorcycle chain and sprocket kits, 428H"
+      }
+    ],
+    "listing_fingerprint": "67fe8587e91d24bd41f7c829b84adda8ed982a272141951d1464c49d757e2c28",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "7d790420b60cec2137232ab3c28384d57fde5e3756b28239f34edfe23041ae53"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "c09ff4cb8d4e8ce2afbf362ce019501a1408aedd0eabe5d56b0621f7d155431c"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "6f9537013d805e2a88027624deff41c1be1c5e509d379d2ba99b2ae11ec18ead"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16418,
+        "tokens_out": 3327,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 6119,
+        "tokens_out": 1476,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4308,
+        "tokens_out": 758,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 858,
+        "tokens_out": 198,
+        "latency_ms": 0,
+        "cost_usd": 0
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1180,
+        "tokens_out": 85,
+        "latency_ms": 0,
+        "cost_usd": 0
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1916,
+        "tokens_out": 111,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2220,
+        "tokens_out": 110,
+        "latency_ms": 0,
+        "cost_usd": 0
+      }
+    ],
+    "adapter_modes": {
+      "llm": "mock",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "llm/6e828da716e79af0402506925315c5fb9e666565b1161f1b10000173b4cebb02.json",
+      "llm/7ef9aff9a7e56ff7c391a89023ad42888b27895ee90077a285b50c9fefbe0f9a.json",
+      "llm/8862e02570181103c757e154cf71c602054468fc0c5ec14b443d79049b9b6f17.json",
+      "llm/a15706d9fa271f522a56643e3ba2f014b41790098b3f87ca91745a76ec00a6be.json",
+      "llm/c1e0d23100143c905ad34c840e904cd801d3b1254a3c94a07d5176c1a1cbf862.json",
+      "llm/e98f840ed06dddd4b54659c87662a5cbda987f6a57ac7e39dca4257fe6c53459.json",
+      "llm/f44d449d4bc41ef6edf589c4bd1c74e29acd774103e75b5fae153c7fba638010.json",
+      "opensanctions/<fallback>",
+      "registry/91500100MA5UE9K1RR.json"
+    ],
+    "timings_ms": {
+      "intake": 1015,
+      "extract": 1,
+      "validate": 1,
+      "stages": 1,
+      "fingerprint": 0,
+      "explain": 0,
+      "total": 1018
+    },
+    "cost_usd": 0,
+    "injection_attempts": [],
+    "explanation": "Your deal needs a review by our team because the unit price for motorcycle tyres is far above the reference range. All other checks passed, including document consistency, format, and sanctions screening. Please provide a reason for the high price or a corrected quote.\n\nWhat to fix:\n- Provide a reason for the high unit price of motorcycle tyres (48.00 USD per piece) on the invoice or upload a corrected quote."
+  },
+  "report_hash": "812c3d057df24078caa7aa540b0e776acded3869c45d926d35ea443343584a6b",
+  "signature": "01d7d528e11625a3987592883ce32c24d24d1da778d7c50edf156e32af69994de0a6ddb1be61c6568cc85054699d7f2812c4ef959071709c574e37c3b7f0270f"
+}

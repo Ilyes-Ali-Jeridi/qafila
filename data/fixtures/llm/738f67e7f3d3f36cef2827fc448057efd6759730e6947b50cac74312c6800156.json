@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:41:47.964Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-10:shipment:efae7cbcb3c49001d9179ecb396e74fe1d2000813638b43d85dbe5e057a36942:extraction.bill_of_lading=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.weights=pass,structure.buyer=pass,structure.consignee=pass,structure.notify_party=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.shipper_vs_supplier=pass,consistency.containers=pass,consistency.bl_number=pass,consistency.port_of_loading=pass,consistency.goods_invoice_vs_packing_list=pass,consistency.goods_bl_vs_invoice=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,sanctions.vessel=pass,tracking.availability=pass,tracking.container_present=pass,tracking.loading_vessel=fail,tracking.status=pass,fingerprint.listing=pass,fingerprint.shipment=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed, including document consistency, sanctions, and shipment tracking status. Please correct the vessel name on the bill of lading to match the tracking record.",
+      "fixes": [
+        "Correct the vessel name on the bill of lading to match the carrier tracking record."
+      ],
+      "category": "shipment_mismatch"
+    },
+    "tokensIn": 2736,
+    "tokensOut": 106,
+    "repaired": false
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "adapter": "shipsgo",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Recorded-style ShipsGo v1.2 GetContainerInfo response for a fictional demo shipment (SP8 mock-only until a key exists).",
+  "response": [
+    {
+      "Message": "Success",
+      "Status": "Sailing",
+      "StatusId": 40,
+      "ShippingLine": "COSCO",
+      "ContainerNumber": "COSU8123419",
+      "ContainerTEU": "2",
+      "ContainerType": "40HC",
+      "FromCountry": "China",
+      "Pol": "SHANGHAI",
+      "LoadingDate": {
+        "Date": "2026-09-26",
+        "IsActual": true
+      },
+      "DepartureDate": {
+        "Date": "2026-09-27",
+        "IsActual": true
+      },
+      "ToCountry": "Kenya",
+      "Pod": "MOMBASA",
+      "ArrivalDate": {
+        "Date": "2026-10-30",
+        "IsActual": false
+      },
+      "DischargeDate": {
+        "Date": null,
+        "IsActual": false
+      },
+      "Vessel": "MSC AURORA",
+      "VesselIMO": "9876543",
+      "VesselVoyage": "FA641A",
+      "VesselLatitude": "12.4100",
+      "VesselLongitude": "43.3300",
+      "ETA": "2026-10-30",
+      "FirstETA": "2026-10-30",
+      "BLReferenceNo": "COSU6412345678",
+      "LiveMapUrl": null,
+      "TSPorts": []
+    }
+  ]
+}

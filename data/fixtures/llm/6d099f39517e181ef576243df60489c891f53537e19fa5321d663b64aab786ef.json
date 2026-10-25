@@ -1,0 +1,93 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:32:09.148Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:18ad5b821760e4b866c55badebc90e3fc011d34342c4e312c5b95e45d364dc06"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "深圳市蓝湾电子有限公司",
+        "evidence": "深圳市蓝湾电子有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Shenzhen Lanwan Electronics Co., Ltd.",
+        "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91440300MA5GK2Q7XL",
+        "evidence": "91440300MA5GK2Q7XL",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "陈伟 (Chen Wei)",
+        "evidence": "陈伟 (Chen Wei)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 500 万元 (RMB 5,000,000)",
+        "evidence": "人民币 500 万元 (RMB 5,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2016-03-18",
+        "evidence": "2016-03-18",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2016-03-18 至 长期 / to long-term",
+        "evidence": "2016-03-18 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+        "evidence": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+        "evidence": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2016-06-30",
+        "evidence": "2016-06-30",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 4332,
+    "tokensOut": 713,
+    "repaired": false
+  }
+}

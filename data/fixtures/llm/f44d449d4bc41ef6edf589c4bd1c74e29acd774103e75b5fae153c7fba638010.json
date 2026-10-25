@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:37:33.679Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "5ecc575604023cc38e46502acd49d7b7028a83035d0a350fe38359f9849beb9e"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not contradict the match.",
+          "evidence_a": "1. Motorcycle tyres 2.75-18, 6PR, tube type 摩托车轮胎 2.75-18 6PR | 2. Motorcycle chain and sprocket kits, 428H 摩托车链条链轮套件 428H",
+          "evidence_b": "1. Motorcycle tyres 2.75-18, 6PR, tube type | 2. Motorcycle chain and sprocket kits, 428H"
+        }
+      ]
+    },
+    "tokensIn": 858,
+    "tokensOut": 198,
+    "repaired": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:38:21.949Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "7232e7437bec80e60fe832750b60b24f58fe6a421ce7244ba220c52dc39f0512"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "The packing list description is a subset of the invoice description; both refer to the same item with identical specifications.",
+          "evidence_a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA 600x600 哑光釉面地砖 优等品",
+          "evidence_b": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA"
+        }
+      ]
+    },
+    "tokensIn": 818,
+    "tokensOut": 139,
+    "repaired": false
+  }
+}

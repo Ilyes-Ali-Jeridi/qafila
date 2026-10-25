@@ -1,0 +1,43 @@
+{
+  "deal_number": 6,
+  "entity_name": "Qafila Trade",
+  "importer": {
+    "name": "Mwangi Imports Ltd",
+    "country": "KE",
+    "address": "Plot 22, Mombasa Road, Nairobi, Kenya",
+    "registration_number": "PVT-5KUXQ2"
+  },
+  "supplier": {
+    "name_en": "Yiwu Baihui Import & Export Co., Ltd.",
+    "name_zh": "义乌市百汇进出口有限公司",
+    "uscc": "91330782MA2A3G9H8J",
+    "country": "CN"
+  },
+  "goods_summary": "Kettles, rice cookers and bottled wine",
+  "currency": "USD",
+  "incoterms": "FOB",
+  "origin_port": "Ningbo",
+  "origin_unlocode": "CNNGB",
+  "destination_port": "Mombasa, Kenya",
+  "destination_unlocode": "KEMBA",
+  "destination_country": "KE",
+  "carrier": null,
+  "containers": [
+    "TCLU9902171"
+  ],
+  "bl_number": null,
+  "documents": [
+    {
+      "type": "invoice",
+      "file": "invoice.pdf"
+    },
+    {
+      "type": "packing_list",
+      "file": "packing_list.pdf"
+    },
+    {
+      "type": "business_licence",
+      "file": "business_licence.pdf"
+    }
+  ]
+}

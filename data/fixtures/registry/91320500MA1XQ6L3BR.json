@@ -1,0 +1,21 @@
+{
+  "adapter": "registry",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Fictional demo supplier (PLAN 5.4 registry mock). Labelled mock in logs and in the report.",
+  "response": {
+    "found": true,
+    "lei": null,
+    "legalNameZh": "江苏光耀新能源有限公司",
+    "legalNameEn": "Jiangsu Guangyao New Energy Co., Ltd.",
+    "entityStatus": "ACTIVE",
+    "leiStatus": "ISSUED",
+    "registeredAt": "2011-02-28",
+    "lastUpdate": "2026-09-30",
+    "address": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+    "country": "CN",
+    "legalRepresentative": "Zhang Ming",
+    "businessScope": "R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+    "registeredAs": "91320500MA1XQ6L3BR"
+  }
+}

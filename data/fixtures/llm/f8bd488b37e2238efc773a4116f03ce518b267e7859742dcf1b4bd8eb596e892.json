@@ -1,0 +1,36 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:38:33.596Z",
+  "mode": "live",
+  "input": {
+    "stage": "halal",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "halal.v1+policy.v1",
+    "cacheKey": "d9fb9fa64930c1d9469ca8f86c83362e2e22f60311189c690b6e57d1edf6d053"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "household",
+          "reason": "Electric kettles are household appliances used for heating water."
+        },
+        {
+          "line_index": 2,
+          "category": "household",
+          "reason": "Electric rice cookers are common kitchen appliances used for cooking rice."
+        },
+        {
+          "line_index": 3,
+          "category": "alcohol",
+          "reason": "Red wine is an alcoholic beverage containing alcohol."
+        }
+      ]
+    },
+    "tokensIn": 1236,
+    "tokensOut": 109,
+    "repaired": false
+  }
+}

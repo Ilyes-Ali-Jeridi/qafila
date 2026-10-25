@@ -1,0 +1,1271 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-06",
+    "created_at": "2026-10-25T16:43:51.958Z",
+    "decision": "reject",
+    "risk_score": 60,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), mock, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), mock).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "TCLU9902171"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91330782MA2A3G9H8J passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "3 line amounts equal quantity x unit price and add up to the printed total 26900.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 26900,
+          "printed_total": 26900,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-10-03).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-10-03",
+          "plDate": "2026-10-04",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 3 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            2000,
+            1000,
+            600
+          ],
+          "packing_list": [
+            2000,
+            1000,
+            600
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 6\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 6"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "义乌市百汇进出口有限公司",
+          "b": "义乌市百汇进出口有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Yiwu Baihui Import & Export Co., Ltd.",
+          "b": "Yiwu Baihui Import & Export Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91330782MA2A3G9H8J",
+          "b": "91330782MA2A3G9H8J"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "义乌市百汇进出口有限公司",
+          "b": "义乌市百汇进出口有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "BH-2026-1003",
+          "b": "BH-2026-1003"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions match line by line; the invoice includes Chinese translations which are absent in the packing list, but the English descriptions are identical.",
+        "weight": 25,
+        "evidence": {
+          "a": "1. Electric kettles 1.8 L, stainless steel, 1500 W 不锈钢电热水壶 1.8L 1500W | 2. Electric rice cookers 2.8 L, non-stick pot 电饭煲 2.8L 不粘内胆 | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc. 赤霞珠干红葡萄酒 750ml 13%",
+          "b": "1. Electric kettles 1.8 L, stainless steel, 1500 W | 2. Electric rice cookers 2.8 L, non-stick pot | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc."
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Electric kettles 1.8 L, stainless steel, 1500 W) is household goods and kitchenware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Electric kettles 1.8 L, stainless steel, 1500 W",
+          "category": "household",
+          "verdict": "permitted",
+          "reason": "Electric kettles are household appliances used for heating water."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (Electric rice cookers 2.8 L, non-stick pot) is household goods and kitchenware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. Electric rice cookers 2.8 L, non-stick pot",
+          "category": "household",
+          "verdict": "permitted",
+          "reason": "Electric rice cookers are common kitchen appliances used for cooking rice."
+        }
+      },
+      {
+        "name": "halal.line_3",
+        "status": "fail",
+        "severity": "critical",
+        "detail": "Line 3 (Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.) is alcoholic drinks and products containing alcohol: prohibited by the halal policy.",
+        "weight": 40,
+        "evidence": {
+          "line": "3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+          "category": "alcohol",
+          "verdict": "prohibited",
+          "reason": "Red wine is an alcoholic beverage containing alcohol."
+        },
+        "fix": "Remove this line from the deal; Qafila cannot finance it.",
+        "document": "invoice",
+        "field": "line_items[2]"
+      },
+      {
+        "name": "price.electric_kettles",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Electric kettles 1.8 L, stainless steel, 1500 W): 5.50 USD per piece vs reference 3.5 to 9 (electric_kettles, 0.88x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Electric kettles 1.8 L, stainless steel, 1500 W",
+          "category": "electric_kettles",
+          "unit_price_usd": 5.5,
+          "reference_low_usd": 3.5,
+          "reference_high_usd": 9,
+          "ratio_to_mid": 0.88,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.rice_cookers",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (Electric rice cookers 2.8 L, non-stick pot): 12.00 USD per piece vs reference 7 to 20 (rice_cookers, 0.89x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. Electric rice cookers 2.8 L, non-stick pot",
+          "category": "rice_cookers",
+          "unit_price_usd": 12,
+          "reference_low_usd": 7,
+          "reference_high_usd": 20,
+          "ratio_to_mid": 0.889,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.wine_and_spirits",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 3 (Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.): 6.50 USD per bottle vs reference 2 to 15 (wine_and_spirits, 0.76x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+          "category": "wine_and_spirits",
+          "unit_price_usd": 6.5,
+          "reference_low_usd": 2,
+          "reference_high_usd": 15,
+          "ratio_to_mid": 0.765,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91330782MA2A3G9H8J (义乌市百汇进出口有限公司 / Yiwu Baihui Import & Export Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91330782MA2A3G9H8J",
+          "legal_name_zh": "义乌市百汇进出口有限公司",
+          "legal_name_en": "Yiwu Baihui Import & Export Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91330782MA2A3G9H8J",
+          "legal_name_zh": "义乌市百汇进出口有限公司",
+          "legal_name_en": "Yiwu Baihui Import & Export Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Yiwu Baihui Import & Export Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Mwangi Imports Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Zhou Li\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "65f24493c72aff28b1e65b75a0111d86818b186c1572631adea1387d220aba17",
+          "parts": {
+            "supplier": "91330782MA2A3G9H8J",
+            "invoice_number": "BH-2026-1003",
+            "invoice_date": "2026-10-03",
+            "total": "26900.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "reject by policy 5.6: reject:halal_prohibited.",
+        "weight": 0,
+        "evidence": [
+          {
+            "rule": "halal_prohibited",
+            "level": "reject",
+            "detail": "A line item is prohibited by the halal policy."
+          }
+        ]
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "BH-2026-1003",
+          "evidence": "Invoice No. BH-2026-1003",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-10-03",
+          "evidence": "Invoice date 2026-10-03",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Yiwu Baihui Import & Export Co., Ltd.",
+            "evidence": "Yiwu Baihui Import & Export Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "义乌市百汇进出口有限公司",
+            "evidence": "义乌市百汇进出口有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91330782MA2A3G9H8J",
+            "evidence": "USCC 91330782MA2A3G9H8J",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+            "evidence": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 6",
+            "evidence": "Qafila Trade, deal 6",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "Qafila Trade, deal 6",
+            "evidence": "Qafila Trade, deal 6",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 6",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 6",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 6",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 6",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Mwangi Imports Ltd",
+          "evidence": "Mwangi Imports Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Ningbo (CNNGB), Incoterms 2020",
+          "evidence": "FOB Ningbo (CNNGB), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 26900,
+          "evidence": "USD 26,900.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Electric kettles 1.8 L, stainless steel, 1500 W",
+              "evidence": "Electric kettles 1.8 L, stainless steel, 1500 W",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "不锈钢电热水壶 1.8L 1500W",
+              "evidence": "不锈钢电热水壶 1.8L 1500W",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "851610",
+              "evidence": "851610",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 2000,
+              "evidence": "2,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 5.5,
+              "evidence": "5.50",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 11000,
+              "evidence": "11,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Electric rice cookers 2.8 L, non-stick pot",
+              "evidence": "Electric rice cookers 2.8 L, non-stick pot",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "电饭煲 2.8L 不粘内胆",
+              "evidence": "电饭煲 2.8L 不粘内胆",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "851660",
+              "evidence": "851660",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 1000,
+              "evidence": "1,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 12,
+              "evidence": "12.00",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 12000,
+              "evidence": "12,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+              "evidence": "Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "赤霞珠干红葡萄酒 750ml 13%",
+              "evidence": "赤霞珠干红葡萄酒 750ml 13%",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "220421",
+              "evidence": "220421",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 600,
+              "evidence": "600 bottles",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "bottles",
+              "evidence": "bottles",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 6.5,
+              "evidence": "6.50",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 3900,
+              "evidence": "3,900.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Ningbo, China (CNNGB)",
+          "evidence": "Ningbo, China (CNNGB)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Mombasa, Kenya (KEMBA)",
+          "evidence": "Mombasa, Kenya (KEMBA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-BH-2026-1003",
+          "evidence": "No. PL-BH-2026-1003",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-10-04",
+          "evidence": "Date 2026-10-04",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "BH-2026-1003",
+          "evidence": "Invoice No. BH-2026-1003",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Yiwu Baihui Import & Export Co., Ltd.",
+            "evidence": "Yiwu Baihui Import & Export Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "义乌市百汇进出口有限公司",
+            "evidence": "义乌市百汇进出口有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91330782MA2A3G9H8J",
+            "evidence": "USCC 91330782MA2A3G9H8J",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+            "evidence": "No. 5 Baihui Road, Choucheng, Yiwu, Zhejiang, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 6, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 6, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Electric kettles 1.8 L, stainless steel, 1500 W",
+              "evidence": "Electric kettles 1.8 L, stainless steel, 1500 W",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 2000,
+              "evidence": "2,000 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 500,
+              "evidence": "500 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 4000,
+              "evidence": "4,000.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 3600,
+              "evidence": "3,600.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 24,
+              "evidence": "24.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "description_en": {
+              "value": "Electric rice cookers 2.8 L, non-stick pot",
+              "evidence": "Electric rice cookers 2.8 L, non-stick pot",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 1000,
+              "evidence": "1,000 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 250,
+              "evidence": "250 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 3250,
+              "evidence": "3,250.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 3000,
+              "evidence": "3,000.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 16,
+              "evidence": "16.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "description_en": {
+              "value": "Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+              "evidence": "Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 600,
+              "evidence": "600 bottles",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 50,
+              "evidence": "50 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 780,
+              "evidence": "780.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 660,
+              "evidence": "660.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 1.6,
+              "evidence": "1.60",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 800,
+          "evidence": "800 CTNS",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 8030,
+          "evidence": "8,030.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 7260,
+          "evidence": "7,260.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 41.6,
+          "evidence": "41.60",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "TCLU9902171",
+            "evidence": "TCLU9902171 (40'HC)",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "义乌市百汇进出口有限公司",
+          "evidence": "名称 义乌市百汇进出口有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Yiwu Baihui Import & Export Co., Ltd.",
+          "evidence": "Name Yiwu Baihui Import & Export Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91330782MA2A3G9H8J",
+          "evidence": "统一社会信用代码 91330782MA2A3G9H8J",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "周丽 (Zhou Li)",
+          "evidence": "法定代表人 周丽 (Zhou Li)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 300 万元 (RMB 3,000,000)",
+          "evidence": "注册资本 人民币 300 万元 (RMB 3,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2018-01-12",
+          "evidence": "成立日期 2018-01-12",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2018-01-12 至 长期 / to long-term",
+          "evidence": "营业期限 2018-01-12 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "日用百货、小家电、食品的批发；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 日用百货、小家电、食品的批发；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "浙江省义乌市稠城街道百汇路5号",
+          "evidence": "住所 浙江省义乌市稠城街道百汇路5号",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "义乌市市场监督管理局 / Yiwu Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 义乌市市场监督管理局 / Yiwu Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2018-06-30",
+          "evidence": "发照日期 Issue date: 2018-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "义乌市百汇进出口有限公司",
+      "legal_name_en": "Yiwu Baihui Import & Export Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Electric kettles 1.8 L, stainless steel, 1500 W",
+        "category": "electric_kettles",
+        "unit_price_usd": 5.5,
+        "reference_low_usd": 3.5,
+        "reference_high_usd": 9,
+        "ratio_to_mid": 0.88,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "2. Electric rice cookers 2.8 L, non-stick pot",
+        "category": "rice_cookers",
+        "unit_price_usd": 12,
+        "reference_low_usd": 7,
+        "reference_high_usd": 20,
+        "ratio_to_mid": 0.889,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+        "category": "wine_and_spirits",
+        "unit_price_usd": 6.5,
+        "reference_low_usd": 2,
+        "reference_high_usd": 15,
+        "ratio_to_mid": 0.765,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Electric kettles 1.8 L, stainless steel, 1500 W",
+        "category": "household",
+        "verdict": "permitted",
+        "reason": "Electric kettles are household appliances used for heating water."
+      },
+      {
+        "line": "2. Electric rice cookers 2.8 L, non-stick pot",
+        "category": "household",
+        "verdict": "permitted",
+        "reason": "Electric rice cookers are common kitchen appliances used for cooking rice."
+      },
+      {
+        "line": "3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
+        "category": "alcohol",
+        "verdict": "prohibited",
+        "reason": "Red wine is an alcoholic beverage containing alcohol."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "义乌市百汇进出口有限公司",
+        "evidence_b": "义乌市百汇进出口有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Yiwu Baihui Import & Export Co., Ltd.",
+        "evidence_b": "Yiwu Baihui Import & Export Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91330782MA2A3G9H8J",
+        "evidence_b": "91330782MA2A3G9H8J"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "义乌市百汇进出口有限公司",
+        "evidence_b": "义乌市百汇进出口有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "BH-2026-1003",
+        "evidence_b": "BH-2026-1003"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "The goods descriptions match line by line; the invoice includes Chinese translations which are absent in the packing list, but the English descriptions are identical.",
+        "evidence_a": "1. Electric kettles 1.8 L, stainless steel, 1500 W 不锈钢电热水壶 1.8L 1500W | 2. Electric rice cookers 2.8 L, non-stick pot 电饭煲 2.8L 不粘内胆 | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc. 赤霞珠干红葡萄酒 750ml 13%",
+        "evidence_b": "1. Electric kettles 1.8 L, stainless steel, 1500 W | 2. Electric rice cookers 2.8 L, non-stick pot | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc."
+      }
+    ],
+    "listing_fingerprint": "65f24493c72aff28b1e65b75a0111d86818b186c1572631adea1387d220aba17",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "86413d846933b041c3ed40a6510d39e723faac4a07d2362b559b69d80f834e21"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "02fadc5705562f7745d252f4df0ce95825a3bc06c52ec4ecf755ea48a677207a"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "f883df5044054608f6bcd72e9697767d176b8b33b3b43a89b363d3b51aa8d158"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16689,
+        "tokens_out": 3723,
+        "latency_ms": 0,
+        "cost_usd": 0
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 13771,
+        "tokens_out": 3360,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4317,
+        "tokens_out": 765,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 930,
+        "tokens_out": 260,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1236,
+        "tokens_out": 109,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1990,
+        "tokens_out": 155,
+        "latency_ms": 1,
+        "cost_usd": 0
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2387,
+        "tokens_out": 77,
+        "latency_ms": 0,
+        "cost_usd": 0
+      }
+    ],
+    "adapter_modes": {
+      "llm": "mock",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "llm/077abda841d0d11d1466befbbe77d17980205e272477ab5674eb2792883ebdf5.json",
+      "llm/22fab91c5d8a7bbbbb7636d36fa69849a6aaec81688eba804a8e0ab06671a196.json",
+      "llm/28e1471e9345eea8f4eb8bcc95bf1e206a9dd275307b76369d979af41943c354.json",
+      "llm/2e431b0a5e31803bda13b547e4f48bbbca7ce6b86e939973be4df1c0a9925f41.json",
+      "llm/4bc73ecd14da168183ff84656b922776908cbb144f1f9652ef73081dede1ecbf.json",
+      "llm/78f83b7b6f30e87c6968628789b58b67418a22458559f21a7c05a92a792c4386.json",
+      "llm/f8bd488b37e2238efc773a4116f03ce518b267e7859742dcf1b4bd8eb596e892.json",
+      "opensanctions/<fallback>",
+      "registry/91330782MA2A3G9H8J.json"
+    ],
+    "timings_ms": {
+      "intake": 736,
+      "extract": 1,
+      "validate": 0,
+      "stages": 2,
+      "fingerprint": 0,
+      "explain": 0,
+      "total": 739
+    },
+    "cost_usd": 0,
+    "injection_attempts": [],
+    "explanation": "Your deal was rejected because it includes a prohibited item. All other checks passed, including container numbers, pricing, and document consistency.\n\nWhat to fix:\n- Remove the line for red wine from the invoice; Qafila cannot finance it.\n\nCategory: prohibited goods"
+  },
+  "report_hash": "bd0ab41bfa1ccbaf653ad5044cf15d4baccbf8b78add8ecb97e58daec1bfc442",
+  "signature": "f776a2ccb3625015790fe59134b1bfe96e0d858f44165c394c6709e6e5c7670565f32f600673e06ce41eb2518d6c5b6ef5f91be5680af02fe2592fb6de560409"
+}

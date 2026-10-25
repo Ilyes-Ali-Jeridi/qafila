@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:34:55.840Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "91e06ac904e815366dc56b11c90bc8fb4871d23a3831ebbec9ab2ddc9f5fbb6f"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "The goods descriptions match exactly in content and order, with only the Chinese text missing in the packing list, which does not alter the substance of the description.",
+          "evidence_a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
+          "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
+        }
+      ]
+    },
+    "tokensIn": 823,
+    "tokensOut": 157,
+    "repaired": false
+  }
+}

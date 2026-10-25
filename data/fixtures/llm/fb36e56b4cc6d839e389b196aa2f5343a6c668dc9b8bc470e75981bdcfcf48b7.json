@@ -1,0 +1,93 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:40:35.500Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:88c66bb46d3e1fe7daf297b641cdf04c5afaf2ff5b00612d9ed0b28e22015dbb"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "江苏光耀新能源有限公司",
+        "evidence": "江苏光耀新能源有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+        "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91320500MA1XQ6L3BR",
+        "evidence": "91320500MA1XQ6L3BR",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "张明 (Zhang Ming)",
+        "evidence": "张明 (Zhang Ming)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 5,000 万元 (RMB 50,000,000)",
+        "evidence": "人民币 5,000 万元 (RMB 50,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2011-02-28",
+        "evidence": "2011-02-28",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2011-02-28 至 长期 / to long-term",
+        "evidence": "2011-02-28 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "江苏省苏州市吴中区光耀路100号",
+        "evidence": "江苏省苏州市吴中区光耀路100号",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "苏州市市场监督管理局 / Suzhou Administration for Market Regulation",
+        "evidence": "苏州市市场监督管理局 / Suzhou Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2011-06-30",
+        "evidence": "2011-06-30",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 4329,
+    "tokensOut": 727,
+    "repaired": false
+  }
+}

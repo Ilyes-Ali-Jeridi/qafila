@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:42:45.648Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "3344408e13f3ca4040a1f80b69dc1b1d04d03700f17f19821f76bd4c02dac937"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "Both descriptions list the same two items in the same order, with identical English text; the invoice includes Chinese characters which are translations and do not alter the substance.",
+          "evidence_a": "1. Glazed ceramic floor tiles 600 x 600 mm, polished 600x600 抛光釉面地砖 | 2. Glass mosaic tiles 300 x 300 mm sheets 玻璃马赛克 300x300",
+          "evidence_b": "1. Glazed ceramic floor tiles 600 x 600 mm, polished | 2. Glass mosaic tiles 300 x 300 mm sheets"
+        }
+      ]
+    },
+    "tokensIn": 858,
+    "tokensOut": 193,
+    "repaired": false
+  }
+}

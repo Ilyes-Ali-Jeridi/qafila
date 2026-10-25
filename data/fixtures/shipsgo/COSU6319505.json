@@ -1,0 +1,62 @@
+{
+  "adapter": "shipsgo",
+  "recorded_at": "2026-10-25T15:30:00Z",
+  "mode": "fixture",
+  "note": "Recorded-style ShipsGo v1.2 GetContainerInfo response for a fictional demo shipment (SP8 mock-only until a key exists).",
+  "response": [
+    {
+      "Message": "Success",
+      "Status": "Sailing",
+      "StatusId": 40,
+      "ShippingLine": "OOCL",
+      "ContainerNumber": "COSU6319505",
+      "ContainerTEU": "2",
+      "ContainerType": "40HC",
+      "FromCountry": "China",
+      "Pol": "NINGBO",
+      "LoadingDate": {
+        "Date": "2026-09-20",
+        "IsActual": true
+      },
+      "DepartureDate": {
+        "Date": "2026-09-21",
+        "IsActual": true
+      },
+      "ToCountry": "Nigeria",
+      "Pod": "LAGOS APAPA",
+      "ArrivalDate": {
+        "Date": "2026-11-02",
+        "IsActual": false
+      },
+      "DischargeDate": {
+        "Date": null,
+        "IsActual": false
+      },
+      "Vessel": "OOCL ZHUHAI",
+      "VesselIMO": "9400001",
+      "VesselVoyage": "118W",
+      "VesselLatitude": "12.4100",
+      "VesselLongitude": "43.3300",
+      "ETA": "2026-11-02",
+      "FirstETA": "2026-11-02",
+      "BLReferenceNo": "OOLU2609881030",
+      "LiveMapUrl": null,
+      "TSPorts": [
+        {
+          "Port": "TANGER MED",
+          "ArrivalDate": {
+            "Date": "2026-10-18",
+            "IsActual": true
+          },
+          "DepartureDate": {
+            "Date": "2026-10-20",
+            "IsActual": true
+          },
+          "Vessel": "MSC AURORA",
+          "VesselIMO": "9876543",
+          "VesselVoyage": "FA642A"
+        }
+      ]
+    }
+  ]
+}

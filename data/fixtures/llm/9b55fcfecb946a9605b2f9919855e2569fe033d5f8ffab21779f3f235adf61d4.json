@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:00:29.903Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-07:listing:nofp:extraction.invoice=unavailable,extraction.packing_list=pass,extraction.business_licence=pass,documents.required=fail,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.dates=pass,validators.quantities=skipped,validators.formats=pass,structure.buyer=review,consistency.form_supplier_zh=pass,halal.screen=unavailable,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=review,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal needs a review by our team because the invoice could not be read and important details are missing. The container number and company details passed checks. Please upload a clearer invoice and ensure it includes the buyer name, invoice number, date, total, and currency.",
+      "fixes": [
+        "Upload a clearer invoice (PDF or a sharp photo).",
+        "Upload the pro-forma or commercial invoice.",
+        "The invoice must be made out to \"Qafila Trade, deal 7\".",
+        "The invoice must list the goods.",
+        "The invoice must show its number, date, total and currency."
+      ],
+      "category": null
+    },
+    "tokensIn": 1552,
+    "tokensOut": 147,
+    "repaired": false
+  }
+}

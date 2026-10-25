@@ -1,0 +1,245 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:35:23.771Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.bill_of_lading",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_bill_of_lading.v1",
+    "cacheKey": "extract:bill_of_lading:c7c466730a234de884b6af320d28f494b567570c521132787856bcd934fc08fd"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "bill_of_lading",
+      "bl_number": {
+        "value": "OOLU2609881030",
+        "evidence": "B/L No. OOLU2609881030",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "bl_kind": {
+        "value": "original",
+        "evidence": "ORIGINAL",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "carrier": {
+        "value": "OOCL",
+        "evidence": "OOCL",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "scac": {
+        "value": "OOLU",
+        "evidence": "SCAC OOLU",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "shipper": {
+        "name_en": {
+          "value": "Ningbo Haichuan Plastics Co., Ltd.",
+          "evidence": "Ningbo Haichuan Plastics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "宁波市海川塑业有限公司",
+          "evidence": "宁波市海川塑业有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+          "evidence": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "consignee": {
+        "value": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "consignee_to_order": {
+        "value": true,
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "notify_party": {
+        "value": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455",
+        "evidence": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "vessel": {
+        "value": "OOCL ZHUHAI",
+        "evidence": "OOCL ZHUHAI",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "voyage": {
+        "value": "V.118W",
+        "evidence": "V.118W",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "imo": {
+        "value": "9400001",
+        "evidence": "IMO 9400001",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "port_of_loading": {
+        "value": "Ningbo, China (CNNGB)",
+        "evidence": "Ningbo, China (CNNGB)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "port_of_discharge": {
+        "value": "Lagos (Apapa), Nigeria (NGAPP)",
+        "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "place_of_receipt": {
+        "value": "Ningbo, China",
+        "evidence": "Ningbo, China",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "place_of_delivery": {
+        "value": "Lagos (Apapa), Nigeria",
+        "evidence": "Lagos (Apapa), Nigeria",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "shipped_on_board_date": {
+        "value": "2026-09-20",
+        "evidence": "2026-09-20",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2026-09-21",
+        "evidence": "2026-09-21",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "containers": [
+        {
+          "number": {
+            "value": "COSU6319486",
+            "evidence": "COSU6319486",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "seal": {
+            "value": "OOLE412233",
+            "evidence": "OOLE412233",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 400,
+            "evidence": "400 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 9600,
+            "evidence": "9,600.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "size_type": {
+            "value": "40'HC",
+            "evidence": "40'HC",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        {
+          "number": {
+            "value": "COSU6319505",
+            "evidence": "COSU6319505",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "seal": {
+            "value": "OOLE412234",
+            "evidence": "OOLE412234",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 400,
+            "evidence": "400 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 9076,
+            "evidence": "9,076.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "size_type": {
+            "value": "40'HC",
+            "evidence": "40'HC",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "description_of_goods": {
+        "value": "STAINLESS STEEL COOKWARE SETS; COOKWARE SETS; PLASTIC FOOD CONTAINERS",
+        "evidence": "STAINLESS STEEL COOKWARE SETS; COOKWARE SETS; PLASTIC FOOD CONTAINERS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_packages": {
+        "value": 800,
+        "evidence": "800 CARTONS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "gross_weight_kg": {
+        "value": 18676,
+        "evidence": "18,676.0 KGS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "measurement_cbm": {
+        "value": 68,
+        "evidence": "68.00 CBM",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "freight_terms": {
+        "value": "FREIGHT PREPAID",
+        "evidence": "FREIGHT PREPAID",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 7555,
+    "tokensOut": 1791,
+    "repaired": false
+  }
+}

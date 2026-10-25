@@ -14,4 +14,8 @@ test-results/
 *.log
 .stellar/
 .shared/
+data/uploads/
+supabase/.branches
+supabase/.temp
+supabase/.env
 .vercel/
