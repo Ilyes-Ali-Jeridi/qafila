@@ -1,13 +1,20 @@
 //! Qafila deals: murabaha trade-finance lifecycle on Stellar.
-//! Interface frozen at H0 (PLAN 3.3.4 + FLOWS 8). Bodies are stubs until Track A lands.
+//! Interface frozen at H0 (PLAN 3.3.4 + FLOWS 8); bodies implemented by Track A.
 #![no_std]
-#![allow(unused_variables)] // ponytail: stub bodies; Track A removes this line
 
+pub mod admin;
+pub mod attest;
+pub mod deal;
 pub mod errors;
 pub mod events;
+pub mod math;
+pub mod share;
+pub mod storage;
 pub mod types;
 
-use soroban_sdk::{contract, contractimpl, contractmeta, Address, BytesN, Env, Vec};
+use soroban_sdk::{
+    contract, contractimpl, contractmeta, panic_with_error, Address, BytesN, Env, Vec,
+};
 
 pub use errors::Error;
 pub use types::*;
@@ -17,6 +24,13 @@ contractmeta!(key = "source_repo", val = "github:Ilyes-Ali-Jeridi/qafila");
 
 #[contract]
 pub struct QafilaDeals;
+
+fn must<T>(env: &Env, r: Result<T, Error>) -> T {
+    match r {
+        Ok(v) => v,
+        Err(e) => panic_with_error!(env, e),
+    }
+}
 
 #[contractimpl]
 impl QafilaDeals {
@@ -31,6 +45,7 @@ impl QafilaDeals {
         settlement: Address,
         config: Config,
     ) {
+        must(&env, admin::validate_config(&config));
         env.storage().instance().set(&DataKey::Admin, &admin);
         env.storage().instance().set(&DataKey::Verifier, &verifier);
         env.storage().instance().set(&DataKey::Charity, &charity);
@@ -45,37 +60,48 @@ impl QafilaDeals {
         env.storage().instance().set(&DataKey::TreasuryOwed, &0i128);
         env.storage().instance().set(&DataKey::PromiseHeld, &0i128);
         env.storage().instance().set(&DataKey::RefundsOwed, &0i128);
+        storage::extend_instance(&env);
     }
 
     pub fn set_verifier(env: Env, pk: BytesN<32>) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_verifier(&env, pk)
     }
     pub fn set_agent(env: Env, agent: Address) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_agent(&env, agent)
     }
     pub fn set_config(env: Env, config: Config) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_config(&env, config)
     }
     pub fn set_charity(env: Env, charity: Address) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_charity(&env, charity)
     }
     pub fn set_treasury(env: Env, treasury: Address) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_treasury(&env, treasury)
     }
     pub fn approve_investor(env: Env, investor: Address) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_investor(&env, investor, true)
     }
     pub fn revoke_investor(env: Env, investor: Address) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_investor(&env, investor, false)
     }
     pub fn pause(env: Env) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_paused(&env, true)
     }
     pub fn unpause(env: Env) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::set_paused(&env, false)
     }
     pub fn upgrade(env: Env, wasm_hash: BytesN<32>) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        admin::upgrade(&env, wasm_hash)
     }
 
     // ------------------------------------------------------------ lifecycle
@@ -88,7 +114,8 @@ impl QafilaDeals {
         promise_hash: BytesN<32>,
         security: i128,
     ) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::promise_purchase(&env, importer, listing_fingerprint, promise_hash, security)
     }
 
     /// Returns the security deposit while the promise is not yet listed (v1.1).
@@ -97,28 +124,34 @@ impl QafilaDeals {
         importer: Address,
         listing_fingerprint: BytesN<32>,
     ) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::withdraw_promise(&env, importer, listing_fingerprint)
     }
 
     /// Admin lists a deal after the verifier signed the LIST attestation over `terms`.
     pub fn list_deal(env: Env, terms: DealTerms, sig: BytesN<64>) -> Result<u64, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::list_deal(&env, terms, sig)
     }
 
+    /// Returns the investor's share balance after the mint.
     pub fn invest(env: Env, investor: Address, deal_id: u64, amount: i128) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::invest(&env, investor, deal_id, amount)
     }
 
     pub fn cancel_unfunded(env: Env, deal_id: u64) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::cancel_unfunded(&env, deal_id)
     }
 
-    /// `caller` is admin or agent.
+    /// `caller` is admin or agent. Returns the deposit paid.
     pub fn pay_supplier_deposit(env: Env, caller: Address, deal_id: u64) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::pay_supplier_deposit(&env, caller, deal_id)
     }
 
-    /// `caller` is admin or agent. Verifies the SHIPPED attestation.
+    /// `caller` is admin or agent. Verifies the SHIPPED attestation. Returns the balance paid.
     pub fn confirm_shipment(
         env: Env,
         caller: Address,
@@ -127,32 +160,41 @@ impl QafilaDeals {
         bl_report_hash: BytesN<32>,
         sig: BytesN<64>,
     ) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::confirm_shipment(&env, caller, deal_id, bl_fingerprint, bl_report_hash, sig)
     }
 
+    /// Returns the fixed sale price.
     pub fn accept_murabaha(env: Env, deal_id: u64) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::accept_murabaha(&env, deal_id)
     }
 
+    /// Returns the amount still outstanding.
     pub fn repay(env: Env, deal_id: u64, amount: i128) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::repay(&env, deal_id, amount)
     }
 
     pub fn pay_late_fee(env: Env, deal_id: u64, amount: i128) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::pay_late_fee(&env, deal_id, amount)
     }
 
     /// One extension per deal, price unchanged (v1.1).
     pub fn extend_due(env: Env, deal_id: u64, new_due_at: u64) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::extend_due(&env, deal_id, new_due_at)
     }
 
     pub fn abort_deal(env: Env, deal_id: u64, importer_at_fault: bool) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::abort_deal(&env, deal_id, importer_at_fault)
     }
 
     pub fn mark_default(env: Env, deal_id: u64) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::mark_default(&env, deal_id)
     }
 
     pub fn deposit_recovery(
@@ -161,140 +203,121 @@ impl QafilaDeals {
         from: Address,
         amount: i128,
     ) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::deposit_recovery(&env, deal_id, from, amount)
     }
 
     pub fn finalize_default(env: Env, deal_id: u64) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::finalize_default(&env, deal_id)
     }
 
-    /// Anyone may call; it pays `holder`.
+    /// Anyone may call; it pays `holder`. Returns the payout.
     pub fn claim(env: Env, holder: Address, deal_id: u64) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::claim(&env, holder, deal_id)
     }
 
     /// Anyone may call; it pays `addr` what is owed in refunds (v1.1).
     pub fn withdraw_refund(env: Env, addr: Address) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::withdraw_refund(&env, addr)
     }
 
     pub fn close_deal(env: Env, deal_id: u64) -> Result<(), Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::close_deal(&env, deal_id)
     }
 
     pub fn sweep_charity(env: Env) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::sweep(&env, 1)
     }
 
     pub fn sweep_treasury(env: Env) -> Result<i128, Error> {
-        Err(Error::InvalidState)
+        storage::extend_instance(&env);
+        deal::sweep(&env, 2)
     }
 
     // ---------------------------------------------------------------- views
 
     pub fn get_deal(env: Env, deal_id: u64) -> Result<Deal, Error> {
-        Err(Error::DealNotFound)
+        storage::extend_instance(&env);
+        storage::get_deal(&env, deal_id)
     }
 
     pub fn get_config(env: Env) -> Config {
-        env.storage().instance().get(&DataKey::Config).unwrap()
+        storage::extend_instance(&env);
+        must(&env, storage::config(&env))
     }
 
     pub fn get_roles(env: Env) -> Roles {
+        storage::extend_instance(&env);
         Roles {
-            admin: env.storage().instance().get(&DataKey::Admin).unwrap(),
-            agent: env.storage().instance().get(&DataKey::Agent),
-            verifier: env.storage().instance().get(&DataKey::Verifier).unwrap(),
-            charity: env.storage().instance().get(&DataKey::Charity).unwrap(),
-            treasury: env.storage().instance().get(&DataKey::Treasury).unwrap(),
-            settlement: env.storage().instance().get(&DataKey::Settlement).unwrap(),
-            paused: env
-                .storage()
-                .instance()
-                .get(&DataKey::Paused)
-                .unwrap_or(false),
-            next_deal_id: env
-                .storage()
-                .instance()
-                .get(&DataKey::NextDealId)
-                .unwrap_or(1),
+            admin: must(&env, storage::admin(&env)),
+            agent: storage::agent(&env),
+            verifier: must(&env, storage::verifier(&env)),
+            charity: must(&env, storage::charity(&env)),
+            treasury: must(&env, storage::treasury(&env)),
+            settlement: must(&env, storage::settlement(&env)),
+            paused: storage::paused(&env),
+            next_deal_id: storage::next_deal_id(&env),
         }
     }
 
     pub fn importer_stats(env: Env, importer: Address) -> ImporterStats {
-        env.storage()
-            .persistent()
-            .get(&DataKey::Importer(importer))
-            .unwrap_or(ImporterStats {
-                on_time: 0,
-                late: 0,
-                defaulted: 0,
-                total_repaid: 0,
-                open_exposure: 0,
-            })
+        storage::extend_instance(&env);
+        storage::importer_stats(&env, &importer)
     }
 
     /// `base_importer_limit + limit_step * on_time`, 0 if the importer ever defaulted.
     pub fn importer_limit(env: Env, importer: Address) -> i128 {
-        0
+        storage::extend_instance(&env);
+        let cfg = must(&env, storage::config(&env));
+        math::importer_limit(&cfg, &storage::importer_stats(&env, &importer))
     }
 
     /// `ceil(cost * max(floor, min - on_time * step) / 10000)` (v1.1).
     pub fn required_security(env: Env, importer: Address, cost: i128) -> i128 {
-        0
+        storage::extend_instance(&env);
+        let cfg = must(&env, storage::config(&env));
+        let stats = storage::importer_stats(&env, &importer);
+        must(&env, math::required_security(&cfg, stats.on_time, cost))
     }
 
     pub fn is_investor_approved(env: Env, investor: Address) -> bool {
-        env.storage()
-            .persistent()
-            .get(&DataKey::Investor(investor))
-            .unwrap_or(false)
+        storage::extend_instance(&env);
+        storage::is_investor(&env, &investor)
     }
 
     pub fn get_promise(env: Env, listing_fingerprint: BytesN<32>) -> Option<PromiseRecord> {
-        env.storage()
-            .persistent()
-            .get(&DataKey::Promise(listing_fingerprint))
+        storage::extend_instance(&env);
+        storage::promise(&env, &listing_fingerprint)
     }
 
     /// Bounded page of the holder index, `limit <= 50`.
     pub fn holders(env: Env, deal_id: u64, start: u32, limit: u32) -> Result<Vec<Address>, Error> {
-        Err(Error::DealNotFound)
+        storage::extend_instance(&env);
+        deal::holders(&env, deal_id, start, limit)
     }
 
     pub fn quote_claim(env: Env, holder: Address, deal_id: u64) -> Result<i128, Error> {
-        Err(Error::DealNotFound)
+        storage::extend_instance(&env);
+        deal::quote_claim(&env, holder, deal_id)
     }
 
     pub fn refund_of(env: Env, addr: Address) -> i128 {
-        env.storage()
-            .persistent()
-            .get(&DataKey::Refund(addr))
-            .unwrap_or(0)
+        storage::extend_instance(&env);
+        storage::refund_of(&env, &addr)
     }
 
     pub fn owed(env: Env) -> Owed {
+        storage::extend_instance(&env);
         Owed {
-            charity: env
-                .storage()
-                .instance()
-                .get(&DataKey::CharityOwed)
-                .unwrap_or(0),
-            treasury: env
-                .storage()
-                .instance()
-                .get(&DataKey::TreasuryOwed)
-                .unwrap_or(0),
-            refunds: env
-                .storage()
-                .instance()
-                .get(&DataKey::RefundsOwed)
-                .unwrap_or(0),
-            promises_held: env
-                .storage()
-                .instance()
-                .get(&DataKey::PromiseHeld)
-                .unwrap_or(0),
+            charity: storage::inst_i128(&env, &DataKey::CharityOwed),
+            treasury: storage::inst_i128(&env, &DataKey::TreasuryOwed),
+            refunds: storage::inst_i128(&env, &DataKey::RefundsOwed),
+            promises_held: storage::inst_i128(&env, &DataKey::PromiseHeld),
         }
     }
 
@@ -307,7 +330,11 @@ impl QafilaDeals {
         payload_hash: BytesN<32>,
         sig: BytesN<64>,
     ) {
-        panic!("not implemented")
+        storage::extend_instance(&env);
+        must(
+            &env,
+            attest::verify(&env, purpose, deal_id, &payload_hash, &sig),
+        );
     }
 }
 

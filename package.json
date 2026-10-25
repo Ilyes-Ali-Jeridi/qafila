@@ -19,11 +19,19 @@
     "seed": "tsx scripts/seed.ts",
     "demo-reset": "tsx scripts/demo-reset.ts",
     "doctor": "tsx scripts/doctor.ts",
-    "golden-vectors": "tsx scripts/golden-vectors.ts"
+    "golden-vectors": "tsx scripts/golden-vectors.ts",
+    "share-token": "tsx scripts/share-token.ts"
   },
   "devDependencies": {
+    "@types/node": "22.20.5",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "@types/node": "22.20.5"
+    "@qafila/chain": "workspace:*",
+    "@qafila/shared": "workspace:*",
+    "@qafila/contract-client": "workspace:*"
+  },
+  "dependencies": {
+    "dotenv": "17.2.3",
+    "smart-account-kit": "0.8.0"
   }
 }

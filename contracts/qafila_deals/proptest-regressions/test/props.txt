@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 82b545a2e217466de9fff97aeacee4c99c2d1a1c6bc0a0e57c9a2b31c277f0ba # shrinks to amounts = [2047, 7901, 7739], extra_security = 5111, parts = [2828], out = SupplierVanished { recovery: 35890000000 }
