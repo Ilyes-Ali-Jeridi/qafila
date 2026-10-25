@@ -215,6 +215,13 @@ export async function seedDeals(opts: SeedOptions): Promise<SeedResult> {
     txs.list = listed.hash ?? null;
     log(`${p.name}: listed as deal ${dealId} ${explorerTxUrl(cfg.network, listed.hash ?? '') ?? ''}`);
 
+    // G-address investors need the share trustline before the mint (PLAN 3.1, SP4);
+    // smart accounts need none. The flags leave it unauthorized until the contract authorizes it.
+    const shareAsset = new Asset(share.assetCode, share.issuer);
+    const qctx = qusdContext(env);
+    for (const inv of [coinvest, investorA, investorB]) {
+      await ensureTrustline(inv, shareAsset, qctx);
+    }
     // 5 % co-invest, then the demo investors for funded deals.
     const coAmount = bps(p.cost, coinvestBps);
     const co = await call(coinvestC, (c) => c.invest({ investor: coinvest.publicKey(), deal_id: dealId, amount: coAmount }));
