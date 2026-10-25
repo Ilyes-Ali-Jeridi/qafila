@@ -1,0 +1,30 @@
+{
+  "name": "@qafila/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schemas": "./src/schemas.ts",
+    "./constants": "./src/constants.ts",
+    "./attestation": "./src/attestation.ts",
+    "./format": "./src/format.ts",
+    "./promise": "./src/promise.ts",
+    "./documents": "./src/documents.ts",
+    "./report": "./src/report.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "17.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "vitest": "5.0.5",
+    "typescript": "5.9.3",
+    "@types/node": "22.20.5"
+  }
+}

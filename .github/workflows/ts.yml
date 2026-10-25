@@ -1,0 +1,22 @@
+name: ts
+on:
+  push:
+    paths-ignore: ['contracts/**', 'docs/**']
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: gitleaks/gitleaks-action@v2
+        env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' }
+      - uses: pnpm/action-setup@v4
+        with: { version: 10 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - name: eval (mock mode)
+        run: if [ -f services/api/src/pipeline/eval.ts ]; then ADAPTER_MODE=mock pnpm eval; else echo "eval not present yet"; fi

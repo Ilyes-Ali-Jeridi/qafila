@@ -1,0 +1,29 @@
+{
+  "name": "qafila",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.26.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter ./apps/web --filter ./services/api dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r --filter ./packages/shared --filter ./services/api test",
+    "e2e": "pnpm --filter ./apps/web e2e",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "eval": "pnpm --filter ./services/api eval",
+    "deploy:testnet": "tsx scripts/deploy-testnet.ts",
+    "bindings": "tsx scripts/bindings.ts",
+    "seed": "tsx scripts/seed.ts",
+    "demo-reset": "tsx scripts/demo-reset.ts",
+    "doctor": "tsx scripts/doctor.ts",
+    "golden-vectors": "tsx scripts/golden-vectors.ts"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "@types/node": "22.20.5"
+  }
+}

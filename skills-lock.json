@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "trustless-work-dev": {
+      "source": "trustless-work/trustlesswork-skill",
+      "sourceType": "github",
+      "skillPath": "trustless-work-dev/SKILL.md",
+      "computedHash": "e5fee5adde6b3c9700eac16cfa0e80565338600439b06cd5966b5bc67cb0bbe3"
+    }
+  }
+}

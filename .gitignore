@@ -10,3 +10,7 @@ coverage/
 playwright-report/
 test-results/
 .DS_Store
+.worktrees/
+*.log
+.stellar/
+.shared/

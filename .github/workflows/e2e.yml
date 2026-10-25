@@ -1,0 +1,26 @@
+name: e2e
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['apps/web/**', 'services/api/**', 'packages/**', '.github/workflows/e2e.yml']
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    env:
+      ADAPTER_MODE: mock
+      STELLAR_NETWORK: testnet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter ./apps/web exec playwright install --with-deps chromium
+      - name: start api
+        run: (pnpm --filter ./services/api start &) && sleep 5 && curl -sf localhost:8787/health
+      - run: pnpm e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: { name: playwright-report, path: apps/web/playwright-report }
