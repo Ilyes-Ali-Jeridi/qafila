@@ -8,7 +8,7 @@
 import { eq } from 'drizzle-orm';
 import { parseAmount } from '@qafila/shared';
 import { importers, profiles } from '../db/schema.js';
-import { claimJob, completeJob, enqueue, failJob, type JobRow } from '../db/repo.js';
+import { claimJob, completeJob, enqueue, failJob, requeueStale, type JobRow } from '../db/repo.js';
 import { logger } from '../lib/logger.js';
 import type { Services } from '../services.js';
 import { verifyDeal } from '../services/deals.js';
@@ -84,6 +84,12 @@ export function startWorker(svc: Services, opts: { indexEveryMs?: number; agentE
   let lastIndex = 0;
   let lastAgent = 0;
   const loop = async () => {
+    try {
+      const n = await requeueStale(svc.db);
+      if (n) log.warn({ requeued: n }, 'jobs left running by a previous worker were requeued');
+    } catch (e) {
+      log.error({ err: (e as Error).message }, 'requeue failed');
+    }
     while (!stopped) {
       try {
         const now = Date.now();

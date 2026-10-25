@@ -87,6 +87,12 @@ function summarise(type: string, data: Record<string, unknown>, dealNumber: numb
       return `${d} given more time, price unchanged`;
     case 'investor_approved':
       return 'a new investor approved';
+    case 'investor_set':
+      return data['approved'] === false ? 'an investor approval revoked' : 'a new investor approved on-chain';
+    case 'role_set':
+      return `contract role ${String(data['role'] ?? '')} set`;
+    case 'upgraded':
+      return 'contract upgraded';
     default:
       return `${type.replace(/_/g, ' ')} on ${d}`;
   }

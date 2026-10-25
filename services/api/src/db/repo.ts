@@ -86,7 +86,7 @@ export async function enqueue(db: Db, kind: JobKind, payload: Record<string, unk
 
 /** Claim the next runnable job with SKIP LOCKED semantics (single worker, but safe for two). */
 export async function claimJob(db: Db, kinds?: JobKind[]): Promise<JobRow | null> {
-  const stale = new Date(Date.now() - 10 * 60 * 1000);
+  const stale = new Date(Date.now() - 5 * 60 * 1000);
   return db.transaction(async (tx) => {
     const candidates = await tx
       .select({ id: jobs.id, kind: jobs.kind, payload: jobs.payload, attempts: jobs.attempts })
@@ -100,6 +100,12 @@ export async function claimJob(db: Db, kinds?: JobKind[]): Promise<JobRow | null
     await tx.update(jobs).set({ status: 'running', lockedAt: new Date(), attempts: j.attempts + 1 }).where(eq(jobs.id, j.id));
     return { id: j.id, kind: j.kind, payload: (j.payload ?? {}) as Record<string, unknown>, attempts: j.attempts + 1 };
   });
+}
+
+/** A worker that starts owns every job a dead predecessor left `running` (one worker per deployment). */
+export async function requeueStale(db: Db, olderThanMs = 30_000): Promise<number> {
+  const rows = await db.update(jobs).set({ status: 'queued', lockedAt: null }).where(and(eq(jobs.status, 'running'), lt(jobs.lockedAt, new Date(Date.now() - olderThanMs)))).returning({ id: jobs.id });
+  return rows.length;
 }
 
 export async function completeJob(db: Db, id: string, result: unknown): Promise<void> {
