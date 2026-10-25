@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T19:37:51.933Z",
+    "created_at": "2026-10-25T19:39:50.418Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1036,7 +1036,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16282,
         "tokens_out": 3249,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1046,7 +1046,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6142,
         "tokens_out": 1524,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1076,7 +1076,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1154,
         "tokens_out": 85,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1096,7 +1096,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2166,
         "tokens_out": 69,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1120,18 +1120,18 @@
       "registry/91330200MA2CH7N6M7.json"
     ],
     "timings_ms": {
-      "intake": 548,
+      "intake": 570,
       "extract": 1,
-      "validate": 0,
+      "validate": 1,
       "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 551
+      "explain": 0,
+      "total": 573
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and consistency between documents are all valid. No action is needed from your side."
   },
-  "report_hash": "20feaafb4ad0d25ac9009debb2e3a870e7401781f7f648bd397473d29c05838a",
-  "signature": "8e6d7b54a61592ccdd2ef91f885af25b4563ace75b3160483cd34b6edd0e028bd251860655c050f428cde1a9b9d95c79f9c28f4ca87fc64ec606085d0e7ccc02"
+  "report_hash": "97a9b7c8ad8eea573f59ec1fb5865e0d5d466988437929beda7f701ef34b17ec",
+  "signature": "3d70cd7bc84e379ca58df2e4240544ab919852a2c9d9668bab6ba913f7e971e913f8d1323b647b8df2510fe02e0a19cac2c745f82fd468ddb47c298b58b8e40c"
 }

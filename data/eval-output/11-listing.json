@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-11",
-    "created_at": "2026-10-25T19:37:57.217Z",
+    "created_at": "2026-10-25T19:39:55.648Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -1123,13 +1123,13 @@
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 655,
+      "intake": 571,
       "extract": 1,
       "validate": 0,
       "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 658
+      "total": 574
     },
     "cost_usd": 0,
     "injection_attempts": [
@@ -1137,6 +1137,6 @@
     ],
     "explanation": "Your deal was rejected because the invoice total does not match the sum of the line items. All other checks passed, including the container numbers, USCC code, dates, quantities, and goods descriptions. You should ask the supplier for a corrected invoice with accurate totals.\n\nWhat to fix:\n- Ask the supplier for a corrected invoice whose line amounts add up to the total.\n\nCategory: document integrity"
   },
-  "report_hash": "6bc270d0e53cfc5fd429e5d576a40c0211e244006fc63d0c300f956d01462436",
-  "signature": "94778ceaf6dbd37c57e507b96fdb7bdaaa6dfc675f778be25409c8a97c8d6dbdf02937b4ec2a95a5f7a6d87dbbf201a1fe9c25ab3a88a7d6473b59e19f6dec09"
+  "report_hash": "e12817e7426e63df8eda2a2b0636c1701100e878c2bfcab329cebb4d8e093ecf",
+  "signature": "0f6b43d009cf7ece4feb2b22533aee78dbfd0ce33fb820d8ffcb249c16923a12047646d430f6d633eb46d3d1aa0625b9a59ca4e0424997920f2fa7c48fd95902"
 }

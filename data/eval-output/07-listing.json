@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-07",
-    "created_at": "2026-10-25T19:37:54.495Z",
+    "created_at": "2026-10-25T19:39:52.876Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1179,7 +1179,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16595,
         "tokens_out": 3653,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1189,7 +1189,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 13633,
         "tokens_out": 2961,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1199,7 +1199,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4315,
         "tokens_out": 759,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1209,7 +1209,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 876,
         "tokens_out": 106,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1262,18 +1262,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 591,
-      "extract": 1,
+      "intake": 564,
+      "extract": 0,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 595
+      "explain": 0,
+      "total": 565
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected: This invoice (INV-LW-2026-1001 of 2026-09-28, 14700.00 USD) was already financed (deal packet-01).\n\nWhat to fix:\n- invoice: The same invoice cannot be financed twice. The account goes under review.\n\nCategory: duplicate"
   },
-  "report_hash": "c62a77419524f36ba5416d406e6a1f693570a7d194eb27c6ddc76d35bc95dad3",
-  "signature": "ae3c350b9bbbebd20f79c986051e66a7dbe324095ecaf814fb7e23d5e50e034c53d6aedf8331e6b795d3e40ec133937a0b782e6c3628b5dd7f044f56e3d47a04"
+  "report_hash": "9b15f5b7a33e41db24fc21857e7fdb9a5c9f545a5f6a1b6f33069e56155cb9a2",
+  "signature": "35340be6ac426d1df3a1ade1560ef0581fc62da1a53327137a00cb3502208d9529128eb85b6c8b98c138e57841c4b1d44dc37aad32798f8a0f95971b712f8301"
 }

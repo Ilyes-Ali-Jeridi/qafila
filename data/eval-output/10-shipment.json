@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T19:37:56.547Z",
+    "created_at": "2026-10-25T19:39:55.071Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1186,7 +1186,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T19:37:56.547Z"
+      "lastPolledAt": "2026-10-25T19:39:55.071Z"
     },
     "price": [],
     "halal": [],
@@ -1297,7 +1297,7 @@
         "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
         "tokens_in": 7552,
         "tokens_out": 1789,
-        "latency_ms": 3,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1307,7 +1307,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 898,
         "tokens_out": 293,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1339,18 +1339,18 @@
       "shipsgo/COSU8123403.json"
     ],
     "timings_ms": {
-      "intake": 206,
-      "extract": 4,
-      "validate": 0,
-      "stages": 6,
+      "intake": 228,
+      "extract": 0,
+      "validate": 1,
+      "stages": 0,
       "fingerprint": 0,
       "explain": 1,
-      "total": 217
+      "total": 230
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed, including document consistency, sanctions, and shipment tracking status. Please correct the vessel name on the bill of lading to match the tracking record.\n\nWhat to fix:\n- Correct the vessel name on the bill of lading to match the carrier tracking record.\n\nCategory: shipment mismatch"
   },
-  "report_hash": "5f0dbbc9e04b48ee681873185fc0bb1c18594fe707964cc863c94aca3872a96e",
-  "signature": "569fcbe7893e768965a6ed0e1f8e98835a5cb6159b69298e7f428e642c9b00c0dc8b8f099b0933d96bd83785681c0e9592d62da9ccf55233c475e6eabd0b750e"
+  "report_hash": "a29018f6bf68408de1649738bf36d8606937975c5d12bebb692da83f360f9dd2",
+  "signature": "18136e57ff45bec841719287e199cfe1e49631e5a18369c627d2e52382d51b3975d5ecddd187478e200b931de2c2670d93ef1719da82dc58184655f9c64c740a"
 }

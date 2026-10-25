@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-02",
-    "created_at": "2026-10-25T19:37:51.380Z",
+    "created_at": "2026-10-25T19:39:49.842Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1113,18 +1113,18 @@
       "registry/91440101MA59TQ8W23.json"
     ],
     "timings_ms": {
-      "intake": 605,
+      "intake": 560,
       "extract": 1,
       "validate": 0,
-      "stages": 3,
+      "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 609
+      "total": 564
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC, arithmetic, dates, quantities, formats, and all consistency and halal checks were valid. No action is needed from your side."
   },
-  "report_hash": "de43f7836837cc1bbf1759b5202ef20eebc1f7b61b95029561624b8fac2064cb",
-  "signature": "7f2de12da64c6b4b27d3bdddd9e306d10ad50c84abf3776436d6b5da37a3f2343f5093716e6c83df9b614addaa726e07fd7e5e970c5cf696ccad46059b484107"
+  "report_hash": "7bbb066d02144abbe2089071c82ff2ad15cde4c07d09ed5ba76faec2ca547fc1",
+  "signature": "38aecef03be3f74366e2d8b3bc18dec94703df74671409555d0f8d4c66bdeb87cb0d4385e8e847070fe026fd8ac76b5da05fc74380bcb59a64f1402e479f0103"
 }

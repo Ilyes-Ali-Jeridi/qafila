@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-05",
-    "created_at": "2026-10-25T19:37:53.279Z",
+    "created_at": "2026-10-25T19:39:51.678Z",
     "decision": "review",
     "risk_score": 75,
     "checks": [
@@ -1098,7 +1098,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2220,
         "tokens_out": 110,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1122,18 +1122,18 @@
       "registry/91500100MA5UE9K1RR.json"
     ],
     "timings_ms": {
-      "intake": 549,
-      "extract": 2,
+      "intake": 560,
+      "extract": 1,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 553
+      "explain": 0,
+      "total": 562
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the unit price for motorcycle tyres is far above the reference range. All other checks passed, including document consistency, format, and sanctions screening. Please provide a reason for the high price or a corrected quote.\n\nWhat to fix:\n- Provide a reason for the high unit price of motorcycle tyres (48.00 USD per piece) on the invoice or upload a corrected quote."
   },
-  "report_hash": "7e18220e54275b5bb1471d9f658f3d428383e634233169d9637e86cc686e8505",
-  "signature": "dd918f9791d3706244ea5ba1ec4c12b481ae03cadabcdc8a0375f20ab906ab24ab5cd7276d6fa458bd4c624cef8e45189dd0348a4ed246a1e205ce397f823505"
+  "report_hash": "7968714ba64aa4f13c887131542e9f0881e41a4c55574bc12b37e8ade375747e",
+  "signature": "ac31470d49aa69f3e5c94ed769dc7c9f195c2c2d57910eda56540aa9296393c40d945dd458e8e7a01385dc46afba27f5de7a135281299399f9c270b4bd5f5000"
 }

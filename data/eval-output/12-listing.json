@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-12",
-    "created_at": "2026-10-25T19:37:57.586Z",
+    "created_at": "2026-10-25T19:39:56.010Z",
     "decision": "review",
     "risk_score": 0,
     "checks": [
@@ -1061,7 +1061,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 15001,
         "tokens_out": 3021,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1091,7 +1091,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 859,
         "tokens_out": 117,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1101,7 +1101,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1179,
         "tokens_out": 86,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1111,7 +1111,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1916,
         "tokens_out": 135,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1145,18 +1145,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 362,
-      "extract": 2,
+      "intake": 356,
+      "extract": 1,
       "validate": 0,
-      "stages": 1,
+      "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 365
+      "total": 359
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the invoice buyer is not the correct entity and some fields are not readable with confidence. The container check digit, USCC check digit, date order, quantity match, and other checks passed. Please fix the issues listed below.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice.\n- Confirm the rounding with the supplier or upload a corrected invoice."
   },
-  "report_hash": "d6a4e1a21612f03861e619e7a85a14ea49054c5e1510ab675ef623ffac8ddc4e",
-  "signature": "38ffb46b235d0aa9d682c4693a27dc130c94b7c905a6bab5c5716bd5d2bf83ebe05ca0dbcb1bc2d77679e25c86cbcd4a971fc48915e19591dd7a42ad1e58e907"
+  "report_hash": "1cfcfeeafa9ee1706a84efef49d804913fc57e5a34481a7591d4cd2d2e6bc37c",
+  "signature": "3431e0f599002958cd71db9a29835a536177c8b003847a32db1fd638d9adfe0c1ff6fbe67ca9d73f9dfe2ff4ea082ebe9d10f354c63c400bf33ae28b6ea6dd00"
 }

@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-01",
-    "created_at": "2026-10-25T19:37:50.752Z",
+    "created_at": "2026-10-25T19:39:49.260Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1177,7 +1177,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 13633,
         "tokens_out": 2961,
-        "latency_ms": 2,
+        "latency_ms": 3,
         "cost_usd": 0
       },
       {
@@ -1187,7 +1187,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4315,
         "tokens_out": 759,
-        "latency_ms": 3,
+        "latency_ms": 4,
         "cost_usd": 0
       },
       {
@@ -1217,7 +1217,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1960,
         "tokens_out": 177,
-        "latency_ms": 1,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1251,18 +1251,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 630,
+      "intake": 581,
       "extract": 5,
-      "validate": 2,
+      "validate": 1,
       "stages": 5,
-      "fingerprint": 1,
+      "fingerprint": 0,
       "explain": 1,
-      "total": 644
+      "total": 593
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC code, invoice calculations, and consistency between documents were all valid. You can proceed with the deal."
   },
-  "report_hash": "e9e148238db76e986c1ad914415875d4227205abda6262efdc2ecb81bde62ef1",
-  "signature": "b2fa789c576f822c262eb8d850b2dcbbaeb9605eda0e585a49bd74182fedd31f70d80b8ed56c3ff958c352a63511f23bb9ccae30347101e89efdae1523891100"
+  "report_hash": "de17820215c76fbebea132d3eb2b574505875c36b5cde42896c33f73187ed2d2",
+  "signature": "d35afd6e596b1e06ebea88a2cf525be549dbf1267ca820f7889710fc6a278c74f0d367eef9313f09b17ef4ed0ae0458272cbc427e579426076a8ef4930da8801"
 }

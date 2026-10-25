@@ -50,5 +50,7 @@ export async function sanctionsStage(parties: { supplier: { name: string; nameZh
     else if (h.score >= policy.thresholds.sanctionsReview) checks.push({ name, status: 'review', severity: 'high', detail: `${label}: ${q.schema.toLowerCase()} "${q.name}" is a possible match for "${h.match_name}" at ${h.score.toFixed(2)}.`, weight: WEIGHTS.high, evidence: h, fix: 'Ops reviews the possible match.' });
     else checks.push({ name, status: 'pass', severity: 'critical', detail: `${label}: no sanctions match for ${q.schema.toLowerCase()} "${q.name}"${h.score > 0 ? ` (best score ${h.score.toFixed(2)})` : ''}.`, weight: WEIGHTS.critical, evidence: h });
   }
-  return { sanctions: hits, checks, fixtures, maxScore: Math.max(0, ...hits.map((h) => h.score)), available: true };
+  // The policy thresholds (PLAN 5.6) apply to listed parties only; a PEP or person-of-interest match never counts as a sanctions score.
+  const listedScores = hits.filter((h) => h.topics.length === 0 || h.topics.some((t) => LISTED.test(t))).map((h) => h.score);
+  return { sanctions: hits, checks, fixtures, maxScore: Math.max(0, ...listedScores), available: true };
 }

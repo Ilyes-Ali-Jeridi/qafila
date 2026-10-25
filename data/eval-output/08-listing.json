@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-08",
-    "created_at": "2026-10-25T19:37:55.145Z",
+    "created_at": "2026-10-25T19:39:53.419Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -912,7 +912,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16078,
         "tokens_out": 2924,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -962,7 +962,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1864,
         "tokens_out": 82,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -996,13 +996,13 @@
       "registry/91441900MA4Y7P2D5P.json"
     ],
     "timings_ms": {
-      "intake": 642,
+      "intake": 539,
       "extract": 1,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 645
+      "total": 541
     },
     "cost_usd": 0,
     "injection_attempts": [
@@ -1010,6 +1010,6 @@
     ],
     "explanation": "Your deal was rejected because the supplier is not an active company. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- The supplier is not an active company; the deal cannot proceed with this supplier.\n\nCategory: document integrity"
   },
-  "report_hash": "8e99c526b0294c8c57a260a6bdda36d8cff6cf8e2c6a07cc392c754c97f3f6cb",
-  "signature": "481558374b4170095c61f4ba4a460f5280466ee5b54fc0b348898dc65c08633960124847bf96bcaac8b6e125bc4159358b9c39de8c791d532493b9cc8e987d09"
+  "report_hash": "ff0ce4fa920ee2a71ab2daaac364f5ed7a61a96f5572a03854990f26d2e68b1b",
+  "signature": "9cdb1f00c664c47b6ed90a16677d58e5c7421d44decdd8e7a3faa7f97e8fc06217602b3d2da4c60d9ce72d475ee4f60a3579cb1b4b49d554edf4ec01ec2e2206"
 }

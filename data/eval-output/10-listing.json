@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T19:37:56.329Z",
+    "created_at": "2026-10-25T19:39:54.841Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -982,18 +982,18 @@
       "registry/91320500MA1XQ6L3BR.json"
     ],
     "timings_ms": {
-      "intake": 608,
-      "extract": 1,
+      "intake": 748,
+      "extract": 2,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 610
+      "total": 751
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. All documents and data are consistent and valid. No further action is needed."
   },
-  "report_hash": "e6e79749b5ace97f500b63fdee5895dc275d9d13acd331e33e2f5e95114ebabc",
-  "signature": "fdd70d494ef9a155413d370c823ff9a488d6045d897cc3355691d5143877deeced0d5a3865678368aa4981ae8686835468a95e3f378dddbff774d928e1520a0d"
+  "report_hash": "170f6fa540b7fe3b28cf9e55e853ad795d0c6732d87a80254696f80fcee4fee0",
+  "signature": "cf055c3a68ef391ebe7f58aece687754e3d22eddbf0c76abb3de0336c683bf3fb96e3a7e7ff5206e9f0f2b0866ea5c4c5dcec33b0e5b470797571cda06812e0b"
 }
