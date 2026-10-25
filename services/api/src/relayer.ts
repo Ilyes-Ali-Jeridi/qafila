@@ -33,12 +33,35 @@ export interface RelayerEnv {
 
 type Body = { func?: string; auth?: string[]; xdr?: string };
 
-export function relayerApp(env: RelayerEnv, log: (m: string) => void) {
+/** The RPC surface the relayer uses; tests pass a fake. */
+export type RelayerRpc = Pick<Server, 'getAccount' | 'simulateTransaction' | 'sendTransaction' | 'pollTransaction' | 'getLedgerEntries'>;
+
+export function relayerApp(env: RelayerEnv, log: (m: string) => void, deps: { rpc?: RelayerRpc } = {}) {
   const app = new Hono();
   const kp = Keypair.fromSecret(env.secret);
-  const rpc = new Server(env.rpcUrl, { allowHttp: env.rpcUrl.startsWith('http://') });
+  const rpc: RelayerRpc = deps.rpc ?? new Server(env.rpcUrl, { allowHttp: env.rpcUrl.startsWith('http://') });
   let queue: Promise<unknown> = Promise.resolve();
   const hits = new Map<string, number[]>();
+  /** Contract id -> executable wasm hash (hex); a contract's code only changes by upgrade, so a short cache is safe. */
+  const wasmCache = new Map<string, { hash: string | null; until: number }>();
+
+  /** The wasm hash the contract instance runs, or null for a SAC or an unknown contract. */
+  async function wasmHashOf(contractId: string): Promise<string | null> {
+    const hit = wasmCache.get(contractId);
+    if (hit && hit.until > Date.now()) return hit.hash;
+    const key = xdr.LedgerKey.contractData(
+      new xdr.LedgerKeyContractData({ contract: new Address(contractId).toScAddress(), key: xdr.ScVal.scvLedgerKeyContractInstance(), durability: xdr.ContractDataDurability.persistent }),
+    );
+    const res = await rpc.getLedgerEntries(key);
+    let hash: string | null = null;
+    const val = res.entries[0]?.val;
+    if (val?.type === 'contractData' && val.contractData.val.type === 'scvContractInstance') {
+      const exec = val.contractData.val.instance.executable;
+      if (exec.type === 'contractExecutableWasm') hash = Buffer.from(exec.wasmHash.toXDR()).toString('hex');
+    }
+    wasmCache.set(contractId, { hash, until: Date.now() + 60_000 });
+    return hash;
+  }
 
   const fail = (status: 400 | 429 | 500, errorCode: string, error: string, details?: unknown) => Response.json({ success: false, error, errorCode, details }, { status });
 
@@ -56,7 +79,7 @@ export function relayerApp(env: RelayerEnv, log: (m: string) => void) {
     return next;
   }
 
-  function checkFunc(func: xdr.HostFunction, auth: xdr.SorobanAuthorizationEntry[]): string | null {
+  async function checkFunc(func: xdr.HostFunction, auth: xdr.SorobanAuthorizationEntry[]): Promise<string | null> {
     const kind = func.type;
     if (kind === 'hostFunctionTypeCreateContractV2' || kind === 'hostFunctionTypeCreateContract') {
       const args = kind === 'hostFunctionTypeCreateContractV2' ? func.createContractV2 : func.createContract;
@@ -71,8 +94,14 @@ export function relayerApp(env: RelayerEnv, log: (m: string) => void) {
     const targetStr = scAddressToString(inv.contractAddress);
     if (env.allowedContracts.includes(targetStr)) return null;
     // Smart-account self call (execute, add_signer, ...): an auth entry whose address is the invoked contract.
+    // An auth entry is only data until the contract calls require_auth, so anyone can attach one that names
+    // any contract; the invoked contract must therefore run a sponsored smart-account wasm (review finding R-1).
     const selfCall = auth.some((a) => a.credentials.type === 'sorobanCredentialsAddress' && scAddressToString(a.credentials.address.address) === targetStr);
-    if (selfCall) return null;
+    if (selfCall) {
+      const hash = await wasmHashOf(targetStr).catch(() => null);
+      if (hash && env.allowedWasmHashes.includes(hash)) return null;
+      return `contract ${targetStr.slice(0, 8)}… is not a sponsored smart account`;
+    }
     return `contract ${targetStr.slice(0, 8)}… is not sponsored`;
   }
 
@@ -110,7 +139,7 @@ export function relayerApp(env: RelayerEnv, log: (m: string) => void) {
         if (!('operations' in inner) || inner.operations.length !== 1) return fail(400, 'INVALID_XDR', 'Expected one operation.');
         const op = inner.operations[0];
         if (op?.type !== 'invokeHostFunction') return fail(400, 'INVALID_XDR', 'Expected an invokeHostFunction operation.');
-        const reason = checkFunc(op.func, op.auth ?? []);
+        const reason = await checkFunc(op.func, op.auth ?? []);
         if (reason) return fail(400, 'UNAUTHORIZED', reason);
         const bump = TransactionBuilder.buildFeeBumpTransaction(kp, String(Number(env.inclusionFeeStroops) * 2), inner as Transaction, env.networkPassphrase);
         bump.sign(kp);
@@ -121,7 +150,7 @@ export function relayerApp(env: RelayerEnv, log: (m: string) => void) {
       if (body.auth.length > 8) return fail(400, 'INVALID_PARAMS', 'Too many auth entries.');
       const func = xdr.HostFunction.fromXDR(body.func, 'base64');
       const auth = body.auth.map((a) => xdr.SorobanAuthorizationEntry.fromXDR(a, 'base64'));
-      const reason = checkFunc(func, auth);
+      const reason = await checkFunc(func, auth);
       if (reason) return fail(400, 'UNAUTHORIZED', reason);
       const r = await serialized(async () => {
         const account = await rpc.getAccount(kp.publicKey());
