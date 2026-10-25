@@ -192,9 +192,9 @@ auth.post('/join', rateLimit('join', 20, 60 * 60 * 1000), async (c) => {
   if (!c.get('env').FF_QR_JOIN) throw new ApiError(404, 'not_found', 'join is off');
   let p = await svc.db.query.profiles.findFirst({ where: eq(profiles.walletAddress, body.address) });
   if (!p) {
-    const [row] = await svc.db.insert(profiles).values({ authUserId: `wallet:${body.address}`, displayName: body.displayName, walletAddress: body.address, walletKind: body.address.startsWith('C') ? 'smart_account' : 'g_account', roles: ['investor'], joinedVia: 'hackmeridian', kycStatus: 'pending' }).returning();
+    const [row] = await svc.db.insert(profiles).values({ authUserId: `wallet:${body.address}`, displayName: body.displayName, country: body.country ?? null, email: body.email ?? null, walletAddress: body.address, walletKind: body.address.startsWith('C') ? 'smart_account' : 'g_account', roles: ['investor'], joinedVia: 'hackmeridian', kycStatus: 'pending' }).returning();
     p = row!;
-  } else await svc.db.update(profiles).set({ displayName: body.displayName, joinedVia: p.joinedVia ?? 'hackmeridian' }).where(eq(profiles.id, p.id));
+  } else await svc.db.update(profiles).set({ displayName: body.displayName, ...(body.country ? { country: body.country } : {}), ...(body.email ? { email: body.email } : {}), joinedVia: p.joinedVia ?? 'hackmeridian' }).where(eq(profiles.id, p.id));
   const txHash = await approveOnChain(c, p.id, body.address);
   const faucet = await faucetGrant(c, p.id, body.address, parseAmount(c.get('env').FAUCET_AMOUNT));
   return reply(c, KycResponseSchema, { kycStatus: txHash ? 'approved' : 'pending', approveTxHash: txHash, faucet });

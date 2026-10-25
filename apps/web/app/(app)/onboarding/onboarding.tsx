@@ -1,4 +1,5 @@
 'use client';
+import { readSession } from '@/lib/session';
 /**
  * Passkey onboarding (PLAN 4.1, 9.2): one button creates the wallet, then role, then KYC-lite
  * or KYB, then the testnet faucet. Target: under 30 seconds on a phone. No seed phrase, no XLM.
@@ -220,7 +221,10 @@ function InvestorForm({ defaultName, onDone, onBack }: { defaultName: string; on
     setError(null);
     try {
       const body = { displayName: v.displayName, country: v.country, email: v.email ? v.email : undefined, riskAcknowledged: true as const };
-      onDone(await apiPost('/kyc', body, KycResponseSchema));
+      const session = readSession();
+      // Wallet-only visitors (no email code yet) take the passkey-only path: the API approves the investor on-chain and sends the faucet grant (PLAN 4.4, S6).
+      const walletOnly = !session.token || session.token.startsWith('mock.');
+      onDone(walletOnly && session.address ? await apiPost('/join', { ...body, address: session.address }, KycResponseSchema) : await apiPost('/kyc', body, KycResponseSchema));
     } catch (e) {
       setError(describeError(e));
     }

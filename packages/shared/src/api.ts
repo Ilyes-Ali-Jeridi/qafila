@@ -61,7 +61,13 @@ export type KybRequest = z.infer<typeof KybRequest>;
 
 export const FaucetResponseSchema = z.object({ amount: AmountString, txHash: TxHash, mode: z.enum(['live', 'mock']) });
 
-export const JoinRequest = z.object({ displayName: z.string().min(1).max(80), address: StellarAddress, riskAcknowledged: z.literal(true) });
+export const JoinRequest = z.object({
+  displayName: z.string().min(1).max(80),
+  address: StellarAddress,
+  riskAcknowledged: z.literal(true),
+  country: z.string().length(2).optional(),
+  email: z.string().email().optional(),
+});
 
 export const PortfolioPositionSchema = z.object({
   dealId: z.string(),
