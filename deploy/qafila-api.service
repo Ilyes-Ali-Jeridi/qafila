@@ -9,7 +9,7 @@ User=ubuntu
 WorkingDirectory=/opt/qafila/repo/services/api
 EnvironmentFile=/opt/qafila/.env
 Environment=NODE_ENV=production
-Environment=WORKER=1
+Environment=WORKER=true
 ExecStart=/usr/bin/pnpm start
 Restart=always
 RestartSec=3
