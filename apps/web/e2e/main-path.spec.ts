@@ -92,7 +92,7 @@ test('importer: new deal, documents, screening, promise with the security deposi
     else await page.locator(`#file-${t}`).setInputFiles(new URL(`../../../data/packets/01/${t}.pdf`, import.meta.url).pathname);
     await expect(page.getByTestId(`doc-${t}`)).toContainText('Replace', { timeout: 60_000 });
   }
-  await page.getByTestId('terms-cost').fill(MOCK ? '3000' : '3000');
+  await page.getByTestId('terms-cost').fill(MOCK ? '3000' : '14700');
   await page.getByTestId('terms-save').click();
   await expect(page.getByTestId('run-screening')).toBeEnabled({ timeout: 30_000 });
   await page.getByTestId('run-screening').click();

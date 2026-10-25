@@ -93,11 +93,13 @@ dealRoutes.patch('/deals/:id', async (c) => {
   const t = { ...((deal.terms ?? {}) as Partial<DraftTerms>) };
   if (body.tenorSecs) t.tenor_secs = body.tenorSecs;
   if (body.depositBps !== undefined) t.deposit_bps = Math.min(body.depositBps, svc.env.SUPPLIER_DEPOSIT_BPS);
-  if (body.cost && u.roles.includes('ops')) t.cost = body.cost; // the cost comes from the invoice; ops may correct it
-  if (body.markup && u.roles.includes('ops')) t.markup = body.markup;
+  // The importer proposes the cost from their invoice; the screening checks it against the extracted total and ops may correct it before listing.
+  if (body.cost) t.cost = body.cost;
+  if (body.markup) t.markup = body.markup;
   if (body.supplierPayoutAddress && deal.supplierId) await svc.db.update(suppliers).set({ payoutAddress: body.supplierPayoutAddress }).where(eq(suppliers.id, deal.supplierId));
   await svc.db.update(deals).set({ terms: t, updatedAt: new Date() }).where(eq(deals.id, deal.id));
-  return reply(c, OkSchema, { ok: true });
+  const updated = await findDeal(svc, deal.id);
+  return reply(c, ImporterDealSchema, await importerDeal(svc, updated, u));
 });
 
 // ---------------------------------------------------------------- documents
