@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T19:39:55.071Z",
+    "created_at": "2026-10-25T19:44:56.464Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1186,7 +1186,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T19:39:55.071Z"
+      "lastPolledAt": "2026-10-25T19:44:56.464Z"
     },
     "price": [],
     "halal": [],
@@ -1297,7 +1297,7 @@
         "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
         "tokens_in": 7552,
         "tokens_out": 1789,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1317,7 +1317,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2736,
         "tokens_out": 106,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1339,18 +1339,18 @@
       "shipsgo/COSU8123403.json"
     ],
     "timings_ms": {
-      "intake": 228,
-      "extract": 0,
-      "validate": 1,
-      "stages": 0,
+      "intake": 150,
+      "extract": 1,
+      "validate": 0,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 230
+      "explain": 0,
+      "total": 152
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed, including document consistency, sanctions, and shipment tracking status. Please correct the vessel name on the bill of lading to match the tracking record.\n\nWhat to fix:\n- Correct the vessel name on the bill of lading to match the carrier tracking record.\n\nCategory: shipment mismatch"
   },
-  "report_hash": "a29018f6bf68408de1649738bf36d8606937975c5d12bebb692da83f360f9dd2",
-  "signature": "18136e57ff45bec841719287e199cfe1e49631e5a18369c627d2e52382d51b3975d5ecddd187478e200b931de2c2670d93ef1719da82dc58184655f9c64c740a"
+  "report_hash": "f90db067ee2cc4e84301597d593d1396bf58b3997794e5988b65dda8a09ee005",
+  "signature": "2176603c2e62bae379737809bc8257418f86b3ae3a7a8b1bf7d78accd93b85c64cfb751c0274748592caec694ec856d9b1ec12937b3d954a56ae8ad727b7410e"
 }

@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-12",
-    "created_at": "2026-10-25T19:39:56.010Z",
+    "created_at": "2026-10-25T19:44:57.334Z",
     "decision": "review",
     "risk_score": 0,
     "checks": [
@@ -1061,7 +1061,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 15001,
         "tokens_out": 3021,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1101,7 +1101,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1179,
         "tokens_out": 86,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1145,18 +1145,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 356,
+      "intake": 337,
       "extract": 1,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 359
+      "total": 340
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the invoice buyer is not the correct entity and some fields are not readable with confidence. The container check digit, USCC check digit, date order, quantity match, and other checks passed. Please fix the issues listed below.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice.\n- Confirm the rounding with the supplier or upload a corrected invoice."
   },
-  "report_hash": "1cfcfeeafa9ee1706a84efef49d804913fc57e5a34481a7591d4cd2d2e6bc37c",
-  "signature": "3431e0f599002958cd71db9a29835a536177c8b003847a32db1fd638d9adfe0c1ff6fbe67ca9d73f9dfe2ff4ea082ebe9d10f354c63c400bf33ae28b6ea6dd00"
+  "report_hash": "f5175ef646e447bdcb2589718b9f069f1d0477d1a4d33c08c2a43b5a4aee178a",
+  "signature": "187d1f33e92d6a56449d80693e864b7d901408f7a56638fd594ce160402465f140fc5192e474e58d4a796564ba99d0759ce91261e699eab9d599ed547aa72b07"
 }

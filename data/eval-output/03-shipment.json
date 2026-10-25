@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T19:39:50.577Z",
+    "created_at": "2026-10-25T19:44:52.583Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1284,7 +1284,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T19:39:50.577Z"
+      "lastPolledAt": "2026-10-25T19:44:52.583Z"
     },
     "price": [],
     "halal": [],
@@ -1437,18 +1437,18 @@
       "shipsgo/COSU6319486.json"
     ],
     "timings_ms": {
-      "intake": 152,
-      "extract": 2,
+      "intake": 147,
+      "extract": 1,
       "validate": 0,
       "stages": 3,
       "fingerprint": 0,
       "explain": 0,
-      "total": 157
+      "total": 151
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. All documents are consistent, the company is active and not sanctioned, and the shipment details match. You can proceed with the deal."
   },
-  "report_hash": "e4f9b0ff5a5bef4f09eff5d3ff998fd1de44887dac45dc7d027fc1fc9128e926",
-  "signature": "69e4aeb1805489917c99658f0bca43425c2a6302b18fceb878f7f2443025864394b76d72437c21aa86d6cf09a6dd6a12e00d7639a45f07bf2140437e3bfe780c"
+  "report_hash": "5ab9d9a7aa6831d4ab8191956a3b223cc6102088be3c1da16bfa0670cb4ea8bc",
+  "signature": "6fea374daaa292b752054bb234c2131d45b4947abe586a8fa9354952e417c8298789a23db939fd80434747ff34baa2b02ba64c614ac43618e42e3944b0448c03"
 }

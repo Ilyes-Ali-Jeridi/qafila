@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-02",
-    "created_at": "2026-10-25T19:39:49.842Z",
+    "created_at": "2026-10-25T19:44:51.913Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1029,7 +1029,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16545,
         "tokens_out": 3447,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1059,7 +1059,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 884,
         "tokens_out": 217,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1069,7 +1069,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1193,
         "tokens_out": 75,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1089,7 +1089,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2238,
         "tokens_out": 75,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       }
     ],
@@ -1113,18 +1113,18 @@
       "registry/91440101MA59TQ8W23.json"
     ],
     "timings_ms": {
-      "intake": 560,
+      "intake": 514,
       "extract": 1,
       "validate": 0,
-      "stages": 1,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 564
+      "explain": 1,
+      "total": 518
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC, arithmetic, dates, quantities, formats, and all consistency and halal checks were valid. No action is needed from your side."
   },
-  "report_hash": "7bbb066d02144abbe2089071c82ff2ad15cde4c07d09ed5ba76faec2ca547fc1",
-  "signature": "38aecef03be3f74366e2d8b3bc18dec94703df74671409555d0f8d4c66bdeb87cb0d4385e8e847070fe026fd8ac76b5da05fc74380bcb59a64f1402e479f0103"
+  "report_hash": "58cb55ff79b51231fb707716c3dd05718017c57de4b468857c3cd18f54fa4d7f",
+  "signature": "4144f33ed4cac8b4401e3e19a5765422ed8d8a5bac4536dd70d9362e743d6271bd67eeec0a43ccde9ef8b84af9d0b4e8d79f51f81eff6a84b4dc106567859d0f"
 }

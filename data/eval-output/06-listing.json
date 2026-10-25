@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-06",
-    "created_at": "2026-10-25T19:39:52.308Z",
+    "created_at": "2026-10-25T19:44:54.158Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1186,7 +1186,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 13771,
         "tokens_out": 3360,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1206,7 +1206,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 930,
         "tokens_out": 260,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1260,18 +1260,18 @@
       "registry/91330782MA2A3G9H8J.json"
     ],
     "timings_ms": {
-      "intake": 625,
+      "intake": 526,
       "extract": 1,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 628
+      "explain": 0,
+      "total": 528
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because it includes a prohibited item. All other checks passed, including container numbers, pricing, and document consistency.\n\nWhat to fix:\n- Remove the line for red wine from the invoice; Qafila cannot finance it.\n\nCategory: prohibited goods"
   },
-  "report_hash": "984d7aa974792f08fc214ae6f4c6821bc1a971b253dffb414c86710f7d9906c0",
-  "signature": "3b84d160c1aa3db337df362b1ab8c784b0c2a8507d17e63744089f6175f9c853f2a8d2dbde92b26dc11ec1cfaa2201e355a6f5310e927e7345d63deb11b8cb08"
+  "report_hash": "c0551d5cb4489ac5d3d60e7fce83ca19da19669ad74d48ab6bd45f90f4c25f36",
+  "signature": "4285a0c80851df63292f99bc0d7df327e503c83f1adeaba3048d86b39e6be5d76a76af0a228d5469845d53dc2c4a3f6925644c2cd11e8978ec97c7b20ed16f0a"
 }

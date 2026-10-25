@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-09",
-    "created_at": "2026-10-25T19:39:54.087Z",
+    "created_at": "2026-10-25T19:44:55.785Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1051,7 +1051,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16411,
         "tokens_out": 3397,
-        "latency_ms": 2,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1061,7 +1061,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 13495,
         "tokens_out": 2941,
-        "latency_ms": 2,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1071,7 +1071,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4318,
         "tokens_out": 768,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1101,7 +1101,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1911,
         "tokens_out": 126,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1135,18 +1135,18 @@
       "registry/91120113MA06R4F7KT.json"
     ],
     "timings_ms": {
-      "intake": 660,
-      "extract": 2,
-      "validate": 1,
-      "stages": 3,
+      "intake": 529,
+      "extract": 1,
+      "validate": 0,
+      "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 666
+      "total": 532
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the supplier is on a sanctions list. All other checks passed, including document consistency, pricing, and company registration.\n\nWhat to fix:\n- A sanctioned party cannot take part in a deal. The account goes under review.\n\nCategory: sanctions"
   },
-  "report_hash": "87030b4171641810a90772402f99bc1fcdee7ea142b96311717576d0168bbf2a",
-  "signature": "4e242a5a5b301af0e4cb5b67081eda2c51e1a60a4553261fa2f7affb824de5af9717bf2f2bb233c8a209250021eb5255ac26c52e2d331485d507003c4608c30b"
+  "report_hash": "48cdd6c39eac88d65b0f1b6c7bcc37b67cf94b5454b8ac641900fa77538431be",
+  "signature": "bc4fe1747bc0c55dea99150fe129e635b478bcfbd627b507ca93c48294c6f5a37cacc7638075ae726f12a808fc807072276d1f461c7ac833c39028caf54c8c08"
 }

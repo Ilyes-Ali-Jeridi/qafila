@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T19:39:54.841Z",
+    "created_at": "2026-10-25T19:44:56.310Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -898,7 +898,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16087,
         "tokens_out": 2957,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -928,7 +928,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 821,
         "tokens_out": 166,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -958,7 +958,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2050,
         "tokens_out": 57,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       }
     ],
@@ -982,18 +982,18 @@
       "registry/91320500MA1XQ6L3BR.json"
     ],
     "timings_ms": {
-      "intake": 748,
-      "extract": 2,
+      "intake": 521,
+      "extract": 1,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 751
+      "explain": 1,
+      "total": 524
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. All documents and data are consistent and valid. No further action is needed."
   },
-  "report_hash": "170f6fa540b7fe3b28cf9e55e853ad795d0c6732d87a80254696f80fcee4fee0",
-  "signature": "cf055c3a68ef391ebe7f58aece687754e3d22eddbf0c76abb3de0336c683bf3fb96e3a7e7ff5206e9f0f2b0866ea5c4c5dcec33b0e5b470797571cda06812e0b"
+  "report_hash": "7b23e6ecf450020338708e3d83e2f6300d2f5bbbad847612f570c45ae1544cf2",
+  "signature": "207ee1e50d46dd96858fd553f36da5a158f0956047bd80367c3330768a95f21cc6e408e66fcd03521040c0f5a864122680af9493f338c6cd135e5475f46c6605"
 }

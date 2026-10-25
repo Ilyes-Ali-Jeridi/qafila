@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-01",
-    "created_at": "2026-10-25T19:39:49.260Z",
+    "created_at": "2026-10-25T19:44:51.380Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -18,7 +18,7 @@
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock, one repair round).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -167,11 +167,11 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese characters in invoice, English only in packing list).",
         "weight": 25,
         "evidence": {
-          "a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
-          "b": "TPU protective cases for smartphones, assorted models"
+          "a": "1. TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款 | 2. Tempered glass screen protectors 9H, retail packed 9H钢化玻璃膜，零售包装 | 3. USB-C charging and data cables, 1 m, nylon braided USB-C充电数据线 1米 尼龙编织",
+          "b": "1. TPU protective cases for smartphones, assorted models | 2. Tempered glass screen protectors 9H, retail packed | 3. USB-C charging and data cables, 1 m, nylon braided"
         }
       },
       {
@@ -685,50 +685,50 @@
           "value": "PL-LW-2026-1001",
           "evidence": "No. PL-LW-2026-1001",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "date": {
           "value": "2026-09-29",
           "evidence": "Date 2026-09-29",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "invoice_number": {
           "value": "INV-LW-2026-1001",
           "evidence": "Invoice No. INV-LW-2026-1001",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "seller": {
           "name_en": {
             "value": "Shenzhen Lanwan Electronics Co., Ltd.",
             "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "深圳市蓝湾电子有限公司",
             "evidence": "深圳市蓝湾电子有限公司",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": "91440300MA5GK2Q7XL",
             "evidence": "USCC 91440300MA5GK2Q7XL",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "address": {
             "value": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
             "evidence": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "China",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "buyer": {
@@ -736,7 +736,7 @@
             "value": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": null,
@@ -754,13 +754,13 @@
             "value": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "Portugal",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "items": [
@@ -769,37 +769,37 @@
               "value": "TPU protective cases for smartphones, assorted models",
               "evidence": "TPU protective cases for smartphones, assorted models",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 5000,
               "evidence": "5,000 pcs",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "packages": {
               "value": 100,
               "evidence": "100 CTNS",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "gross_weight_kg": {
               "value": 1250,
               "evidence": "1,250.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "net_weight_kg": {
               "value": 1100,
               "evidence": "1,100.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "cbm": {
               "value": 4.9,
               "evidence": "4.90",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           },
           {
@@ -807,37 +807,37 @@
               "value": "Tempered glass screen protectors 9H, retail packed",
               "evidence": "Tempered glass screen protectors 9H, retail packed",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 8000,
               "evidence": "8,000 pcs",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "packages": {
               "value": 80,
               "evidence": "80 CTNS",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "gross_weight_kg": {
               "value": 640,
               "evidence": "640.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "net_weight_kg": {
               "value": 560,
               "evidence": "560.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "cbm": {
               "value": 3.6,
               "evidence": "3.60",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           },
           {
@@ -845,70 +845,70 @@
               "value": "USB-C charging and data cables, 1 m, nylon braided",
               "evidence": "USB-C charging and data cables, 1 m, nylon braided",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 6000,
               "evidence": "6,000 pcs",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "packages": {
               "value": 60,
               "evidence": "60 CTNS",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "gross_weight_kg": {
               "value": 540,
               "evidence": "540.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "net_weight_kg": {
               "value": 480,
               "evidence": "480.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "cbm": {
               "value": 3.3,
               "evidence": "3.30",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           }
         ],
         "total_packages": {
           "value": 240,
-          "evidence": "TOTAL 240 CTNS",
+          "evidence": "240 CTNS",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total_gross_weight_kg": {
           "value": 2430,
-          "evidence": "Total gross weight: 2,430.0 kg",
+          "evidence": "2,430.0",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total_net_weight_kg": {
           "value": 2140,
-          "evidence": "Total net weight: 2,140.0 kg",
+          "evidence": "2,140.0",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total_cbm": {
           "value": 11.8,
-          "evidence": "Total volume: 11.80 m3",
+          "evidence": "11.80",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "container_numbers": [
           {
             "value": "TGHU6120042",
-            "evidence": "Container No. TGHU6120042 (20'GP)",
+            "evidence": "TGHU6120042",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         ],
         "hidden_or_suspicious_text": []
@@ -1138,9 +1138,9 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
-        "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
-        "evidence_b": "TPU protective cases for smartphones, assorted models"
+        "reason": "The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese characters in invoice, English only in packing list).",
+        "evidence_a": "1. TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款 | 2. Tempered glass screen protectors 9H, retail packed 9H钢化玻璃膜，零售包装 | 3. USB-C charging and data cables, 1 m, nylon braided USB-C充电数据线 1米 尼龙编织",
+        "evidence_b": "1. TPU protective cases for smartphones, assorted models | 2. Tempered glass screen protectors 9H, retail packed | 3. USB-C charging and data cables, 1 m, nylon braided"
       }
     ],
     "listing_fingerprint": "f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa",
@@ -1175,9 +1175,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 13633,
-        "tokens_out": 2961,
-        "latency_ms": 3,
+        "tokens_in": 6156,
+        "tokens_out": 1733,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1187,7 +1187,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4315,
         "tokens_out": 759,
-        "latency_ms": 4,
+        "latency_ms": 3,
         "cost_usd": 0
       },
       {
@@ -1196,7 +1196,7 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 876,
-        "tokens_out": 106,
+        "tokens_out": 207,
         "latency_ms": 2,
         "cost_usd": 0
       },
@@ -1217,7 +1217,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1960,
         "tokens_out": 177,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1227,7 +1227,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2305,
         "tokens_out": 68,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1251,18 +1251,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 581,
+      "intake": 637,
       "extract": 5,
-      "validate": 1,
-      "stages": 5,
+      "validate": 2,
+      "stages": 4,
       "fingerprint": 0,
       "explain": 1,
-      "total": 593
+      "total": 649
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC code, invoice calculations, and consistency between documents were all valid. You can proceed with the deal."
   },
-  "report_hash": "de17820215c76fbebea132d3eb2b574505875c36b5cde42896c33f73187ed2d2",
-  "signature": "d35afd6e596b1e06ebea88a2cf525be549dbf1267ca820f7889710fc6a278c74f0d367eef9313f09b17ef4ed0ae0458272cbc427e579426076a8ef4930da8801"
+  "report_hash": "ee775b68ad4c349b9ea6ed1c54c83dee2caa8b388daeca0ff6c0398f5e187e2a",
+  "signature": "b6a14e8150db900af601939235c295fdc431e987ac3979fd2ff29536ae5fed0fa5e4070252765c9d58786a98ecb9997e72f90e5ab0ece772fb6cb6a9e4a0760f"
 }

@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-04",
-    "created_at": "2026-10-25T19:39:51.113Z",
+    "created_at": "2026-10-25T19:44:53.100Z",
     "decision": "reject",
     "risk_score": 0,
     "checks": [
@@ -1415,7 +1415,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6092,
         "tokens_out": 1301,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1455,7 +1455,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1980,
         "tokens_out": 331,
-        "latency_ms": 1,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1489,18 +1489,18 @@
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 530,
+      "intake": 510,
       "extract": 1,
       "validate": 0,
-      "stages": 1,
+      "stages": 2,
       "fingerprint": 0,
       "explain": 1,
-      "total": 533
+      "total": 514
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the container number is invalid and some invoice details are unclear. The USCC code and dates passed. Please correct the container number and upload a clearer invoice with all line items and quantities matching.\n\nWhat to fix:\n- Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.\n- Upload a clearer invoice showing every line amount and the total.\n- The packed quantities must equal the invoiced quantities line by line.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n\nCategory: document integrity"
   },
-  "report_hash": "ce2ae487449cbfdd59b54fa77c60d3e05f6d16b761318d730f9faf2583b8683d",
-  "signature": "81974cf134bdf9964249148ae78a3cc2a6fb43045966d7fde3bb8de530486da525e998a77137c025f5edcdc42864822b5ecfec777e289db5cf0ede4fc150230c"
+  "report_hash": "3f65759e308230363302e15e36165fdc7b1e30be21d028cf26c0f1fb6ad2f4ac",
+  "signature": "491551bff093257918f846e03635e5b89eff136f172d8e047f18ef2126c882b960dde634183851bf53e1b68fc212785610f58868016f3ec4b6c4c37b015e510a"
 }

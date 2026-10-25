@@ -1,5 +1,5 @@
 {
-  "ran_at": "2026-10-25T19:39:56.011Z",
+  "ran_at": "2026-10-25T19:44:57.335Z",
   "llm_mode": "mock",
   "adapter_modes": {
     "llm": "mock",
@@ -24,7 +24,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 100,
-      "latencyMs": 609,
+      "latencyMs": 663,
       "costUsd": 0,
       "flags": ""
     },
@@ -35,7 +35,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 100,
-      "latencyMs": 566,
+      "latencyMs": 519,
       "costUsd": 0,
       "flags": ""
     },
@@ -46,7 +46,7 @@
       "ok": true,
       "stage": "shipment",
       "risk": 100,
-      "latencyMs": 735,
+      "latencyMs": 669,
       "costUsd": 0,
       "flags": ""
     },
@@ -57,7 +57,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 0,
-      "latencyMs": 534,
+      "latencyMs": 516,
       "costUsd": 0,
       "flags": "validators.container_check_digit:f validators.arithmetic:r validators.quantities:r halal.line_4:r halal.line_5:r halal.line_6:r halal.line_7:r"
     },
@@ -68,7 +68,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 75,
-      "latencyMs": 564,
+      "latencyMs": 525,
       "costUsd": 0,
       "flags": "price.motorcycle_tyres:r"
     },
@@ -79,7 +79,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 60,
-      "latencyMs": 629,
+      "latencyMs": 530,
       "costUsd": 0,
       "flags": "halal.line_3:f"
     },
@@ -90,7 +90,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 60,
-      "latencyMs": 567,
+      "latencyMs": 566,
       "costUsd": 0,
       "flags": "fingerprint.listing:f"
     },
@@ -101,7 +101,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 57,
-      "latencyMs": 543,
+      "latencyMs": 525,
       "costUsd": 0,
       "flags": "registry.status:f document.hidden_text:f"
     },
@@ -112,7 +112,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 60,
-      "latencyMs": 668,
+      "latencyMs": 533,
       "costUsd": 0,
       "flags": "sanctions.supplier:f"
     },
@@ -123,7 +123,7 @@
       "ok": true,
       "stage": "shipment",
       "risk": 60,
-      "latencyMs": 983,
+      "latencyMs": 678,
       "costUsd": 0,
       "flags": "tracking.loading_vessel:f"
     },
@@ -134,7 +134,7 @@
       "ok": true,
       "stage": "listing",
       "risk": 57,
-      "latencyMs": 576,
+      "latencyMs": 526,
       "costUsd": 0,
       "flags": "validators.arithmetic:f document.hidden_text:f"
     },
@@ -145,10 +145,10 @@
       "ok": true,
       "stage": "listing",
       "risk": 0,
-      "latencyMs": 360,
+      "latencyMs": 341,
       "costUsd": 0,
       "flags": "extraction.confidence:r validators.arithmetic:r structure.buyer:r consistency.invoice_reference:r consistency.goods_invoice_vs_packing_list:r"
     }
   ],
-  "table": "| # | Expected | Actual | Stage | Risk | Latency | Cost (USD) | Result |\n|---|---|---|---|---|---|---|---|\n| 01 | approve | approve | listing | 100 | 0.6 s | 0.0000 | pass |\n| 02 | approve | approve | listing | 100 | 0.6 s | 0.0000 | pass |\n| 03 | approve | approve | shipment | 100 | 0.7 s | 0.0000 | pass |\n| 04 | reject | reject | listing | 0 | 0.5 s | 0.0000 | pass |\n| 05 | review | review | listing | 75 | 0.6 s | 0.0000 | pass |\n| 06 | reject | reject | listing | 60 | 0.6 s | 0.0000 | pass |\n| 07 | reject | reject | listing | 60 | 0.6 s | 0.0000 | pass |\n| 08 | reject | reject | listing | 57 | 0.5 s | 0.0000 | pass |\n| 09 | reject | reject | listing | 60 | 0.7 s | 0.0000 | pass |\n| 10 | reject | reject | shipment | 60 | 1.0 s | 0.0000 | pass |\n| 11 | reject | reject | listing | 57 | 0.6 s | 0.0000 | pass |\n| 12 | review | review | listing | 0 | 0.4 s | 0.0000 | pass |\n| | | | | | 7.3 s | 0.0000 | 12 of 12 |"
+  "table": "| # | Expected | Actual | Stage | Risk | Latency | Cost (USD) | Result |\n|---|---|---|---|---|---|---|---|\n| 01 | approve | approve | listing | 100 | 0.7 s | 0.0000 | pass |\n| 02 | approve | approve | listing | 100 | 0.5 s | 0.0000 | pass |\n| 03 | approve | approve | shipment | 100 | 0.7 s | 0.0000 | pass |\n| 04 | reject | reject | listing | 0 | 0.5 s | 0.0000 | pass |\n| 05 | review | review | listing | 75 | 0.5 s | 0.0000 | pass |\n| 06 | reject | reject | listing | 60 | 0.5 s | 0.0000 | pass |\n| 07 | reject | reject | listing | 60 | 0.6 s | 0.0000 | pass |\n| 08 | reject | reject | listing | 57 | 0.5 s | 0.0000 | pass |\n| 09 | reject | reject | listing | 60 | 0.5 s | 0.0000 | pass |\n| 10 | reject | reject | shipment | 60 | 0.7 s | 0.0000 | pass |\n| 11 | reject | reject | listing | 57 | 0.5 s | 0.0000 | pass |\n| 12 | review | review | listing | 0 | 0.3 s | 0.0000 | pass |\n| | | | | | 6.6 s | 0.0000 | 12 of 12 |"
 }
