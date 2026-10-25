@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:36:10.397Z",
+  "recorded_at": "2026-10-25T16:33:59.647Z",
   "mode": "live",
   "input": {
     "stage": "explain",
@@ -11,12 +11,12 @@
   "provider": "bedrock",
   "response": {
     "output": {
-      "summary": "Your deal is approved for listing because all required checks passed. The invoice, packing list, and business licence are consistent and valid. No action is needed from your side.",
+      "summary": "Your deal is approved for listing because all required checks passed. The container number, USCC, arithmetic, dates, quantities, formats, and all consistency and halal checks were valid. No action is needed from your side.",
       "fixes": [],
       "category": null
     },
     "tokensIn": 2238,
-    "tokensOut": 64,
+    "tokensOut": 75,
     "repaired": false
   }
 }

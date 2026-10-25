@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:39:59.819Z",
+  "recorded_at": "2026-10-25T16:32:09.148Z",
   "mode": "live",
   "input": {
     "stage": "extract.business_licence",
@@ -14,80 +14,80 @@
       "type": "business_licence",
       "name_zh": {
         "value": "深圳市蓝湾电子有限公司",
-        "evidence": "名称 深圳市蓝湾电子有限公司",
+        "evidence": "深圳市蓝湾电子有限公司",
         "page": 1,
         "confidence": 0.98
       },
       "name_en": {
         "value": "Shenzhen Lanwan Electronics Co., Ltd.",
-        "evidence": "Name Shenzhen Lanwan Electronics Co., Ltd.",
+        "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
         "page": 1,
         "confidence": 0.98
       },
       "uscc": {
         "value": "91440300MA5GK2Q7XL",
-        "evidence": "统一社会信用代码 91440300MA5GK2Q7XL",
+        "evidence": "91440300MA5GK2Q7XL",
         "page": 1,
         "confidence": 0.98
       },
       "legal_representative": {
         "value": "陈伟 (Chen Wei)",
-        "evidence": "法定代表人 陈伟 (Chen Wei)",
+        "evidence": "陈伟 (Chen Wei)",
         "page": 1,
         "confidence": 0.98
       },
       "company_type": {
         "value": "有限责任公司（自然人投资或控股）",
-        "evidence": "类型 有限责任公司（自然人投资或控股）",
+        "evidence": "有限责任公司（自然人投资或控股）",
         "page": 1,
         "confidence": 0.98
       },
       "registered_capital": {
         "value": "人民币 500 万元 (RMB 5,000,000)",
-        "evidence": "注册资本 人民币 500 万元 (RMB 5,000,000)",
+        "evidence": "人民币 500 万元 (RMB 5,000,000)",
         "page": 1,
         "confidence": 0.98
       },
       "establishment_date": {
         "value": "2016-03-18",
-        "evidence": "成立日期 2016-03-18",
+        "evidence": "2016-03-18",
         "page": 1,
         "confidence": 0.98
       },
       "business_term": {
         "value": "2016-03-18 至 长期 / to long-term",
-        "evidence": "营业期限 2016-03-18 至 长期 / to long-term",
+        "evidence": "2016-03-18 至 长期 / to long-term",
         "page": 1,
         "confidence": 0.98
       },
       "business_scope": {
         "value": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
-        "evidence": "经营范围 电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
         "page": 1,
         "confidence": 0.98
       },
       "address": {
         "value": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
-        "evidence": "住所 广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+        "evidence": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
         "page": 1,
         "confidence": 0.98
       },
       "registration_authority": {
         "value": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
-        "evidence": "登记机关 Registration authority: 深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+        "evidence": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
         "page": 1,
         "confidence": 0.98
       },
       "issue_date": {
         "value": "2016-06-30",
-        "evidence": "发照日期 Issue date: 2016-06-30",
+        "evidence": "2016-06-30",
         "page": 1,
         "confidence": 0.98
       },
       "hidden_or_suspicious_text": []
     },
     "tokensIn": 4332,
-    "tokensOut": 759,
+    "tokensOut": 713,
     "repaired": false
   }
 }

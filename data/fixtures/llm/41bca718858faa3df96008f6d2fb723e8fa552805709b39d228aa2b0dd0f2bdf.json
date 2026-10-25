@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:40:11.638Z",
+  "recorded_at": "2026-10-25T16:32:24.743Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",
@@ -82,8 +82,8 @@
           "confidence": 0
         },
         "address": {
-          "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
-          "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "value": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
           "confidence": 0.98
         },
@@ -245,7 +245,7 @@
       "hidden_or_suspicious_text": []
     },
     "tokensIn": 6173,
-    "tokensOut": 1701,
+    "tokensOut": 1733,
     "repaired": false
   }
 }

@@ -5,7 +5,7 @@
  * shipment intake and the summary / detail mappers.
  */
 import { and, desc, eq, inArray } from 'drizzle-orm';
-import { ABORT_REASONS, DealTermsSchema, parseAmount, renderPromiseText, PROMISE_TEMPLATE_VERSION, type AbortReason, type DealDetail, type DealSummary, type DealTerms, type DocumentType, type OnchainDeal, type VerificationReport } from '@qafila/shared';
+import { ABORT_REASONS, DealTermsSchema, formatAmount, parseAmount, renderPromiseText, PROMISE_TEMPLATE_VERSION, type AbortReason, type DealDetail, type DealSummary, type DealTerms, type DocumentType, type OnchainDeal, type VerificationReport } from '@qafila/shared';
 import { sha256, toHex } from '@qafila/shared/attestation';
 import type { Db } from '../db/index.js';
 import { audit, enqueue } from '../db/repo.js';
@@ -228,11 +228,25 @@ export async function listDealOnChain(svc: Services, deal: DealRow, actor: strin
   if (onchainPromise.importer !== importer.walletAddress || onchainPromise.promiseHash !== promise.textHash) throw new ApiError(409, 'promise_mismatch', 'the on-chain promise does not match the stored text or wallet');
   if (onchainPromise.listed) throw new ApiError(409, 'already_listed', 'this promise is already listed');
   const terms = deal.terms as DraftTerms;
+  // Importer limit (PLAN 3.3.4 list_deal): say by how much the deal is over before spending rent on the factory (FLOWS 5.1).
+  const [limit, stats] = await Promise.all([svc.chain.importerLimit(importer.walletAddress).catch(() => null), svc.chain.importerStats(importer.walletAddress).catch(() => null)]);
+  if (limit !== null && stats) {
+    const exposure = BigInt(stats.open_exposure) + BigInt(terms.cost);
+    if (stats.defaulted > 0) throw new ApiError(409, 'importer_in_default', 'the importer has a default on record; the contract will not list a new deal');
+    if (exposure > limit) throw new ApiError(409, 'limit_exceeded', `this deal (${formatAmount(terms.cost, svc.env.SETTLEMENT_TOKEN_CODE)}) plus the importer's open exposure (${formatAmount(stats.open_exposure, svc.env.SETTLEMENT_TOKEN_CODE)}) is ${formatAmount(exposure - limit, svc.env.SETTLEMENT_TOKEN_CODE)} over the importer's limit of ${formatAmount(limit, svc.env.SETTLEMENT_TOKEN_CODE)}; split the order or wait for an open deal to be repaid`, { cost: terms.cost, openExposure: stats.open_exposure, limit: limit.toString() });
+  }
   const settlement = svc.env.SETTLEMENT_TOKEN_ID ?? (await import('../env.js')).loadDeployment(svc.env.STELLAR_NETWORK).settlementToken?.id;
   if (!settlement) throw new ApiError(503, 'no_settlement_token', 'SETTLEMENT_TOKEN_ID is not configured');
   if (!svc.verifierSecret || !svc.contractId) throw new ApiError(503, 'no_verifier', 'VERIFIER_ED25519_SECRET or the contract id is missing');
 
-  const share = await svc.chain.createShareToken(deal.number);
+  let share: { sacId: string; issuerPublicKey: string; txHashes: string[]; locked: boolean };
+  if (deal.shareToken && deal.issuerPublicKey) {
+    share = { sacId: deal.shareToken, issuerPublicKey: deal.issuerPublicKey, txHashes: deal.factoryTxHashes ?? [], locked: true };
+    log.info({ deal: deal.id, shareToken: deal.shareToken }, 'reusing the share token from an earlier listing attempt');
+  } else {
+    share = await svc.chain.createShareToken(deal.number);
+    await svc.db.update(deals).set({ shareToken: share.sacId, issuerPublicKey: share.issuerPublicKey, factoryTxHashes: share.txHashes, updatedAt: new Date() }).where(eq(deals.id, deal.id));
+  }
   const now = Math.floor(Date.now() / 1000);
   const dealTerms: DealTerms = DealTermsSchema.parse({
     importer: importer.walletAddress,

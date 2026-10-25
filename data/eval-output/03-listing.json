@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T16:05:59.254Z",
+    "created_at": "2026-10-25T16:34:55.841Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), mock, one repair round).",
+        "detail": "invoice read (1 page(s), live, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock, one repair round).",
+        "detail": "packing list read (1 page(s), live).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), mock).",
+        "detail": "business licence read (1 page(s), live).",
         "weight": 0
       },
       {
@@ -166,7 +166,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe identical goods in the same order, with only minor formatting differences (Chinese characters in invoice, omitted in packing list).",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions match exactly in content and order, with only the Chinese text missing in the packing list, which does not alter the substance of the description.",
         "weight": 25,
         "evidence": {
           "a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
@@ -353,50 +353,50 @@
           "value": "HC-2026-0805",
           "evidence": "Invoice No. HC-2026-0805",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "invoice_date": {
           "value": "2026-09-05",
           "evidence": "Invoice date 2026-09-05",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "invoice_kind": {
           "value": "commercial",
           "evidence": "COMMERCIAL INVOICE",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "seller": {
           "name_en": {
             "value": "Ningbo Haichuan Plastics Co., Ltd.",
             "evidence": "Ningbo Haichuan Plastics Co., Ltd.",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "宁波市海川塑业有限公司",
             "evidence": "宁波市海川塑业有限公司",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": "91330200MA2CH7N6M7",
             "evidence": "USCC 91330200MA2CH7N6M7",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "address": {
             "value": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
             "evidence": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "CN",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "buyer": {
@@ -404,13 +404,13 @@
             "value": "Qafila Trade, deal 3",
             "evidence": "Qafila Trade, deal 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "Qafila Trade, deal 3",
             "evidence": "Qafila Trade, deal 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": null,
@@ -422,13 +422,13 @@
             "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "PT",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "consignee": {
@@ -436,13 +436,13 @@
             "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": null,
@@ -467,25 +467,25 @@
           "value": "Adewale Trading Ltd",
           "evidence": "Adewale Trading Ltd",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "incoterms": {
           "value": "FOB Ningbo (CNNGB), Incoterms 2020",
           "evidence": "FOB Ningbo (CNNGB), Incoterms 2020",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "currency": {
           "value": "USD",
           "evidence": "Currency USD",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total": {
           "value": 28200,
           "evidence": "TOTAL FOB CNNGB USD 28,200.00",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "line_items": [
           {
@@ -493,43 +493,43 @@
               "value": "Stainless steel cookware sets, 8 pieces, induction base",
               "evidence": "Stainless steel cookware sets, 8 pieces, induction base",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "description_zh": {
               "value": "不锈钢锅具八件套",
               "evidence": "不锈钢锅具八件套",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "hs_code": {
               "value": "732393",
               "evidence": "732393",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 1200,
               "evidence": "1,200 sets",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit": {
               "value": "sets",
               "evidence": "sets",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit_price": {
               "value": 18,
               "evidence": "18.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "line_total": {
               "value": 21600,
               "evidence": "21,600.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           },
           {
@@ -537,43 +537,43 @@
               "value": "Plastic food storage containers, PP, assorted sizes",
               "evidence": "Plastic food storage containers, PP, assorted sizes",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "description_zh": {
               "value": "PP塑料保鲜盒 多规格",
               "evidence": "PP塑料保鲜盒 多规格",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "hs_code": {
               "value": "392410",
               "evidence": "392410",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 3000,
               "evidence": "3,000 kg",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit": {
               "value": "kg",
               "evidence": "kg",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit_price": {
               "value": 2.2,
               "evidence": "2.20",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "line_total": {
               "value": 6600,
               "evidence": "6,600.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           }
         ],
@@ -581,19 +581,19 @@
           "value": "Ningbo, China (CNNGB)",
           "evidence": "Port of loading Ningbo, China (CNNGB)",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "port_of_discharge": {
           "value": "Lagos (Apapa), Nigeria (NGAPP)",
           "evidence": "Port of discharge Lagos (Apapa), Nigeria (NGAPP)",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "payment_terms": {
           "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "hidden_or_suspicious_text": []
       },
@@ -1001,7 +1001,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both lists describe identical goods in the same order, with only minor formatting differences (Chinese characters in invoice, omitted in packing list).",
+        "reason": "The goods descriptions match exactly in content and order, with only the Chinese text missing in the packing list, which does not alter the substance of the description.",
         "evidence_a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
         "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
       }
@@ -1028,20 +1028,20 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16650,
-        "tokens_out": 3693,
-        "latency_ms": 0,
-        "cost_usd": 0
+        "tokens_in": 16282,
+        "tokens_out": 3249,
+        "latency_ms": 52722,
+        "cost_usd": 0.008783
       },
       {
         "stage": "extract.packing_list",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 13447,
-        "tokens_out": 2656,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "tokens_in": 6142,
+        "tokens_out": 1524,
+        "latency_ms": 24695,
+        "cost_usd": 0.003671
       },
       {
         "stage": "extract.business_licence",
@@ -1050,8 +1050,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4330,
         "tokens_out": 769,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 12357,
+        "cost_usd": 0.002222
       },
       {
         "stage": "consistency.listing",
@@ -1059,9 +1059,9 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 823,
-        "tokens_out": 153,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "tokens_out": 157,
+        "latency_ms": 2696,
+        "cost_usd": 0.000435
       },
       {
         "stage": "halal",
@@ -1070,8 +1070,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1154,
         "tokens_out": 85,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 939,
+        "cost_usd": 0.000224
       },
       {
         "stage": "price",
@@ -1080,22 +1080,22 @@
         "prompt_version": "price.v1",
         "tokens_in": 1892,
         "tokens_out": 121,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 1135,
+        "cost_usd": 0.000356
       },
       {
         "stage": "explain",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2162,
-        "tokens_out": 66,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "tokens_in": 2166,
+        "tokens_out": 69,
+        "latency_ms": 905,
+        "cost_usd": 0.000366
       }
     ],
     "adapter_modes": {
-      "llm": "mock",
+      "llm": "live",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1103,29 +1103,22 @@
       "fx": "skipped"
     },
     "fixtures_used": [
-      "llm/2197fc834d0de75cdb010cee24033d4b6101a331b98d8b9c515c436b9fabaea2.json",
-      "llm/22c1c24b9aa7f718dde5e34445fe28e044dd16a934069da4d403cdc314683746.json",
-      "llm/31bdfd200a357efb6d1ad980a61a409d30ebc59089b48ed16a29505357812054.json",
-      "llm/84cc5d922768791180634fd48601ecf32b4a5783690d101119f875b88b0afcc8.json",
-      "llm/bc3ddfd545891c2c88e7f82ad2918fa169310f2d26e2b9277a6ab8ec60d5bfbd.json",
-      "llm/da34b65a6932b12a37752a717809aa5348fa3154ce492770bcdadff004c5957b.json",
-      "llm/f427f54b407bb7b163972da4c792b0e8af5d09a421fc8f54eceb96a58ce00a13.json",
       "opensanctions/<fallback>",
       "registry/91330200MA2CH7N6M7.json"
     ],
     "timings_ms": {
-      "intake": 550,
-      "extract": 1,
-      "validate": 0,
-      "stages": 1,
+      "intake": 770,
+      "extract": 52722,
+      "validate": 1,
+      "stages": 2697,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 553
+      "explain": 907,
+      "total": 57097
     },
-    "cost_usd": 0,
+    "cost_usd": 0.016057,
     "injection_attempts": [],
-    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and document consistency are all valid. No further action is needed."
+    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and consistency between documents are all valid. No action is needed from your side."
   },
-  "report_hash": "8b506cbfb67316839f395d180d615258acbcdc6b2faaef0599f725d98fae5339",
-  "signature": "260415cce1f9699809815daaa2a5fbc0e86df8eeb8ca954164588a2c7609597a5e5e6fe5a64fc0f05ff49491d3a98328fb0bb7f71dba32c5f005ee59b6273e0d"
+  "report_hash": "03679109991b599ced9e14ff2ca5e5b778c5d23fec09c72d35f4c7ee37c910b7",
+  "signature": "f4e076aec9798e8d438526cdec5db1941135f8606734c65bf017663147030e361f7e09ea70069fdeecf06b4a761f627e65290260f3c4a002fe86b4413ce57f09"
 }

@@ -272,7 +272,7 @@ export class LiveChain implements Chain {
   }
   async getEvents(cursor: string | null, startLedger: number | null) {
     const filters = [{ type: 'contract' as const, contractIds: [this.contractId] }];
-    const res = cursor ? await this.server.getEvents({ filters, cursor, limit: 100 }) : await this.server.getEvents({ filters, startLedger: startLedger ?? Math.max(1, (await this.latestLedger()) - 17_000), limit: 100 });
+    const res = cursor ? await this.server.getEvents({ filters, cursor, limit: 100 }) : await this.server.getEvents({ filters, startLedger: startLedger ?? Math.max(1, (await this.latestLedger()) - 5_000), limit: 100 });
     const events: ChainEvent[] = res.events.map((e, i) => {
       const topics = e.topic.map((t) => {
         try {

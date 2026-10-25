@@ -1,108 +1,31 @@
 {
-  "ran_at": "2026-10-25T16:06:07.034Z",
-  "llm_mode": "mock",
+  "ran_at": "2026-10-25T16:29:17.349Z",
+  "llm_mode": "live",
   "adapter_modes": {
-    "llm": "mock",
+    "llm": "live",
     "registry": "mock",
     "gleif": "mock",
     "qcc": "off",
     "shipsgo": "mock",
     "opensanctions": "mock",
-    "reflector": "off",
-    "fx": "mock",
+    "reflector": "live",
+    "fx": "live",
     "resend": "off",
-    "storage": "mock"
+    "storage": "live"
   },
-  "passed": 12,
-  "total": 12,
+  "passed": 1,
+  "total": 2,
   "rows": [
-    {
-      "packet": "01",
-      "expected": "approve",
-      "actual": "approve",
-      "ok": true,
-      "stage": "listing",
-      "risk": 100,
-      "latencyMs": 688,
-      "costUsd": 0,
-      "flags": ""
-    },
-    {
-      "packet": "02",
-      "expected": "approve",
-      "actual": "approve",
-      "ok": true,
-      "stage": "listing",
-      "risk": 100,
-      "latencyMs": 562,
-      "costUsd": 0,
-      "flags": ""
-    },
-    {
-      "packet": "03",
-      "expected": "approve",
-      "actual": "approve",
-      "ok": true,
-      "stage": "shipment",
-      "risk": 100,
-      "latencyMs": 721,
-      "costUsd": 0,
-      "flags": ""
-    },
-    {
-      "packet": "04",
-      "expected": "reject",
-      "actual": "reject",
-      "ok": true,
-      "stage": "listing",
-      "risk": 60,
-      "latencyMs": 549,
-      "costUsd": 0,
-      "flags": "validators.container_check_digit:f"
-    },
-    {
-      "packet": "05",
-      "expected": "review",
-      "actual": "review",
-      "ok": true,
-      "stage": "listing",
-      "risk": 75,
-      "latencyMs": 932,
-      "costUsd": 0,
-      "flags": "price.motorcycle_tyres:r"
-    },
-    {
-      "packet": "06",
-      "expected": "reject",
-      "actual": "reject",
-      "ok": true,
-      "stage": "listing",
-      "risk": 60,
-      "latencyMs": 978,
-      "costUsd": 0,
-      "flags": "halal.line_3:f"
-    },
     {
       "packet": "07",
       "expected": "reject",
-      "actual": "reject",
-      "ok": true,
+      "actual": "review",
+      "ok": false,
       "stage": "listing",
-      "risk": 45,
-      "latencyMs": 724,
-      "costUsd": 0,
-      "flags": "structure.buyer:r fingerprint.listing:f"
-    },
-    {
-      "packet": "08",
-      "expected": "reject",
-      "actual": "reject",
-      "ok": true,
-      "stage": "listing",
-      "risk": 57,
-      "latencyMs": 1164,
-      "costUsd": 0,
-      "flags": "registry.status:f document.hidden_text:f"
+      "risk": 85,
+      "latencyMs": 72454,
+      "costUsd": 0.016913,
+      "flags": "structure.buyer:r MISSING:fingerprint.listing"
     },
     {
       "packet": "09",
@@ -111,43 +34,10 @@
       "ok": true,
       "stage": "listing",
       "risk": 60,
-      "latencyMs": 839,
-      "costUsd": 0,
+      "latencyMs": 66305,
+      "costUsd": 0.016358,
       "flags": "sanctions.supplier:f"
-    },
-    {
-      "packet": "10",
-      "expected": "reject",
-      "actual": "reject",
-      "ok": true,
-      "stage": "shipment",
-      "risk": 60,
-      "latencyMs": 1204,
-      "costUsd": 0,
-      "flags": "tracking.loading_vessel:f"
-    },
-    {
-      "packet": "11",
-      "expected": "reject",
-      "actual": "reject",
-      "ok": true,
-      "stage": "listing",
-      "risk": 57,
-      "latencyMs": 697,
-      "costUsd": 0,
-      "flags": "validators.arithmetic:f document.hidden_text:f"
-    },
-    {
-      "packet": "12",
-      "expected": "review",
-      "actual": "review",
-      "ok": true,
-      "stage": "listing",
-      "risk": 0,
-      "latencyMs": 511,
-      "costUsd": 0,
-      "flags": "extraction.confidence:r validators.arithmetic:r validators.formats:r structure.buyer:r consistency.invoice_reference:r consistency.goods_invoice_vs_packing_list:r"
     }
   ],
-  "table": "| # | Expected | Actual | Stage | Risk | Latency | Cost (USD) | Result |\n|---|---|---|---|---|---|---|---|\n| 01 | approve | approve | listing | 100 | 0.7 s | 0.0000 | pass |\n| 02 | approve | approve | listing | 100 | 0.6 s | 0.0000 | pass |\n| 03 | approve | approve | shipment | 100 | 0.7 s | 0.0000 | pass |\n| 04 | reject | reject | listing | 60 | 0.5 s | 0.0000 | pass |\n| 05 | review | review | listing | 75 | 0.9 s | 0.0000 | pass |\n| 06 | reject | reject | listing | 60 | 1.0 s | 0.0000 | pass |\n| 07 | reject | reject | listing | 45 | 0.7 s | 0.0000 | pass |\n| 08 | reject | reject | listing | 57 | 1.2 s | 0.0000 | pass |\n| 09 | reject | reject | listing | 60 | 0.8 s | 0.0000 | pass |\n| 10 | reject | reject | shipment | 60 | 1.2 s | 0.0000 | pass |\n| 11 | reject | reject | listing | 57 | 0.7 s | 0.0000 | pass |\n| 12 | review | review | listing | 0 | 0.5 s | 0.0000 | pass |\n| | | | | | 9.6 s | 0.0000 | 12 of 12 |"
+  "table": "| # | Expected | Actual | Stage | Risk | Latency | Cost (USD) | Result |\n|---|---|---|---|---|---|---|---|\n| 07 | reject | review | listing | 85 | 72.5 s | 0.0169 | FAIL structure.buyer:r MISSING:fingerprint.listing |\n| 09 | reject | reject | listing | 60 | 66.3 s | 0.0164 | pass |\n| | | | | | 138.8 s | 0.0333 | 1 of 2 |"
 }

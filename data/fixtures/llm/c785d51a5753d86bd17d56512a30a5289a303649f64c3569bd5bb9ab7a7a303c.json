@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:35:49.178Z",
+  "recorded_at": "2026-10-25T16:33:24.124Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",
@@ -199,15 +199,15 @@
       "container_numbers": [
         {
           "value": "OOLU9845110",
-          "evidence": "OOLU9845110",
+          "evidence": "OOLU9845110 (40'HC)",
           "page": 1,
           "confidence": 0.98
         }
       ],
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 13420,
-    "tokensOut": 2609,
-    "repaired": true
+    "tokensIn": 6139,
+    "tokensOut": 1511,
+    "repaired": false
   }
 }

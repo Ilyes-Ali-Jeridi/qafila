@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:35:10.150Z",
+  "recorded_at": "2026-10-25T16:32:59.972Z",
   "mode": "live",
   "input": {
     "stage": "explain",
@@ -11,12 +11,12 @@
   "provider": "bedrock",
   "response": {
     "output": {
-      "summary": "Your deal is approved for listing because all required checks passed. The container number, USCC, invoice calculations, and consistency between documents were all valid. You can proceed with the deal.",
+      "summary": "Your deal is approved for listing because all required checks passed. The container number, USCC code, invoice calculations, and consistency between documents were all valid. You can proceed with the deal.",
       "fixes": [],
       "category": null
     },
-    "tokensIn": 2304,
-    "tokensOut": 67,
+    "tokensIn": 2305,
+    "tokensOut": 68,
     "repaired": false
   }
 }

@@ -80,6 +80,14 @@ export function createApp(env: Env, svc?: Services) {
   app.notFound((c) => c.json({ error: { code: 'not_found', message: `no route ${c.req.method} ${c.req.path}` } }, 404));
   app.onError((err, c) => {
     if (err instanceof HTTPException) return err.getResponse();
+    if ((err as Error).name === 'ContractError' || /contract error \d+/.test((err as Error).message ?? '')) {
+      logger.warn({ err: (err as Error).message, path: c.req.path }, 'contract refused');
+      return c.json({ error: { code: 'contract_error', message: (err as Error).message.slice(0, 200), details: { hint: 'the Qafila contract refused the call; see the error label (for example LimitExceeded: the importer has too much open exposure for this deal)' } } }, 409);
+    }
+    if (/txBAD_SEQ|insufficient|underfunded|tx_insufficient_balance|resulting balance/i.test((err as Error).message ?? '')) {
+      logger.warn({ err: (err as Error).message, path: c.req.path }, 'chain submit failed');
+      return c.json({ error: { code: 'chain_submit_failed', message: (err as Error).message.slice(0, 200), details: { hint: 'check the signing account balance (testnet rent is 2 to 30 XLM per write) and the submit queue logs' } } }, 503);
+    }
     logger.error({ err, path: c.req.path }, 'unhandled');
     return c.json({ error: { code: 'internal', message: (err as Error).message?.slice(0, 200) || 'internal error' } }, 500);
   });

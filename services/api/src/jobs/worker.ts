@@ -52,8 +52,9 @@ export async function runOne(svc: Services, job: JobRow): Promise<boolean> {
     await failJob(svc.db, { ...job, attempts: 99 }, `unknown job kind ${job.kind}`);
     return false;
   }
+  const limitMs = job.kind === 'index_tick' ? 60_000 : job.kind === 'agent_tick' ? 5 * 60_000 : 15 * 60_000;
   try {
-    const result = await h(svc, job);
+    const result = await Promise.race([h(svc, job), new Promise<never>((_, reject) => setTimeout(() => reject(new Error(`job ${job.kind} timed out after ${limitMs} ms`)), limitMs).unref())]);
     await completeJob(svc.db, job.id, result);
     return true;
   } catch (e) {

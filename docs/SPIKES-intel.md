@@ -33,3 +33,9 @@ Times are WET (Lisbon), Sunday 25 October 2026.
 
 ## SP-X402 key (14:45)
 - `curl https://channels.openzeppelin.com/testnet/gen` answered 201 with an API key; saved to `.env` as `X402_FACILITATOR_API_KEY`.
+
+## SP7: x402 through the OZ facilitator (17:30) PASS up to settlement (needs USDC)
+- `@x402/hono` + `@x402/core` + `@x402/stellar` 2.28.0; `x402ResourceServer(HTTPFacilitatorClient(channels.openzeppelin.com/x402/testnet, Bearer key)).register('stellar:testnet', ExactStellarScheme)`; `GET /supported` with the key answers `exact` v2 on `stellar:testnet` with `areFeesSponsored: true` (401 without the key).
+- `POST /x402/v1/verify` unpaid answers `402` with `PAYMENT-REQUIRED` (amount 5000000 = 0.50 USDC, asset the testnet USDC SAC, payTo `GA2NU4TML6YCUVBWGQC3W3T2JNT3P7CZXEDXMJAQZVBZRLZ7J2LFGQ4G`, maxTimeoutSeconds 300).
+- `examples/lender-agent` (`@x402/fetch` + `createEd25519Signer`) negotiates the 402 and builds the SAC transfer; the simulation fails with `Error(Contract, #10)` "resulting balance is not within the allowed range" because the payer `GB3SO7N4COXFBFPBYHLUJBG5KSTH6DUBSC2Y2O3TBXB25O6FMURGUGBI` holds 0 USDC. Both accounts have USDC trustlines. **Integrator: fund LENDER_AGENT_ADDRESS at https://faucet.circle.com (Stellar testnet), then `pnpm --filter @qafila/lender-agent start` settles and prints the signed report, the local check and the on-chain `verify_attestation` result.**
+- Keys in `.env`: `X402_PAYTO_ADDRESS`, `X402_PAYTO_SECRET` (not used by the API), `LENDER_AGENT_SECRET`, `LENDER_AGENT_ADDRESS`.

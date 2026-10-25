@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:35:08.431Z",
+  "recorded_at": "2026-10-25T16:32:58.703Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -15,14 +15,14 @@
         {
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
-          "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+          "reason": "The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese translations in invoice).",
           "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
           "evidence_b": "TPU protective cases for smartphones, assorted models"
         }
       ]
     },
     "tokensIn": 876,
-    "tokensOut": 106,
+    "tokensOut": 107,
     "repaired": false
   }
 }

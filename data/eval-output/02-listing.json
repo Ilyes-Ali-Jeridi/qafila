@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-02",
-    "created_at": "2026-10-25T16:05:58.698Z",
+    "created_at": "2026-10-25T16:33:58.915Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), mock, one repair round).",
+        "detail": "invoice read (1 page(s), live, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock, one repair round).",
+        "detail": "packing list read (1 page(s), live).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), mock).",
+        "detail": "business licence read (1 page(s), live).",
         "weight": 0
       },
       {
@@ -165,7 +165,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe the same two goods with identical specifications; the invoice includes Chinese translations which are absent in the packing list, but the core descriptions match.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance; the invoice includes Chinese translations which are absent in the packing list, but the core specifications match line by line.",
         "weight": 25,
         "evidence": {
           "a": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 纯棉印花布 150cm 120克 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2 涤纶染色面料 150cm 95克",
@@ -350,13 +350,13 @@
         "type": "invoice",
         "invoice_number": {
           "value": "HY-2026-0917",
-          "evidence": "Invoice No. HY-2026-0917",
+          "evidence": "HY-2026-0917",
           "page": 1,
           "confidence": 0.95
         },
         "invoice_date": {
           "value": "2026-09-17",
-          "evidence": "Invoice date 2026-09-17",
+          "evidence": "2026-09-17",
           "page": 1,
           "confidence": 0.95
         },
@@ -406,10 +406,10 @@
             "confidence": 0.95
           },
           "name_zh": {
-            "value": "Qafila Trade, deal 2",
-            "evidence": "Qafila Trade, deal 2",
-            "page": 1,
-            "confidence": 0.95
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
           },
           "uscc": {
             "value": null,
@@ -438,10 +438,10 @@
             "confidence": 0.95
           },
           "name_zh": {
-            "value": "TO ORDER OF QAFILA TRADE, DEAL 2",
-            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 2",
-            "page": 1,
-            "confidence": 0.95
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
           },
           "uscc": {
             "value": null,
@@ -482,7 +482,7 @@
         },
         "total": {
           "value": 318000,
-          "evidence": "TOTAL FOB CNNSA CNY 318,000.00",
+          "evidence": "CNY 318,000.00",
           "page": 1,
           "confidence": 0.95
         },
@@ -578,19 +578,19 @@
         ],
         "port_of_loading": {
           "value": "Guangzhou (Nansha), China (CNNSA)",
-          "evidence": "Port of loading Guangzhou (Nansha), China (CNNSA)",
+          "evidence": "Guangzhou (Nansha), China (CNNSA)",
           "page": 1,
           "confidence": 0.95
         },
         "port_of_discharge": {
           "value": "Mombasa, Kenya (KEMBA)",
-          "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+          "evidence": "Mombasa, Kenya (KEMBA)",
           "page": 1,
           "confidence": 0.95
         },
         "payment_terms": {
           "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
-          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "page": 1,
           "confidence": 0.95
         },
@@ -785,7 +785,7 @@
         "container_numbers": [
           {
             "value": "OOLU9845110",
-            "evidence": "OOLU9845110",
+            "evidence": "OOLU9845110 (40'HC)",
             "page": 1,
             "confidence": 0.98
           }
@@ -796,73 +796,73 @@
         "type": "business_licence",
         "name_zh": {
           "value": "广州市恒远纺织有限公司",
-          "evidence": "名称 广州市恒远纺织有限公司",
+          "evidence": "广州市恒远纺织有限公司",
           "page": 1,
           "confidence": 0.98
         },
         "name_en": {
           "value": "Guangzhou Hengyuan Textile Co., Ltd.",
-          "evidence": "Name Guangzhou Hengyuan Textile Co., Ltd.",
+          "evidence": "Guangzhou Hengyuan Textile Co., Ltd.",
           "page": 1,
           "confidence": 0.98
         },
         "uscc": {
           "value": "91440101MA59TQ8W23",
-          "evidence": "统一社会信用代码 91440101MA59TQ8W23",
+          "evidence": "91440101MA59TQ8W23",
           "page": 1,
           "confidence": 0.98
         },
         "legal_representative": {
           "value": "林美玲 (Lin Meiling)",
-          "evidence": "法定代表人 林美玲 (Lin Meiling)",
+          "evidence": "林美玲 (Lin Meiling)",
           "page": 1,
           "confidence": 0.98
         },
         "company_type": {
           "value": "有限责任公司（自然人投资或控股）",
-          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "evidence": "有限责任公司（自然人投资或控股）",
           "page": 1,
           "confidence": 0.98
         },
         "registered_capital": {
           "value": "人民币 1,000 万元 (RMB 10,000,000)",
-          "evidence": "注册资本 人民币 1,000 万元 (RMB 10,000,000)",
+          "evidence": "人民币 1,000 万元 (RMB 10,000,000)",
           "page": 1,
           "confidence": 0.98
         },
         "establishment_date": {
           "value": "2012-07-02",
-          "evidence": "成立日期 2012-07-02",
+          "evidence": "2012-07-02",
           "page": 1,
           "confidence": 0.98
         },
         "business_term": {
           "value": "2012-07-02 至 长期 / to long-term",
-          "evidence": "营业期限 2012-07-02 至 长期 / to long-term",
+          "evidence": "2012-07-02 至 长期 / to long-term",
           "page": 1,
           "confidence": 0.98
         },
         "business_scope": {
           "value": "纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
-          "evidence": "经营范围 纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
           "page": 1,
           "confidence": 0.98
         },
         "address": {
           "value": "广东省广州市白云区石井街道恒远路18号",
-          "evidence": "住所 广东省广州市白云区石井街道恒远路18号",
+          "evidence": "广东省广州市白云区石井街道恒远路18号",
           "page": 1,
           "confidence": 0.98
         },
         "registration_authority": {
           "value": "广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
-          "evidence": "登记机关 Registration authority: 广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
+          "evidence": "广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
           "page": 1,
           "confidence": 0.98
         },
         "issue_date": {
           "value": "2012-06-30",
-          "evidence": "发照日期 Issue date: 2012-06-30",
+          "evidence": "2012-06-30",
           "page": 1,
           "confidence": 0.98
         },
@@ -994,7 +994,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both lists describe the same two goods with identical specifications; the invoice includes Chinese translations which are absent in the packing list, but the core descriptions match.",
+        "reason": "The goods descriptions are identical in substance; the invoice includes Chinese translations which are absent in the packing list, but the core specifications match line by line.",
         "evidence_a": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 纯棉印花布 150cm 120克 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2 涤纶染色面料 150cm 95克",
         "evidence_b": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2"
       }
@@ -1021,20 +1021,20 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16607,
-        "tokens_out": 3581,
-        "latency_ms": 0,
-        "cost_usd": 0
+        "tokens_in": 16545,
+        "tokens_out": 3447,
+        "latency_ms": 54821,
+        "cost_usd": 0.0091
       },
       {
         "stage": "extract.packing_list",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 13420,
-        "tokens_out": 2609,
-        "latency_ms": 0,
-        "cost_usd": 0
+        "tokens_in": 6139,
+        "tokens_out": 1511,
+        "latency_ms": 23417,
+        "cost_usd": 0.003655
       },
       {
         "stage": "extract.business_licence",
@@ -1042,9 +1042,9 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4323,
-        "tokens_out": 774,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "tokens_out": 731,
+        "latency_ms": 13243,
+        "cost_usd": 0.002174
       },
       {
         "stage": "consistency.listing",
@@ -1053,8 +1053,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 884,
         "tokens_out": 217,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 3385,
+        "cost_usd": 0.000526
       },
       {
         "stage": "halal",
@@ -1063,8 +1063,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1193,
         "tokens_out": 75,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 1041,
+        "cost_usd": 0.000224
       },
       {
         "stage": "price",
@@ -1073,8 +1073,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1935,
         "tokens_out": 118,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 1548,
+        "cost_usd": 0.000361
       },
       {
         "stage": "explain",
@@ -1082,43 +1082,36 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
         "tokens_in": 2238,
-        "tokens_out": 64,
-        "latency_ms": 0,
-        "cost_usd": 0
+        "tokens_out": 75,
+        "latency_ms": 732,
+        "cost_usd": 0.000381
       }
     ],
     "adapter_modes": {
-      "llm": "mock",
+      "llm": "live",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
       "reflector": "skipped",
-      "fx": "mock"
+      "fx": "live"
     },
     "fixtures_used": [
-      "llm/37caf42effe2f065862d0e0a71a23efbe0f7ea39c3e4369236918078085e8b73.json",
-      "llm/c785d51a5753d86bd17d56512a30a5289a303649f64c3569bd5bb9ab7a7a303c.json",
-      "llm/dc0e9e6dbfb4f2d3969dd4eec651e53d209c327d4ef4e01d8b9b54c274a053fa.json",
-      "llm/e7f8bf2b3fd6fd54b96ddd6f0460c7dd78728f7ba34970b32141bc82d262247e.json",
-      "llm/ebd61143066b8e7293edf9feddcd82ad6b491309234c6e3e22c22d7a676c4a32.json",
-      "llm/fdd2327a6a790c50ddbb8730a620db8241cadf55170d202e539f707c455a5eda.json",
-      "llm/ffa3ceb97600eb240b6d9b5519a8d1a2a4ab2350c392edd3ce7c01315817516e.json",
       "opensanctions/<fallback>",
       "registry/91440101MA59TQ8W23.json"
     ],
     "timings_ms": {
-      "intake": 555,
-      "extract": 1,
-      "validate": 0,
-      "stages": 4,
+      "intake": 697,
+      "extract": 54821,
+      "validate": 1,
+      "stages": 3386,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 560
+      "explain": 732,
+      "total": 59637
     },
-    "cost_usd": 0,
+    "cost_usd": 0.016421,
     "injection_attempts": [],
-    "explanation": "Your deal is approved for listing because all required checks passed. The invoice, packing list, and business licence are consistent and valid. No action is needed from your side."
+    "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC, arithmetic, dates, quantities, formats, and all consistency and halal checks were valid. No action is needed from your side."
   },
-  "report_hash": "aa306322830b9ec69729781ac2af56756a0a57c313a05b654fc1366e21aed9b4",
-  "signature": "14e064e97a3cad4188778697b6de51942a815e2c8a9b987646b5e65288d554be9eec9ebddb756934cde16d4823ece1df1112f97a70c271292237af49ee52780c"
+  "report_hash": "f87465498bee474dac5afcc020dd468aa13c5644f57410d91a0cabad7a6c8f43",
+  "signature": "b01e542f12e1d97a0782c9fe3b7682b788dc0724926d46fcef2720914cfe0959c409548f3015fe4303cbe67be9119eb0b8fbcef3cd59a685bde55a3e3164ab0d"
 }

@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:29:17.339Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-09:listing:23a4758b7e22ef3cf7f14e796c45a25f6a0e4bdbad06cfeffbddec9e4d57d63e:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,price.water_pumps_1hp=pass,price.pvc_pipes=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=fail,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal was rejected because the supplier is on a sanctions list. All other checks passed, including document consistency, pricing, and company registration.",
+      "fixes": [
+        "A sanctioned party cannot take part in a deal. The account goes under review."
+      ],
+      "category": "sanctions"
+    },
+    "tokensIn": 2210,
+    "tokensOut": 76,
+    "repaired": false
+  }
+}

@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:36:06.434Z",
+  "recorded_at": "2026-10-25T16:33:55.527Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -14,13 +14,13 @@
       "type": "invoice",
       "invoice_number": {
         "value": "HY-2026-0917",
-        "evidence": "Invoice No. HY-2026-0917",
+        "evidence": "HY-2026-0917",
         "page": 1,
         "confidence": 0.95
       },
       "invoice_date": {
         "value": "2026-09-17",
-        "evidence": "Invoice date 2026-09-17",
+        "evidence": "2026-09-17",
         "page": 1,
         "confidence": 0.95
       },
@@ -70,10 +70,10 @@
           "confidence": 0.95
         },
         "name_zh": {
-          "value": "Qafila Trade, deal 2",
-          "evidence": "Qafila Trade, deal 2",
-          "page": 1,
-          "confidence": 0.95
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
         },
         "uscc": {
           "value": null,
@@ -102,10 +102,10 @@
           "confidence": 0.95
         },
         "name_zh": {
-          "value": "TO ORDER OF QAFILA TRADE, DEAL 2",
-          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 2",
-          "page": 1,
-          "confidence": 0.95
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
         },
         "uscc": {
           "value": null,
@@ -146,7 +146,7 @@
       },
       "total": {
         "value": 318000,
-        "evidence": "TOTAL FOB CNNSA CNY 318,000.00",
+        "evidence": "CNY 318,000.00",
         "page": 1,
         "confidence": 0.95
       },
@@ -242,26 +242,26 @@
       ],
       "port_of_loading": {
         "value": "Guangzhou (Nansha), China (CNNSA)",
-        "evidence": "Port of loading Guangzhou (Nansha), China (CNNSA)",
+        "evidence": "Guangzhou (Nansha), China (CNNSA)",
         "page": 1,
         "confidence": 0.95
       },
       "port_of_discharge": {
         "value": "Mombasa, Kenya (KEMBA)",
-        "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
         "page": 1,
         "confidence": 0.95
       },
       "payment_terms": {
         "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
-        "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
         "page": 1,
         "confidence": 0.95
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 16607,
-    "tokensOut": 3581,
+    "tokensIn": 16545,
+    "tokensOut": 3447,
     "repaired": true
   }
 }

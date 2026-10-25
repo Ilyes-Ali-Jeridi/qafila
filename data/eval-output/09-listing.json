@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-09",
-    "created_at": "2026-10-25T16:06:04.615Z",
+    "created_at": "2026-10-25T16:29:13.912Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), mock, one repair round).",
+        "detail": "invoice read (1 page(s), live, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock).",
+        "detail": "packing list read (1 page(s), live).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), mock).",
+        "detail": "business licence read (1 page(s), live).",
         "weight": 0
       },
       {
@@ -166,7 +166,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance; the invoice includes Chinese translations which are not present in the packing list, but the English descriptions match exactly.",
         "weight": 25,
         "evidence": {
           "a": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body 离心水泵 1HP 220V 铸铁 | 2. PVC pressure pipes, 2 inch, 4 m lengths PVC压力管 2寸 4米",
@@ -360,13 +360,13 @@
         "type": "invoice",
         "invoice_number": {
           "value": "BC-2026-0930",
-          "evidence": "Invoice No. BC-2026-0930",
+          "evidence": "BC-2026-0930",
           "page": 1,
           "confidence": 0.95
         },
         "invoice_date": {
           "value": "2026-09-30",
-          "evidence": "Invoice date 2026-09-30",
+          "evidence": "2026-09-30",
           "page": 1,
           "confidence": 0.95
         },
@@ -1012,7 +1012,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "reason": "The goods descriptions are identical in substance; the invoice includes Chinese translations which are not present in the packing list, but the English descriptions match exactly.",
         "evidence_a": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body 离心水泵 1HP 220V 铸铁 | 2. PVC pressure pipes, 2 inch, 4 m lengths PVC压力管 2寸 4米",
         "evidence_b": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body | 2. PVC pressure pipes, 2 inch, 4 m lengths"
       }
@@ -1039,10 +1039,10 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16315,
-        "tokens_out": 3305,
-        "latency_ms": 0,
-        "cost_usd": 0
+        "tokens_in": 16431,
+        "tokens_out": 3419,
+        "latency_ms": 58635,
+        "cost_usd": 0.009032
       },
       {
         "stage": "extract.packing_list",
@@ -1051,8 +1051,8 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6135,
         "tokens_out": 1519,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 24476,
+        "cost_usd": 0.003663
       },
       {
         "stage": "extract.business_licence",
@@ -1061,8 +1061,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4318,
         "tokens_out": 768,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 13690,
+        "cost_usd": 0.002217
       },
       {
         "stage": "consistency.listing",
@@ -1070,9 +1070,9 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 852,
-        "tokens_out": 176,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "tokens_out": 184,
+        "latency_ms": 3619,
+        "cost_usd": 0.000476
       },
       {
         "stage": "halal",
@@ -1081,8 +1081,8 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1174,
         "tokens_out": 92,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 1971,
+        "cost_usd": 0.000231
       },
       {
         "stage": "price",
@@ -1091,22 +1091,22 @@
         "prompt_version": "price.v1",
         "tokens_in": 1911,
         "tokens_out": 126,
-        "latency_ms": 1,
-        "cost_usd": 0
+        "latency_ms": 1832,
+        "cost_usd": 0.000362
       },
       {
         "stage": "explain",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 0,
-        "tokens_out": 0,
-        "latency_ms": 0,
-        "cost_usd": 0
+        "tokens_in": 2210,
+        "tokens_out": 76,
+        "latency_ms": 3427,
+        "cost_usd": 0.000377
       }
     ],
     "adapter_modes": {
-      "llm": "mock",
+      "llm": "live",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1114,28 +1114,22 @@
       "fx": "skipped"
     },
     "fixtures_used": [
-      "llm/18af1af6fde371f0992acbac7b8b0b154e494d2462757f86f371d1f0796e472e.json",
-      "llm/1a09de2c25e0a99ac3bf21a2e185f7526764f6f48e875d9e2889d0322889406c.json",
-      "llm/1ae15a29d8368233d95fb1027904f7883357619b28462cbc2e5df697e5d8cb2f.json",
-      "llm/4e6d5f9a504d43ba76554c749d25d72d4280fd30dc2aae7a5cf4af51c6459551.json",
-      "llm/956e89299f3b9d7da88d79d3617e7b6acb788fac83b9d6b16749200435051bd8.json",
-      "llm/b83fe486032d5657d0940c996b286939fe8bf3221342d19867959e1f13ee4434.json",
       "opensanctions/tianjin-beichen-heavy-industry-co-ltd.json",
       "registry/91120113MA06R4F7KT.json"
     ],
     "timings_ms": {
-      "intake": 833,
-      "extract": 1,
-      "validate": 0,
-      "stages": 3,
+      "intake": 612,
+      "extract": 58635,
+      "validate": 1,
+      "stages": 3620,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 837
+      "explain": 3429,
+      "total": 66297
     },
-    "cost_usd": 0,
+    "cost_usd": 0.016358,
     "injection_attempts": [],
-    "explanation": "Your deal was rejected: OpenSanctions (mock fixture): company \"Tianjin Beichen Heavy Industry Co., Ltd.\" matches \"Beichen Heavy Industry Co Ltd\" at 0.96 (demo_fictional_sanctions).\n\nWhat to fix:\n- A sanctioned party cannot take part in a deal. The account goes under review.\n\nCategory: sanctions"
+    "explanation": "Your deal was rejected because the supplier is on a sanctions list. All other checks passed, including document consistency, pricing, and company registration.\n\nWhat to fix:\n- A sanctioned party cannot take part in a deal. The account goes under review.\n\nCategory: sanctions"
   },
-  "report_hash": "04ad7de3e0336c6c7984fcee4d11b0aee4de1bf6468f9b53627bee5d3d23f5c2",
-  "signature": "9b37046c18091f1602e5a03aafa011114e8611d4f0da70767893432f6469ac6d0bb095e1fa7bd9fee96b31670a0ed50982fcd826ac58b9d3e5f636e9da999e07"
+  "report_hash": "485250dcfb72e6bba101bb4f8f965e36fc9e81119531aef759579fe49f29344b",
+  "signature": "e998c8bb151b588dfbf9100b8854b96acc4b2a68b766445b6bee3e68e006ee5db35e47df32bef408c4f15699c99b73e9c7de9efc4e2009315e1e3db146b7b90e"
 }

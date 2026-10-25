@@ -1,0 +1,11 @@
+{
+  "adapter": "reflector",
+  "recorded_at": "2026-10-25T16:35:20.224Z",
+  "mode": "live",
+  "input": {
+    "feed": "CCSSOHTBL3LEWUCBBEB5NJFC2OKFRC74OWEIJIZLRJBGAAU4VMU5NV4W",
+    "symbol": "KES",
+    "hour": "2026-10-25T16"
+  },
+  "response": null
+}

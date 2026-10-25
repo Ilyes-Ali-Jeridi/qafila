@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:37:04.538Z",
+  "recorded_at": "2026-10-25T16:34:53.142Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -16,50 +16,50 @@
         "value": "HC-2026-0805",
         "evidence": "Invoice No. HC-2026-0805",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "invoice_date": {
         "value": "2026-09-05",
         "evidence": "Invoice date 2026-09-05",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "invoice_kind": {
         "value": "commercial",
         "evidence": "COMMERCIAL INVOICE",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "seller": {
         "name_en": {
           "value": "Ningbo Haichuan Plastics Co., Ltd.",
           "evidence": "Ningbo Haichuan Plastics Co., Ltd.",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": "宁波市海川塑业有限公司",
           "evidence": "宁波市海川塑业有限公司",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "uscc": {
           "value": "91330200MA2CH7N6M7",
           "evidence": "USCC 91330200MA2CH7N6M7",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "address": {
           "value": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
           "evidence": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "country": {
           "value": "CN",
           "evidence": "China",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       },
       "buyer": {
@@ -67,13 +67,13 @@
           "value": "Qafila Trade, deal 3",
           "evidence": "Qafila Trade, deal 3",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": "Qafila Trade, deal 3",
           "evidence": "Qafila Trade, deal 3",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "uscc": {
           "value": null,
@@ -85,13 +85,13 @@
           "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "country": {
           "value": "PT",
           "evidence": "Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       },
       "consignee": {
@@ -99,13 +99,13 @@
           "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
           "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
           "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "uscc": {
           "value": null,
@@ -130,25 +130,25 @@
         "value": "Adewale Trading Ltd",
         "evidence": "Adewale Trading Ltd",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "incoterms": {
         "value": "FOB Ningbo (CNNGB), Incoterms 2020",
         "evidence": "FOB Ningbo (CNNGB), Incoterms 2020",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "currency": {
         "value": "USD",
         "evidence": "Currency USD",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total": {
         "value": 28200,
         "evidence": "TOTAL FOB CNNGB USD 28,200.00",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "line_items": [
         {
@@ -156,43 +156,43 @@
             "value": "Stainless steel cookware sets, 8 pieces, induction base",
             "evidence": "Stainless steel cookware sets, 8 pieces, induction base",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "description_zh": {
             "value": "不锈钢锅具八件套",
             "evidence": "不锈钢锅具八件套",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "hs_code": {
             "value": "732393",
             "evidence": "732393",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 1200,
             "evidence": "1,200 sets",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "unit": {
             "value": "sets",
             "evidence": "sets",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "unit_price": {
             "value": 18,
             "evidence": "18.00",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "line_total": {
             "value": 21600,
             "evidence": "21,600.00",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         {
@@ -200,43 +200,43 @@
             "value": "Plastic food storage containers, PP, assorted sizes",
             "evidence": "Plastic food storage containers, PP, assorted sizes",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "description_zh": {
             "value": "PP塑料保鲜盒 多规格",
             "evidence": "PP塑料保鲜盒 多规格",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "hs_code": {
             "value": "392410",
             "evidence": "392410",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 3000,
             "evidence": "3,000 kg",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "unit": {
             "value": "kg",
             "evidence": "kg",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "unit_price": {
             "value": 2.2,
             "evidence": "2.20",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "line_total": {
             "value": 6600,
             "evidence": "6,600.00",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         }
       ],
@@ -244,24 +244,24 @@
         "value": "Ningbo, China (CNNGB)",
         "evidence": "Port of loading Ningbo, China (CNNGB)",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "port_of_discharge": {
         "value": "Lagos (Apapa), Nigeria (NGAPP)",
         "evidence": "Port of discharge Lagos (Apapa), Nigeria (NGAPP)",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "payment_terms": {
         "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
         "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 16650,
-    "tokensOut": 3693,
+    "tokensIn": 16282,
+    "tokensOut": 3249,
     "repaired": true
   }
 }

@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:35:06.556Z",
+  "recorded_at": "2026-10-25T16:32:55.721Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -70,10 +70,10 @@
           "confidence": 0.95
         },
         "name_zh": {
-          "value": null,
-          "evidence": null,
-          "page": null,
-          "confidence": 0
+          "value": "Qafila Trade, deal 1",
+          "evidence": "Qafila Trade, deal 1",
+          "page": 1,
+          "confidence": 0.95
         },
         "uscc": {
           "value": null,
@@ -102,10 +102,10 @@
           "confidence": 0.95
         },
         "name_zh": {
-          "value": null,
-          "evidence": null,
-          "page": null,
-          "confidence": 0
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 1",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 1",
+          "page": 1,
+          "confidence": 0.95
         },
         "uscc": {
           "value": null,
@@ -304,8 +304,8 @@
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 16755,
-    "tokensOut": 3733,
+    "tokensIn": 16629,
+    "tokensOut": 3653,
     "repaired": true
   }
 }

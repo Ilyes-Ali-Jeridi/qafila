@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:36:09.612Z",
+  "recorded_at": "2026-10-25T16:33:58.913Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -15,7 +15,7 @@
         {
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
-          "reason": "Both lists describe the same two goods with identical specifications; the invoice includes Chinese translations which are absent in the packing list, but the core descriptions match.",
+          "reason": "The goods descriptions are identical in substance; the invoice includes Chinese translations which are absent in the packing list, but the core specifications match line by line.",
           "evidence_a": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 纯棉印花布 150cm 120克 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2 涤纶染色面料 150cm 95克",
           "evidence_b": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2"
         }

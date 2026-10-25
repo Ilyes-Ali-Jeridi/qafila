@@ -11,21 +11,30 @@ import { enqueue } from '../db/repo.js';
 import { logger } from '../lib/logger.js';
 import type { Services } from '../services.js';
 import { ONCHAIN_STATUS } from '../services/deals.js';
+import { withTimeout } from '../lib/retry.js';
 
 const log = logger.child({ module: 'indexer' });
 
 const NOTIFY: Record<string, string> = { deal_listed: 'deal_listed', funded: 'funded', deposit_paid: 'deposit_paid', shipment_confirmed: 'shipment_confirmed', murabaha_accepted: 'sale_signed', repaid: 'repaid', late_fee_to_charity: 'late_fee_charity', due_extended: 'due_extended', refunded: 'security_refunded', security_used: 'security_used' };
 const AGENT_TRIGGERS = new Set(['funded', 'late_fee_to_charity', 'repaid', 'refund_owed', 'closed', 'cancelled', 'aborted', 'liquidated']);
 
+export const cursorKey = (svc: Services): string => `${svc.chain.contractId ?? 'mock'}:${svc.chain.mode}`;
+
 export async function indexOnce(svc: Services): Promise<{ events: number; cursor: string | null; lagSecs: number | null }> {
-  const contractId = svc.chain.contractId ?? 'mock';
+  const contractId = cursorKey(svc);
   const row = await svc.db.query.indexerCursor.findFirst({ where: eq(indexerCursor.contractId, contractId) });
   const start = process.env['INDEXER_START_LEDGER'] ? Number(process.env['INDEXER_START_LEDGER']) : null;
   let res;
   try {
-    res = await svc.chain.getEvents(row?.cursor ?? null, start);
+    res = await withTimeout(() => svc.chain.getEvents(row?.cursor ?? null, start), 25_000);
   } catch (e) {
-    log.warn({ err: (e as Error).message }, 'getEvents failed');
+    const msg = (e as Error).message;
+    log.warn({ err: msg }, 'getEvents failed');
+    if (row && /cursor|startLedger|ledger/i.test(msg)) {
+      // A stale or foreign cursor (for example from a mock run): start again from the recent window.
+      await svc.db.delete(indexerCursor).where(eq(indexerCursor.contractId, contractId));
+      log.warn({ cursor: row.cursor }, 'indexer cursor reset');
+    }
     return { events: 0, cursor: row?.cursor ?? null, lagSecs: null };
   }
   let stored = 0;
@@ -62,6 +71,6 @@ export async function indexOnce(svc: Services): Promise<{ events: number; cursor
 }
 
 export async function indexerLagSecs(svc: Services): Promise<number | null> {
-  const row = await svc.db.query.indexerCursor.findFirst({ where: eq(indexerCursor.contractId, svc.chain.contractId ?? 'mock') });
+  const row = await svc.db.query.indexerCursor.findFirst({ where: eq(indexerCursor.contractId, cursorKey(svc)) });
   return row ? Math.round((Date.now() - row.updatedAt.getTime()) / 1000) : null;
 }
