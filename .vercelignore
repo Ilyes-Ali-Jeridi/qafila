@@ -1,0 +1,15 @@
+.worktrees
+.git
+node_modules
+contracts/target
+**/node_modules
+**/.next
+**/dist
+**/coverage
+**/playwright-report
+**/test-results
+data/packets
+data/fixtures
+.shared
+.env*
+!.env.example
