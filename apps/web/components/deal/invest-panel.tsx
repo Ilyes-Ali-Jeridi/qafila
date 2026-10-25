@@ -23,6 +23,7 @@ import { calls } from '@/lib/stellar/calls';
 import { useWallet } from '@/lib/wallet/provider';
 import { humanDuration, nowSecs } from '@/lib/utils';
 import { FundingProgress } from './funding-progress';
+import { ShareTrustline, useShareTrustline } from './share-trustline';
 
 export function InvestPanel({ deal }: { deal: DealDetail }) {
   const w = useWallet();
@@ -51,6 +52,7 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
   }, [raw, left, token.code]);
 
   const profit = parsed.amount ? expectedProfit(parsed.amount, BigInt(deal.markup), BigInt(deal.platformFee), cost) : 0n;
+  const trust = useShareTrustline(deal);
   const invested = portfolio.data ? BigInt(portfolio.data.totals.invested) : null;
   const concentration = parsed.amount && invested !== null && invested + parsed.amount > 0n ? Number(((parsed.amount + BigInt(portfolio.data?.positions.find((p) => p.dealId === deal.id)?.shares ?? '0')) * 100n) / (invested + parsed.amount)) : 0;
 
@@ -194,9 +196,10 @@ export function InvestPanel({ deal }: { deal: DealDetail }) {
               </Callout>
             ) : null}
 
+            <ShareTrustline deal={deal} />
             {error ? <InlineError>{error}</InlineError> : null}
             {!w.contractReady ? <InlineError>The Qafila contract is not deployed on this network yet. Investing opens when it is.</InlineError> : null}
-            <Button size="lg" className="w-full" onClick={confirm} loading={w.busy} disabled={!parsed.amount || !w.contractReady || deal.onchainId === null} icon={w.kind === 'passkey' ? <KeyRound className="size-4" /> : <Check className="size-4" />} data-testid="invest-confirm">
+            <Button size="lg" className="w-full" onClick={confirm} loading={w.busy} disabled={!parsed.amount || !w.contractReady || deal.onchainId === null || (trust.needed && !trust.has)} icon={w.kind === 'passkey' ? <KeyRound className="size-4" /> : <Check className="size-4" />} data-testid="invest-confirm">
               {w.kind === 'passkey' ? 'Confirm with my passkey' : 'Confirm in my wallet'}
             </Button>
             <p className="text-center text-xs text-ink-muted">Fees are paid for you. Nothing moves until you confirm.</p>

@@ -571,6 +571,7 @@ function opsDetail(d: MockDeal) {
     recoveries: d.recoveries.map((r) => ({ ...r, amount: s(r.amount) })),
     recoveryNotes: d.recoveryNotes,
     abort: d.abort,
+    blReleasedAt: d.blReleasedAt,
   };
 }
 

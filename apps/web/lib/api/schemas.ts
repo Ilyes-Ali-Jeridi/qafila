@@ -262,6 +262,7 @@ export const OpsDealDetailSchema = ImporterDealDetailSchema.extend({
   recoveries: z.array(RecoverySchema),
   recoveryNotes: z.array(z.object({ note: z.string(), at: z.string(), by: z.string() })),
   abort: z.object({ reason: z.string(), importerAtFault: z.boolean(), note: z.string(), at: z.string(), txHash: TxHash.nullable() }).nullable(),
+  blReleasedAt: z.string().nullable(),
 });
 export type OpsDealDetail = z.infer<typeof OpsDealDetailSchema>;
 
