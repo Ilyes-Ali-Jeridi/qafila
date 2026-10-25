@@ -11,8 +11,8 @@ BRANCH=$1
 cd /opt/qafila/repo
 git fetch -q origin "$BRANCH" && git checkout -q "$BRANCH" && git reset -q --hard "origin/$BRANCH"
 CI=1 pnpm install --frozen-lockfile --reporter=silent
-set -a; . /opt/qafila/.env; set +a
-if [ -n "${DATABASE_URL:-}" ]; then pnpm --filter ./services/api db:migrate; fi
+DATABASE_URL=$(grep -E "^DATABASE_URL=" /opt/qafila/.env | cut -d= -f2- | tr -d '"')
+if [ -n "${DATABASE_URL:-}" ]; then DATABASE_URL="$DATABASE_URL" pnpm --filter ./services/api db:migrate; fi
 sudo cp deploy/qafila-api.service /etc/systemd/system/qafila-api.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now qafila-api
