@@ -1,0 +1,25 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T18:48:03.327Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:d8476f64-38e2-4acf-810d-57377427869e:listing:f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa:extraction.business_licence=pass,extraction.packing_list=pass,extraction.invoice=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=review,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.invoice_reference=pass,consistency.form_supplier_en=review,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,halal.line_3=pass,price.phone_cases=pass,price.tempered_glass_protectors=pass,price.usb_cables=pass,registry.status=review,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal needs a review by our team because the invoice buyer references the wrong deal and the supplier name on the deal form does not match the licence. All other checks passed, including document formats, arithmetic, and sanctions screening.",
+      "fixes": [
+        "On the invoice, update the buyer field to reference deal 8.",
+        "On the deal form, enter the supplier name exactly as it appears on the business licence."
+      ],
+      "category": "document_integrity"
+    },
+    "tokensIn": 2320,
+    "tokensOut": 112,
+    "repaired": false
+  }
+}

@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T16:43:49.312Z",
+    "created_at": "2026-10-25T18:52:15.037Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1080,7 +1080,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1892,
         "tokens_out": 121,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1090,7 +1090,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2166,
         "tokens_out": 69,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1114,18 +1114,18 @@
       "registry/91330200MA2CH7N6M7.json"
     ],
     "timings_ms": {
-      "intake": 659,
-      "extract": 2,
+      "intake": 623,
+      "extract": 1,
       "validate": 0,
-      "stages": 1,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 663
+      "explain": 0,
+      "total": 626
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and consistency between documents are all valid. No action is needed from your side."
   },
-  "report_hash": "c598d2c5f1916072b701c381bc0ec9d6a5262225cb42668de14c19e5f67322fa",
-  "signature": "6d6504cee31b396e842ffe59207b166edd844ff9f76f1319094c9803f4b71bda03b2c3ab2af367247bcaca5350d16adac8433ea5abc8516255802b7c32853105"
+  "report_hash": "824cc9f704b136b99a702bcf2e86c6d12136b87aff8eb1158658e367be4f6826",
+  "signature": "d077867cfa69cd3ec8bf72fb0feea381da6a77f28e8d3d9397908bcf319290331a91894cbb3bfb11b525120404c416821b268f8d320dd34ec34815e6dbe11c0f"
 }

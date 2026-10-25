@@ -81,7 +81,7 @@ test('importer: new deal, documents, screening, promise with the security deposi
   await expect(page.getByTestId('onb-done')).toBeVisible({ timeout: 60_000 });
 
   await page.goto('/importer/new');
-  await page.getByTestId('nd-supplier').fill('Shenzhen E2E Electronics Co., Ltd.');
+  await page.getByTestId('nd-supplier').fill(MOCK ? 'Shenzhen E2E Electronics Co., Ltd.' : 'Shenzhen Lanwan Electronics Co., Ltd.');
   await page.getByTestId('nd-goods').fill('1,000 solar lanterns');
   await page.getByTestId('nd-submit').click();
   await expect(page).toHaveURL(/\/importer\/[0-9a-f-]{36}$/, { timeout: 30_000 });

@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T16:43:54.799Z",
+    "created_at": "2026-10-25T18:52:19.157Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1178,7 +1178,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T16:43:54.799Z"
+      "lastPolledAt": "2026-10-25T18:52:19.157Z"
     },
     "price": [],
     "halal": [],
@@ -1331,18 +1331,18 @@
       "shipsgo/COSU8123403.json"
     ],
     "timings_ms": {
-      "intake": 162,
+      "intake": 156,
       "extract": 0,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 163
+      "total": 157
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed, including document consistency, sanctions, and shipment tracking status. Please correct the vessel name on the bill of lading to match the tracking record.\n\nWhat to fix:\n- Correct the vessel name on the bill of lading to match the carrier tracking record.\n\nCategory: shipment mismatch"
   },
-  "report_hash": "4fb053441f39aff5460cff9e2d8a3efe10dfc94a10445b77e1a26ccfe8c3e42d",
-  "signature": "000f1950dd538dded7b89067e40351154706eb8ee3e5626b4cdf3cc530ffcc39e95fce817d68046b036cf2e22c68d81a1768aaf47157d1bed7d01779ab62090d"
+  "report_hash": "48d269ba55e328265454f2f4207a3b4ecef507ca4bcfbb66b491e4d30283d3a4",
+  "signature": "aedb5654717074372d8dc4b5fec4a5c7cf31890f6342879bd576b08abef3b0d5a2215d029325a54379f8ac0bc62bc981bdabc2ad0be5e3734243831626b98901"
 }

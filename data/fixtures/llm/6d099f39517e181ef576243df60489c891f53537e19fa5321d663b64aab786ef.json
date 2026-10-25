@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:32:09.148Z",
+  "recorded_at": "2026-10-25T18:47:14.619Z",
   "mode": "live",
   "input": {
     "stage": "extract.business_licence",
@@ -86,7 +86,7 @@
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 4332,
+    "tokensIn": 4316,
     "tokensOut": 713,
     "repaired": false
   }

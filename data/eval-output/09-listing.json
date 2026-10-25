@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-09",
-    "created_at": "2026-10-25T16:43:54.029Z",
+    "created_at": "2026-10-25T18:52:18.465Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -1041,7 +1041,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16411,
         "tokens_out": 3397,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1125,18 +1125,18 @@
       "registry/91120113MA06R4F7KT.json"
     ],
     "timings_ms": {
-      "intake": 624,
+      "intake": 546,
       "extract": 1,
-      "validate": 1,
+      "validate": 0,
       "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 628
+      "total": 549
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the supplier is on a sanctions list. All other checks passed, including document consistency, pricing, and company registration.\n\nWhat to fix:\n- A sanctioned party cannot take part in a deal. The account goes under review.\n\nCategory: sanctions"
   },
-  "report_hash": "fce31f7fa60e64d2afcc2e14132bc457622e16e0271a8934a87c3669f96906dc",
-  "signature": "6863fd69a78ce7d132d7167e74922a71bbcc807cbbe9917b733847c35734889a9b47c450e2fe01bb9377d531d1ed1d80d56e979716ab50f83a571802e86b7608"
+  "report_hash": "e78fa98cdbd484388495e0f638212e4685160d32b0b267c9d0fcad11e1019c7b",
+  "signature": "f1d972be04de8e4aad57f459477e7cbe030da8a8fb1545eeda15ef19cb550c3cfbd45c3eed30927516f536089342c4d50134407409d54ea85dc1e595978e5c0a"
 }

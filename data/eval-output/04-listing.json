@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-04",
-    "created_at": "2026-10-25T16:43:50.194Z",
+    "created_at": "2026-10-25T18:52:15.740Z",
     "decision": "reject",
     "risk_score": 0,
     "checks": [
@@ -1409,7 +1409,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6092,
         "tokens_out": 1301,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1483,18 +1483,18 @@
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 634,
+      "intake": 538,
       "extract": 1,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 637
+      "total": 541
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the container number is invalid and some invoice details are unclear. The USCC code and dates passed. Please correct the container number and upload a clearer invoice with all line items and quantities matching.\n\nWhat to fix:\n- Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.\n- Upload a clearer invoice showing every line amount and the total.\n- The packed quantities must equal the invoiced quantities line by line.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n\nCategory: document integrity"
   },
-  "report_hash": "f6bef4404b503da8f85addfbd0b1c2b699090b8ffd45bc9a976bf7faf839ccfa",
-  "signature": "2488b14777f0bcc9e4f175b777dc2b65471d6f0fc6457b6102004aa779b058c4344b643233d2b6a5d7792071219a55fcadd16a9aee98828e24e79529b267d907"
+  "report_hash": "2a5bdb70e203004c1ca65397c2f143827d1c2c4e84a79ff5e45680a4901404e4",
+  "signature": "6dc1b67314c9cf9e31988e21f366ce14a3208c7cadde02c71f0e3afdad7b5e4ffe73c03d1f660b91f332a3d2b32dce93d2db7d409b45ea5fca85ec728736e409"
 }

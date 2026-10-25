@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-01",
-    "created_at": "2026-10-25T16:43:48.022Z",
+    "created_at": "2026-10-25T18:52:13.849Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -18,7 +18,7 @@
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock).",
+        "detail": "packing list read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
@@ -178,13 +178,13 @@
         "name": "halal.line_1",
         "status": "pass",
         "severity": "critical",
-        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is electronics and phone accessories: permitted.",
+        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is textiles, clothing and footwear: permitted.",
         "weight": 40,
         "evidence": {
           "line": "1. TPU protective cases for smartphones, assorted models",
-          "category": "electronics",
+          "category": "textiles",
           "verdict": "permitted",
-          "reason": "TPU protective cases for smartphones are accessories for electronic devices."
+          "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
         }
       },
       {
@@ -197,7 +197,7 @@
           "line": "2. Tempered glass screen protectors 9H, retail packed",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "Tempered glass screen protectors are accessories for electronic devices."
+          "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
         }
       },
       {
@@ -210,7 +210,7 @@
           "line": "3. USB-C charging and data cables, 1 m, nylon braided",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "USB-C charging and data cables are accessories for electronic devices."
+          "reason": "USB-C charging and data cables are electronic accessories used for charging and data transfer."
         }
       },
       {
@@ -1076,21 +1076,21 @@
     "halal": [
       {
         "line": "1. TPU protective cases for smartphones, assorted models",
-        "category": "electronics",
+        "category": "textiles",
         "verdict": "permitted",
-        "reason": "TPU protective cases for smartphones are accessories for electronic devices."
+        "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
       },
       {
         "line": "2. Tempered glass screen protectors 9H, retail packed",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "Tempered glass screen protectors are accessories for electronic devices."
+        "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
       },
       {
         "line": "3. USB-C charging and data cables, 1 m, nylon braided",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "USB-C charging and data cables are accessories for electronic devices."
+        "reason": "USB-C charging and data cables are electronic accessories used for charging and data transfer."
       }
     ],
     "consistency": [
@@ -1159,9 +1159,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16629,
+        "tokens_in": 16597,
         "tokens_out": 3653,
-        "latency_ms": 3,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1169,9 +1169,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 6173,
-        "tokens_out": 1733,
-        "latency_ms": 4,
+        "tokens_in": 13704,
+        "tokens_out": 3343,
+        "latency_ms": 3,
         "cost_usd": 0
       },
       {
@@ -1179,7 +1179,7 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
-        "tokens_in": 4332,
+        "tokens_in": 4316,
         "tokens_out": 713,
         "latency_ms": 4,
         "cost_usd": 0
@@ -1191,7 +1191,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 876,
         "tokens_out": 107,
-        "latency_ms": 3,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1200,8 +1200,8 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1201,
-        "tokens_out": 108,
-        "latency_ms": 3,
+        "tokens_out": 125,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1210,8 +1210,8 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "price.v1",
         "tokens_in": 1960,
-        "tokens_out": 177,
-        "latency_ms": 2,
+        "tokens_out": 176,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1245,18 +1245,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 636,
-      "extract": 6,
+      "intake": 579,
+      "extract": 5,
       "validate": 2,
-      "stages": 5,
+      "stages": 3,
       "fingerprint": 1,
       "explain": 1,
-      "total": 651
+      "total": 591
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC code, invoice calculations, and consistency between documents were all valid. You can proceed with the deal."
   },
-  "report_hash": "e4701a33438d5a24b0a7f2d716a8b4b0402481bcb447a307456d39d1e9448e8e",
-  "signature": "ceb5002345250ff0228225c4255430adaa7a6cb4ef15aa7db68e26f56f4ef34d817b06ace6e94a43b7a35108ef04ee7a82078af02431364b9ccb8a1038e0920f"
+  "report_hash": "22796f834a692847f4d0c49f8057c2ec37abf84d9965b44187f860242af034aa",
+  "signature": "fc21fcd9622aa36c23916294b2b6fadf0f0cc8be506c13e2366f482ca1c464667161b65f152b090752f93cdd64a70672ba6c262119160c299918acf0a95c1006"
 }

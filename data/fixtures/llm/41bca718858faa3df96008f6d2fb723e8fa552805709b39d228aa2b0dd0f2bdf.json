@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:32:24.743Z",
+  "recorded_at": "2026-10-25T18:47:54.369Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",
@@ -244,8 +244,8 @@
       ],
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 6173,
-    "tokensOut": 1733,
-    "repaired": false
+    "tokensIn": 13704,
+    "tokensOut": 3343,
+    "repaired": true
   }
 }

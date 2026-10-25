@@ -90,6 +90,17 @@ export async function registryStage(lic: BusinessLicence | null, ctx: DealContex
         unavailableReason = null;
       } else if (g.status !== 'ok') unavailableReason = g.error ?? unavailableReason;
     }
+    if (!lookup) {
+      // Not in the live registry: the fictional demo suppliers have recorded fixtures, used here and labelled mock in the report.
+      const fx = readFixture(regCtx, 'registry', uscc);
+      if (fx) {
+        lookup = fx.raw as RegistryLookup;
+        source = 'fixture';
+        mode = 'mock';
+        fixtures.push(fx.file);
+        unavailableReason = null;
+      }
+    }
   }
 
   if (!lookup) {

@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:32:57.855Z",
+  "recorded_at": "2026-10-25T18:47:59.150Z",
   "mode": "live",
   "input": {
     "stage": "price",
@@ -17,26 +17,26 @@
           "category": "phone_cases",
           "unit_matches": true,
           "unit_price_per_reference_unit": 1.2,
-          "note": "TPU protective cases for smartphones match the phone_cases category."
+          "note": "TPU protective case for smartphones matches the phone_cases category."
         },
         {
           "line_index": 2,
           "category": "tempered_glass_protectors",
           "unit_matches": true,
           "unit_price_per_reference_unit": 0.45,
-          "note": "Tempered glass screen protectors 9H match the tempered_glass_protectors category."
+          "note": "Tempered glass screen protector 9H matches the tempered_glass_protectors category."
         },
         {
           "line_index": 3,
           "category": "usb_cables",
           "unit_matches": true,
           "unit_price_per_reference_unit": 0.85,
-          "note": "USB-C charging and data cables match the usb_cables category."
+          "note": "USB-C charging and data cable matches the usb_cables category."
         }
       ]
     },
     "tokensIn": 1960,
-    "tokensOut": 177,
+    "tokensOut": 176,
     "repaired": false
   }
 }

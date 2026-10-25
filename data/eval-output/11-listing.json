@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-11",
-    "created_at": "2026-10-25T16:43:55.399Z",
+    "created_at": "2026-10-25T18:52:19.702Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -1033,7 +1033,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16576,
         "tokens_out": 3419,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1093,7 +1093,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2194,
         "tokens_out": 102,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1117,13 +1117,13 @@
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 595,
+      "intake": 539,
       "extract": 1,
       "validate": 0,
-      "stages": 1,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 598
+      "explain": 0,
+      "total": 542
     },
     "cost_usd": 0,
     "injection_attempts": [
@@ -1131,6 +1131,6 @@
     ],
     "explanation": "Your deal was rejected because the invoice total does not match the sum of the line items. All other checks passed, including the container numbers, USCC code, dates, quantities, and goods descriptions. You should ask the supplier for a corrected invoice with accurate totals.\n\nWhat to fix:\n- Ask the supplier for a corrected invoice whose line amounts add up to the total.\n\nCategory: document integrity"
   },
-  "report_hash": "f37ea85e98440adba63989328ab3d1923e0f48f73cc17887e689824567f3bf71",
-  "signature": "a7ee4e89f65177ff1f0e0db5a42bb3c1938962af2b9c3bd4cd6f94496edc6b332c2cd71fb9f6a7192a74b2eee3136166b11f68773188af22a4693929d7759a0a"
+  "report_hash": "af026e89197f49be1c25d9cdd812f21cc42743c3a9382a426b34cb582a22e83d",
+  "signature": "ca4e0817b212bc40cf5a27f305b672bd6f02032a42903e8721d90bfdf31b4409ea762b8b75bcf8dba898e07d93f5401f1e4f23e389f2a56ce501efdcfd514d0c"
 }

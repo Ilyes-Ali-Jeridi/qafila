@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-02",
-    "created_at": "2026-10-25T16:43:48.646Z",
+    "created_at": "2026-10-25T18:52:14.408Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -1023,7 +1023,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16545,
         "tokens_out": 3447,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1033,7 +1033,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6139,
         "tokens_out": 1511,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1053,7 +1053,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 884,
         "tokens_out": 217,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1107,18 +1107,18 @@
       "registry/91440101MA59TQ8W23.json"
     ],
     "timings_ms": {
-      "intake": 612,
+      "intake": 539,
       "extract": 1,
       "validate": 0,
-      "stages": 3,
+      "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 616
+      "total": 542
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC, arithmetic, dates, quantities, formats, and all consistency and halal checks were valid. No action is needed from your side."
   },
-  "report_hash": "a19c15f78ed6603b1642bbcec3c3bea2bfd547d79bafce59a69b9666fe5b9a82",
-  "signature": "0224186f4af8480b66ba125626f69b369d42e6126ca0ccb752ddc00de6a34caf491b9aed01570988017e59907f5960539a12503da1e0ccc599a3b6e13d827a02"
+  "report_hash": "4c2e0cf73ab51ccad9ac1625d0363eadfbdf58ca2bff0882ca18bd613e29741c",
+  "signature": "8b18f347de67eecdb7d705fec97fead5aa6e1d72155f22fc00b1c6bcd556b5057afa9b389e3f709211581b5490b2d7e7db126bcae0c637f876ff6b01f1fcf700"
 }

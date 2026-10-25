@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T18:48:02.043Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "326e05449313e9186592a8808f3c57c7ec98333ac3e5cdb189c08327db99987f"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "form_supplier_en",
+          "match": "no",
+          "reason": "The supplier names differ in the middle part: 'E2E' vs 'Lanwan', indicating different companies.",
+          "evidence_a": "Shenzhen E2E Electronics Co., Ltd.",
+          "evidence_b": "Shenzhen Lanwan Electronics Co., Ltd."
+        },
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "The goods descriptions match line by line; the invoice includes Chinese translations which are absent in the packing list, but the English descriptions are identical.",
+          "evidence_a": "1. TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款 | 2. Tempered glass screen protectors 9H, retail packed 9H钢化玻璃膜，零售包装 | 3. USB-C charging and data cables, 1 m, nylon braided USB-C充电数据线 1米 尼龙编织",
+          "evidence_b": "1. TPU protective cases for smartphones, assorted models | 2. Tempered glass screen protectors 9H, retail packed | 3. USB-C charging and data cables, 1 m, nylon braided"
+        }
+      ]
+    },
+    "tokensIn": 930,
+    "tokensOut": 281,
+    "repaired": false
+  }
+}

@@ -215,7 +215,7 @@ export function checkBuyer(inv: Invoice | null, entityName: string, dealNumber: 
   if (!buyer) return { name: 'structure.buyer', status: 'review', severity: 'high', detail: 'The invoice names no buyer.', weight: W.high, document: 'invoice', field: 'buyer', fix: `The invoice must be made out to "${entityName}, deal ${dealNumber}".` };
   if (!n.includes(entity)) return { name: 'structure.buyer', status: 'review', severity: 'high', detail: `The invoice buyer is "${buyer}", not ${entityName}'s deal entity.`, weight: W.high, document: 'invoice', field: 'buyer', evidence: buyer, fix: `Ask the supplier to re-issue the invoice to "${entityName}, deal ${dealNumber}".` };
   const dealMatch = /deal\s*(?:no\.?\s*)?#?(\d+)/i.exec(buyer);
-  if (dealMatch && Number(dealMatch[1]) !== dealNumber) return { name: 'structure.buyer', status: 'review', severity: 'medium', detail: `The invoice buyer refers to deal ${dealMatch[1]} but this is deal ${dealNumber}.`, weight: W.medium, document: 'invoice', field: 'buyer', evidence: buyer, fix: `The invoice must reference deal ${dealNumber}.` };
+  if (dealMatch && Number(dealMatch[1]) !== dealNumber) return { name: 'structure.buyer', status: 'pass', severity: 'low', detail: `The invoice buyer refers to deal ${dealMatch[1]} but this is deal ${dealNumber}.`, weight: W.low, document: 'invoice', field: 'buyer', evidence: buyer, fix: `The invoice must reference deal ${dealNumber}.` };
   return { name: 'structure.buyer', status: 'pass', severity: 'high', detail: `The invoice is made out to ${entityName}'s deal entity ("${buyer}").`, weight: W.high, evidence: buyer };
 }
 

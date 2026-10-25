@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-12",
-    "created_at": "2026-10-25T16:43:55.911Z",
+    "created_at": "2026-10-25T18:52:20.050Z",
     "decision": "review",
     "risk_score": 0,
     "checks": [
@@ -1065,7 +1065,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6122,
         "tokens_out": 1508,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1075,7 +1075,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4324,
         "tokens_out": 759,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1085,7 +1085,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 859,
         "tokens_out": 117,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1095,7 +1095,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1179,
         "tokens_out": 86,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1105,7 +1105,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1916,
         "tokens_out": 135,
-        "latency_ms": 2,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1139,18 +1139,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 505,
+      "intake": 343,
       "extract": 2,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 509
+      "total": 346
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the invoice buyer is not the correct entity and some fields are not readable with confidence. The container check digit, USCC check digit, date order, quantity match, and other checks passed. Please fix the issues listed below.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice.\n- Confirm the rounding with the supplier or upload a corrected invoice."
   },
-  "report_hash": "63f0b9708eb7bce5952391ec15436da589d90b4cc165f9af06b6264ae7d1fe0d",
-  "signature": "2d41edd17967f75d68af60b4483f2dfa44d242f533ea8f301b7cec832588f2736b5276a24f8f78073a2bcec7b33d37ba78b197af60825c21ac7ca90d644dc000"
+  "report_hash": "fd61684cad0eb4108f5af123fa7b730a634ded99d65c980bdb4e45bede486dca",
+  "signature": "2f9a3df6dffd51f39aad35ce72cfd47ad297c7b283bcb6243eb07b12135d704263da7bbbbfdf0b9208a2929f898cc726828e83849d0adf5ebe50ffd334173003"
 }

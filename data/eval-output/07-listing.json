@@ -3,9 +3,9 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-07",
-    "created_at": "2026-10-25T16:43:52.613Z",
+    "created_at": "2026-10-25T18:52:17.381Z",
     "decision": "reject",
-    "risk_score": 45,
+    "risk_score": 60,
     "checks": [
       {
         "name": "extraction.invoice",
@@ -18,7 +18,7 @@
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock).",
+        "detail": "packing list read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
@@ -102,10 +102,10 @@
       },
       {
         "name": "structure.buyer",
-        "status": "review",
-        "severity": "medium",
+        "status": "pass",
+        "severity": "low",
         "detail": "The invoice buyer refers to deal 1 but this is deal 7.",
-        "weight": 15,
+        "weight": 8,
         "evidence": "Qafila Trade, deal 1",
         "fix": "The invoice must reference deal 7.",
         "document": "invoice",
@@ -181,13 +181,13 @@
         "name": "halal.line_1",
         "status": "pass",
         "severity": "critical",
-        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is electronics and phone accessories: permitted.",
+        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is textiles, clothing and footwear: permitted.",
         "weight": 40,
         "evidence": {
           "line": "1. TPU protective cases for smartphones, assorted models",
-          "category": "electronics",
+          "category": "textiles",
           "verdict": "permitted",
-          "reason": "TPU protective cases for smartphones are accessories for electronic devices."
+          "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
         }
       },
       {
@@ -200,7 +200,7 @@
           "line": "2. Tempered glass screen protectors 9H, retail packed",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "Tempered glass screen protectors are accessories for electronic devices."
+          "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
         }
       },
       {
@@ -213,7 +213,7 @@
           "line": "3. USB-C charging and data cables, 1 m, nylon braided",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "USB-C charging and data cables are accessories for electronic devices."
+          "reason": "USB-C charging and data cables are electronic accessories used for charging and data transfer."
         }
       },
       {
@@ -382,18 +382,13 @@
         "name": "decision.policy",
         "status": "pass",
         "severity": "info",
-        "detail": "reject by policy 5.6: reject:duplicate_invoice, review:deal_structure.",
+        "detail": "reject by policy 5.6: reject:duplicate_invoice.",
         "weight": 0,
         "evidence": [
           {
             "rule": "duplicate_invoice",
             "level": "reject",
             "detail": "The invoice fingerprint was already financed."
-          },
-          {
-            "rule": "deal_structure",
-            "level": "review",
-            "detail": "The invoice buyer is not Qafila's deal entity."
           }
         ]
       }
@@ -1093,21 +1088,21 @@
     "halal": [
       {
         "line": "1. TPU protective cases for smartphones, assorted models",
-        "category": "electronics",
+        "category": "textiles",
         "verdict": "permitted",
-        "reason": "TPU protective cases for smartphones are accessories for electronic devices."
+        "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
       },
       {
         "line": "2. Tempered glass screen protectors 9H, retail packed",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "Tempered glass screen protectors are accessories for electronic devices."
+        "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
       },
       {
         "line": "3. USB-C charging and data cables, 1 m, nylon braided",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "USB-C charging and data cables are accessories for electronic devices."
+        "reason": "USB-C charging and data cables are electronic accessories used for charging and data transfer."
       }
     ],
     "consistency": [
@@ -1176,7 +1171,7 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16629,
+        "tokens_in": 16597,
         "tokens_out": 3653,
         "latency_ms": 0,
         "cost_usd": 0
@@ -1186,8 +1181,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 6173,
-        "tokens_out": 1733,
+        "tokens_in": 13704,
+        "tokens_out": 3343,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -1196,7 +1191,7 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
-        "tokens_in": 4332,
+        "tokens_in": 4316,
         "tokens_out": 713,
         "latency_ms": 1,
         "cost_usd": 0
@@ -1217,7 +1212,7 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1201,
-        "tokens_out": 108,
+        "tokens_out": 125,
         "latency_ms": 0,
         "cost_usd": 0
       },
@@ -1227,7 +1222,7 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "price.v1",
         "tokens_in": 1960,
-        "tokens_out": 177,
+        "tokens_out": 176,
         "latency_ms": 0,
         "cost_usd": 0
       },
@@ -1236,8 +1231,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2360,
-        "tokens_out": 71,
+        "tokens_in": 0,
+        "tokens_out": 0,
         "latency_ms": 0,
         "cost_usd": 0
       }
@@ -1251,7 +1246,6 @@
       "fx": "skipped"
     },
     "fixtures_used": [
-      "llm/2b334978049d5134f7da1b0b6b927e7d057ec4ab68ae30027f7d9b946b8a902e.json",
       "llm/3e42875d123e552e53d73149909cc6c881c68853cc69039bb12cb68bb487fcfb.json",
       "llm/41bca718858faa3df96008f6d2fb723e8fa552805709b39d228aa2b0dd0f2bdf.json",
       "llm/6277988317617f9b71eed19329cd71af02a144f1fac47a0c5731fe5b2bfe347c.json",
@@ -1262,18 +1256,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 650,
+      "intake": 545,
       "extract": 1,
       "validate": 0,
-      "stages": 1,
-      "fingerprint": 0,
+      "stages": 0,
+      "fingerprint": 1,
       "explain": 0,
-      "total": 652
+      "total": 547
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal was rejected because the invoice was already financed. All other checks passed, including document formats, quantities, and price validations.\n\nWhat to fix:\n- The same invoice cannot be financed twice. The account goes under review.\n\nCategory: duplicate"
+    "explanation": "Your deal was rejected: This invoice (INV-LW-2026-1001 of 2026-09-28, 14700.00 USD) was already financed (deal packet-01).\n\nWhat to fix:\n- invoice: The same invoice cannot be financed twice. The account goes under review.\n\nCategory: duplicate"
   },
-  "report_hash": "3632c09def75c1c1c4d33b0a86ef44cf3c1d04ad51d4c8e2257d87040cbb92d5",
-  "signature": "511b7921207a35f9144229d3f8e5e38f8e7c581ed53e57f2a6693b7d643ed62bcb1a7f160f31956df3932171c9b820a62c5006cd58b09f9bac873e83922a7c05"
+  "report_hash": "2977d3b7910a1dc83c9680752dcea5ec4f76d3f188b4246bab9eb1c8ee664df9",
+  "signature": "634cb340cf93173f45aef90dde64344988645f82c68bb02923c0580bf6fd94ec230b2b61e4cafcce03f2470bad94923de5b0ca12e7dc297988ddc27ebfc4b10d"
 }

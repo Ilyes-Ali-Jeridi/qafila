@@ -129,9 +129,11 @@ describe('quantities, buyer and consignee', () => {
     expect(checkQuantities(inv, pl).status).toBe('pass');
     expect(checkQuantities(inv, { items: [{ quantity: f(5000) }, { quantity: f(7000) }] } as unknown as PackingList).status).toBe('review');
   });
-  it('buyer must be Qafila Trade with the right deal number', () => {
+  it('buyer must be Qafila Trade; a different deal number is a low note, not a review', () => {
     expect(checkBuyer(invoice([[1, 1, 1]], 1), 'Qafila Trade', 1).status).toBe('pass');
-    expect(checkBuyer(invoice([[1, 1, 1]], 1), 'Qafila Trade', 7).status).toBe('review');
+    const otherNumber = checkBuyer(invoice([[1, 1, 1]], 1), 'Qafila Trade', 7);
+    expect(otherNumber.status).toBe('pass');
+    expect(otherNumber.severity).toBe('low');
     const other = invoice([[1, 1, 1]], 1);
     other.buyer = party('Adewale Trading Ltd');
     expect(checkBuyer(other, 'Qafila Trade', 1).status).toBe('review');
