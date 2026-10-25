@@ -22,13 +22,23 @@ export function OpsShell({ title, lead, action, children }: { title: ReactNode; 
   const path = usePathname();
   return (
     <div className="space-y-6">
-      <PageHeader eyebrow="Ops console" title={title} lead={lead} action={action} />
-      <nav className="-mx-4 flex gap-1 overflow-x-auto border-b border-line px-4 sm:mx-0 sm:px-0" aria-label="Ops sections">
-        {SECTIONS.map((s) => (
-          <Link key={s.href} href={s.href} className={cn('-mb-px shrink-0 border-b-2 px-3 py-2 text-sm', s.match(path) ? 'border-indigo font-medium text-ink' : 'border-transparent text-ink-muted hover:text-ink')}>
-            {s.label}
-          </Link>
-        ))}
+      <PageHeader eyebrow={<span className="text-teal">Ops console</span>} title={title} lead={lead} action={action} />
+      <nav className="-mx-4 flex gap-1 overflow-x-auto px-4 sm:mx-0 sm:px-0" aria-label="Ops sections">
+        <div className="glass flex gap-1 rounded-full p-1">
+          {SECTIONS.map((s) => {
+            const on = s.match(path);
+            return (
+              <Link
+                key={s.href}
+                href={s.href}
+                aria-current={on ? 'page' : undefined}
+                className={cn('shrink-0 rounded-full px-3.5 py-1.5 text-sm transition-[background-color,color] duration-200', on ? 'bg-white/[0.08] font-medium text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_20px_-6px_rgba(45,226,195,0.6)]' : 'text-ink-muted hover:text-ink')}
+              >
+                {s.label}
+              </Link>
+            );
+          })}
+        </div>
       </nav>
       <RequireWallet title="Connect with your ops wallet">
         <RoleGate>{children}</RoleGate>

@@ -1,6 +1,6 @@
 'use client';
-/** O-1: queue of deals by status and decision, with the pending ops action first. */
-import Link from 'next/link';
+/** O-1: queue of deals by status and decision, with the pending ops action first. Dense, keyboard-friendly table. */
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { DecisionBadge } from '@/components/deal/badges';
 import { StageBadge } from '@/components/importer/stage-badge';
@@ -36,6 +36,7 @@ export function OpsQueue() {
 
 function Inner() {
   const q = useOpsQueue();
+  const router = useRouter();
   const [filter, setFilter] = useState<'pending' | 'all' | 'draft' | 'running' | 'finished'>('pending');
   const [decision, setDecision] = useState<'any' | 'approve' | 'review' | 'reject'>('any');
   const items = useMemo(() => {
@@ -72,35 +73,71 @@ function Inner() {
             <option value="reject">Reject</option>
           </Select>
         </label>
+        <p className="tabular pb-2.5 font-mono text-xs text-ink-muted">{items.length} shown</p>
       </div>
       {items.length === 0 ? (
         <EmptyState title={filter === 'pending' ? 'Nothing needs a person right now' : 'No deals here'} body={filter === 'pending' ? 'New deals appear as importers run screening.' : undefined} />
       ) : (
-        <ul className="space-y-2" data-testid="ops-queue">
-          {items.map((d) => (
-            <li key={d.id}>
-              <Link href={`/ops/deals/${d.id}`} className="block" data-testid={`ops-deal-${d.number}`}>
-                <Card className="transition-colors hover:border-indigo-300">
-                  <div className="grid gap-3 p-4 sm:grid-cols-[1fr_auto] sm:items-center">
-                    <div className="min-w-0 space-y-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="eyebrow">Deal {d.number}</span>
-                        <StageBadge stage={d.stage} />
-                        <DecisionBadge decision={d.decision} riskScore={d.riskScore} />
-                        {d.openIncidents ? <Badge tone="danger">{d.openIncidents} incident{d.openIncidents === 1 ? '' : 's'}</Badge> : null}
-                      </div>
+        <Card className="glass-strong overflow-hidden">
+          <div className="max-h-[70vh] overflow-auto">
+            <table className="data-table text-sm" data-testid="ops-queue">
+              <thead>
+                <tr>
+                  <th scope="col">Deal</th>
+                  <th scope="col">Goods and parties</th>
+                  <th scope="col">Stage</th>
+                  <th scope="col">Decision</th>
+                  <th scope="col" className="text-right">Cost</th>
+                  <th scope="col">Next action</th>
+                  <th scope="col">Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((d) => (
+                  <tr
+                    key={d.id}
+                    data-testid={`ops-deal-${d.number}`}
+                    tabIndex={0}
+                    role="link"
+                    aria-label={`Open deal ${d.number}`}
+                    onClick={() => router.push(`/ops/deals/${d.id}`)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        router.push(`/ops/deals/${d.id}`);
+                      }
+                    }}
+                    className="cursor-pointer focus-visible:outline-none focus-visible:[&>td]:bg-teal-100"
+                  >
+                    <td className="tabular whitespace-nowrap font-mono text-xs text-ink-muted">#{d.number}</td>
+                    <td className="min-w-[16rem]">
                       <p className="font-medium leading-snug">{d.goodsSummary}</p>
                       <p className="text-xs text-ink-muted">
-                        {d.importerName} · {d.supplierName} · {d.route.originPort} to {d.route.destinationPort} · <Amount value={d.cost} size="sm" /> · updated {timeAgo(d.updatedAt)}
+                        {d.importerName} · {d.supplierName} · {d.route.originPort} to {d.route.destinationPort}
                       </p>
-                    </div>
-                    <div className="text-sm sm:text-right">{d.pendingAction ? <span className="rounded-full bg-saffron-100 px-2.5 py-1 font-medium text-saffron-700">{ACTION_LABEL[d.pendingAction]}</span> : <span className="text-ink-faint">waiting</span>}</div>
-                  </div>
-                </Card>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                      {d.openIncidents ? (
+                        <Badge tone="danger" className="mt-1">
+                          {d.openIncidents} incident{d.openIncidents === 1 ? '' : 's'}
+                        </Badge>
+                      ) : null}
+                    </td>
+                    <td className="whitespace-nowrap">
+                      <StageBadge stage={d.stage} />
+                    </td>
+                    <td className="whitespace-nowrap">
+                      <DecisionBadge decision={d.decision} riskScore={d.riskScore} />
+                    </td>
+                    <td className="whitespace-nowrap text-right">
+                      <Amount value={d.cost} size="sm" />
+                    </td>
+                    <td className="whitespace-nowrap">{d.pendingAction ? <span className="rounded-full bg-saffron-100 px-2.5 py-1 text-xs font-medium text-saffron-700 ring-1 ring-inset ring-saffron/25">{ACTION_LABEL[d.pendingAction]}</span> : <span className="text-xs text-ink-faint">waiting</span>}</td>
+                    <td className="tabular whitespace-nowrap font-mono text-xs text-ink-muted">{timeAgo(d.updatedAt)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       )}
     </div>
   );

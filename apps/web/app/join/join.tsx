@@ -133,7 +133,7 @@ function PhoneFlow({ onShowQr }: { onShowQr: () => void }) {
     }
   }
 
-  const steps = [!joined, Boolean(joined) && !invested, Boolean(invested)];
+  const current = invested ? 2 : joined ? 1 : 0;
 
   return (
     <Stagger className="mx-auto max-w-md space-y-5">
@@ -151,7 +151,7 @@ function PhoneFlow({ onShowQr }: { onShowQr: () => void }) {
         <ol className="flex items-center gap-2" aria-label="Progress">
           {['Wallet', 'Invest', 'Done'].map((l, i) => (
             <li key={l} className="flex flex-1 items-center gap-2">
-              <span className={`h-1 flex-1 rounded-full ${steps.slice(0, i + 1).some(Boolean) || steps[i] ? (steps[i] ? 'aurora-line' : 'bg-teal/60') : 'bg-white/10'}`} />
+              <span className={`h-1 flex-1 rounded-full ${i < current ? 'bg-teal/60' : i === current ? 'aurora-line shadow-[0_0_12px_rgba(45,226,195,0.6)]' : 'bg-white/10'}`} />
               <span className="sr-only">{l}</span>
             </li>
           ))}

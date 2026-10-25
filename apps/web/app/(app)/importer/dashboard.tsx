@@ -86,13 +86,13 @@ function Inner() {
         <ul className="grid gap-3 md:grid-cols-2" data-testid="importer-deals">
           {list.map((d) => (
             <li key={d.id}>
-              <Link href={`/importer/${d.id}`} className="block h-full" data-testid={`importer-deal-${d.number}`}>
-                <Card className="h-full transition-colors hover:border-indigo-300">
+              <Link href={`/importer/${d.id}`} className="block h-full rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal" data-testid={`importer-deal-${d.number}`}>
+                <Card className="hairline-top h-full transition-[transform,border-color,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:border-white/20 hover:shadow-pop motion-reduce:hover:translate-y-0">
                   <CardBody className="space-y-3">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <p className="eyebrow">Deal {d.number}</p>
-                        <p className="mt-0.5 font-semibold leading-snug">{d.goodsSummary}</p>
+                        <p className="mt-0.5 font-display text-base font-semibold leading-snug tracking-tight">{d.goodsSummary}</p>
                         <p className="text-xs text-ink-muted">
                           {d.route.originPort} to {d.route.destinationPort} · {d.supplier.nameEn}
                         </p>
@@ -114,7 +114,7 @@ function Inner() {
                       </div>
                     </dl>
                     <p className="flex items-center justify-between gap-2 text-sm">
-                      <span className="font-medium text-indigo">{d.nextAction}</span>
+                      <span className="font-medium text-saffron">{d.nextAction}</span>
                       <span className="text-xs text-ink-faint">{formatDateTime(d.createdAt)}</span>
                     </p>
                   </CardBody>

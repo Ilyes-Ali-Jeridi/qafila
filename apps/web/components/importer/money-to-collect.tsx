@@ -33,7 +33,7 @@ export function MoneyToCollect({ amount }: { amount: string }) {
     }
   }
   return (
-    <Card data-testid="money-to-collect">
+    <Card data-testid="money-to-collect" className="glass-strong border-teal/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_24px_60px_-24px_rgba(45,226,195,0.35)]">
       <CardHeader eyebrow="Money to collect" title={done ? 'Collected' : 'Your security deposit is waiting'} action={<HandCoins className="size-5 text-saffron" aria-hidden />} />
       <CardBody className="space-y-3">
         {done ? (

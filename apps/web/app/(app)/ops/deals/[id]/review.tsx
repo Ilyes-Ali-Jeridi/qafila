@@ -89,7 +89,7 @@ function ReviewTab({ deal }: { deal: OpsDealDetail }) {
               <ul className="space-y-1">
                 {docs.map((d) => (
                   <li key={d.id}>
-                    <button type="button" onClick={() => setOpen(d.type)} className={`w-full rounded-md border px-3 py-2 text-left text-sm ${open === d.type ? 'border-indigo bg-indigo-50' : 'border-line hover:bg-sand-100'}`}>
+                    <button type="button" onClick={() => setOpen(d.type)} className={`w-full rounded-md border px-3 py-2 text-left text-sm transition-colors ${open === d.type ? 'border-teal/50 bg-teal-100' : 'border-line hover:bg-white/[0.05]'}`}>
                       <span className="flex items-center justify-between gap-2">
                         <span className="font-medium">{DOC_LABEL[d.type]}</span>
                         {highlighted.has(d.type) ? <Badge tone="warning">flagged</Badge> : null}
@@ -101,7 +101,7 @@ function ReviewTab({ deal }: { deal: OpsDealDetail }) {
                   </li>
                 ))}
               </ul>
-              <div className="min-h-64 overflow-hidden rounded-md border border-line bg-sand-100">
+              <div className="min-h-64 overflow-hidden rounded-md border border-line bg-page/60">
                 <DocumentViewer doc={docs.find((x) => x.type === open)} />
               </div>
             </div>

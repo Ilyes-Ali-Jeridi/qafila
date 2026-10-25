@@ -43,8 +43,8 @@ export function SignSale({ deal }: { deal: ImporterDealDetail }) {
   }
 
   return (
-    <Card data-testid="sign-sale">
-      <CardHeader eyebrow="Step 10" title={done ? 'Sale signed' : 'Qafila owns the goods. Sign the sale.'} action={<PenLine className="size-5 text-indigo" aria-hidden />} />
+    <Card data-testid="sign-sale" className="glass-strong border-saffron/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_24px_60px_-24px_rgba(242,178,62,0.35)]">
+      <CardHeader eyebrow="Step 10" title={done ? 'Sale signed' : 'Qafila owns the goods. Sign the sale.'} action={<PenLine className="size-5 text-saffron" aria-hidden />} />
       <CardBody className="space-y-4">
         <KV
           rows={[

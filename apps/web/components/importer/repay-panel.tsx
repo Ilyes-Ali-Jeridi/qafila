@@ -60,7 +60,7 @@ export function RepayPanel({ deal }: { deal: ImporterDealDetail }) {
 
   if (!oc) return null;
   return (
-    <Card data-testid="repay-panel">
+    <Card data-testid="repay-panel" className="glass-strong border-saffron/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_24px_60px_-24px_rgba(242,178,62,0.35)]">
       <CardHeader eyebrow="Step 12" title="Repay the fixed price" />
       <CardBody className="space-y-4">
         <KV
@@ -127,7 +127,7 @@ export function LateFeeCard({ deal }: { deal: ImporterDealDetail }) {
     }
   }
   return (
-    <Card data-testid="late-fee-card">
+    <Card data-testid="late-fee-card" className="glass-strong border-saffron/25">
       <CardHeader eyebrow="Late payment" title={done ? 'Late fee paid to charity' : 'Pay the late fee to charity'} action={<HandHeart className="size-5 text-saffron" aria-hidden />} />
       <CardBody className="space-y-3">
         {done ? (

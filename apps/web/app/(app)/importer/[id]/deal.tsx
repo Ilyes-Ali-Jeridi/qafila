@@ -72,7 +72,7 @@ function Inner({ id }: { id: string }) {
           <p className="eyebrow">Deal {deal.number}</p>
           <StageBadge stage={deal.stage} />
         </div>
-        <h1 className="text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">{deal.goodsSummary}</h1>
+        <h1 className="max-w-3xl font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl">{deal.goodsSummary}</h1>
         <p className="flex flex-wrap items-center gap-x-2 text-sm text-ink-muted">
           <Ship className="size-4" aria-hidden /> {deal.route.originPort} <ArrowRight className="size-3.5" aria-hidden /> {deal.route.destinationPort} · {deal.supplier.nameEn}
           {deal.state ? (
@@ -81,7 +81,7 @@ function Inner({ id }: { id: string }) {
             </Link>
           ) : null}
         </p>
-        <p className="text-sm font-medium text-indigo">{deal.nextAction}</p>
+        <p className="inline-flex items-center gap-2 rounded-full border border-saffron/25 bg-saffron-100 px-3 py-1 text-sm font-medium text-saffron-700"><span aria-hidden className="live-dot size-1.5 rounded-full bg-saffron" />{deal.nextAction}</p>
       </header>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_340px]">
