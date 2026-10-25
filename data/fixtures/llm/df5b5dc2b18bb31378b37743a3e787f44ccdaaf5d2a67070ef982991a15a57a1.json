@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T18:53:54.085Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:b059d6af-aa51-4d2c-859d-bc806d49d801:listing:f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa:extraction.business_licence=pass,extraction.packing_list=pass,extraction.invoice=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,halal.line_3=pass,price.phone_cases=pass,price.tempered_glass_protectors=pass,price.usb_cables=pass,registry.status=review,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=fail,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal was rejected because the invoice was already used in a previous financing (deal 8). All other checks passed, including container numbers, pricing, and document consistency.",
+      "fixes": [
+        "The same invoice cannot be financed twice. The account goes under review."
+      ],
+      "category": "duplicate"
+    },
+    "tokensIn": 2274,
+    "tokensOut": 79,
+    "repaired": false
+  }
+}
