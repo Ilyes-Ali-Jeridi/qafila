@@ -1,11 +1,8 @@
-import { z } from 'zod';
-import { ApiScreen } from '@/components/not-built';
+import type { Metadata } from 'next';
+import { NewDealWizard } from './wizard';
+
+export const metadata: Metadata = { title: 'New deal' };
 
 export default function Page() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">New deal</h1>
-      <ApiScreen path="/config" schema={z.unknown()} render={(d) => <pre className="text-xs">{JSON.stringify(d, null, 2)}</pre>} />
-    </div>
-  );
+  return <NewDealWizard />;
 }
