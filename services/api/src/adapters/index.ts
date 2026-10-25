@@ -10,6 +10,7 @@ import { makeOpenSanctions } from './opensanctions.js';
 import { makeShipsgo } from './shipsgo.js';
 import { makeResend } from './resend.js';
 import { createLocalStorage, createSupabaseStorage, type Storage } from './storage.js';
+import { makeTrustlessWork, type TrustlessWorkClient } from './trustlesswork.js';
 
 export interface Adapters {
   llm: LlmClient;
@@ -20,6 +21,8 @@ export interface Adapters {
   opensanctions: ReturnType<typeof makeOpenSanctions>;
   shipsgo: ReturnType<typeof makeShipsgo>;
   resend: ReturnType<typeof makeResend>;
+  /** S2 escrow (PLAN 10.1); null unless FF_TRUSTLESS_WORK is on. */
+  trustlesswork: TrustlessWorkClient | null;
   storage: Storage;
   /** Context per adapter name (mode differs per adapter). */
   ctx: Record<'llm' | 'registry' | 'shipsgo' | 'opensanctions' | 'reflector' | 'fx' | 'resend', AdapterContext>;
@@ -42,6 +45,10 @@ export function createAdapters(env: Env, opts: { cache?: AdapterCache | null; re
   const reflectorMode = modeFor(env, env.REFLECTOR_MODE, true);
   const fxMode = modeFor(env, env.FX_MODE, true);
   const resendMode: AdapterMode = env.RESEND_API_KEY && env.ADAPTER_MODE === 'live' ? 'live' : 'mock';
+  const trustlessMode = modeFor(env, env.TRUSTLESS_WORK_MODE, Boolean(env.TRUSTLESS_WORK_API_KEY));
+  const trustlesswork = env.FF_TRUSTLESS_WORK
+    ? makeTrustlessWork({ mode: trustlessMode, baseUrl: env.TRUSTLESS_WORK_BASE_URL, apiKey: env.TRUSTLESS_WORK_API_KEY, networkPassphrase: env.NETWORK_PASSPHRASE, viewerUrl: env.TRUSTLESS_WORK_VIEWER_URL, feeBps: env.TRUSTLESS_WORK_FEE_BPS })
+    : null;
 
   const storage: Storage =
     env.STORAGE_MODE === 'supabase' && env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY
@@ -57,6 +64,7 @@ export function createAdapters(env: Env, opts: { cache?: AdapterCache | null; re
     opensanctions: makeOpenSanctions({ apiKey: env.OPENSANCTIONS_API_KEY }),
     shipsgo: makeShipsgo({ apiKey: env.SHIPSGO_API_KEY }),
     resend: makeResend({ apiKey: env.RESEND_API_KEY, from: env.RESEND_FROM }),
+    trustlesswork,
     storage,
     ctx: { llm: mk(llmMode), registry: mk(registryMode), shipsgo: mk(shipsgoMode), opensanctions: mk(sanctionsMode), reflector: mk(reflectorMode), fx: mk(fxMode), resend: mk(resendMode) },
     modes: {
@@ -69,6 +77,7 @@ export function createAdapters(env: Env, opts: { cache?: AdapterCache | null; re
       reflector: env.FF_REFLECTOR ? reflectorMode : 'off',
       fx: fxMode,
       resend: env.RESEND_API_KEY ? resendMode : 'off',
+      trustlesswork: trustlesswork ? trustlessMode : 'off',
       storage: storage.mode === 'supabase' ? 'live' : 'mock',
     },
   };

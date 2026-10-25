@@ -264,6 +264,9 @@ export type OpsActionResponse = z.infer<typeof OpsActionResponseSchema>;
 
 export const OverrideRequest = z.object({ decision: DecisionSchema, reason: z.string().min(10).max(2000) });
 export const RecoveryRequest = z.object({ amount: AmountString, from: StellarAddress.optional(), note: z.string().min(3).max(2000) });
+/** S2 escrow dispute path (FLOWS 5.2): the agent raises the dispute, the resolver sends the milestone back to Qafila, ops records it with `deposit_recovery`. */
+export const EscrowDisputeRequest = z.object({ milestoneIndex: z.number().int().min(0).max(1), note: z.string().min(3).max(2000) });
+export const EscrowResolveRequest = z.object({ milestoneIndex: z.number().int().min(0).max(1), amount: AmountString, refundTo: StellarAddress.optional(), note: z.string().min(3).max(2000) });
 export const NoteRequest = z.object({ note: z.string().min(3).max(2000) });
 export const ExtendRequest = z.object({ newDueAt: z.number().int(), note: z.string().min(3).max(2000) });
 export const ExtensionRequest = z.object({ reason: z.string().min(10).max(2000) });

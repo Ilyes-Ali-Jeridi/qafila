@@ -79,6 +79,14 @@ const EnvSchema = z.object({
 
   TRUSTLESS_WORK_BASE_URL: opt,
   TRUSTLESS_WORK_API_KEY: opt,
+  TRUSTLESS_WORK_MODE: z.enum(['live', 'mock']).optional(),
+  /** Protocol fee Trustless Work takes from every payout, in bps (SP10: 30 on testnet). */
+  TRUSTLESS_WORK_FEE_BPS: z.coerce.number().int().min(0).max(1000).default(30),
+  /** G account that owns the escrow (platform role, fee 0); defaults to the admin key. */
+  TRUSTLESS_WORK_PLATFORM_ADDRESS: opt,
+  /** Dispute resolver G account (Sharia board multisig in production); defaults to the admin key. */
+  TRUSTLESS_WORK_DISPUTE_RESOLVER: opt,
+  TRUSTLESS_WORK_VIEWER_URL: z.string().default('https://viewer.trustlesswork.com'),
 
   SUPABASE_URL: opt,
   SUPABASE_ANON_KEY: opt,

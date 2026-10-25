@@ -236,6 +236,36 @@ export const PaymentRecordSchema = z.object({
   at: z.string(),
 });
 
+/** S2 (PLAN 10.1): the Trustless Work escrow that pays the supplier; present only when `payment_mode` is TrustlessWork. */
+export const EscrowMilestoneSchema = z.object({
+  index: z.number().int().nonnegative(),
+  description: z.string(),
+  amount: AmountString,
+  receiver: StellarAddress.nullable(),
+  status: z.string(),
+  approved: z.boolean(),
+  released: z.boolean(),
+  disputed: z.boolean(),
+  resolved: z.boolean(),
+});
+export const DealEscrowSchema = z.object({
+  provider: z.literal('trustless_work'),
+  id: CAddress,
+  /** Where the deal contract sends the supplier payments (the escrow contract itself). */
+  fundingAddress: CAddress,
+  /** Protocol fee Trustless Work keeps on every payout, bps. */
+  feeBps: z.number().int().nonnegative(),
+  /** The escrow's cost to the deal: on-chain cost minus the invoice cost. */
+  fee: AmountString,
+  invoiceCost: AmountString,
+  grossCost: AmountString,
+  url: z.string().url().nullable(),
+  milestones: z.array(EscrowMilestoneSchema),
+  roles: z.object({ approver: GAddress, serviceProvider: StellarAddress, platformAddress: GAddress, releaseSigner: GAddress, disputeResolver: GAddress }).nullable(),
+  mode: z.enum(['live', 'mock']),
+});
+export type DealEscrow = z.infer<typeof DealEscrowSchema>;
+
 export const DealDetailSchema = DealSummarySchema.extend({
   onchain: DealSchema.nullable(),
   publicReport: z
@@ -255,6 +285,7 @@ export const DealDetailSchema = DealSummarySchema.extend({
   payments: z.array(PaymentRecordSchema),
   issuer: z.object({ publicKey: GAddress, locked: z.boolean(), flags: z.array(z.string()) }).nullable(),
   escrowId: z.string().nullable(),
+  escrow: DealEscrowSchema.nullable().optional(),
   lossOrder: z.array(z.string()),
   worstCase: z.object({ investorRecoveryBps: z.number().int(), note: z.string() }),
   /** S3 Reflector: amounts in the importer's currency; null when no feed covers it (NGN and KES on the testnet feed, SP9). */

@@ -7,12 +7,13 @@
 import { Hono } from 'hono';
 import { and, desc, eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
-import { ABORT_REASONS, AbortRequest, AgentLogSchema, ExtendRequest, KycQueueSchema, NoteRequest, OpsActionResponseSchema, OpsDealDetailSchema, OpsQueueItemSchema, OverrideRequest, parseAmount, PolicySchema, PolicyUpdateRequest, RecoveryRequest, type OpsDealDetail, type OpsQueueItem } from '@qafila/shared';
+import { ABORT_REASONS, AbortRequest, AgentLogSchema, EscrowDisputeRequest, EscrowResolveRequest, ExtendRequest, KycQueueSchema, NoteRequest, OpsActionResponseSchema, OpsDealDetailSchema, OpsQueueItemSchema, OverrideRequest, parseAmount, PolicySchema, PolicyUpdateRequest, RecoveryRequest, type OpsDealDetail, type OpsQueueItem } from '@qafila/shared';
 import { requireUser } from '../auth.js';
 import { audit, deadJobs, enqueue, savePolicy } from '../db/repo.js';
 import { agentActions, auditLog, deals, importers, incidents, policy as policyTable, profiles, reports, suppliers } from '../db/schema.js';
 import { ApiError, reply } from '../lib/http.js';
 import { abortDeal, listDealOnChain, openIncident, toDetail, toSummary, ONCHAIN_STATUS, type DraftTerms } from '../services/deals.js';
+import { disputeEscrowMilestone, releaseEscrowMilestone, resolveEscrowMilestone } from '../services/escrow.js';
 import { runAgentForDeal } from '../jobs/agent.js';
 import { documentRecords, findDeal, readJson, type Vars } from './_shared.js';
 
@@ -106,7 +107,29 @@ ops.post('/deals/:id/pay-deposit', async (c) => {
   await audit(svc.db, { actor: u.profileId, action: 'pay_supplier_deposit', target: deal.id, after: { txHash: tx.txHash, amount: String(tx.result ?? '') } });
   await svc.db.update(deals).set({ status: 'deposit_paid', updatedAt: new Date() }).where(eq(deals.id, deal.id));
   await enqueue(svc.db, 'notify', { kind: 'deposit_paid', dealId: deal.id, amount: String(tx.result ?? '') });
-  return ok(c, { txHash: tx.txHash });
+  // S2: the deposit sits in the Trustless Work escrow until the agent approves and releases milestone 1.
+  const escrow = deal.paymentMode === 'TrustlessWork' ? await releaseEscrowMilestone(svc, deal, 0, { dryRun: false, trigger: 'ops_pay_deposit' }) : null;
+  return ok(c, { txHash: tx.txHash, txHashes: escrow?.txHash ? { deposit: tx.txHash, escrow_release_1: escrow.txHash } : null, message: escrow ? (escrow.decision === 'paid' ? 'deposit paid and escrow milestone 1 released to the supplier' : `deposit paid; escrow release ${escrow.decision}: ${escrow.reasoning}`) : null });
+});
+
+/** S2 (FLOWS 5.2): raise a dispute on an escrow milestone; the agent key holds the approver role. */
+ops.post('/deals/:id/escrow/dispute', async (c) => {
+  const svc = c.get('svc');
+  const u = c.get('user')!;
+  const deal = await findDeal(svc, c.req.param('id'));
+  const body = await readJson(c, EscrowDisputeRequest);
+  const r = await disputeEscrowMilestone(svc, deal, body.milestoneIndex as 0 | 1, u.profileId, body.note);
+  return ok(c, { txHash: r.txHash, message: `milestone ${body.milestoneIndex + 1} disputed; the resolver can now send it back to Qafila` });
+});
+
+/** S2 (FLOWS 5.2): the resolver sends the disputed milestone back to a Qafila account; record it with `recovery` next. */
+ops.post('/deals/:id/escrow/resolve', async (c) => {
+  const svc = c.get('svc');
+  const u = c.get('user')!;
+  const deal = await findDeal(svc, c.req.param('id'));
+  const body = await readJson(c, EscrowResolveRequest);
+  const r = await resolveEscrowMilestone(svc, deal, body.milestoneIndex as 0 | 1, BigInt(body.amount), body.refundTo, u.profileId, body.note);
+  return ok(c, { txHash: r.txHash, message: `escrow milestone ${body.milestoneIndex + 1} resolved: ${body.amount} sent to ${r.refundTo}; record it as a recovery from that account` });
 });
 
 ops.post('/deals/:id/confirm-shipment', async (c) => {

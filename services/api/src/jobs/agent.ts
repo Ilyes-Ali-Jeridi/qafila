@@ -19,6 +19,7 @@ import { logger } from '../lib/logger.js';
 import { signShipped } from '../pipeline/attest.js';
 import type { Services } from '../services.js';
 import { openIncident, ONCHAIN_STATUS } from '../services/deals.js';
+import { releaseEscrowMilestone } from '../services/escrow.js';
 
 const log = logger.child({ module: 'agent' });
 
@@ -78,7 +79,10 @@ export async function runAgentForDeal(svc: Services, dealId: string, opts: { as?
       if (dryRun) return record(svc, deal.id, 'pay_supplier_deposit', 'dry_run', `would pay ${String(tx.result)} to ${supplier?.payoutAddress}`, inputs, null, true);
       await svc.db.update(deals).set({ status: 'deposit_paid', updatedAt: new Date() }).where(eq(deals.id, deal.id));
       await enqueue(svc.db, 'notify', { kind: 'deposit_paid', dealId: deal.id, amount: String(tx.result ?? '') });
-      return record(svc, deal.id, 'pay_supplier_deposit', 'paid', `Supplier deposit paid: registry and sanctions passed${override ? ' (registry by ops override)' : ''}, no incident open.`, inputs, tx.txHash, false);
+      const paid = await record(svc, deal.id, 'pay_supplier_deposit', 'paid', `Supplier deposit paid: registry and sanctions passed${override ? ' (registry by ops override)' : ''}, no incident open.`, inputs, tx.txHash, false);
+      // S2: the deposit went into the Trustless Work escrow; approve and release milestone 1 to the supplier.
+      if (deal.paymentMode === 'TrustlessWork') await releaseEscrowMilestone(svc, deal, 0, { dryRun: false, trigger: 'deposit_paid' });
+      return paid;
     } catch (e) {
       await openIncident(svc.db, deal.id, 'deposit_failed', `pay_supplier_deposit failed: ${(e as Error).message.slice(0, 300)}`);
       return record(svc, deal.id, 'pay_supplier_deposit', 'failed', (e as Error).message.slice(0, 300), inputs, null, dryRun);
@@ -114,7 +118,10 @@ export async function runAgentForDeal(svc: Services, dealId: string, opts: { as?
       await svc.db.update(deals).set({ status: 'owned', updatedAt: new Date() }).where(eq(deals.id, deal.id));
       await enqueue(svc.db, 'notify', { kind: 'shipment_confirmed', dealId: deal.id });
       await enqueue(svc.db, 'notify', { kind: 'sale_ready', dealId: deal.id });
-      return record(svc, deal.id, 'confirm_shipment', 'confirmed', reasoning, inputs, tx.txHash, false);
+      const confirmed = await record(svc, deal.id, 'confirm_shipment', 'confirmed', reasoning, inputs, tx.txHash, false);
+      // S2: the balance went into the Trustless Work escrow; approve and release milestone 2 to the supplier.
+      if (deal.paymentMode === 'TrustlessWork') await releaseEscrowMilestone(svc, deal, 1, { dryRun: false, trigger: 'shipment_confirmed' });
+      return confirmed;
     } catch (e) {
       await openIncident(svc.db, deal.id, 'confirm_failed', `confirm_shipment failed: ${(e as Error).message.slice(0, 300)}`);
       return record(svc, deal.id, 'confirm_shipment', 'failed', (e as Error).message.slice(0, 300), inputs, null, dryRun);
