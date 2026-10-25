@@ -1,0 +1,15 @@
+# Progress log, Track C (product)
+
+Times are WET (Lisbon). H0 = Sun 25 Oct 2026 09:00. Worktree `.worktrees/product`, branch `track/product`.
+
+## Sun 25 Oct
+
+- 14:35 (H5.5) Read CLAUDE.md, PLAN.md, FLOWS.md, KICKOFF_PROMPTS.md, PROGRESS.md and the scaffold. Started the Playwright Chromium download (already cached: chromium-1248).
+- 14:45 (H5.75) Smart-account deployments found in the kit's `docs/deployments-protocol-27-2026-07-09.md` and `demo/.env.example`: account wasm `1b5f4534…785a`, WebAuthn verifier `CC7EKIHQ…OM3F`, hosted testnet relayer proxy `https://smart-account-relayer-proxy.sdf-ecosystem.workers.dev` (answers CORS `*`, mints an OZ Channels key per client IP). Written to `.shared/accounts.json` and `.env` (+ `NEXT_PUBLIC_*`).
+  - Decision: the hosted relayer proxy only forwards calls whose root is the smart account itself (`execute`, signer and policy functions) and `createContractV2` deployments. Direct `signAndSubmit` of a Qafila call would be refused by its allowlist, so passkey calls go through `kit.executeAndSubmit(QAFILA_CONTRACT_ID, fn, args)` (wallet.execute -> Qafila). `NEXT_PUBLIC_PASSKEY_PATH=direct` switches to `signAndSubmit` if a self-hosted proxy allows it. SP5 verifies.
+- 14:50 Installed smart-account-kit 0.8.0, @creit.tech/stellar-wallets-kit 2.7.1 (npm build of the v2 static API), maplibre-gl 6.16.0, react-hook-form 7.89.0, @hookform/resolvers 5.9.1, qrcode.react 4.2.0; dev: hono 4.13.14, @hono/node-server 1.19.17.
+  - `pnpm dlx shadcn@latest init` wrote components.json but could not install `radix-ui` (registry metadata stale on venue Wi-Fi). Fallback: shadcn-style components written by hand in `components/ui` on native elements (dialog, select) with no Radix dependency.
+- 15:00 (H6) Design system: tokens in `app/globals.css` (PLAN 9.1 palette, dark mode, tabular numbers, eyebrow labels, ledger grid, reveal animation), `components/ui/*` (button, card, callout, badge, input/select/textarea/field/checkbox, progress, tabs, dialog, states, amount, address with copy, tx-link, stat, kv, timeline, countdown, page-header, toast).
+- 15:05 Mock API `apps/web/mock-api` (Hono on :8788, `pnpm --filter ./apps/web mock-api`): every PLAN 8.1 route plus the extensions listed in `.shared/requests-product.md`, seven seeded deals (venue, shipping, late, repaid-late, cancelled, in review, rejected), stateful mutations, `/mock/chain` for the offline chain, and a faucet that really moves testnet qUSD when `FAUCET_SECRET` is set. Responses are validated against the shared zod schemas before they leave.
+- 15:10 Wallet layer: `lib/session.ts` (identity = wallet address; auth header contract in `.shared/auth-contract.md`), `lib/wallet/{kit,provider,errors,freighter,mock-chain}.ts`, `lib/stellar/{client,calls}.ts` (generated client bound to GET /config, typed call builders). `rpId` from config is applied only when it matches the page host.
+- 15:15 Found that Turbopack cannot resolve the `.js`-extension imports inside `packages/shared`; the web runs Next with webpack and `extensionAlias` (dev and build). Asked Track B to drop the extensions.

@@ -1,0 +1,5 @@
+tsconfig.tsbuildinfo
+.env.local
+AGENTS.md
+test-results/
+playwright-report/
