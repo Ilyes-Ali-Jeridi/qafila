@@ -257,6 +257,11 @@ export const DealDetailSchema = DealSummarySchema.extend({
   escrowId: z.string().nullable(),
   lossOrder: z.array(z.string()),
   worstCase: z.object({ investorRecoveryBps: z.number().int(), note: z.string() }),
+  /** S3 Reflector: amounts in the importer's currency; null when no feed covers it (NGN and KES on the testnet feed, SP9). */
+  localCurrency: z
+    .object({ code: z.string(), cost: z.string(), salePrice: z.string(), rate: z.number(), source: z.enum(['reflector', 'ecb']), at: z.string() })
+    .nullable()
+    .optional(),
 });
 export type DealDetail = z.infer<typeof DealDetailSchema>;
 

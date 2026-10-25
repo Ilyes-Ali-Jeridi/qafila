@@ -361,7 +361,24 @@ export async function toDetail(svc: Services, deal: DealRow): Promise<DealDetail
     escrowId: deal.escrowId ?? null,
     lossOrder: ["The importer's own money: the security deposit, and after the sale everything they have paid.", 'Recoveries: from the supplier, insurance, resale of the goods, legal collection.', `Investors pro rata, ${svc.env.QAFILA_ENTITY_NAME}'s own ${(svc.env.COINVEST_BPS / 100).toFixed(0)}% included.`],
     worstCase: { investorRecoveryBps: cost > 0n ? Number((security * 10000n) / cost) : 0, note: cost > 0n ? `If the importer pays nothing after buying and nothing is recovered, investors get back the deposit's share: ${(Number((security * 10000n) / cost) / 100).toFixed(1)}% of what they put in.` : 'Amounts are not known yet.' },
+    localCurrency: await localCurrency(svc, deal, cost, cost + BigInt(summary.markup || '0')),
   };
+}
+
+const LOCAL_CURRENCY: Record<string, string> = { NG: 'NGN', KE: 'KES', GH: 'GHS', TZ: 'TZS', EG: 'EGP', MA: 'MAD', PT: 'EUR', FR: 'EUR', DE: 'EUR', ES: 'EUR', IT: 'EUR', NL: 'EUR', GB: 'GBP', CH: 'CHF', CA: 'CAD', BR: 'BRL', MX: 'MXN', TH: 'THB', AR: 'ARS' };
+
+/** S3 (PLAN 10.4): Reflector first, ECB second; hidden when neither covers the currency. */
+export async function localCurrency(svc: Services, deal: DealRow, cost: bigint, salePrice: bigint): Promise<DealDetail['localCurrency']> {
+  if (!svc.env.FF_REFLECTOR || cost <= 0n) return null;
+  const route = deal.route as { destinationCountry?: string };
+  const code = LOCAL_CURRENCY[(route.destinationCountry ?? '').toUpperCase()];
+  if (!code || code === 'USD') return null;
+  const fx = await usdRate(code, svc.adapters, true).catch(() => null);
+  if (!fx || fx.rate <= 0 || fx.source === 'none') return null;
+  // fx.rate = USD per 1 unit of `code`; amounts are in settlement units (USD-pegged), 7 decimals
+  const perUsd = 1 / fx.rate;
+  const conv = (v: bigint) => ((v * BigInt(Math.round(perUsd * 1_000_000))) / 1_000_000n).toString();
+  return { code, cost: conv(cost), salePrice: conv(salePrice), rate: Number(perUsd.toFixed(6)), source: fx.source, at: new Date().toISOString() };
 }
 
 export async function dealsForList(svc: Services, where: { statuses?: string[]; importerId?: string; all?: boolean }) {

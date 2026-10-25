@@ -338,3 +338,50 @@ ops.post('/deals/:id/incident', async (c) => {
 });
 
 export type { DraftTerms };
+
+/**
+ * Adopt a deal that already exists on-chain (the three seeded demo deals from `pnpm seed`)
+ * so the marketplace, the indexer and the agent see it. Reads terms from the contract.
+ */
+const ImportOnchainRequest = z.object({
+  onchainId: z.number().int().positive(),
+  goodsSummary: z.string().min(3).max(200),
+  originPort: z.string().min(1),
+  destinationPort: z.string().min(1),
+  destinationCountry: z.string().length(2),
+  importerProfileId: z.string().uuid().optional(),
+  supplierNameEn: z.string().optional(),
+  carrier: z.string().optional(),
+});
+
+ops.post('/deals/import-onchain', async (c) => {
+  const svc = c.get('svc');
+  const u = c.get('user')!;
+  const body = await readJson(c, ImportOnchainRequest);
+  const existing = await svc.db.query.deals.findFirst({ where: eq(deals.onchainId, body.onchainId) });
+  if (existing) throw new ApiError(409, 'exists', `deal ${body.onchainId} is already deal ${existing.number}`);
+  const on = await svc.chain.getDeal(body.onchainId);
+  if (!on) throw new ApiError(404, 'not_found', 'no such deal on-chain');
+  let importerId = body.importerProfileId;
+  if (!importerId) {
+    const byWallet = await svc.db.query.profiles.findFirst({ where: eq(profiles.walletAddress, on.terms.importer) });
+    if (byWallet) importerId = byWallet.id;
+    else {
+      const [row] = await svc.db.insert(profiles).values({ authUserId: `wallet:${on.terms.importer}`, displayName: 'Demo importer', walletAddress: on.terms.importer, walletKind: on.terms.importer.startsWith('C') ? 'smart_account' : 'g_account', roles: ['importer'] }).returning();
+      importerId = row!.id;
+    }
+  }
+  let supplier = await svc.db.query.suppliers.findFirst({ where: eq(suppliers.payoutAddress, on.terms.supplier) });
+  if (!supplier) {
+    const [row] = await svc.db.insert(suppliers).values({ nameEn: body.supplierNameEn ?? 'Demo supplier', payoutAddress: on.terms.supplier, country: 'CN' }).returning();
+    supplier = row!;
+  }
+  const t: DraftTerms & { onchain: typeof on.terms } = { cost: on.terms.cost, markup: on.terms.markup, platform_fee: on.terms.platform_fee, late_fee: on.terms.late_fee, security: on.terms.security, security_bps: Number((BigInt(on.terms.security) * 10000n) / BigInt(on.terms.cost)), deposit_bps: on.terms.deposit_bps, tenor_secs: on.terms.tenor_secs, accept_window_secs: on.terms.accept_window_secs, funding_window_secs: Math.max(0, on.terms.funding_deadline - on.listed_at), invoice_total: '0', invoice_currency: 'USD', fx_rate: 1, fx_source: 'none', onchain: on.terms };
+  const [deal] = await svc.db
+    .insert(deals)
+    .values({ importerId, supplierId: supplier.id, onchainId: body.onchainId, status: ONCHAIN_STATUS[on.state], goodsSummary: body.goodsSummary, route: { originPort: body.originPort, originCountry: 'CN', destinationPort: body.destinationPort, destinationCountry: body.destinationCountry }, carrier: body.carrier ?? null, shareToken: on.terms.share_token, listingFingerprint: on.terms.listing_fingerprint, terms: t, security: on.terms.security })
+    .returning();
+  await audit(svc.db, { actor: u.profileId, action: 'import_onchain_deal', target: deal!.id, after: { onchainId: body.onchainId, state: on.state } });
+  await enqueue(svc.db, 'agent_tick', { reason: 'import', dealId: deal!.id }, { dedupeKey: `agent_tick:${deal!.id}:import` });
+  return ok(c, { message: `imported on-chain deal ${body.onchainId} as deal ${deal!.number} (${on.state})` });
+});

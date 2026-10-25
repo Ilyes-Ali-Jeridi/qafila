@@ -16,7 +16,7 @@ import { adapterModes, rpcProbe } from './routes/health.js';
 import { ops } from './routes/ops.js';
 import { publicRoutes } from './routes/public.js';
 import { wellKnown } from './routes/wellknown.js';
-import { x402 } from './routes/x402.js';
+import { createX402Routes } from './routes/x402.js';
 import type { Vars } from './routes/_shared.js';
 import type { Services } from './services.js';
 
@@ -54,7 +54,7 @@ export function createApp(env: Env, svc?: Services) {
     app.route('/', dealRoutes);
     app.route('/', publicRoutes);
     app.route('/ops', ops);
-    if (env.FF_X402) app.route('/x402', x402);
+    if (env.FF_X402) app.route('/x402', createX402Routes(env));
     if (env.RELAYER_SECRET) {
       const dep = loadDeployment(env.STELLAR_NETWORK);
       const contractId = env.QAFILA_CONTRACT_ID ?? dep.contractId;
