@@ -4,7 +4,7 @@
  * web app never depends on the generated client for display.
  */
 import { z } from 'zod';
-import { DEAL_STATES, DECISIONS, DOCUMENT_TYPES, FEATURE_FLAGS, PAYMENT_MODES, ABORT_REASONS } from './constants.js';
+import { DEAL_STATES, DECISIONS, DOCUMENT_TYPES, FEATURE_FLAGS, PAYMENT_MODES, ABORT_REASONS } from './constants';
 
 export const AmountString = z.string().regex(/^-?\d+$/, 'i128 as decimal string');
 export type AmountString = z.infer<typeof AmountString>;

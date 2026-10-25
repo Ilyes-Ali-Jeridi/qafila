@@ -19,6 +19,7 @@
     "@aws-sdk/client-textract": "3.1156.0",
     "@hono/node-server": "1.19.17",
     "@hono/zod-validator": "0.7.6",
+    "@qafila/chain": "workspace:*",
     "@qafila/contract-client": "workspace:*",
     "@qafila/shared": "workspace:*",
     "@stellar/stellar-sdk": "17.4.0",

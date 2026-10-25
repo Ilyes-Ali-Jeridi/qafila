@@ -26,5 +26,16 @@ export function createChain(env: Env): Chain {
       cfg: { minSecurityBps: env.MIN_SECURITY_BPS, securityStepBps: env.SECURITY_STEP_BPS, securityFloorBps: env.SECURITY_FLOOR_BPS, maxExtensionSecs: env.MAX_EXTENSION_SECS, graceSecs: 60, baseImporterLimit: parseAmount(env.BASE_IMPORTER_LIMIT), limitStep: parseAmount(env.IMPORTER_LIMIT_STEP) },
     });
   }
-  return new LiveChain({ rpcUrl: env.STELLAR_RPC_URL, networkPassphrase: env.NETWORK_PASSPHRASE, contractId, adminSecret: env.ADMIN_SECRET, agentSecret: env.AGENT_SIGNER_SECRET, agentSmartAccountId: env.AGENT_SMART_ACCOUNT_ID, faucetSecret: env.FAUCET_SECRET, settlementTokenId: env.SETTLEMENT_TOKEN_ID ?? dep.settlementToken?.id });
+  return new LiveChain({
+    rpcUrl: env.STELLAR_RPC_URL,
+    horizonUrl: env.HORIZON_URL,
+    network: env.STELLAR_NETWORK,
+    networkPassphrase: env.NETWORK_PASSPHRASE,
+    contractId,
+    adminSecret: env.ADMIN_SECRET,
+    agentSecret: env.AGENT_SIGNER_SECRET,
+    agentSmartAccountId: env.AGENT_SMART_ACCOUNT_ID,
+    appDomain: env.APP_DOMAIN,
+    processEnv: { ...process.env, SETTLEMENT_TOKEN_ID: env.SETTLEMENT_TOKEN_ID ?? dep.settlementToken?.id, SETTLEMENT_TOKEN_ISSUER: env.SETTLEMENT_TOKEN_ISSUER ?? dep.settlementToken?.issuer, SETTLEMENT_TOKEN_CODE: env.SETTLEMENT_TOKEN_CODE },
+  });
 }

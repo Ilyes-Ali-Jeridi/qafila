@@ -1,0 +1,986 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-10",
+    "created_at": "2026-10-25T16:03:12.274Z",
+    "decision": "approve",
+    "risk_score": 100,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "COSU8123403",
+          "COSU8123419"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91320500MA1XQ6L3BR passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 line amounts equal quantity x unit price and add up to the printed total 33000.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 33000,
+          "printed_total": 33000,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-09-12).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-09-12",
+          "plDate": "2026-09-13",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 1 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            400
+          ],
+          "packing_list": [
+            400
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 10\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 10"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "江苏光耀新能源有限公司",
+          "b": "江苏光耀新能源有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "b": "Jiangsu Guangyao New Energy Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91320500MA1XQ6L3BR",
+          "b": "91320500MA1XQ6L3BR"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "江苏光耀新能源有限公司",
+          "b": "江苏光耀新能源有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "GY-2026-0912",
+          "b": "GY-2026-0912"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both descriptions match exactly in English; the invoice includes Chinese translation which does not contradict the English text.",
+        "weight": 25,
+        "evidence": {
+          "a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
+          "b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Monocrystalline solar modules 550 W, half-cut cells, 144 cells) is solar and energy equipment: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+          "category": "energy",
+          "verdict": "permitted",
+          "reason": "Monocrystalline solar modules are solar equipment used for energy generation."
+        }
+      },
+      {
+        "name": "price.solar_panel_modules_400_600w",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Monocrystalline solar modules 550 W, half-cut cells, 144 cells): 82.50 USD per piece vs reference 55 to 125 (solar_panel_modules_400_600w, 0.92x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+          "category": "solar_panel_modules_400_600w",
+          "unit_price_usd": 82.5,
+          "reference_low_usd": 55,
+          "reference_high_usd": 125,
+          "ratio_to_mid": 0.917,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91320500MA1XQ6L3BR (江苏光耀新能源有限公司 / Jiangsu Guangyao New Energy Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91320500MA1XQ6L3BR",
+          "legal_name_zh": "江苏光耀新能源有限公司",
+          "legal_name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91320500MA1XQ6L3BR",
+          "legal_name_zh": "江苏光耀新能源有限公司",
+          "legal_name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Jiangsu Guangyao New Energy Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Mwangi Imports Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Zhang Ming\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "efae7cbcb3c49001d9179ecb396e74fe1d2000813638b43d85dbe5e057a36942",
+          "parts": {
+            "supplier": "91320500MA1XQ6L3BR",
+            "invoice_number": "GY-2026-0912",
+            "invoice_date": "2026-09-12",
+            "total": "33000.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "approve by policy 5.6: no flags.",
+        "weight": 0,
+        "evidence": []
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "GY-2026-0912",
+          "evidence": "Invoice No. GY-2026-0912",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-09-12",
+          "evidence": "Invoice date 2026-09-12",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "commercial",
+          "evidence": "COMMERCIAL INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "江苏光耀新能源有限公司",
+            "evidence": "江苏光耀新能源有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91320500MA1XQ6L3BR",
+            "evidence": "USCC 91320500MA1XQ6L3BR",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 10",
+            "evidence": "Qafila Trade, deal 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "Qafila Trade, deal 10",
+            "evidence": "Qafila Trade, deal 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Mwangi Imports Ltd",
+          "evidence": "Mwangi Imports Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Shanghai (CNSHA), Incoterms 2020",
+          "evidence": "FOB Shanghai (CNSHA), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "Currency USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 33000,
+          "evidence": "TOTAL FOB CNSHA USD 33,000.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "evidence": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "单晶硅光伏组件 550W 半片 144片",
+              "evidence": "单晶硅光伏组件 550W 半片 144片",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "854143",
+              "evidence": "854143",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 400,
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 82.5,
+              "evidence": "82.50",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 33000,
+              "evidence": "33,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Shanghai, China (CNSHA)",
+          "evidence": "Port of loading Shanghai, China (CNSHA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Mombasa, Kenya (KEMBA)",
+          "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-GY-2026-0912",
+          "evidence": "No. PL-GY-2026-0912",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-09-13",
+          "evidence": "Date 2026-09-13",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "GY-2026-0912",
+          "evidence": "Invoice No. GY-2026-0912",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "江苏光耀新能源有限公司",
+            "evidence": "江苏光耀新能源有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91320500MA1XQ6L3BR",
+            "evidence": "USCC 91320500MA1XQ6L3BR",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 10, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 10, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "evidence": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 400,
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 400,
+              "evidence": "400 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 11600,
+              "evidence": "11,600.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 11000,
+              "evidence": "11,000.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 60,
+              "evidence": "60.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 400,
+          "evidence": "Total packages: 400 cartons",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 11600,
+          "evidence": "Total gross weight: 11,600.0 kg",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 11000,
+          "evidence": "Total net weight: 11,000.0 kg",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 60,
+          "evidence": "Total volume: 60.00 m3",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "COSU8123403",
+            "evidence": "COSU8123403",
+            "page": 1,
+            "confidence": 0.98
+          },
+          {
+            "value": "COSU8123419",
+            "evidence": "COSU8123419",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "江苏光耀新能源有限公司",
+          "evidence": "江苏光耀新能源有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91320500MA1XQ6L3BR",
+          "evidence": "91320500MA1XQ6L3BR",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "张明 (Zhang Ming)",
+          "evidence": "张明 (Zhang Ming)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 5,000 万元 (RMB 50,000,000)",
+          "evidence": "人民币 5,000 万元 (RMB 50,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2011-02-28",
+          "evidence": "2011-02-28",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2011-02-28 至 长期 / to long-term",
+          "evidence": "2011-02-28 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+          "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "evidence": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "苏州市市场监督管理局 / Suzhou Administration for Market Regulation",
+          "evidence": "苏州市市场监督管理局 / Suzhou Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2011-06-30",
+          "evidence": "2011-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "江苏光耀新能源有限公司",
+      "legal_name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+        "category": "solar_panel_modules_400_600w",
+        "unit_price_usd": 82.5,
+        "reference_low_usd": 55,
+        "reference_high_usd": 125,
+        "ratio_to_mid": 0.917,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+        "category": "energy",
+        "verdict": "permitted",
+        "reason": "Monocrystalline solar modules are solar equipment used for energy generation."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "江苏光耀新能源有限公司",
+        "evidence_b": "江苏光耀新能源有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Jiangsu Guangyao New Energy Co., Ltd.",
+        "evidence_b": "Jiangsu Guangyao New Energy Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91320500MA1XQ6L3BR",
+        "evidence_b": "91320500MA1XQ6L3BR"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "江苏光耀新能源有限公司",
+        "evidence_b": "江苏光耀新能源有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "GY-2026-0912",
+        "evidence_b": "GY-2026-0912"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "Both descriptions match exactly in English; the invoice includes Chinese translation which does not contradict the English text.",
+        "evidence_a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
+        "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+      }
+    ],
+    "listing_fingerprint": "efae7cbcb3c49001d9179ecb396e74fe1d2000813638b43d85dbe5e057a36942",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "0eef1a23b88ccd4d049575c7ac142785f7ea732293ab21ebe4e331e4d0aee8a0"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "3e0e7ed91c40cf7e4cdf25c4c11b39d6700e9c69a0e2c922b584534bf23545bb"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "88c66bb46d3e1fe7daf297b641cdf04c5afaf2ff5b00612d9ed0b28e22015dbb"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16101,
+        "tokens_out": 2985,
+        "latency_ms": 47343,
+        "cost_usd": 0.008412
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 6093,
+        "tokens_out": 1303,
+        "latency_ms": 21547,
+        "cost_usd": 0.003391
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4329,
+        "tokens_out": 817,
+        "latency_ms": 12352,
+        "cost_usd": 0.002279
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 821,
+        "tokens_out": 140,
+        "latency_ms": 2265,
+        "cost_usd": 0.000414
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1143,
+        "tokens_out": 51,
+        "latency_ms": 802,
+        "cost_usd": 0.000202
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1864,
+        "tokens_out": 96,
+        "latency_ms": 976,
+        "cost_usd": 0.000337
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2024,
+        "tokens_out": 69,
+        "latency_ms": 1111,
+        "cost_usd": 0.000345
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91320500MA1XQ6L3BR.json"
+    ],
+    "timings_ms": {
+      "intake": 670,
+      "extract": 47343,
+      "validate": 1,
+      "stages": 2267,
+      "fingerprint": 0,
+      "explain": 1111,
+      "total": 51393
+    },
+    "cost_usd": 0.01538,
+    "injection_attempts": [],
+    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice details, and consistency across documents are all valid. No action is needed from your side."
+  },
+  "report_hash": "a19737c45002c379fb7af057643eaf75e50b7d1ced1534202aeb49864b2d0d62",
+  "signature": "a6ef60950ff16a70bcc3dcd57dc7300b2f2a951b24e1c0fa2c79cb91d08ebe4da23e3a440cfae3695c5f22559519273bbc8eed0446453dfb0e4f1839d837dd00"
+}

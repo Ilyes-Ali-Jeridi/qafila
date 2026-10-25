@@ -1,0 +1,223 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:03:10.004Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.invoice",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_invoice.v1",
+    "cacheKey": "extract:invoice:0eef1a23b88ccd4d049575c7ac142785f7ea732293ab21ebe4e331e4d0aee8a0"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "invoice",
+      "invoice_number": {
+        "value": "GY-2026-0912",
+        "evidence": "Invoice No. GY-2026-0912",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_date": {
+        "value": "2026-09-12",
+        "evidence": "Invoice date 2026-09-12",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_kind": {
+        "value": "commercial",
+        "evidence": "COMMERCIAL INVOICE",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "seller": {
+        "name_en": {
+          "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "江苏光耀新能源有限公司",
+          "evidence": "江苏光耀新能源有限公司",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": "91320500MA1XQ6L3BR",
+          "evidence": "USCC 91320500MA1XQ6L3BR",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "address": {
+          "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "CN",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 10",
+          "evidence": "Qafila Trade, deal 10",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "Qafila Trade, deal 10",
+          "evidence": "Qafila Trade, deal 10",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "PT",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "consignee": {
+        "name_en": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 10",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 10",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "country": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        }
+      },
+      "notify_party": {
+        "value": "Mwangi Imports Ltd",
+        "evidence": "Mwangi Imports Ltd",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "incoterms": {
+        "value": "FOB Shanghai (CNSHA), Incoterms 2020",
+        "evidence": "FOB Shanghai (CNSHA), Incoterms 2020",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "currency": {
+        "value": "USD",
+        "evidence": "Currency USD",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total": {
+        "value": 33000,
+        "evidence": "TOTAL FOB CNSHA USD 33,000.00",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "line_items": [
+        {
+          "description_en": {
+            "value": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+            "evidence": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "单晶硅光伏组件 550W 半片 144片",
+            "evidence": "单晶硅光伏组件 550W 半片 144片",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "854143",
+            "evidence": "854143",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 400,
+            "evidence": "400 pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "pcs",
+            "evidence": "400 pcs",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 82.5,
+            "evidence": "82.50",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 33000,
+            "evidence": "33,000.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        }
+      ],
+      "port_of_loading": {
+        "value": "Shanghai, China (CNSHA)",
+        "evidence": "Port of loading Shanghai, China (CNSHA)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "port_of_discharge": {
+        "value": "Mombasa, Kenya (KEMBA)",
+        "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "payment_terms": {
+        "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 16101,
+    "tokensOut": 2985,
+    "repaired": true
+  }
+}

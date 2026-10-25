@@ -1,0 +1,1151 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-12",
+    "created_at": "2026-10-25T16:05:24.035Z",
+    "decision": "review",
+    "risk_score": 0,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.confidence",
+        "status": "review",
+        "severity": "high",
+        "detail": "Key fields of the invoice are not readable with confidence: missing or without evidence: seller.uscc.",
+        "weight": 25,
+        "evidence": {
+          "minConfidence": 0,
+          "missing": [
+            "seller.uscc"
+          ],
+          "low": []
+        },
+        "fix": "Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.",
+        "document": "invoice",
+        "field": "seller.uscc"
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "TGHU6120905"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91440300MA5GK2Q7XL passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "review",
+        "severity": "medium",
+        "detail": "Invoice arithmetic differs by 0.55% (rounding or a small error).",
+        "weight": 15,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 18000,
+          "printed_total": 18100,
+          "missing_lines": 0
+        },
+        "fix": "Confirm the rounding with the supplier or upload a corrected invoice.",
+        "document": "invoice",
+        "field": "total"
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2024-11-05).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2024-11-05",
+          "plDate": "2026-10-06",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 2 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            2000,
+            5000
+          ],
+          "packing_list": [
+            2000,
+            5000
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "review",
+        "severity": "low",
+        "detail": "port of loading code \"CNTN\" is not a 5-character UN/LOCODE.",
+        "weight": 8,
+        "fix": "Use an Incoterms 2020 term, 6 to 10 digit HS codes and 5-character UN/LOCODEs.",
+        "document": "invoice"
+      },
+      {
+        "name": "structure.buyer",
+        "status": "review",
+        "severity": "high",
+        "detail": "The invoice buyer is \"Mwangi Imports Ltd\", not Qafila Trade's deal entity.",
+        "weight": 25,
+        "evidence": "Mwangi Imports Ltd",
+        "fix": "Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".",
+        "document": "invoice",
+        "field": "buyer"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "深圳市蓝湾电子有限公司",
+          "b": "深圳市蓝湾电子有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "b": "Shenzhen Lanwan Electronics Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "深圳市蓝湾电子有限公司",
+          "b": "深圳市蓝湾电子有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "review",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list differ: \"INV-LW-2024-1002\" (invoice) vs \"INV-LW-2026-1002\" (packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "INV-LW-2024-1002",
+          "b": "INV-LW-2026-1002"
+        },
+        "fix": "The packing list must reference this invoice number.",
+        "document": "packing_list",
+        "field": "invoice_reference"
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "review",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): no. The earphone jack size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
+        "weight": 25,
+        "evidence": {
+          "a": "Wired in-ear earphones with microphone, 2.5 mm",
+          "b": "Wired in-ear earphones with microphone, 3.5 mm"
+        },
+        "fix": "The packing list must list the same goods as the invoice.",
+        "document": "packing_list",
+        "field": "goods_invoice_vs_packing_list"
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Power banks 10,000 mAh, dual USB output, retail box) is electronics and phone accessories: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Power banks 10,000 mAh, dual USB output, retail box",
+          "category": "electronics",
+          "verdict": "permitted",
+          "reason": "Power banks fall under the electronics category as they are portable charging devices."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (Wired in-ear earphones with microphone, 2.5 mm) is electronics and phone accessories: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. Wired in-ear earphones with microphone, 2.5 mm",
+          "category": "electronics",
+          "verdict": "permitted",
+          "reason": "Wired in-ear earphones are classified as electronics due to their function as audio devices."
+        }
+      },
+      {
+        "name": "price.power_banks_10000mah",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Power banks 10,000 mAh, dual USB output, retail box): 6.00 USD per piece vs reference 4 to 12 (power_banks_10000mah, 0.75x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Power banks 10,000 mAh, dual USB output, retail box",
+          "category": "power_banks_10000mah",
+          "unit_price_usd": 6,
+          "reference_low_usd": 4,
+          "reference_high_usd": 12,
+          "ratio_to_mid": 0.75,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.wired_earphones",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (Wired in-ear earphones with microphone, 2.5 mm): 1.20 USD per piece vs reference 0.5 to 2.5 (wired_earphones, 0.80x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. Wired in-ear earphones with microphone, 2.5 mm",
+          "category": "wired_earphones",
+          "unit_price_usd": 1.2,
+          "reference_low_usd": 0.5,
+          "reference_high_usd": 2.5,
+          "ratio_to_mid": 0.8,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91440300MA5GK2Q7XL (深圳市蓝湾电子有限公司 / Shenzhen Lanwan Electronics Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91440300MA5GK2Q7XL",
+          "legal_name_zh": "深圳市蓝湾电子有限公司",
+          "legal_name_en": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91440300MA5GK2Q7XL",
+          "legal_name_zh": "深圳市蓝湾电子有限公司",
+          "legal_name_en": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Shenzhen Lanwan Electronics Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Mwangi Imports Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Chen Wei\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "cb5198b7c6eab1d6e57ca7192f2eb40ff44c93a3a0c6b4cb027341cc90b1c859",
+          "parts": {
+            "supplier": "91440300MA5GK2Q7XL",
+            "invoice_number": "INV-LW-2024-1002",
+            "invoice_date": "2024-11-05",
+            "total": "18100.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "review by policy 5.6: review:consistency_mismatch, review:low_confidence, review:arithmetic_small, review:deal_structure.",
+        "weight": 0,
+        "evidence": [
+          {
+            "rule": "consistency_mismatch",
+            "level": "review",
+            "detail": "Two documents disagree on a field."
+          },
+          {
+            "rule": "low_confidence",
+            "level": "review",
+            "detail": "A key field is missing or below 0.8 confidence."
+          },
+          {
+            "rule": "arithmetic_small",
+            "level": "review",
+            "detail": "Invoice arithmetic differs by up to 1%."
+          },
+          {
+            "rule": "deal_structure",
+            "level": "review",
+            "detail": "The invoice buyer is not Qafila's deal entity."
+          }
+        ]
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "INV-LW-2024-1002",
+          "evidence": "Invoice No: INV-LW-2024-1002",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2024-11-05",
+          "evidence": "Invoice date: 2024-11-05",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Shenzhen Lanwan Electronics Co., Ltd.",
+            "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "深圳市蓝湾电子有限公司",
+            "evidence": "深圳市蓝湾电子有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Building 3, Lanwan Industrial Park, Aiyang, Bao'an District, Shenzhen, Guangdong, China",
+            "evidence": "Building 3, Lanwan Industrial Park, Aiyang, Bao'an District, Shenzhen, Guangdong, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Mwangi Imports Ltd",
+            "evidence": "Mwangi Imports Ltd",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "P.O. Box 32, Mombasa Road, Nairobi, Kenya",
+            "evidence": "P.O. Box 32, Mombasa Road, Nairobi, Kenya",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "KE",
+            "evidence": "Kenya",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 12",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 12",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "incoterms": {
+          "value": "FOB Shenzhen (Yantian), September 2022",
+          "evidence": "FOB Shenzhen (Yantian), September 2022",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD 18,100.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 18100,
+          "evidence": "USD 18,100.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Power banks 10,000 mAh, dual USB output, retail box",
+              "evidence": "Power banks 10,000 mAh, dual USB output, retail box",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "移动电源 10000mAh 双USB 输出",
+              "evidence": "移动电源 10000mAh 双USB 输出",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "850760",
+              "evidence": "850760",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 2000,
+              "evidence": "2,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 6,
+              "evidence": "6.00",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 12000,
+              "evidence": "12,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Wired in-ear earphones with microphone, 2.5 mm",
+              "evidence": "Wired in-ear earphones with microphone, 2.5 mm",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "有线入耳式耳机带麦克 2.5mm",
+              "evidence": "有线入耳式耳机带麦克 2.5mm",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "851830",
+              "evidence": "851830",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 5000,
+              "evidence": "5,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 1.2,
+              "evidence": "1.20",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 6000,
+              "evidence": "6,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Shenzhen, China (CNTN)",
+          "evidence": "Port of loading: Shenzhen, China (CNTN)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Mombasa, Kenya (KEMBA)",
+          "evidence": "Port of discharge: Mombasa, Kenya (KEMBA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
+          "evidence": "Payment terms: 30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-LW-2026-1002",
+          "evidence": "No. PL-LW-2026-1002",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-10-06",
+          "evidence": "Date 2026-10-06",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "INV-LW-2026-1002",
+          "evidence": "Invoice No. INV-LW-2026-1002",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Shenzhen Lanwan Electronics Co., Ltd.",
+            "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "深圳市蓝湾电子有限公司",
+            "evidence": "深圳市蓝湾电子有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91440300MA5GK2Q7XL",
+            "evidence": "USCC 91440300MA5GK2Q7XL",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
+            "evidence": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Power banks 10,000 mAh, dual USB output, retail box",
+              "evidence": "Power banks 10,000 mAh, dual USB output, retail box",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 2000,
+              "evidence": "2,000 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 100,
+              "evidence": "100 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 1600,
+              "evidence": "1,600.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 1500,
+              "evidence": "1,500.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 5,
+              "evidence": "5.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "description_en": {
+              "value": "Wired in-ear earphones with microphone, 3.5 mm",
+              "evidence": "Wired in-ear earphones with microphone, 3.5 mm",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 5000,
+              "evidence": "5,000 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 100,
+              "evidence": "100 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 800,
+              "evidence": "800.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 700,
+              "evidence": "700.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 4,
+              "evidence": "4.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 200,
+          "evidence": "200 CTNS",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 2400,
+          "evidence": "2,400.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 2200,
+          "evidence": "2,200.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 9,
+          "evidence": "9.00",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "TGHU6120905",
+            "evidence": "TGHU6120905",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "深圳市蓝湾电子有限公司",
+          "evidence": "名称 深圳市蓝湾电子有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "evidence": "Name Shenzhen Lanwan Electronics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91440300MA5GK2Q7XL",
+          "evidence": "统一社会信用代码 91440300MA5GK2Q7XL",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "陈伟 (Chen Wei)",
+          "evidence": "法定代表人 陈伟 (Chen Wei)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 500 万元 (RMB 5,000,000)",
+          "evidence": "注册资本 人民币 500 万元 (RMB 5,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2016-03-18",
+          "evidence": "成立日期 2016-03-18",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2016-03-18 至 长期 / to long-term",
+          "evidence": "营业期限 2016-03-18 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+          "evidence": "住所 广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2016-06-30",
+          "evidence": "发照日期 Issue date: 2016-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "深圳市蓝湾电子有限公司",
+      "legal_name_en": "Shenzhen Lanwan Electronics Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Power banks 10,000 mAh, dual USB output, retail box",
+        "category": "power_banks_10000mah",
+        "unit_price_usd": 6,
+        "reference_low_usd": 4,
+        "reference_high_usd": 12,
+        "ratio_to_mid": 0.75,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "2. Wired in-ear earphones with microphone, 2.5 mm",
+        "category": "wired_earphones",
+        "unit_price_usd": 1.2,
+        "reference_low_usd": 0.5,
+        "reference_high_usd": 2.5,
+        "ratio_to_mid": 0.8,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Power banks 10,000 mAh, dual USB output, retail box",
+        "category": "electronics",
+        "verdict": "permitted",
+        "reason": "Power banks fall under the electronics category as they are portable charging devices."
+      },
+      {
+        "line": "2. Wired in-ear earphones with microphone, 2.5 mm",
+        "category": "electronics",
+        "verdict": "permitted",
+        "reason": "Wired in-ear earphones are classified as electronics due to their function as audio devices."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "深圳市蓝湾电子有限公司",
+        "evidence_b": "深圳市蓝湾电子有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Shenzhen Lanwan Electronics Co., Ltd.",
+        "evidence_b": "Shenzhen Lanwan Electronics Co., Ltd."
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "深圳市蓝湾电子有限公司",
+        "evidence_b": "深圳市蓝湾电子有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "no",
+        "reason": "Invoice number on the invoice and the packing list: differ after normalisation.",
+        "evidence_a": "INV-LW-2024-1002",
+        "evidence_b": "INV-LW-2026-1002"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "no",
+        "reason": "The earphone jack size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
+        "evidence_a": "Wired in-ear earphones with microphone, 2.5 mm",
+        "evidence_b": "Wired in-ear earphones with microphone, 3.5 mm"
+      }
+    ],
+    "listing_fingerprint": "cb5198b7c6eab1d6e57ca7192f2eb40ff44c93a3a0c6b4cb027341cc90b1c859",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "9630cbd657124f533b72088d7175be1b136a36aa3366e1b205e868177c3c4dec"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "0a63ba0261d49b0c52a2ec2afefbbd61e47cf0e8ea245ba91b7e3947c05076e9"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "68014d3f2a16679129ca04cd5ac41ef7ab28c793150c6c4cb1e5c17ca106b429"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 15028,
+        "tokens_out": 3075,
+        "latency_ms": 45259,
+        "cost_usd": 0.008198
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 6122,
+        "tokens_out": 1508,
+        "latency_ms": 20024,
+        "cost_usd": 0.003646
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4324,
+        "tokens_out": 759,
+        "latency_ms": 13321,
+        "cost_usd": 0.002208
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 859,
+        "tokens_out": 117,
+        "latency_ms": 2629,
+        "cost_usd": 0.000398
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1179,
+        "tokens_out": 87,
+        "latency_ms": 1079,
+        "cost_usd": 0.000229
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1916,
+        "tokens_out": 135,
+        "latency_ms": 1151,
+        "cost_usd": 0.000368
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2324,
+        "tokens_out": 196,
+        "latency_ms": 1417,
+        "cost_usd": 0.000466
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91440300MA5GK2Q7XL.json"
+    ],
+    "timings_ms": {
+      "intake": 875,
+      "extract": 45260,
+      "validate": 0,
+      "stages": 2633,
+      "fingerprint": 3,
+      "explain": 1431,
+      "total": 50220
+    },
+    "cost_usd": 0.015513,
+    "injection_attempts": [],
+    "explanation": "Your deal needs a review by our team because key fields on the invoice are not readable and there are discrepancies in the goods description and invoice details. The container check, USCC validation, and price checks passed. Please correct the issues listed below to proceed.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Confirm the rounding with the supplier or upload a corrected invoice.\n- Use an Incoterms 2020 term, 6 to 10 digit HS codes and 5-character UN/LOCODEs.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice."
+  },
+  "report_hash": "40ccf932f66aebb49cd8051ff31d24c377a5a4376a25f656e90fd0b8fb12fad3",
+  "signature": "b2a37784573b9c28eef0ceb414b23092d1141475f35e7c406155b7f9f305352c47d474ae29e7723b2320c990f86ca2cfbe2cd759f0cdcb9aaaf83ac7e7a02c08"
+}

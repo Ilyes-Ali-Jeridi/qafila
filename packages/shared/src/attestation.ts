@@ -7,7 +7,7 @@
  */
 import { createHash } from 'node:crypto';
 import { Address, Keypair } from '@stellar/stellar-sdk';
-import { ATTEST_PREFIX } from './constants.js';
+import { ATTEST_PREFIX } from './constants';
 
 export function sha256(data: Uint8Array | string): Uint8Array {
   return new Uint8Array(createHash('sha256').update(data).digest());

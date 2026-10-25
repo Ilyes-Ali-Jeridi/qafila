@@ -1,0 +1,22 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:03:13.384Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-10:listing:efae7cbcb3c49001d9179ecb396e74fe1d2000813638b43d85dbe5e057a36942:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,price.solar_panel_modules_400_600w=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice details, and consistency across documents are all valid. No action is needed from your side.",
+      "fixes": [],
+      "category": null
+    },
+    "tokensIn": 2024,
+    "tokensOut": 69,
+    "repaired": false
+  }
+}

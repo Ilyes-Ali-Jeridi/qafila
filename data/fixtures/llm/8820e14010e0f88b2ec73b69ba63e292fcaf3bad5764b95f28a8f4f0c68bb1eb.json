@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:03:12.272Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "49f0edc8948ae5f04baf69ef316c03e9a286c8d704f73aef824c7d3d6629a730"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "Both descriptions match exactly in English; the invoice includes Chinese translation which does not contradict the English text.",
+          "evidence_a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
+          "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+        }
+      ]
+    },
+    "tokensIn": 821,
+    "tokensOut": 140,
+    "repaired": false
+  }
+}

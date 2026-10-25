@@ -1,7 +1,8 @@
-export * from './constants.js';
-export * from './format.js';
-export * from './schemas.js';
-export * from './documents.js';
-export * from './report.js';
-export * from './promise.js';
+export * from './constants';
+export * from './format';
+export * from './schemas';
+export * from './documents';
+export * from './report';
+export * from './promise';
+export * from './api';
 // attestation.ts is Node-only; import it from '@qafila/shared/attestation'.

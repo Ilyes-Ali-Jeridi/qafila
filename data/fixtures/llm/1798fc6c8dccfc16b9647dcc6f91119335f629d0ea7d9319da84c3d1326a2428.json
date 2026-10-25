@@ -1,0 +1,181 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:02:44.210Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.packing_list",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_packing_list.v1",
+    "cacheKey": "extract:packing_list:3e0e7ed91c40cf7e4cdf25c4c11b39d6700e9c69a0e2c922b584534bf23545bb"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "packing_list",
+      "packing_list_number": {
+        "value": "PL-GY-2026-0912",
+        "evidence": "No. PL-GY-2026-0912",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "date": {
+        "value": "2026-09-13",
+        "evidence": "Date 2026-09-13",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "invoice_number": {
+        "value": "GY-2026-0912",
+        "evidence": "Invoice No. GY-2026-0912",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "seller": {
+        "name_en": {
+          "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "江苏光耀新能源有限公司",
+          "evidence": "江苏光耀新能源有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91320500MA1XQ6L3BR",
+          "evidence": "USCC 91320500MA1XQ6L3BR",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 10, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 10, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "items": [
+        {
+          "description_en": {
+            "value": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+            "evidence": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 400,
+            "evidence": "400 pcs",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 400,
+            "evidence": "400 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 11600,
+            "evidence": "11,600.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 11000,
+            "evidence": "11,000.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 60,
+            "evidence": "60.00",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "total_packages": {
+        "value": 400,
+        "evidence": "Total packages: 400 cartons",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_gross_weight_kg": {
+        "value": 11600,
+        "evidence": "Total gross weight: 11,600.0 kg",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_net_weight_kg": {
+        "value": 11000,
+        "evidence": "Total net weight: 11,000.0 kg",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_cbm": {
+        "value": 60,
+        "evidence": "Total volume: 60.00 m3",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "container_numbers": [
+        {
+          "value": "COSU8123403",
+          "evidence": "COSU8123403",
+          "page": 1,
+          "confidence": 0.98
+        },
+        {
+          "value": "COSU8123419",
+          "evidence": "COSU8123419",
+          "page": 1,
+          "confidence": 0.98
+        }
+      ],
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 6093,
+    "tokensOut": 1303,
+    "repaired": false
+  }
+}

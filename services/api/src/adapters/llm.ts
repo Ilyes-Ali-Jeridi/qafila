@@ -13,7 +13,7 @@ import { z, type ZodType } from 'zod';
 import { logger } from '../lib/logger.js';
 import { requestHash, sha256Hex } from '../lib/hash.js';
 import { withRetry } from '../lib/retry.js';
-import { readFixture, writeFixture, type AdapterContext, type AdapterMode } from './base.js';
+import { CACHE_TTL_MS, readFixture, writeFixture, type AdapterContext, type AdapterMode } from './base.js';
 
 export type ModelTier = 'reason' | 'fast';
 export type LlmProvider = 'bedrock' | 'anthropic';
@@ -213,6 +213,14 @@ export function createLlm(cfg: LlmConfig): LlmClient {
         return out;
       };
 
+      if (ctx.cache) {
+        const hit = await ctx.cache.get('llm', hash);
+        if (hit) {
+          const rec = hit.raw as { output: unknown; tokensIn?: number; tokensOut?: number; repaired?: boolean };
+          const parsed = req.schema.safeParse(rec.output);
+          if (parsed.success) return finish({ ok: true, data: parsed.data, raw: rec.output, tokensIn: rec.tokensIn ?? 0, tokensOut: rec.tokensOut ?? 0, costUsd: 0, mode: hit.mode, cached: true, fixture: hit.fixture, repaired: rec.repaired ?? false, error: null });
+        }
+      }
       if (ctx.mode === 'mock') {
         const fx = readFixture(ctx, 'llm', hash);
         if (!fx) return finish({ ok: false, data: null, raw: null, tokensIn: 0, tokensOut: 0, costUsd: 0, mode: 'mock', fixture: null, error: `no fixture llm/${hash}.json for stage ${req.stage}` });
@@ -235,7 +243,7 @@ export function createLlm(cfg: LlmConfig): LlmClient {
       let tokensOut = 0;
       let repaired = false;
       try {
-        let res = await withRetry((signal) => call(modelId, system, messages, tool, maxTokens, signal), { timeoutMs: 180_000, retries: 2 });
+        let res = await withRetry((signal) => call(modelId, system, messages, tool, maxTokens, signal), { timeoutMs: 150_000, retries: 1 });
         tokensIn += res.tokensIn;
         tokensOut += res.tokensOut;
         let candidate = fillDefaults(jsonSchema, res.toolInput ?? extractJson(res.text));
@@ -259,6 +267,7 @@ export function createLlm(cfg: LlmConfig): LlmClient {
         if (!parsed.success) {
           return finish({ ok: false, data: null, raw: candidate, tokensIn, tokensOut, costUsd: cost, mode: 'live', fixture: null, repaired, error: `output failed schema after repair: ${parsed.error.issues.slice(0, 3).map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}` });
         }
+        if (ctx.cache) await ctx.cache.set('llm', hash, { raw: { output: parsed.data, tokensIn, tokensOut, repaired }, cost, mode: 'live', fixture: null }, CACHE_TTL_MS);
         if (ctx.record) {
           try {
             writeFixture(ctx, 'llm', hash, { stage: req.stage, model: modelId, promptVersion: req.promptVersion, cacheKey: keyMaterial }, { output: parsed.data, tokensIn, tokensOut, repaired }, { provider: cfg.provider });

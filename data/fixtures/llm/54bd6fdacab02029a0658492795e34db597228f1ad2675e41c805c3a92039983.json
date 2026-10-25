@@ -1,0 +1,31 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:04:31.830Z",
+  "mode": "live",
+  "input": {
+    "stage": "halal",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "halal.v1+policy.v1",
+    "cacheKey": "66ef103e3400d24e23018b37acfe9f85265a10229dd12f8ed9469068949cd0c4"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "building_materials",
+          "reason": "Glazed ceramic floor tiles are a type of building material used for flooring."
+        },
+        {
+          "line_index": 2,
+          "category": "building_materials",
+          "reason": "Glass mosaic tiles are a type of building material used for decorative or functional surfaces."
+        }
+      ]
+    },
+    "tokensIn": 1179,
+    "tokensOut": 89,
+    "repaired": false
+  }
+}

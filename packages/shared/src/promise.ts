@@ -2,7 +2,7 @@
  * Purchase promise text (wa'd), versioned. The importer reads this and signs its
  * hash on-chain with `promise_purchase` (FLOWS 9, I-5). Plain words, no jargon.
  */
-import { formatAmount, bpsToPercent } from './format.js';
+import { formatAmount, bpsToPercent } from './format';
 
 export const PROMISE_TEMPLATE_VERSION = '1.1.0';
 

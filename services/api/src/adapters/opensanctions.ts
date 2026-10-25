@@ -64,7 +64,7 @@ export function makeOpenSanctions(cfg: { apiKey?: string; baseUrl?: string }) {
   return defineAdapter<{ queries: SanctionsQuery[] }, MatchResponse, SanctionsHit[]>({
     name: 'opensanctions',
     keyOf: (i) => ({ queries: i.queries.map((q) => ({ id: q.id, schema: q.schema, name: q.name.trim().toLowerCase(), country: q.country, imo: q.imoNumber })) }),
-    fixtureName: (i) => i.queries.map((q) => slug(q.name)).join('__').slice(0, 120),
+    fixtureName: (i) => slug(i.queries[0]?.name ?? 'none'),
     live: (i, signal) => {
       if (!cfg.apiKey) throw new Error('OPENSANCTIONS_API_KEY missing');
       const queries = Object.fromEntries(

@@ -1,0 +1,1345 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "shipment",
+    "deal_ref": "packet-10",
+    "created_at": "2026-10-25T16:03:43.641Z",
+    "decision": "reject",
+    "risk_score": 60,
+    "checks": [
+      {
+        "name": "extraction.bill_of_lading",
+        "status": "pass",
+        "severity": "info",
+        "detail": "bill of_lading read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "4 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "COSU8123403",
+          "COSU8123419",
+          "COSU8123403",
+          "COSU8123419"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91320500MA1XQ6L3BR passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 line amounts equal quantity x unit price and add up to the printed total 33000.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 33000,
+          "printed_total": 33000,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-09-12, shipped 2026-09-26).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-09-12",
+          "plDate": "2026-09-13",
+          "shipped": "2026-09-26",
+          "issued": "2026-09-27",
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.weights",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Gross weight differs by 0.3% between the packing list (11600 kg) and the B/L (11640 kg).",
+        "weight": 25,
+        "evidence": {
+          "packing_list_gross_kg": 11600,
+          "bl_gross_kg": 11640,
+          "difference_pct": 0.34
+        }
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 10\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 10"
+      },
+      {
+        "name": "structure.consignee",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The B/L is made out to order of Qafila Trade's deal entity (\"TO ORDER OF QAFILA TRADE, DEAL 10\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal\").",
+        "weight": 25,
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal"
+      },
+      {
+        "name": "structure.notify_party",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "The notify party is the importer (\"Mwangi Imports Ltd\nPlot 22, Mombasa Road, Nairobi, Kenya\nTel +254 20 822 1100\").",
+        "weight": 15,
+        "evidence": "Mwangi Imports Ltd\nPlot 22, Mombasa Road, Nairobi, Kenya\nTel +254 20 822 1100"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "江苏光耀新能源有限公司",
+          "b": "江苏光耀新能源有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "b": "Jiangsu Guangyao New Energy Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91320500MA1XQ6L3BR",
+          "b": "91320500MA1XQ6L3BR"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "江苏光耀新能源有限公司",
+          "b": "江苏光耀新能源有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "GY-2026-0912",
+          "b": "GY-2026-0912"
+        }
+      },
+      {
+        "name": "consistency.shipper_vs_supplier",
+        "status": "pass",
+        "severity": "high",
+        "detail": "B/L shipper vs the supplier match (bill_of_lading vs invoice).",
+        "weight": 25,
+        "evidence": {
+          "a": "江苏光耀新能源有限公司",
+          "b": "江苏光耀新能源有限公司"
+        }
+      },
+      {
+        "name": "consistency.containers",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Container numbers on the B/L and the packing list match (bill_of_lading vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "COSU8123403, COSU8123419",
+          "b": "COSU8123403, COSU8123419"
+        }
+      },
+      {
+        "name": "consistency.bl_number",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "B/L number on the document and on the form match (bill_of_lading vs form).",
+        "weight": 15,
+        "evidence": {
+          "a": "COSU6412345678",
+          "b": "COSU6412345678"
+        }
+      },
+      {
+        "name": "consistency.port_of_loading",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Port of loading on the B/L and the invoice match (bill_of_lading vs invoice).",
+        "weight": 15,
+        "evidence": {
+          "a": "Shanghai, China (CNSHA)",
+          "b": "Shanghai, China (CNSHA)"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both values describe identical goods: monocrystalline solar modules 550W with half-cut cells and 144 cells, differing only by the inclusion of Chinese text in the invoice which is a translation.",
+        "weight": 25,
+        "evidence": {
+          "a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
+          "b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+        }
+      },
+      {
+        "name": "consistency.goods_bl_vs_invoice",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Description of goods on the B/L vs the invoice line items (same goods?): match. The B/L description 'SOLAR MODULES 550W' is a shortened but consistent reference to the full description on the invoice, which specifies the same product type and wattage.",
+        "weight": 25,
+        "evidence": {
+          "a": "SOLAR MODULES 550W",
+          "b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91320500MA1XQ6L3BR (江苏光耀新能源有限公司 / Jiangsu Guangyao New Energy Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91320500MA1XQ6L3BR",
+          "legal_name_zh": "江苏光耀新能源有限公司",
+          "legal_name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91320500MA1XQ6L3BR",
+          "legal_name_zh": "江苏光耀新能源有限公司",
+          "legal_name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Jiangsu Guangyao New Energy Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Mwangi Imports Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Zhang Ming\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.vessel",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for vessel \"COSCO SHIPPING ARIES\".",
+        "weight": 40,
+        "evidence": {
+          "party": "vessel",
+          "schema": "Vessel",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "tracking.availability",
+        "status": "pass",
+        "severity": "info",
+        "detail": "carrier tracking: 3 event(s), status Sailing.",
+        "weight": 0
+      },
+      {
+        "name": "tracking.container_present",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Container COSU8123403 appears in carrier tracking.",
+        "weight": 40,
+        "evidence": {
+          "bl": [
+            "COSU8123403",
+            "COSU8123419"
+          ],
+          "tracked": [
+            "COSU8123403"
+          ]
+        }
+      },
+      {
+        "name": "tracking.loading_vessel",
+        "status": "fail",
+        "severity": "critical",
+        "detail": "carrier tracking: the loading event at SHANGHAI names MSC AURORA, but the B/L says COSCO SHIPPING ARIES (IMO 9783497 vs 9876543 (exact comparison)).",
+        "weight": 40,
+        "evidence": {
+          "bl_vessel": "COSCO SHIPPING ARIES",
+          "bl_imo": "9783497",
+          "loading_vessel": "MSC AURORA",
+          "loading_imo": "9876543",
+          "loading_port": "SHANGHAI",
+          "loading_date": "2026-09-26",
+          "bl_port_of_loading": "Shanghai, China (CNSHA)",
+          "transshipments": [],
+          "reason": "IMO 9783497 vs 9876543 (exact comparison)"
+        },
+        "fix": "The B/L vessel does not match the carrier record; the shipment cannot be confirmed.",
+        "document": "bill_of_lading",
+        "field": "vessel"
+      },
+      {
+        "name": "tracking.status",
+        "status": "pass",
+        "severity": "high",
+        "detail": "carrier tracking: status Sailing (40), loaded or later.",
+        "weight": 25
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "efae7cbcb3c49001d9179ecb396e74fe1d2000813638b43d85dbe5e057a36942",
+          "parts": {
+            "supplier": "91320500MA1XQ6L3BR",
+            "invoice_number": "GY-2026-0912",
+            "invoice_date": "2026-09-12",
+            "total": "33000.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "fingerprint.shipment",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This bill of lading has not backed another deal.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "d2dffd2dac596d72e4fe704f76a98a997e1cd79ef73d56bd46aea9fd54a1e642",
+          "parts": {
+            "carrier": "COSU",
+            "bl_number": "COSU6412345678",
+            "containers": [
+              "COSU8123403",
+              "COSU8123419"
+            ]
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "reject by policy 5.6: reject:loading_vessel_mismatch.",
+        "weight": 0,
+        "evidence": [
+          {
+            "rule": "loading_vessel_mismatch",
+            "level": "reject",
+            "detail": "The carrier's loading event names a different vessel than the B/L."
+          }
+        ]
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "GY-2026-0912",
+          "evidence": "Invoice No. GY-2026-0912",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-09-12",
+          "evidence": "Invoice date 2026-09-12",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "commercial",
+          "evidence": "COMMERCIAL INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "江苏光耀新能源有限公司",
+            "evidence": "江苏光耀新能源有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91320500MA1XQ6L3BR",
+            "evidence": "USCC 91320500MA1XQ6L3BR",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 10",
+            "evidence": "Qafila Trade, deal 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "Qafila Trade, deal 10",
+            "evidence": "Qafila Trade, deal 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Mwangi Imports Ltd",
+          "evidence": "Mwangi Imports Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Shanghai (CNSHA), Incoterms 2020",
+          "evidence": "FOB Shanghai (CNSHA), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "Currency USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 33000,
+          "evidence": "TOTAL FOB CNSHA USD 33,000.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "evidence": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "单晶硅光伏组件 550W 半片 144片",
+              "evidence": "单晶硅光伏组件 550W 半片 144片",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "854143",
+              "evidence": "854143",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 400,
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 82.5,
+              "evidence": "82.50",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 33000,
+              "evidence": "33,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Shanghai, China (CNSHA)",
+          "evidence": "Port of loading Shanghai, China (CNSHA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Mombasa, Kenya (KEMBA)",
+          "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-GY-2026-0912",
+          "evidence": "No. PL-GY-2026-0912",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-09-13",
+          "evidence": "Date 2026-09-13",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "GY-2026-0912",
+          "evidence": "Invoice No. GY-2026-0912",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "江苏光耀新能源有限公司",
+            "evidence": "江苏光耀新能源有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91320500MA1XQ6L3BR",
+            "evidence": "USCC 91320500MA1XQ6L3BR",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 10, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 10, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "evidence": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 400,
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 400,
+              "evidence": "400 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 11600,
+              "evidence": "11,600.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 11000,
+              "evidence": "11,000.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 60,
+              "evidence": "60.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 400,
+          "evidence": "Total packages: 400 cartons",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 11600,
+          "evidence": "Total gross weight: 11,600.0 kg",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 11000,
+          "evidence": "Total net weight: 11,000.0 kg",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 60,
+          "evidence": "Total volume: 60.00 m3",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "COSU8123403",
+            "evidence": "COSU8123403",
+            "page": 1,
+            "confidence": 0.98
+          },
+          {
+            "value": "COSU8123419",
+            "evidence": "COSU8123419",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "江苏光耀新能源有限公司",
+          "evidence": "江苏光耀新能源有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91320500MA1XQ6L3BR",
+          "evidence": "91320500MA1XQ6L3BR",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "张明 (Zhang Ming)",
+          "evidence": "张明 (Zhang Ming)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 5,000 万元 (RMB 50,000,000)",
+          "evidence": "人民币 5,000 万元 (RMB 50,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2011-02-28",
+          "evidence": "2011-02-28",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2011-02-28 至 长期 / to long-term",
+          "evidence": "2011-02-28 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+          "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "evidence": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "苏州市市场监督管理局 / Suzhou Administration for Market Regulation",
+          "evidence": "苏州市市场监督管理局 / Suzhou Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2011-06-30",
+          "evidence": "2011-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": {
+        "type": "bill_of_lading",
+        "bl_number": {
+          "value": "COSU6412345678",
+          "evidence": "B/L No. COSU6412345678",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "bl_kind": {
+          "value": "original",
+          "evidence": "ORIGINAL",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "carrier": {
+          "value": "COSCO SHIPPING Lines",
+          "evidence": "COSCO SHIPPING Lines",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "scac": {
+          "value": "COSU",
+          "evidence": "SCAC COSU",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "shipper": {
+          "name_en": {
+            "value": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "evidence": "Jiangsu Guangyao New Energy Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "江苏光耀新能源有限公司",
+            "evidence": "江苏光耀新能源有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "evidence": "No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "consignee": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 10\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "consignee_to_order": {
+          "value": true,
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 10",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "notify_party": {
+          "value": "Mwangi Imports Ltd\nPlot 22, Mombasa Road, Nairobi, Kenya\nTel +254 20 822 1100",
+          "evidence": "Mwangi Imports Ltd\nPlot 22, Mombasa Road, Nairobi, Kenya\nTel +254 20 822 1100",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "vessel": {
+          "value": "COSCO SHIPPING ARIES",
+          "evidence": "COSCO SHIPPING ARIES",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "voyage": {
+          "value": "V.052W",
+          "evidence": "V.052W",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "imo": {
+          "value": "9783497",
+          "evidence": "IMO 9783497",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "port_of_loading": {
+          "value": "Shanghai, China (CNSHA)",
+          "evidence": "Shanghai, China (CNSHA)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "port_of_discharge": {
+          "value": "Mombasa, Kenya (KEMBA)",
+          "evidence": "Mombasa, Kenya (KEMBA)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "place_of_receipt": {
+          "value": "Shanghai, China",
+          "evidence": "Shanghai, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "place_of_delivery": {
+          "value": "Mombasa, Kenya",
+          "evidence": "Mombasa, Kenya",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "shipped_on_board_date": {
+          "value": "2026-09-26",
+          "evidence": "2026-09-26",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2026-09-27",
+          "evidence": "2026-09-27",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "containers": [
+          {
+            "number": {
+              "value": "COSU8123403",
+              "evidence": "COSU8123403",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "seal": {
+              "value": "CSL7781201",
+              "evidence": "CSL7781201",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 200,
+              "evidence": "200 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 5820,
+              "evidence": "5,820.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "size_type": {
+              "value": "40'HC",
+              "evidence": "40'HC",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "number": {
+              "value": "COSU8123419",
+              "evidence": "COSU8123419",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "seal": {
+              "value": "CSL7781202",
+              "evidence": "CSL7781202",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 200,
+              "evidence": "200 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 5820,
+              "evidence": "5,820.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "size_type": {
+              "value": "40'HC",
+              "evidence": "40'HC",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "description_of_goods": {
+          "value": "SOLAR MODULES 550W",
+          "evidence": "SOLAR MODULES 550W",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_packages": {
+          "value": 400,
+          "evidence": "400 CARTONS",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "gross_weight_kg": {
+          "value": 11640,
+          "evidence": "11,640.0 KGS",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "measurement_cbm": {
+          "value": 60,
+          "evidence": "60.00 CBM",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "freight_terms": {
+          "value": "FREIGHT PREPAID",
+          "evidence": "FREIGHT PREPAID",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      }
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "江苏光耀新能源有限公司",
+      "legal_name_en": "Jiangsu Guangyao New Energy Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "vessel",
+        "schema": "Vessel",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": {
+      "mode": "live",
+      "statusCode": 40,
+      "status": "Sailing",
+      "vessel": "MSC AURORA",
+      "imo": "9876543",
+      "pol": "SHANGHAI",
+      "pod": "MOMBASA",
+      "departure": "2026-09-27",
+      "arrival": "2026-10-30",
+      "containers": [
+        "COSU8123403"
+      ],
+      "events": [
+        {
+          "at": "2026-09-26",
+          "location": "SHANGHAI",
+          "description": "Loaded on vessel",
+          "vessel": "MSC AURORA",
+          "voyage": "FA641A",
+          "isActual": true
+        },
+        {
+          "at": "2026-09-27",
+          "location": "SHANGHAI",
+          "description": "Vessel departed",
+          "vessel": "MSC AURORA",
+          "voyage": "FA641A",
+          "isActual": true
+        },
+        {
+          "at": "2026-10-30",
+          "location": "MOMBASA",
+          "description": "Estimated arrival",
+          "vessel": null,
+          "voyage": null,
+          "isActual": false
+        }
+      ],
+      "lastPolledAt": "2026-10-25T16:03:43.640Z"
+    },
+    "price": [],
+    "halal": [],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "江苏光耀新能源有限公司",
+        "evidence_b": "江苏光耀新能源有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Jiangsu Guangyao New Energy Co., Ltd.",
+        "evidence_b": "Jiangsu Guangyao New Energy Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91320500MA1XQ6L3BR",
+        "evidence_b": "91320500MA1XQ6L3BR"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "江苏光耀新能源有限公司",
+        "evidence_b": "江苏光耀新能源有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "GY-2026-0912",
+        "evidence_b": "GY-2026-0912"
+      },
+      {
+        "field": "shipper_vs_supplier",
+        "match": "yes",
+        "reason": "B/L shipper vs the supplier: identical after normalisation.",
+        "evidence_a": "江苏光耀新能源有限公司",
+        "evidence_b": "江苏光耀新能源有限公司"
+      },
+      {
+        "field": "containers",
+        "match": "yes",
+        "reason": "Container numbers on the B/L and the packing list: identical after normalisation.",
+        "evidence_a": "COSU8123403, COSU8123419",
+        "evidence_b": "COSU8123403, COSU8123419"
+      },
+      {
+        "field": "bl_number",
+        "match": "yes",
+        "reason": "B/L number on the document and on the form: identical after normalisation.",
+        "evidence_a": "COSU6412345678",
+        "evidence_b": "COSU6412345678"
+      },
+      {
+        "field": "port_of_loading",
+        "match": "yes",
+        "reason": "Port of loading on the B/L and the invoice: identical after normalisation.",
+        "evidence_a": "Shanghai, China (CNSHA)",
+        "evidence_b": "Shanghai, China (CNSHA)"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "Both values describe identical goods: monocrystalline solar modules 550W with half-cut cells and 144 cells, differing only by the inclusion of Chinese text in the invoice which is a translation.",
+        "evidence_a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
+        "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+      },
+      {
+        "field": "goods_bl_vs_invoice",
+        "match": "yes",
+        "reason": "The B/L description 'SOLAR MODULES 550W' is a shortened but consistent reference to the full description on the invoice, which specifies the same product type and wattage.",
+        "evidence_a": "SOLAR MODULES 550W",
+        "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
+      }
+    ],
+    "listing_fingerprint": "efae7cbcb3c49001d9179ecb396e74fe1d2000813638b43d85dbe5e057a36942",
+    "shipment_fingerprint": "d2dffd2dac596d72e4fe704f76a98a997e1cd79ef73d56bd46aea9fd54a1e642",
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "0eef1a23b88ccd4d049575c7ac142785f7ea732293ab21ebe4e331e4d0aee8a0"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "3e0e7ed91c40cf7e4cdf25c4c11b39d6700e9c69a0e2c922b584534bf23545bb"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "88c66bb46d3e1fe7daf297b641cdf04c5afaf2ff5b00612d9ed0b28e22015dbb"
+      },
+      {
+        "type": "bill_of_lading",
+        "sha256": "f3d641f7b8fbcc089eff9769fa92b6736a2510a2aacf0ff8dc6a8bca4b3423ef"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.bill_of_lading",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
+        "tokens_in": 7552,
+        "tokens_out": 1762,
+        "latency_ms": 25790,
+        "cost_usd": 0.00438
+      },
+      {
+        "stage": "consistency.shipment",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 898,
+        "tokens_out": 270,
+        "latency_ms": 3706,
+        "cost_usd": 0.000593
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2703,
+        "tokens_out": 83,
+        "latency_ms": 1155,
+        "cost_usd": 0.000455
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "live",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91320500MA1XQ6L3BR.json",
+      "shipsgo-create/<fallback>",
+      "shipsgo/COSU8123403.json"
+    ],
+    "timings_ms": {
+      "intake": 746,
+      "extract": 25791,
+      "validate": 0,
+      "stages": 3709,
+      "fingerprint": 1,
+      "explain": 1155,
+      "total": 31402
+    },
+    "cost_usd": 0.005428,
+    "injection_attempts": [],
+    "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed.\n\nWhat to fix:\n- Update the vessel name on the bill of lading to match the carrier tracking record (MSC AURORA).\n\nCategory: shipment mismatch"
+  },
+  "report_hash": "0a2a423436ae0527ae791da52a54129ba21b6af816ea3ac365bec3e25962809a",
+  "signature": "618f3fd47824d46abd9acaab7823e2e78651c0a706d189c13bf0150e3ff86e3fe1ac9bc024d3fbd5478df706f1277aa83bc8a45546632b54850ea8011ebd2508"
+}

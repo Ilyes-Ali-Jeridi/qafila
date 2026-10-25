@@ -1,94 +1,80 @@
 /**
- * Live chain access through the generated bindings (packages/contract-client) and
- * Stellar RPC. Views are simulated; admin writes are signed by ADMIN_SECRET; agent
- * writes by AGENT_SIGNER_SECRET (a plain G agent key, the SP6 fallback; the smart
- * account path lands with @qafila/chain). Every write goes through the submit queue of
- * its signing key. The share-token factory and the DealTerms XDR helper come from
- * @qafila/chain once Track A merges it; until then the factory throws (TODO).
+ * Live chain access through @qafila/chain (Track A) and the generated bindings. Views
+ * are simulated; admin writes are signed by ADMIN_SECRET and agent writes by
+ * AGENT_SIGNER_SECRET (the plain G agent key, the SP6 fallback; the smart-account
+ * signing recipe in contracts/spikes/results/sp6.md is the next step). Every write goes
+ * through the submit queue of its signing key. The share-token factory, the qUSD faucet
+ * and the DealTerms XDR come from @qafila/chain.
  */
-import { Keypair, Networks, rpc as StellarRpc, scValToNative, xdr } from '@stellar/stellar-sdk';
-import { basicNodeSigner, type AssembledTransaction } from '@stellar/stellar-sdk/contract';
+import { Keypair, rpc as StellarRpc, scValToNative } from '@stellar/stellar-sdk';
+import type { AssembledTransaction } from '@stellar/stellar-sdk/contract';
 import { Client as QafilaClient, type DealTerms as ClientDealTerms } from '@qafila/contract-client';
+import { ChainEnvSchema, call, createShareToken, encodeDealTerms, faucetSend, makeClient, qusdContext, readOnlyClient, view, type ChainEnv, type NetworkConfig, type SignedClient } from '@qafila/chain';
 import type { DealTerms, ImporterStats, OnchainDeal } from '@qafila/shared';
 import { fromHex, toHex } from '@qafila/shared/attestation';
 import { logger } from '../lib/logger.js';
 import type { Chain, ChainEvent, ShareTokenResult, TxResult } from './client.js';
-import { submitQueue } from './submit.js';
 
 export interface LiveChainOptions {
   rpcUrl: string;
+  horizonUrl: string;
+  network: 'local' | 'testnet' | 'mainnet';
   networkPassphrase: string;
   contractId: string;
   adminSecret?: string;
   agentSecret?: string;
   agentSmartAccountId?: string;
-  faucetSecret?: string;
-  settlementTokenId?: string;
+  appDomain: string;
+  processEnv: NodeJS.ProcessEnv;
 }
 
 const log = logger.child({ module: 'chain' });
-
-const DUMMY = 'GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF';
-type Unwrap<T> = T extends { unwrap: () => infer U } ? U : T;
 
 export class LiveChain implements Chain {
   readonly mode = 'live' as const;
   readonly contractId: string;
   private readonly server: StellarRpc.Server;
-  private readonly admin: Keypair | null;
-  private readonly agent: Keypair | null;
+  private readonly cfg: NetworkConfig;
+  private readonly chainEnv: ChainEnv;
+  private readonly readClient: QafilaClient;
+  private adminSigned: SignedClient | null = null;
+  private agentSigned: SignedClient | null = null;
 
   constructor(private readonly o: LiveChainOptions) {
     this.contractId = o.contractId;
     this.server = new StellarRpc.Server(o.rpcUrl, { allowHttp: o.rpcUrl.startsWith('http://') });
-    this.admin = o.adminSecret ? Keypair.fromSecret(o.adminSecret) : null;
-    this.agent = o.agentSecret ? Keypair.fromSecret(o.agentSecret) : null;
+    this.cfg = { network: o.network, rpcUrl: o.rpcUrl, horizonUrl: o.horizonUrl, passphrase: o.networkPassphrase };
+    this.chainEnv = ChainEnvSchema.parse({ ...o.processEnv, QAFILA_CONTRACT_ID: o.contractId });
+    this.readClient = readOnlyClient(o.contractId, this.cfg);
   }
 
-  private client(signer?: Keypair): QafilaClient {
-    const base = { contractId: this.contractId, networkPassphrase: this.o.networkPassphrase, rpcUrl: this.o.rpcUrl, allowHttp: this.o.rpcUrl.startsWith('http://') };
-    if (!signer) return new QafilaClient({ ...base, publicKey: DUMMY });
-    const s = basicNodeSigner(signer, this.o.networkPassphrase);
-    return new QafilaClient({ ...base, publicKey: signer.publicKey(), signTransaction: s.signTransaction, signAuthEntry: s.signAuthEntry });
+  private admin(): SignedClient {
+    if (!this.o.adminSecret) throw new Error('ADMIN_SECRET missing');
+    this.adminSigned ??= makeClient({ contractId: this.contractId, cfg: this.cfg, keypair: Keypair.fromSecret(this.o.adminSecret) });
+    return this.adminSigned;
   }
-
-  private async view<T>(fn: (c: QafilaClient) => Promise<AssembledTransaction<T>>): Promise<Unwrap<T>> {
-    const tx = await fn(this.client());
-    const r = tx.result as unknown;
-    if (r && typeof r === 'object' && 'unwrap' in (r as object)) return (r as { unwrap: () => Unwrap<T> }).unwrap();
-    return r as Unwrap<T>;
+  private agent(): SignedClient {
+    if (!this.o.agentSecret) throw new Error('AGENT_SIGNER_SECRET missing');
+    this.agentSigned ??= makeClient({ contractId: this.contractId, cfg: this.cfg, keypair: Keypair.fromSecret(this.o.agentSecret) });
+    return this.agentSigned;
   }
-
-  private async send<T>(key: Keypair, label: string, fn: (c: QafilaClient) => Promise<AssembledTransaction<T>>): Promise<TxResult & { value: Unwrap<T> | null }> {
-    return submitQueue.run(key.publicKey(), async () => {
-      const tx = await fn(this.client(key));
-      const sent = await tx.signAndSend();
-      const hash = sent.sendTransactionResponse?.hash ?? '';
-      const ledger = sent.getTransactionResponse && 'ledger' in sent.getTransactionResponse ? (sent.getTransactionResponse as { ledger: number }).ledger : null;
-      let value: Unwrap<T> | null = null;
-      try {
-        const r = sent.result as unknown;
-        value = r && typeof r === 'object' && 'unwrap' in (r as object) ? (r as { unwrap: () => Unwrap<T> }).unwrap() : (r as Unwrap<T>);
-      } catch (e) {
-        log.warn({ label, err: (e as Error).message }, 'result unwrap failed');
-      }
-      log.info({ label, hash, ledger }, 'tx sent');
-      return { txHash: hash, ledger, result: value, mode: 'live' as const, value };
-    });
-  }
-
-  private requireAdmin(): Keypair {
-    if (!this.admin) throw new Error('ADMIN_SECRET missing');
-    return this.admin;
-  }
-  private signerFor(as: 'admin' | 'agent'): { key: Keypair; caller: string } {
+  private signerFor(as: 'admin' | 'agent'): { signed: SignedClient; caller: string } {
     if (as === 'agent') {
-      if (!this.agent) throw new Error('AGENT_SIGNER_SECRET missing');
-      // Smart account path (SP6): the caller is the smart account and the agent key signs its auth entry; TODO wire through @qafila/chain.
-      return { key: this.agent, caller: this.o.agentSmartAccountId ?? this.agent.publicKey() };
+      const signed = this.agent();
+      // The on-chain agent role is the plain G key until the API signs as the smart account (sp6.md).
+      return { signed, caller: signed.keypair.publicKey() };
     }
-    const k = this.requireAdmin();
-    return { key: k, caller: k.publicKey() };
+    const signed = this.admin();
+    return { signed, caller: signed.keypair.publicKey() };
+  }
+  private anySigner(): SignedClient {
+    return this.o.agentSecret ? this.agent() : this.admin();
+  }
+
+  private async send<T>(signed: SignedClient, label: string, build: (c: QafilaClient) => Promise<AssembledTransaction<T>>): Promise<TxResult & { value: unknown }> {
+    const out = await call(signed, build);
+    log.info({ label, hash: out.hash }, 'tx sent');
+    return { txHash: out.hash ?? '', ledger: null, result: out.result, mode: 'live', value: out.result };
   }
 
   private toTerms(t: DealTerms): ClientDealTerms {
@@ -167,7 +153,7 @@ export class LiveChain implements Chain {
 
   async getDeal(dealId: number): Promise<OnchainDeal | null> {
     try {
-      const d = await this.view((c) => c.get_deal({ deal_id: BigInt(dealId) }));
+      const d = await view(await this.readClient.get_deal({ deal_id: BigInt(dealId) }));
       return d ? this.fromDeal(d as unknown as Record<string, unknown>) : null;
     } catch (e) {
       if (/DealNotFound|#4\b/.test((e as Error).message)) return null;
@@ -175,124 +161,114 @@ export class LiveChain implements Chain {
     }
   }
   async getPromise(fp: string) {
-    const p = (await this.view((c) => c.get_promise({ listing_fingerprint: Buffer.from(fromHex(fp)) }))) as { importer: string; promise_hash: Buffer; security: bigint; at: bigint; listed: boolean } | undefined;
+    const p = (await view(await this.readClient.get_promise({ listing_fingerprint: Buffer.from(fromHex(fp)) }))) as { importer: string; promise_hash: Buffer; security: bigint; at: bigint; listed: boolean } | undefined;
     return p ? { importer: p.importer, promiseHash: toHex(new Uint8Array(p.promise_hash)), security: BigInt(p.security), at: Number(p.at), listed: p.listed } : null;
   }
   async requiredSecurity(importer: string, cost: bigint): Promise<bigint> {
-    return BigInt(await this.view((c) => c.required_security({ importer, cost })));
+    return BigInt(await view(await this.readClient.required_security({ importer, cost })));
   }
   async importerStats(importer: string): Promise<ImporterStats> {
-    const s = (await this.view((c) => c.importer_stats({ importer }))) as { on_time: number; late: number; defaulted: number; total_repaid: bigint; open_exposure: bigint };
+    const s = (await view(await this.readClient.importer_stats({ importer }))) as { on_time: number; late: number; defaulted: number; total_repaid: bigint; open_exposure: bigint };
     return { on_time: Number(s.on_time), late: Number(s.late), defaulted: Number(s.defaulted), total_repaid: s.total_repaid.toString(), open_exposure: s.open_exposure.toString() };
   }
   async importerLimit(importer: string): Promise<bigint> {
-    return BigInt(await this.view((c) => c.importer_limit({ importer })));
+    return BigInt(await view(await this.readClient.importer_limit({ importer })));
   }
   async isInvestorApproved(addr: string): Promise<boolean> {
-    return Boolean(await this.view((c) => c.is_investor_approved({ investor: addr })));
+    return Boolean(await view(await this.readClient.is_investor_approved({ investor: addr })));
   }
   async owed() {
-    const o = (await this.view((c) => c.owed())) as { charity: bigint; treasury: bigint; refunds: bigint; promises_held: bigint };
+    const o = (await view(await this.readClient.owed())) as { charity: bigint; treasury: bigint; refunds: bigint; promises_held: bigint };
     return { charity: BigInt(o.charity), treasury: BigInt(o.treasury), refunds: BigInt(o.refunds), promisesHeld: BigInt(o.promises_held) };
   }
   async refundOf(addr: string): Promise<bigint> {
-    return BigInt(await this.view((c) => c.refund_of({ addr })));
+    return BigInt(await view(await this.readClient.refund_of({ addr })));
   }
   async holders(dealId: number): Promise<string[]> {
     const out: string[] = [];
     for (let start = 0; start < 10_000; start += 50) {
-      const page = (await this.view((c) => c.holders({ deal_id: BigInt(dealId), start, limit: 50 }))) as string[];
+      const page = (await view(await this.readClient.holders({ deal_id: BigInt(dealId), start, limit: 50 }))) as string[];
       out.push(...page);
       if (page.length < 50) break;
     }
     return out;
   }
   async quoteClaim(holder: string, dealId: number): Promise<bigint> {
-    return BigInt(await this.view((c) => c.quote_claim({ holder, deal_id: BigInt(dealId) })));
+    return BigInt(await view(await this.readClient.quote_claim({ holder, deal_id: BigInt(dealId) })));
   }
   async verifierPublicKeyHex(): Promise<string | null> {
-    const r = (await this.view((c) => c.get_roles())) as { verifier: Buffer };
+    const r = (await view(await this.readClient.get_roles())) as { verifier: Buffer };
     return r?.verifier ? toHex(new Uint8Array(r.verifier)) : null;
   }
 
   async approveInvestor(addr: string): Promise<TxResult> {
-    return this.send(this.requireAdmin(), 'approve_investor', (c) => c.approve_investor({ investor: addr }));
+    return this.send(this.admin(), 'approve_investor', (c) => c.approve_investor({ investor: addr }));
   }
   async listDeal(terms: DealTerms, sig: Uint8Array): Promise<TxResult & { dealId: number }> {
-    const r = await this.send(this.requireAdmin(), 'list_deal', (c) => c.list_deal({ terms: this.toTerms(terms), sig: Buffer.from(sig) }));
+    const r = await this.send(this.admin(), 'list_deal', (c) => c.list_deal({ terms: this.toTerms(terms), sig: Buffer.from(sig) }));
     return { ...r, dealId: Number(r.value ?? 0) };
   }
   async abortDeal(dealId: number, importerAtFault: boolean): Promise<TxResult> {
-    return this.send(this.requireAdmin(), 'abort_deal', (c) => c.abort_deal({ deal_id: BigInt(dealId), importer_at_fault: importerAtFault }));
+    return this.send(this.admin(), 'abort_deal', (c) => c.abort_deal({ deal_id: BigInt(dealId), importer_at_fault: importerAtFault }));
   }
   async markDefault(dealId: number): Promise<TxResult> {
-    return this.send(this.requireAdmin(), 'mark_default', (c) => c.mark_default({ deal_id: BigInt(dealId) }));
+    return this.send(this.admin(), 'mark_default', (c) => c.mark_default({ deal_id: BigInt(dealId) }));
   }
   async depositRecovery(dealId: number, from: string, amount: bigint): Promise<TxResult> {
-    return this.send(this.requireAdmin(), 'deposit_recovery', (c) => c.deposit_recovery({ deal_id: BigInt(dealId), from, amount }));
+    return this.send(this.admin(), 'deposit_recovery', (c) => c.deposit_recovery({ deal_id: BigInt(dealId), from, amount }));
   }
   async finalizeDefault(dealId: number): Promise<TxResult> {
-    return this.send(this.requireAdmin(), 'finalize_default', (c) => c.finalize_default({ deal_id: BigInt(dealId) }));
+    return this.send(this.admin(), 'finalize_default', (c) => c.finalize_default({ deal_id: BigInt(dealId) }));
   }
   async extendDue(dealId: number, newDueAt: number): Promise<TxResult> {
-    return this.send(this.requireAdmin(), 'extend_due', (c) => c.extend_due({ deal_id: BigInt(dealId), new_due_at: BigInt(newDueAt) }));
+    return this.send(this.admin(), 'extend_due', (c) => c.extend_due({ deal_id: BigInt(dealId), new_due_at: BigInt(newDueAt) }));
   }
   async paySupplierDeposit(dealId: number, as: 'admin' | 'agent', dryRun = false): Promise<TxResult> {
-    const { key, caller } = this.signerFor(as);
+    const { signed, caller } = this.signerFor(as);
     if (dryRun) {
-      const tx = await this.client(key).pay_supplier_deposit({ caller, deal_id: BigInt(dealId) });
-      return { txHash: '', ledger: null, result: String(tx.result), mode: 'dry-run' };
+      const tx = await signed.client.pay_supplier_deposit({ caller, deal_id: BigInt(dealId) });
+      return { txHash: '', ledger: null, result: String(await view(tx)), mode: 'dry-run' };
     }
-    return this.send(key, 'pay_supplier_deposit', (c) => c.pay_supplier_deposit({ caller, deal_id: BigInt(dealId) }));
+    return this.send(signed, 'pay_supplier_deposit', (c) => c.pay_supplier_deposit({ caller, deal_id: BigInt(dealId) }));
   }
   async confirmShipment(dealId: number, blFingerprint: Uint8Array, blReportHash: Uint8Array, sig: Uint8Array, as: 'admin' | 'agent', dryRun = false): Promise<TxResult> {
-    const { key, caller } = this.signerFor(as);
+    const { signed, caller } = this.signerFor(as);
     const args = { caller, deal_id: BigInt(dealId), bl_fingerprint: Buffer.from(blFingerprint), bl_report_hash: Buffer.from(blReportHash), sig: Buffer.from(sig) };
     if (dryRun) {
-      const tx = await this.client(key).confirm_shipment(args);
-      return { txHash: '', ledger: null, result: String(tx.result), mode: 'dry-run' };
+      const tx = await signed.client.confirm_shipment(args);
+      return { txHash: '', ledger: null, result: String(await view(tx)), mode: 'dry-run' };
     }
-    return this.send(key, 'confirm_shipment', (c) => c.confirm_shipment(args));
+    return this.send(signed, 'confirm_shipment', (c) => c.confirm_shipment(args));
   }
   async claim(holder: string, dealId: number): Promise<TxResult> {
-    return this.send(this.anyKey(), 'claim', (c) => c.claim({ holder, deal_id: BigInt(dealId) }));
+    return this.send(this.anySigner(), 'claim', (c) => c.claim({ holder, deal_id: BigInt(dealId) }));
   }
   async closeDeal(dealId: number): Promise<TxResult> {
-    return this.send(this.anyKey(), 'close_deal', (c) => c.close_deal({ deal_id: BigInt(dealId) }));
+    return this.send(this.anySigner(), 'close_deal', (c) => c.close_deal({ deal_id: BigInt(dealId) }));
   }
   async sweepCharity(): Promise<TxResult> {
-    return this.send(this.anyKey(), 'sweep_charity', (c) => c.sweep_charity());
+    return this.send(this.anySigner(), 'sweep_charity', (c) => c.sweep_charity());
   }
   async sweepTreasury(): Promise<TxResult> {
-    return this.send(this.anyKey(), 'sweep_treasury', (c) => c.sweep_treasury());
+    return this.send(this.anySigner(), 'sweep_treasury', (c) => c.sweep_treasury());
   }
   async withdrawRefund(addr: string): Promise<TxResult> {
-    return this.send(this.anyKey(), 'withdraw_refund', (c) => c.withdraw_refund({ addr }));
+    return this.send(this.anySigner(), 'withdraw_refund', (c) => c.withdraw_refund({ addr }));
   }
   async cancelUnfunded(dealId: number): Promise<TxResult> {
-    return this.send(this.anyKey(), 'cancel_unfunded', (c) => c.cancel_unfunded({ deal_id: BigInt(dealId) }));
-  }
-  private anyKey(): Keypair {
-    const k = this.agent ?? this.admin;
-    if (!k) throw new Error('no signing key for open calls');
-    return k;
+    return this.send(this.anySigner(), 'cancel_unfunded', (c) => c.cancel_unfunded({ deal_id: BigInt(dealId) }));
   }
 
-  async createShareToken(_dealNumber: number): Promise<ShareTokenResult> {
-    // TODO(@qafila/chain): share-token factory (PLAN 3.1) from Track A. Until merged this throws so listing fails loudly in live mode.
-    throw new Error('share-token factory not available yet: merge @qafila/chain (track/chain) and wire createShareToken');
+  async createShareToken(dealNumber: number): Promise<ShareTokenResult> {
+    const r = await createShareToken({ dealNumber, adminContractId: this.contractId, env: this.chainEnv, cfg: this.cfg, rpc: this.server, homeDomain: this.o.appDomain, onStep: (step, detail) => log.info({ step, detail }, 'share token factory') });
+    return { sacId: r.sacId, issuerPublicKey: r.issuer, txHashes: Object.values(r.txs).filter((h): h is string => typeof h === 'string' && h.length > 0), locked: Boolean(r.verified) };
   }
   async faucet(to: string, amount: bigint): Promise<TxResult> {
-    // TODO(@qafila/chain): qUSD mint/transfer from the faucet account through the SAC client. Until then throws so the route reports 503.
-    void to;
-    void amount;
-    throw new Error('faucet not wired: needs @qafila/chain SAC helper and FAUCET_SECRET');
+    const r = await faucetSend({ to, amount }, qusdContext(this.chainEnv));
+    return { txHash: r.hash, ledger: r.ledger, result: amount.toString(), mode: 'live' };
   }
   dealTermsXdr(terms: DealTerms): Uint8Array {
-    const c = this.client();
-    const scv = c.spec.funcArgsToScVals('list_deal', { terms: this.toTerms(terms), sig: Buffer.alloc(64) })[0];
-    if (!scv) throw new Error('terms encoding failed');
-    return new Uint8Array(scv.toXDR());
+    return encodeDealTerms(this.toTerms(terms));
   }
   async getEvents(cursor: string | null, startLedger: number | null) {
     const filters = [{ type: 'contract' as const, contractIds: [this.contractId] }];
@@ -324,6 +300,3 @@ export class LiveChain implements Chain {
     return (await this.server.getLatestLedger()).sequence;
   }
 }
-
-export const networkPassphraseFor = (n: 'local' | 'testnet' | 'mainnet'): string => (n === 'mainnet' ? Networks.PUBLIC : n === 'testnet' ? Networks.TESTNET : 'Standalone Network ; February 2017');
-export { xdr };

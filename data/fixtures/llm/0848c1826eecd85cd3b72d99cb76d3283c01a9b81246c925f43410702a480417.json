@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:04:31.993Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "0518c0055f1fa4f6c57947dd9c24bc4ec1f3170e1bcc8e7b2bb3d4f9c82df3a8"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "ceramic_floor_tiles",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 5.5,
+          "note": "Matches ceramic_floor_tiles by description and HS code."
+        },
+        {
+          "line_index": 2,
+          "category": "none",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 9,
+          "note": "Not in reference categories; HS 7016 is not listed."
+        }
+      ]
+    },
+    "tokensIn": 1919,
+    "tokensOut": 115,
+    "repaired": false
+  }
+}
