@@ -58,7 +58,7 @@
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK3IM"
                 },
                 {
-                  "i128": "22570000000"
+                  "i128": "63820000000"
                 }
               ]
             }
@@ -86,7 +86,7 @@
                   "bytes": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
                 },
                 {
-                  "i128": "22570000000"
+                  "i128": "63820000000"
                 }
               ]
             }
@@ -105,7 +105,7 @@
                       "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATYON"
                     },
                     {
-                      "i128": "22570000000"
+                      "i128": "63820000000"
                     }
                   ]
                 }
@@ -567,7 +567,7 @@
                       "symbol": "amount"
                     },
                     "val": {
-                      "i128": "22570000000"
+                      "i128": "63820000000"
                     }
                   },
                   {

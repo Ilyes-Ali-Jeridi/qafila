@@ -87,6 +87,25 @@ fn withdraw_refund_pays_anyone_named_and_only_the_importer_is_credited() {
 }
 
 #[test]
+fn claim_requires_holder_index_membership() {
+    let w = World::new();
+    let c = w.client();
+    let (id, _t) = w.list(70);
+    let inv = w.fund(id);
+    c.abort_deal(&id, &false);
+    let stranger = Address::generate(&w.env);
+    assert_eq!(c.try_claim(&stranger, &id), Err(Ok(Error::NothingToClaim)));
+    assert_eq!(
+        c.try_claim(&w.importer, &id),
+        Err(Ok(Error::NothingToClaim))
+    );
+    assert_eq!(w.claim_all(id, &inv), COST);
+    let d = c.get_deal(&id);
+    assert_eq!(d.claimed_shares, d.funded);
+    w.assert_share_supply(id);
+}
+
+#[test]
 fn promise_rules() {
     let w = World::new();
     let c = w.client();

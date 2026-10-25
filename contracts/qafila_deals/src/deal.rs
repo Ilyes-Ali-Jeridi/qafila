@@ -721,12 +721,20 @@ pub fn claim(env: &Env, holder: Address, deal_id: u64) -> Result<i128, Error> {
     if !claimable(deal.state) {
         return Err(Error::InvalidState);
     }
+    // Only shares minted by `invest` are claimable: the holder must be in the deal's
+    // index and the claimed total can never exceed what was funded (review finding 1).
+    if !storage::is_holder(env, deal_id, &holder) {
+        return Err(Error::NothingToClaim);
+    }
     let shares = share::balance(env, &deal.terms.share_token, &holder);
     if shares <= 0 {
         return Err(Error::NothingToClaim);
     }
     let payout = math::payout(shares, deal.distributable, deal.funded)?;
     deal.claimed_shares = math::add(deal.claimed_shares, shares)?;
+    if deal.claimed_shares > deal.funded {
+        return Err(Error::InvalidState);
+    }
     deal.paid_out = math::add(deal.paid_out, payout)?;
     storage::put_deal(env, &deal);
     storage::add_deal_balance(env, deal_id, -payout)?;
