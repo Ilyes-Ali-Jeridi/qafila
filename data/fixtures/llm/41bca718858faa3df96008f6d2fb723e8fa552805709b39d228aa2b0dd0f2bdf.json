@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T19:01:03.211Z",
+  "recorded_at": "2026-10-25T19:43:14.915Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",
@@ -16,50 +16,50 @@
         "value": "PL-LW-2026-1001",
         "evidence": "No. PL-LW-2026-1001",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "date": {
         "value": "2026-09-29",
         "evidence": "Date 2026-09-29",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "invoice_number": {
         "value": "INV-LW-2026-1001",
         "evidence": "Invoice No. INV-LW-2026-1001",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "seller": {
         "name_en": {
           "value": "Shenzhen Lanwan Electronics Co., Ltd.",
           "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": "深圳市蓝湾电子有限公司",
           "evidence": "深圳市蓝湾电子有限公司",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "uscc": {
           "value": "91440300MA5GK2Q7XL",
           "evidence": "USCC 91440300MA5GK2Q7XL",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "address": {
           "value": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
           "evidence": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "country": {
           "value": "China",
           "evidence": "China",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       },
       "buyer": {
@@ -67,7 +67,7 @@
           "value": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "evidence": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": null,
@@ -85,13 +85,13 @@
           "value": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "evidence": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "country": {
           "value": "Portugal",
           "evidence": "Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       },
       "items": [
@@ -100,37 +100,37 @@
             "value": "TPU protective cases for smartphones, assorted models",
             "evidence": "TPU protective cases for smartphones, assorted models",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 5000,
             "evidence": "5,000 pcs",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "packages": {
             "value": 100,
             "evidence": "100 CTNS",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "gross_weight_kg": {
             "value": 1250,
             "evidence": "1,250.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "net_weight_kg": {
             "value": 1100,
             "evidence": "1,100.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "cbm": {
             "value": 4.9,
             "evidence": "4.90",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         {
@@ -138,37 +138,37 @@
             "value": "Tempered glass screen protectors 9H, retail packed",
             "evidence": "Tempered glass screen protectors 9H, retail packed",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 8000,
             "evidence": "8,000 pcs",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "packages": {
             "value": 80,
             "evidence": "80 CTNS",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "gross_weight_kg": {
             "value": 640,
             "evidence": "640.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "net_weight_kg": {
             "value": 560,
             "evidence": "560.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "cbm": {
             "value": 3.6,
             "evidence": "3.60",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         {
@@ -176,76 +176,76 @@
             "value": "USB-C charging and data cables, 1 m, nylon braided",
             "evidence": "USB-C charging and data cables, 1 m, nylon braided",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 6000,
             "evidence": "6,000 pcs",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "packages": {
             "value": 60,
             "evidence": "60 CTNS",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "gross_weight_kg": {
             "value": 540,
             "evidence": "540.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "net_weight_kg": {
             "value": 480,
             "evidence": "480.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "cbm": {
             "value": 3.3,
             "evidence": "3.30",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         }
       ],
       "total_packages": {
         "value": 240,
-        "evidence": "TOTAL 240 CTNS",
+        "evidence": "240 CTNS",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total_gross_weight_kg": {
         "value": 2430,
-        "evidence": "Total gross weight: 2,430.0 kg",
+        "evidence": "2,430.0",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total_net_weight_kg": {
         "value": 2140,
-        "evidence": "Total net weight: 2,140.0 kg",
+        "evidence": "2,140.0",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total_cbm": {
         "value": 11.8,
-        "evidence": "Total volume: 11.80 m3",
+        "evidence": "11.80",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "container_numbers": [
         {
           "value": "TGHU6120042",
-          "evidence": "Container No. TGHU6120042 (20'GP)",
+          "evidence": "TGHU6120042",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       ],
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 13633,
-    "tokensOut": 2961,
-    "repaired": true
+    "tokensIn": 6156,
+    "tokensOut": 1733,
+    "repaired": false
   }
 }
