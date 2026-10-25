@@ -58,6 +58,8 @@ export function authMiddleware(db: Db, env: Env): MiddlewareHandler<{ Variables:
     }
     const auth = c.req.header('authorization');
     if (auth?.startsWith('Bearer ')) {
+      // The web sends `Bearer mock.<address>` as a placeholder before any email sign-in (auth contract); treat it as anonymous, routes that need a user still answer 401.
+      if (auth.slice(7).startsWith('mock.')) return next();
       try {
         const claims = await verifyJwt(auth.slice(7), { secret: env.SUPABASE_JWT_SECRET ?? env.JWT_SECRET, jwksUrl: env.SUPABASE_URL ? `${env.SUPABASE_URL.replace(/\/$/, '')}/auth/v1/.well-known/jwks.json` : undefined, audience: 'authenticated' });
         c.set('user', await profileFor(db, claims.sub, claims.email ?? null));
