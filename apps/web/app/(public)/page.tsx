@@ -6,6 +6,7 @@ import { TxMarquee } from '@/components/landing/marquee';
 import { ShariaBlock } from '@/components/landing/sharia';
 import { StatsBento } from '@/components/landing/stats-bento';
 import { StoryDynamic } from '@/components/landing/story-dynamic';
+import ShinyText from '@/components/bits/ShinyText';
 import { buttonClasses } from '@/components/ui/button';
 
 export default function Landing() {
@@ -16,7 +17,7 @@ export default function Landing() {
       <section aria-labelledby="stats" className="space-y-4">
         <div className="flex items-center justify-between gap-3">
           <h2 id="stats" className="eyebrow">
-            Live on testnet
+            <ShinyText text="Live on testnet" color="#9aa6c8" shineColor="#2de2c3" speed={4} glow={0} />
           </h2>
           <span className="flex items-center gap-1.5 font-mono text-[11px] text-ink-muted">
             <span aria-hidden className="live-dot size-1.5 rounded-full bg-teal shadow-[0_0_8px_rgba(45,226,195,0.9)]" /> updates every 10 seconds

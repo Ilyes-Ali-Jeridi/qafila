@@ -54,7 +54,7 @@ function Inner() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-end gap-3">
-        <label className="text-xs text-ink-muted">
+        <label className="flex flex-col text-xs text-ink-muted">
           Show
           <Select value={filter} onChange={(e) => setFilter(e.target.value as typeof filter)} className="mt-1 w-44">
             <option value="pending">Needs action ({pendingCount})</option>
@@ -64,7 +64,7 @@ function Inner() {
             <option value="finished">Finished</option>
           </Select>
         </label>
-        <label className="text-xs text-ink-muted">
+        <label className="flex flex-col text-xs text-ink-muted">
           Decision
           <Select value={decision} onChange={(e) => setDecision(e.target.value as typeof decision)} className="mt-1 w-36">
             <option value="any">Any</option>

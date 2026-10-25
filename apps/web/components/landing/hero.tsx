@@ -2,6 +2,7 @@
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { JoinCta } from '@/components/join-cta';
+import ShinyText from '@/components/bits/ShinyText';
 import { LiveFeed } from '@/components/live-feed';
 import { Item, Stagger } from '@/components/motion/reveal';
 import { buttonClasses } from '@/components/ui/button';
@@ -57,7 +58,7 @@ export function Hero() {
               <div className="min-w-0">
                 <p className="eyebrow flex items-center gap-2 text-teal">
                   <span aria-hidden className="live-dot-ring size-1.5 rounded-full bg-teal text-teal" />
-                  Live ledger
+                  <ShinyText text="Live ledger" color="#2de2c3" shineColor="#ffffff" speed={3} glow={0} />
                 </p>
                 <p className="mt-0.5 text-xs text-ink-muted">The latest transactions on the Qafila contract.</p>
               </div>

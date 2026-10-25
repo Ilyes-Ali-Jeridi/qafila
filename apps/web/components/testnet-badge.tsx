@@ -1,4 +1,5 @@
 'use client';
+import ShinyText from '@/components/bits/ShinyText';
 import { useHealth } from '@/lib/api/hooks';
 import { usePublicConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
@@ -22,7 +23,7 @@ export function TestnetBadge() {
         <span aria-hidden className={cn('live-dot absolute inline-flex size-full rounded-full', tone)} />
         <span className={cn('relative inline-flex size-2 rounded-full', tone)} />
       </span>
-      Testnet, test money
+      <ShinyText text="Testnet, test money" color="#f9c74f" shineColor="#fff3c4" speed={5} glow={0} />
       <span className="sr-only">, {lagText}</span>
     </div>
   );
