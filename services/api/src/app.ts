@@ -27,7 +27,8 @@ export function createApp(env: Env, svc?: Services) {
     if (svc) c.set('svc', svc);
     await next();
   });
-  app.use('*', cors({ origin: (o) => o ?? '*', allowHeaders: ['Content-Type', 'Authorization', 'X-Payment', 'PAYMENT-SIGNATURE', 'X-Wallet-Address', 'X-Dev-User', 'X-Dev-Roles', 'X-Dev-Email'], exposeHeaders: ['X-Payment-Response', 'PAYMENT-REQUIRED', 'PAYMENT-RESPONSE'] }));
+  // No allowHeaders list: Hono then reflects Access-Control-Request-Headers, which the passkey kit needs (x-client-version).
+  app.use('*', cors({ origin: (o) => o ?? '*', exposeHeaders: ['X-Payment-Response', 'PAYMENT-REQUIRED', 'PAYMENT-RESPONSE'], maxAge: 600 }));
 
   app.get('/health', async (c) => {
     const rpc = await rpcProbe(env.STELLAR_RPC_URL);
