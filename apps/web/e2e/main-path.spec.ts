@@ -87,15 +87,17 @@ test('importer: new deal, documents, screening, promise with the security deposi
   await expect(page).toHaveURL(/\/importer\/[0-9a-f-]{36}$/, { timeout: 30_000 });
 
   for (const t of ['invoice', 'packing_list', 'business_licence']) {
-    await page.locator(`#file-${t}`).setInputFiles({ name: `${t}.pdf`, mimeType: 'application/pdf', buffer: Buffer.from(`%PDF-1.4 e2e ${t}`) });
-    await expect(page.getByTestId(`doc-${t}`)).toContainText('Replace', { timeout: 30_000 });
+    // Mock: any bytes. Real API: the real demo packet 01 (clean, approve) so the live pipeline has real documents.
+    if (MOCK) await page.locator(`#file-${t}`).setInputFiles({ name: `${t}.pdf`, mimeType: 'application/pdf', buffer: Buffer.from(`%PDF-1.4 e2e ${t}`) });
+    else await page.locator(`#file-${t}`).setInputFiles(new URL(`../../../data/packets/01/${t}.pdf`, import.meta.url).pathname);
+    await expect(page.getByTestId(`doc-${t}`)).toContainText('Replace', { timeout: 60_000 });
   }
-  await page.getByTestId('terms-cost').fill('3000');
+  await page.getByTestId('terms-cost').fill(MOCK ? '3000' : '3000');
   await page.getByTestId('terms-save').click();
   await expect(page.getByTestId('run-screening')).toBeEnabled({ timeout: 30_000 });
   await page.getByTestId('run-screening').click();
   await expect(page.getByTestId('verifying')).toBeVisible({ timeout: 30_000 });
-  await expect(page.getByTestId('promise-step')).toBeVisible({ timeout: 90_000 });
+  await expect(page.getByTestId('promise-step')).toBeVisible({ timeout: MOCK ? 90_000 : 240_000 });
   await expect(page.getByTestId('promise-step')).toContainText('Security deposit to lock now');
   await expect(page.getByTestId('promise-step')).toContainText('20%');
   await page.getByTestId('promise-agree').check();

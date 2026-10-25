@@ -55,7 +55,7 @@ dealRoutes.get('/deals', async (c) => {
   return reply(c, z.array(DealSummarySchema), rows);
 });
 
-dealRoutes.post('/deals', rateLimit('create-deal', 30, 60 * 60 * 1000), async (c) => {
+dealRoutes.post('/deals', rateLimit('create-deal', 120, 60 * 60 * 1000), async (c) => {
   const u = requireUser(c, 'importer', 'ops');
   const body = await readJson(c, CreateDealRequest);
   const svc = c.get('svc');
@@ -111,7 +111,7 @@ dealRoutes.get('/deals/:id/documents', async (c) => {
 });
 
 /** JSON: register a pending upload (browser PUTs the bytes). Multipart: store at once. */
-dealRoutes.post('/deals/:id/documents', rateLimit('upload', 60, 60 * 60 * 1000), async (c) => {
+dealRoutes.post('/deals/:id/documents', rateLimit('upload', 600, 60 * 60 * 1000), async (c) => {
   const u = requireUser(c, 'importer', 'ops');
   const svc = c.get('svc');
   const deal = await findDeal(svc, c.req.param('id'));
@@ -135,7 +135,7 @@ dealRoutes.post('/deals/:id/documents', rateLimit('upload', 60, 60 * 60 * 1000),
   return reply(c, RegisterDocumentResponseSchema, { documentId: row!.id, uploadUrl: `${svc.env.API_BASE_URL.replace(/\/$/, '')}/deals/${deal.id}/documents/${row!.id}`, method: 'PUT', headers: { 'content-type': body.mime } }, 201);
 });
 
-dealRoutes.put('/deals/:id/documents/:docId', rateLimit('upload', 60, 60 * 60 * 1000), async (c) => {
+dealRoutes.put('/deals/:id/documents/:docId', rateLimit('upload', 600, 60 * 60 * 1000), async (c) => {
   const u = requireUser(c, 'importer', 'ops');
   const svc = c.get('svc');
   const deal = await findDeal(svc, c.req.param('id'));
@@ -156,7 +156,7 @@ dealRoutes.put('/deals/:id/documents/:docId', rateLimit('upload', 60, 60 * 60 * 
 
 // ---------------------------------------------------------------- verification
 
-dealRoutes.post('/deals/:id/verify', rateLimit('verify', 20, 60 * 60 * 1000), async (c) => {
+dealRoutes.post('/deals/:id/verify', rateLimit('verify', 120, 60 * 60 * 1000), async (c) => {
   const u = requireUser(c, 'importer', 'ops');
   const svc = c.get('svc');
   const deal = await findDeal(svc, c.req.param('id'));

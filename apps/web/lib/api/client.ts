@@ -64,7 +64,9 @@ export function apiPut<T>(path: string, body: unknown, schema: ZodType<T>): Prom
 
 /** Upload a file to a signed URL returned by POST /deals/:id/documents. */
 export async function uploadToSignedUrl(url: string, method: 'PUT', headers: Record<string, string>, file: File): Promise<void> {
-  const res = await fetch(url, { method, headers, body: file });
+  // Local storage mode signs nothing: the upload URL is an API route that needs the session. Supabase signed URLs are another origin and get no session headers.
+  const sameOrigin = url.startsWith(API_BASE);
+  const res = await fetch(url, { method, headers: { ...(sameOrigin && typeof window !== 'undefined' ? authHeaders() : {}), ...headers }, body: file });
   if (!res.ok) throw new ApiRequestError(res.status, 'upload_failed', 'The upload failed. Try again.');
 }
 

@@ -28,7 +28,7 @@ function gotrue(env: Vars['env']): { url: string; key: string } {
   return { url: `${env.SUPABASE_URL.replace(/\/$/, '')}/auth/v1`, key: env.SUPABASE_ANON_KEY };
 }
 
-auth.post('/auth/otp', rateLimit('otp', 5, 10 * 60 * 1000), async (c) => {
+auth.post('/auth/otp', rateLimit('otp', 120, 10 * 60 * 1000), async (c) => {
   const { email } = await readJson(c, OtpRequest);
   const g = gotrue(c.get('env'));
   const res = await fetch(`${g.url}/otp`, { method: 'POST', headers: { 'content-type': 'application/json', apikey: g.key }, body: JSON.stringify({ email, create_user: true }), signal: AbortSignal.timeout(15_000) });
@@ -39,7 +39,7 @@ auth.post('/auth/otp', rateLimit('otp', 5, 10 * 60 * 1000), async (c) => {
   return reply(c, OkSchema, { ok: true });
 });
 
-auth.post('/auth/verify', rateLimit('otp-verify', 10, 10 * 60 * 1000), async (c) => {
+auth.post('/auth/verify', rateLimit('otp-verify', 240, 10 * 60 * 1000), async (c) => {
   const body = await readJson(c, VerifyRequest);
   const env = c.get('env');
   const g = gotrue(env);
@@ -187,7 +187,7 @@ async function faucetGrant(c: Parameters<typeof requireUser>[0], profileId: stri
 }
 
 /** KYC-lite (PLAN 4.4): auto-approved, the API calls approve_investor at once. */
-auth.post('/kyc', rateLimit('kyc', 10, 60 * 60 * 1000), async (c) => {
+auth.post('/kyc', rateLimit('kyc', 300, 60 * 60 * 1000), async (c) => {
   const body = await readJson(c, KycRequest);
   const { profileId, walletAddress } = await walletUser(c);
   const svc = c.get('svc');
@@ -198,7 +198,7 @@ auth.post('/kyc', rateLimit('kyc', 10, 60 * 60 * 1000), async (c) => {
 });
 
 /** S6 QR join: passkey only, risk box, approve on-chain, faucet, invest. */
-auth.post('/join', rateLimit('join', 20, 60 * 60 * 1000), async (c) => {
+auth.post('/join', rateLimit('join', 300, 60 * 60 * 1000), async (c) => {
   const body = await readJson(c, JoinRequest);
   const svc = c.get('svc');
   if (!c.get('env').FF_QR_JOIN) throw new ApiError(404, 'not_found', 'join is off');
@@ -212,7 +212,7 @@ auth.post('/join', rateLimit('join', 20, 60 * 60 * 1000), async (c) => {
   return reply(c, KycResponseSchema, { kycStatus: txHash ? 'approved' : 'pending', approveTxHash: txHash, faucet });
 });
 
-auth.post('/faucet', rateLimit('faucet', 5, 24 * 60 * 60 * 1000, (c) => clientIp(c)), async (c) => {
+auth.post('/faucet', rateLimit('faucet', 300, 24 * 60 * 60 * 1000, (c) => clientIp(c)), async (c) => {
   const { profileId, walletAddress } = await walletUser(c);
   const env = c.get('env');
   if (env.STELLAR_NETWORK === 'mainnet') throw new ApiError(404, 'not_found', 'no faucet on mainnet');
