@@ -1,0 +1,1124 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-09",
+    "created_at": "2026-10-25T16:02:21.105Z",
+    "decision": "approve",
+    "risk_score": 100,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "MSKU9070323",
+          "MSKU7731208"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91120113MA06R4F7KT passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 line amounts equal quantity x unit price and add up to the printed total 30000.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 30000,
+          "printed_total": 30000,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-09-30).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-09-30",
+          "plDate": "2026-10-01",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 2 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            400,
+            5000
+          ],
+          "packing_list": [
+            400,
+            5000
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 9\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 9"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "天津市北辰重工有限公司",
+          "b": "天津市北辰重工有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Tianjin Beichen Heavy Industry Co., Ltd.",
+          "b": "Tianjin Beichen Heavy Industry Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91120113MA06R4F7KT",
+          "b": "91120113MA06R4F7KT"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "天津市北辰重工有限公司",
+          "b": "天津市北辰重工有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "BC-2026-0930",
+          "b": "BC-2026-0930"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "weight": 25,
+        "evidence": {
+          "a": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body 离心水泵 1HP 220V 铸铁 | 2. PVC pressure pipes, 2 inch, 4 m lengths PVC压力管 2寸 4米",
+          "b": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body | 2. PVC pressure pipes, 2 inch, 4 m lengths"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Centrifugal water pumps 1 HP, 220 V, cast iron body) is machinery, tools, vehicles and parts: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body",
+          "category": "machinery",
+          "verdict": "permitted",
+          "reason": "Centrifugal water pumps are classified under machinery and tools for their function as mechanical equipment."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (PVC pressure pipes, 2 inch, 4 m lengths) is building materials and hardware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. PVC pressure pipes, 2 inch, 4 m lengths",
+          "category": "building_materials",
+          "verdict": "permitted",
+          "reason": "PVC pressure pipes are used in construction and plumbing, fitting the building materials category."
+        }
+      },
+      {
+        "name": "price.water_pumps_1hp",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Centrifugal water pumps 1 HP, 220 V, cast iron body): 55.00 USD per piece vs reference 35 to 90 (water_pumps_1hp, 0.88x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body",
+          "category": "water_pumps_1hp",
+          "unit_price_usd": 55,
+          "reference_low_usd": 35,
+          "reference_high_usd": 90,
+          "ratio_to_mid": 0.88,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.pvc_pipes",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (PVC pressure pipes, 2 inch, 4 m lengths): 1.60 USD per kg vs reference 1.2 to 2.4 (pvc_pipes, 0.89x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. PVC pressure pipes, 2 inch, 4 m lengths",
+          "category": "pvc_pipes",
+          "unit_price_usd": 1.6,
+          "reference_low_usd": 1.2,
+          "reference_high_usd": 2.4,
+          "ratio_to_mid": 0.889,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91120113MA06R4F7KT (天津市北辰重工有限公司 / Tianjin Beichen Heavy Industry Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91120113MA06R4F7KT",
+          "legal_name_zh": "天津市北辰重工有限公司",
+          "legal_name_en": "Tianjin Beichen Heavy Industry Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91120113MA06R4F7KT",
+          "legal_name_zh": "天津市北辰重工有限公司",
+          "legal_name_en": "Tianjin Beichen Heavy Industry Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Tianjin Beichen Heavy Industry Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Adewale Trading Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Sun Jianguo\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "23a4758b7e22ef3cf7f14e796c45a25f6a0e4bdbad06cfeffbddec9e4d57d63e",
+          "parts": {
+            "supplier": "91120113MA06R4F7KT",
+            "invoice_number": "BC-2026-0930",
+            "invoice_date": "2026-09-30",
+            "total": "30000.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "approve by policy 5.6: no flags.",
+        "weight": 0,
+        "evidence": []
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "BC-2026-0930",
+          "evidence": "Invoice No. BC-2026-0930",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-09-30",
+          "evidence": "Invoice date 2026-09-30",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Tianjin Beichen Heavy Industry Co., Ltd.",
+            "evidence": "Tianjin Beichen Heavy Industry Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "天津市北辰重工有限公司",
+            "evidence": "天津市北辰重工有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91120113MA06R4F7KT",
+            "evidence": "USCC 91120113MA06R4F7KT",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+            "evidence": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 9",
+            "evidence": "Qafila Trade, deal 9",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "Qafila Trade, deal 9",
+            "evidence": "Qafila Trade, deal 9",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 9",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 9",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 9",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 9",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Adewale Trading Ltd",
+          "evidence": "Adewale Trading Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Tianjin (Xingang) (CNTXG), Incoterms 2020",
+          "evidence": "FOB Tianjin (Xingang) (CNTXG), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 30000,
+          "evidence": "USD 30,000.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
+              "evidence": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "离心水泵 1HP 220V 铸铁",
+              "evidence": "离心水泵 1HP 220V 铸铁",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "841370",
+              "evidence": "841370",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 400,
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 55,
+              "evidence": "55.00",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 22000,
+              "evidence": "22,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "PVC pressure pipes, 2 inch, 4 m lengths",
+              "evidence": "PVC pressure pipes, 2 inch, 4 m lengths",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "PVC压力管 2寸 4米",
+              "evidence": "PVC压力管 2寸 4米",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "391723",
+              "evidence": "391723",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 5000,
+              "evidence": "5,000 kg",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "kg",
+              "evidence": "5,000 kg",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 1.6,
+              "evidence": "1.60",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 8000,
+              "evidence": "8,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Tianjin (Xingang), China (CNTXG)",
+          "evidence": "Tianjin (Xingang), China (CNTXG)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Lagos (Apapa), Nigeria (NGAPP)",
+          "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-BC-2026-0930",
+          "evidence": "No. PL-BC-2026-0930",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "date": {
+          "value": "2026-10-01",
+          "evidence": "Date 2026-10-01",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_number": {
+          "value": "BC-2026-0930",
+          "evidence": "Invoice No. BC-2026-0930",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Tianjin Beichen Heavy Industry Co., Ltd.",
+            "evidence": "Tianjin Beichen Heavy Industry Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "天津市北辰重工有限公司",
+            "evidence": "天津市北辰重工有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91120113MA06R4F7KT",
+            "evidence": "USCC 91120113MA06R4F7KT",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+            "evidence": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 9, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 9, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
+              "evidence": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 400,
+              "evidence": "400 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "packages": {
+              "value": 400,
+              "evidence": "400 CTNS",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "gross_weight_kg": {
+              "value": 7200,
+              "evidence": "7,200.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "net_weight_kg": {
+              "value": 6800,
+              "evidence": "6,800.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "cbm": {
+              "value": 22,
+              "evidence": "22.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "PVC pressure pipes, 2 inch, 4 m lengths",
+              "evidence": "PVC pressure pipes, 2 inch, 4 m lengths",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 5000,
+              "evidence": "5,000 kg",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "packages": {
+              "value": 250,
+              "evidence": "250 CTNS",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "gross_weight_kg": {
+              "value": 5200,
+              "evidence": "5,200.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "net_weight_kg": {
+              "value": 5000,
+              "evidence": "5,000.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "cbm": {
+              "value": 30,
+              "evidence": "30.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 650,
+          "evidence": "650 CTNS",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_gross_weight_kg": {
+          "value": 12400,
+          "evidence": "12,400.0",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_net_weight_kg": {
+          "value": 11800,
+          "evidence": "11,800.0",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_cbm": {
+          "value": 52,
+          "evidence": "52.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "container_numbers": [
+          {
+            "value": "MSKU9070323",
+            "evidence": "MSKU9070323",
+            "page": 1,
+            "confidence": 0.95
+          },
+          {
+            "value": "MSKU7731208",
+            "evidence": "MSKU7731208",
+            "page": 1,
+            "confidence": 0.95
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "天津市北辰重工有限公司",
+          "evidence": "名称 天津市北辰重工有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Tianjin Beichen Heavy Industry Co., Ltd.",
+          "evidence": "Name Tianjin Beichen Heavy Industry Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91120113MA06R4F7KT",
+          "evidence": "统一社会信用代码 91120113MA06R4F7KT",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "孙建国 (Sun Jianguo)",
+          "evidence": "法定代表人 孙建国 (Sun Jianguo)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 3,000 万元 (RMB 30,000,000)",
+          "evidence": "注册资本 人民币 3,000 万元 (RMB 30,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2008-10-10",
+          "evidence": "成立日期 2008-10-10",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2008-10-10 至 长期 / to long-term",
+          "evidence": "营业期限 2008-10-10 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "水泵、管道及重型机械的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 水泵、管道及重型机械的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "天津市北辰区双街镇北辰工业园7号",
+          "evidence": "住所 天津市北辰区双街镇北辰工业园7号",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "天津市市场监督管理委员会 / Tianjin Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 天津市市场监督管理委员会 / Tianjin Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2008-06-30",
+          "evidence": "发照日期 Issue date: 2008-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "天津市北辰重工有限公司",
+      "legal_name_en": "Tianjin Beichen Heavy Industry Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body",
+        "category": "water_pumps_1hp",
+        "unit_price_usd": 55,
+        "reference_low_usd": 35,
+        "reference_high_usd": 90,
+        "ratio_to_mid": 0.88,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "2. PVC pressure pipes, 2 inch, 4 m lengths",
+        "category": "pvc_pipes",
+        "unit_price_usd": 1.6,
+        "reference_low_usd": 1.2,
+        "reference_high_usd": 2.4,
+        "ratio_to_mid": 0.889,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body",
+        "category": "machinery",
+        "verdict": "permitted",
+        "reason": "Centrifugal water pumps are classified under machinery and tools for their function as mechanical equipment."
+      },
+      {
+        "line": "2. PVC pressure pipes, 2 inch, 4 m lengths",
+        "category": "building_materials",
+        "verdict": "permitted",
+        "reason": "PVC pressure pipes are used in construction and plumbing, fitting the building materials category."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "天津市北辰重工有限公司",
+        "evidence_b": "天津市北辰重工有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Tianjin Beichen Heavy Industry Co., Ltd.",
+        "evidence_b": "Tianjin Beichen Heavy Industry Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91120113MA06R4F7KT",
+        "evidence_b": "91120113MA06R4F7KT"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "天津市北辰重工有限公司",
+        "evidence_b": "天津市北辰重工有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "BC-2026-0930",
+        "evidence_b": "BC-2026-0930"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "evidence_a": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body 离心水泵 1HP 220V 铸铁 | 2. PVC pressure pipes, 2 inch, 4 m lengths PVC压力管 2寸 4米",
+        "evidence_b": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body | 2. PVC pressure pipes, 2 inch, 4 m lengths"
+      }
+    ],
+    "listing_fingerprint": "23a4758b7e22ef3cf7f14e796c45a25f6a0e4bdbad06cfeffbddec9e4d57d63e",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "7afa4dd2f2f77c9517893bbde6268cfafb73b07cd1c2d53d872910a9e7cd29f4"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "ca8d166d51c68c7f56967951c695561f5ba800f625d96a367becb164f3c0107e"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "cf75a740f6e2c116d19a9a75c9b2de56a807ad7f8e52b4c8211273b0a3f4cb89"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16315,
+        "tokens_out": 3305,
+        "latency_ms": 58710,
+        "cost_usd": 0.008861
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 6135,
+        "tokens_out": 1519,
+        "latency_ms": 29852,
+        "cost_usd": 0.003663
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4318,
+        "tokens_out": 768,
+        "latency_ms": 18275,
+        "cost_usd": 0.002217
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 852,
+        "tokens_out": 176,
+        "latency_ms": 3156,
+        "cost_usd": 0.000467
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1174,
+        "tokens_out": 92,
+        "latency_ms": 1293,
+        "cost_usd": 0.000231
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1911,
+        "tokens_out": 126,
+        "latency_ms": 1796,
+        "cost_usd": 0.000362
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2168,
+        "tokens_out": 66,
+        "latency_ms": 878,
+        "cost_usd": 0.000365
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91120113MA06R4F7KT.json"
+    ],
+    "timings_ms": {
+      "intake": 604,
+      "extract": 58710,
+      "validate": 1,
+      "stages": 3157,
+      "fingerprint": 0,
+      "explain": 879,
+      "total": 63351
+    },
+    "cost_usd": 0.016166,
+    "injection_attempts": [],
+    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and document consistency are all valid. No further action is needed."
+  },
+  "report_hash": "678e705b9b56d7e6b21be3e3028f0c613f143560287fa94c16184e2865438bd8",
+  "signature": "3ea7de9234db299e14b73b56892c4dd6438e342c59a14d5021172836bc859e3ffa5010abb1c072faf1848a82b21c9afc003ef650894ab13ef7297772a558a105"
+}

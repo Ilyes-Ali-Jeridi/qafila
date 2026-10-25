@@ -1,0 +1,93 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:36:21.984Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:1802ae8ca85158e9bbc2715fbc839ed1cde4d3352541b1d7c471fa2aa3e6c931"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "宁波市海川塑业有限公司",
+        "evidence": "名称 宁波市海川塑业有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Ningbo Haichuan Plastics Co., Ltd.",
+        "evidence": "Name Ningbo Haichuan Plastics Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91330200MA2CH7N6M7",
+        "evidence": "统一社会信用代码 91330200MA2CH7N6M7",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "王海 (Wang Hai)",
+        "evidence": "法定代表人 王海 (Wang Hai)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "类型 有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 800 万元 (RMB 8,000,000)",
+        "evidence": "注册资本 人民币 800 万元 (RMB 8,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2014-11-20",
+        "evidence": "成立日期 2014-11-20",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2014-11-20 至 长期 / to long-term",
+        "evidence": "营业期限 2014-11-20 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "塑料制品、不锈钢厨具的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "经营范围 塑料制品、不锈钢厨具的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "浙江省宁波市北仑区大碶街道海川路56号",
+        "evidence": "住所 浙江省宁波市北仑区大碶街道海川路56号",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "宁波市市场监督管理局 / Ningbo Administration for Market Regulation",
+        "evidence": "登记机关 Registration authority: 宁波市市场监督管理局 / Ningbo Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2014-06-30",
+        "evidence": "发照日期 Issue date: 2014-06-30",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 4330,
+    "tokensOut": 769,
+    "repaired": false
+  }
+}

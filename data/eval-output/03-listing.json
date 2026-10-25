@@ -1,0 +1,1124 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-03",
+    "created_at": "2026-10-25T15:37:06.965Z",
+    "decision": "approve",
+    "risk_score": 100,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "COSU6319486",
+          "COSU6319505"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91330200MA2CH7N6M7 passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 line amounts equal quantity x unit price and add up to the printed total 28200.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 28200,
+          "printed_total": 28200,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-09-05).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-09-05",
+          "plDate": "2026-09-06",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 2 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            1200,
+            3000
+          ],
+          "packing_list": [
+            1200,
+            3000
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 3\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 3"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "宁波市海川塑业有限公司",
+          "b": "宁波市海川塑业有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Ningbo Haichuan Plastics Co., Ltd.",
+          "b": "Ningbo Haichuan Plastics Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91330200MA2CH7N6M7",
+          "b": "91330200MA2CH7N6M7"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "宁波市海川塑业有限公司",
+          "b": "宁波市海川塑业有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "HC-2026-0805",
+          "b": "HC-2026-0805"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe identical goods in the same order, with only minor formatting differences (Chinese characters in invoice, omitted in packing list).",
+        "weight": 25,
+        "evidence": {
+          "a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
+          "b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Stainless steel cookware sets, 8 pieces, induction base) is household goods and kitchenware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Stainless steel cookware sets, 8 pieces, induction base",
+          "category": "household",
+          "verdict": "permitted",
+          "reason": "Stainless steel cookware sets are categorized as household goods and kitchenware."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (Plastic food storage containers, PP, assorted sizes) is household goods and kitchenware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. Plastic food storage containers, PP, assorted sizes",
+          "category": "household",
+          "verdict": "permitted",
+          "reason": "Plastic food storage containers are categorized as household goods and kitchenware."
+        }
+      },
+      {
+        "name": "price.stainless_steel_cookware_sets",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Stainless steel cookware sets, 8 pieces, induction base): 18.00 USD per set vs reference 8 to 35 (stainless_steel_cookware_sets, 0.84x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Stainless steel cookware sets, 8 pieces, induction base",
+          "category": "stainless_steel_cookware_sets",
+          "unit_price_usd": 18,
+          "reference_low_usd": 8,
+          "reference_high_usd": 35,
+          "ratio_to_mid": 0.837,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.plastic_housewares",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (Plastic food storage containers, PP, assorted sizes): 2.20 USD per kg vs reference 1.6 to 3.2 (plastic_housewares, 0.92x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. Plastic food storage containers, PP, assorted sizes",
+          "category": "plastic_housewares",
+          "unit_price_usd": 2.2,
+          "reference_low_usd": 1.6,
+          "reference_high_usd": 3.2,
+          "ratio_to_mid": 0.917,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91330200MA2CH7N6M7 (宁波市海川塑业有限公司 / Ningbo Haichuan Plastics Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91330200MA2CH7N6M7",
+          "legal_name_zh": "宁波市海川塑业有限公司",
+          "legal_name_en": "Ningbo Haichuan Plastics Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91330200MA2CH7N6M7",
+          "legal_name_zh": "宁波市海川塑业有限公司",
+          "legal_name_en": "Ningbo Haichuan Plastics Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Ningbo Haichuan Plastics Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Adewale Trading Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Wang Hai\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "44a12363afe3986126dd369e67c7b5a52b38473a13b545d1b097c718be7a9167",
+          "parts": {
+            "supplier": "91330200MA2CH7N6M7",
+            "invoice_number": "HC-2026-0805",
+            "invoice_date": "2026-09-05",
+            "total": "28200.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "approve by policy 5.6: no flags.",
+        "weight": 0,
+        "evidence": []
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "HC-2026-0805",
+          "evidence": "Invoice No. HC-2026-0805",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_date": {
+          "value": "2026-09-05",
+          "evidence": "Invoice date 2026-09-05",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_kind": {
+          "value": "commercial",
+          "evidence": "COMMERCIAL INVOICE",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Ningbo Haichuan Plastics Co., Ltd.",
+            "evidence": "Ningbo Haichuan Plastics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "宁波市海川塑业有限公司",
+            "evidence": "宁波市海川塑业有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91330200MA2CH7N6M7",
+            "evidence": "USCC 91330200MA2CH7N6M7",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+            "evidence": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 3",
+            "evidence": "Qafila Trade, deal 3",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "Qafila Trade, deal 3",
+            "evidence": "Qafila Trade, deal 3",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Adewale Trading Ltd",
+          "evidence": "Adewale Trading Ltd",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "incoterms": {
+          "value": "FOB Ningbo (CNNGB), Incoterms 2020",
+          "evidence": "FOB Ningbo (CNNGB), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "Currency USD",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total": {
+          "value": 28200,
+          "evidence": "TOTAL FOB CNNGB USD 28,200.00",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Stainless steel cookware sets, 8 pieces, induction base",
+              "evidence": "Stainless steel cookware sets, 8 pieces, induction base",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "description_zh": {
+              "value": "不锈钢锅具八件套",
+              "evidence": "不锈钢锅具八件套",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "hs_code": {
+              "value": "732393",
+              "evidence": "732393",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 1200,
+              "evidence": "1,200 sets",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "unit": {
+              "value": "sets",
+              "evidence": "sets",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "unit_price": {
+              "value": 18,
+              "evidence": "18.00",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "line_total": {
+              "value": 21600,
+              "evidence": "21,600.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "description_en": {
+              "value": "Plastic food storage containers, PP, assorted sizes",
+              "evidence": "Plastic food storage containers, PP, assorted sizes",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "description_zh": {
+              "value": "PP塑料保鲜盒 多规格",
+              "evidence": "PP塑料保鲜盒 多规格",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "hs_code": {
+              "value": "392410",
+              "evidence": "392410",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 3000,
+              "evidence": "3,000 kg",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "unit": {
+              "value": "kg",
+              "evidence": "kg",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "unit_price": {
+              "value": 2.2,
+              "evidence": "2.20",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "line_total": {
+              "value": 6600,
+              "evidence": "6,600.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Ningbo, China (CNNGB)",
+          "evidence": "Port of loading Ningbo, China (CNNGB)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "port_of_discharge": {
+          "value": "Lagos (Apapa), Nigeria (NGAPP)",
+          "evidence": "Port of discharge Lagos (Apapa), Nigeria (NGAPP)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-HC-2026-0805",
+          "evidence": "No. PL-HC-2026-0805",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "date": {
+          "value": "2026-09-06",
+          "evidence": "Date 2026-09-06",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_number": {
+          "value": "HC-2026-0805",
+          "evidence": "Invoice No. HC-2026-0805",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Ningbo Haichuan Plastics Co., Ltd.",
+            "evidence": "Ningbo Haichuan Plastics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "宁波市海川塑业有限公司",
+            "evidence": "宁波市海川塑业有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91330200MA2CH7N6M7",
+            "evidence": "USCC 91330200MA2CH7N6M7",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+            "evidence": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 3, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 3, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Stainless steel cookware sets, 8 pieces, induction base",
+              "evidence": "Stainless steel cookware sets, 8 pieces, induction base",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 1200,
+              "evidence": "1,200 sets",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "packages": {
+              "value": 600,
+              "evidence": "600 CTNS",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "gross_weight_kg": {
+              "value": 14400,
+              "evidence": "14,400.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "net_weight_kg": {
+              "value": 13200,
+              "evidence": "13,200.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "cbm": {
+              "value": 48,
+              "evidence": "48.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Plastic food storage containers, PP, assorted sizes",
+              "evidence": "Plastic food storage containers, PP, assorted sizes",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 3000,
+              "evidence": "3,000 kg",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "packages": {
+              "value": 200,
+              "evidence": "200 CTNS",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "gross_weight_kg": {
+              "value": 4000,
+              "evidence": "4,000.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "net_weight_kg": {
+              "value": 3000,
+              "evidence": "3,000.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "cbm": {
+              "value": 20,
+              "evidence": "20.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 800,
+          "evidence": "800 CTNS",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_gross_weight_kg": {
+          "value": 18400,
+          "evidence": "18,400.0",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_net_weight_kg": {
+          "value": 16200,
+          "evidence": "16,200.0",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_cbm": {
+          "value": 68,
+          "evidence": "68.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "container_numbers": [
+          {
+            "value": "COSU6319486",
+            "evidence": "COSU6319486",
+            "page": 1,
+            "confidence": 0.95
+          },
+          {
+            "value": "COSU6319505",
+            "evidence": "COSU6319505",
+            "page": 1,
+            "confidence": 0.95
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "宁波市海川塑业有限公司",
+          "evidence": "名称 宁波市海川塑业有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Ningbo Haichuan Plastics Co., Ltd.",
+          "evidence": "Name Ningbo Haichuan Plastics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91330200MA2CH7N6M7",
+          "evidence": "统一社会信用代码 91330200MA2CH7N6M7",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "王海 (Wang Hai)",
+          "evidence": "法定代表人 王海 (Wang Hai)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 800 万元 (RMB 8,000,000)",
+          "evidence": "注册资本 人民币 800 万元 (RMB 8,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2014-11-20",
+          "evidence": "成立日期 2014-11-20",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2014-11-20 至 长期 / to long-term",
+          "evidence": "营业期限 2014-11-20 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "塑料制品、不锈钢厨具的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 塑料制品、不锈钢厨具的制造与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "浙江省宁波市北仑区大碶街道海川路56号",
+          "evidence": "住所 浙江省宁波市北仑区大碶街道海川路56号",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "宁波市市场监督管理局 / Ningbo Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 宁波市市场监督管理局 / Ningbo Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2014-06-30",
+          "evidence": "发照日期 Issue date: 2014-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "宁波市海川塑业有限公司",
+      "legal_name_en": "Ningbo Haichuan Plastics Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Stainless steel cookware sets, 8 pieces, induction base",
+        "category": "stainless_steel_cookware_sets",
+        "unit_price_usd": 18,
+        "reference_low_usd": 8,
+        "reference_high_usd": 35,
+        "ratio_to_mid": 0.837,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "2. Plastic food storage containers, PP, assorted sizes",
+        "category": "plastic_housewares",
+        "unit_price_usd": 2.2,
+        "reference_low_usd": 1.6,
+        "reference_high_usd": 3.2,
+        "ratio_to_mid": 0.917,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Stainless steel cookware sets, 8 pieces, induction base",
+        "category": "household",
+        "verdict": "permitted",
+        "reason": "Stainless steel cookware sets are categorized as household goods and kitchenware."
+      },
+      {
+        "line": "2. Plastic food storage containers, PP, assorted sizes",
+        "category": "household",
+        "verdict": "permitted",
+        "reason": "Plastic food storage containers are categorized as household goods and kitchenware."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "宁波市海川塑业有限公司",
+        "evidence_b": "宁波市海川塑业有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Ningbo Haichuan Plastics Co., Ltd.",
+        "evidence_b": "Ningbo Haichuan Plastics Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91330200MA2CH7N6M7",
+        "evidence_b": "91330200MA2CH7N6M7"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "宁波市海川塑业有限公司",
+        "evidence_b": "宁波市海川塑业有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "HC-2026-0805",
+        "evidence_b": "HC-2026-0805"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "Both lists describe identical goods in the same order, with only minor formatting differences (Chinese characters in invoice, omitted in packing list).",
+        "evidence_a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
+        "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
+      }
+    ],
+    "listing_fingerprint": "44a12363afe3986126dd369e67c7b5a52b38473a13b545d1b097c718be7a9167",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "d63cc4d180e85b5f747d4f3ea1b5bfd3263d0ce1762f7b26f1f55c07065d6167"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "c0c36021f2b40dd2262f5011d5d5818fcc4c388377ed5c794cef3992b30f004d"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "1802ae8ca85158e9bbc2715fbc839ed1cde4d3352541b1d7c471fa2aa3e6c931"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16650,
+        "tokens_out": 3693,
+        "latency_ms": 53531,
+        "cost_usd": 0.009427
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 13447,
+        "tokens_out": 2656,
+        "latency_ms": 37247,
+        "cost_usd": 0.007221
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4330,
+        "tokens_out": 769,
+        "latency_ms": 10974,
+        "cost_usd": 0.002222
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 823,
+        "tokens_out": 153,
+        "latency_ms": 2415,
+        "cost_usd": 0.000431
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1154,
+        "tokens_out": 85,
+        "latency_ms": 1004,
+        "cost_usd": 0.000224
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1892,
+        "tokens_out": 121,
+        "latency_ms": 1001,
+        "cost_usd": 0.000356
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2162,
+        "tokens_out": 66,
+        "latency_ms": 832,
+        "cost_usd": 0.000364
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91330200MA2CH7N6M7.json"
+    ],
+    "timings_ms": {
+      "intake": 596,
+      "extract": 53535,
+      "validate": 3,
+      "stages": 2418,
+      "fingerprint": 0,
+      "explain": 832,
+      "total": 57384
+    },
+    "cost_usd": 0.020245,
+    "injection_attempts": [],
+    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and document consistency are all valid. No further action is needed."
+  },
+  "report_hash": "24f6fa875a807a3521af9f5c02cec6249e374b5f1b258c9d54dc4915824c1be7",
+  "signature": "c8b53498231c2e2dce79b87b507d5b8cbf7db41ede437ba2477a3771116e0192c522208931ea9e10a3055a1240903de7eb1ef02d52f268741bd82226b04c2800"
+}

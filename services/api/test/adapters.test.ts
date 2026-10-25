@@ -5,7 +5,7 @@ import { createAdapters } from '../src/adapters/index.js';
 import { adapterContext, defineAdapter, MemoryCache } from '../src/adapters/base.js';
 import { mapShipsgo } from '../src/adapters/shipsgo.js';
 import { qccHeaders, normaliseQccStatus } from '../src/adapters/qcc.js';
-import { toolInputSchema } from '../src/adapters/llm.js';
+import { fillDefaults, toolInputSchema } from '../src/adapters/llm.js';
 
 const env = loadEnv({ ADAPTER_MODE: 'mock', STELLAR_NETWORK: 'testnet' });
 const a = createAdapters(env, { record: false });
@@ -178,5 +178,17 @@ describe('llm tool schema', () => {
     const js = toolInputSchema(z.object({ a: z.string().nullable(), b: z.enum(['x', 'y']) }));
     expect(js['$schema']).toBeUndefined();
     expect(js['type']).toBe('object');
+  });
+});
+
+describe('fillDefaults', () => {
+  it('fills omitted nested field objects and arrays from the JSON schema without touching present values', () => {
+    const schema = toolInputSchema(z.object({ type: z.literal('invoice'), buyer: z.object({ name_en: z.object({ value: z.string().nullable(), evidence: z.string().nullable(), page: z.number().int().positive().nullable(), confidence: z.number().min(0).max(1) }), name_zh: z.object({ value: z.string().nullable(), evidence: z.string().nullable(), page: z.number().int().positive().nullable(), confidence: z.number().min(0).max(1) }) }), items: z.array(z.object({ q: z.number() })), hidden: z.array(z.string()) }));
+    const out = fillDefaults(schema, { buyer: { name_en: { value: 'X', evidence: 'X', page: 1, confidence: 0.9 } } }) as Record<string, unknown>;
+    expect(out['type']).toBe('invoice');
+    expect((out['buyer'] as Record<string, unknown>)['name_zh']).toEqual({ value: null, evidence: null, page: null, confidence: 0 });
+    expect((out['buyer'] as Record<string, Record<string, unknown>>)['name_en']!['value']).toBe('X');
+    expect(out['items']).toEqual([]);
+    expect(out['hidden']).toEqual([]);
   });
 });

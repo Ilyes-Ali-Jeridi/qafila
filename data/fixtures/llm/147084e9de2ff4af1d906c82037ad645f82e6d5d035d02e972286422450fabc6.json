@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:33:18.115Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-01:listing:f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,halal.line_3=pass,price.phone_cases=pass,price.tempered_glass_protectors=pass,price.usb_cables=pass,registry.status=review,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal needs a review by our team because the company was not found in GLEIF. All other checks passed, including document formats, quantities, prices, and sanctions screening. Our operations team will verify the business licence on the official registry and proceed accordingly.",
+      "fixes": [
+        "Upload a verified business licence for the company 91440300MA5GK2Q7XL to confirm its authenticity."
+      ],
+      "category": "document_integrity"
+    },
+    "tokensIn": 2287,
+    "tokensOut": 116,
+    "repaired": false
+  }
+}

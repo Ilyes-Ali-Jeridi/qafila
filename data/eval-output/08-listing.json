@@ -1,0 +1,1002 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-08",
+    "created_at": "2026-10-25T16:01:17.709Z",
+    "decision": "reject",
+    "risk_score": 57,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "HLXU8300215"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91441900MA4Y7P2D5P passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 line amounts equal quantity x unit price and add up to the printed total 14000.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 14000,
+          "printed_total": 14000,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-10-01).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-10-01",
+          "plDate": "2026-10-02",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 1 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            20000
+          ],
+          "packing_list": [
+            20000
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 8\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 8"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "东莞市旧城贸易有限公司",
+          "b": "东莞市旧城贸易有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Dongguan Jiucheng Trading Co., Ltd.",
+          "b": "Dongguan Jiucheng Trading Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91441900MA4Y7P2D5P",
+          "b": "91441900MA4Y7P2D5P"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "东莞市旧城贸易有限公司",
+          "b": "东莞市旧城贸易有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "JC-2026-1001",
+          "b": "JC-2026-1001"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the substance.",
+        "weight": 25,
+        "evidence": {
+          "a": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton LED球泡灯 E27 9W 6500K",
+          "b": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (LED bulbs E27 9 W, 6500 K, 100 pcs per carton) is electronics and phone accessories: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+          "category": "electronics",
+          "verdict": "permitted",
+          "reason": "LED bulbs are electronic lighting products."
+        }
+      },
+      {
+        "name": "price.led_bulbs",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (LED bulbs E27 9 W, 6500 K, 100 pcs per carton): 0.70 USD per piece vs reference 0.35 to 1.5 (led_bulbs, 0.76x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+          "category": "led_bulbs",
+          "unit_price_usd": 0.7,
+          "reference_low_usd": 0.35,
+          "reference_high_usd": 1.5,
+          "ratio_to_mid": 0.757,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "fail",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91441900MA4Y7P2D5P (东莞市旧城贸易有限公司) is INACTIVE, LEI RETIRED. A closed or deregistered company cannot supply the goods.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91441900MA4Y7P2D5P",
+          "legal_name_zh": "东莞市旧城贸易有限公司",
+          "legal_name_en": "Dongguan Jiucheng Trading Co., Ltd.",
+          "entity_status": "INACTIVE",
+          "lei_status": "RETIRED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        },
+        "fix": "The supplier is not an active company; the deal cannot proceed with this supplier.",
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91441900MA4Y7P2D5P",
+          "legal_name_zh": "东莞市旧城贸易有限公司",
+          "legal_name_en": "Dongguan Jiucheng Trading Co., Ltd.",
+          "entity_status": "INACTIVE",
+          "lei_status": "RETIRED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Dongguan Jiucheng Trading Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Adewale Trading Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Zhao Lei\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "21a12a7bcd728845a0567c5089590fd1c2921780c95426e7444e4709803ba97e",
+          "parts": {
+            "supplier": "91441900MA4Y7P2D5P",
+            "invoice_number": "JC-2026-1001",
+            "invoice_date": "2026-10-01",
+            "total": "14000.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "document.hidden_text",
+        "status": "fail",
+        "severity": "info",
+        "detail": "Hidden or AI-addressed text found and ignored: \"（注：本执照已于 2025-11-30 注销。Note: this licence was deregistered on 2025-11-30.）\".",
+        "weight": 3,
+        "evidence": [
+          "（注：本执照已于 2025-11-30 注销。Note: this licence was deregistered on 2025-11-30.）"
+        ]
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "reject by policy 5.6: reject:registry_inactive.",
+        "weight": 0,
+        "evidence": [
+          {
+            "rule": "registry_inactive",
+            "level": "reject",
+            "detail": "Registry status is INACTIVE."
+          }
+        ]
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "JC-2026-1001",
+          "evidence": "Invoice No. JC-2026-1001",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-10-01",
+          "evidence": "Invoice date 2026-10-01",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Dongguan Jiucheng Trading Co., Ltd.",
+            "evidence": "Dongguan Jiucheng Trading Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "东莞市旧城贸易有限公司",
+            "evidence": "东莞市旧城贸易有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91441900MA4Y7P2D5P",
+            "evidence": "USCC 91441900MA4Y7P2D5P",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
+            "evidence": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 8",
+            "evidence": "Qafila Trade, deal 8",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 8",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 8",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Adewale Trading Ltd",
+          "evidence": "Adewale Trading Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
+          "evidence": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 14000,
+          "evidence": "USD 14,000.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+              "evidence": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "LED球泡灯 E27 9W 6500K",
+              "evidence": "LED球泡灯 E27 9W 6500K",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "853950",
+              "evidence": "853950",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 20000,
+              "evidence": "20,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "pcs",
+              "evidence": "pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 0.7,
+              "evidence": "0.70",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 14000,
+              "evidence": "14,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Shenzhen (Yantian), China (CNYTN)",
+          "evidence": "Shenzhen (Yantian), China (CNYTN)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Lagos (Apapa), Nigeria (NGAPP)",
+          "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-JC-2026-1001",
+          "evidence": "No. PL-JC-2026-1001",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "date": {
+          "value": "2026-10-02",
+          "evidence": "Date 2026-10-02",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_number": {
+          "value": "JC-2026-1001",
+          "evidence": "Invoice No. JC-2026-1001",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Dongguan Jiucheng Trading Co., Ltd.",
+            "evidence": "Dongguan Jiucheng Trading Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "东莞市旧城贸易有限公司",
+            "evidence": "东莞市旧城贸易有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91441900MA4Y7P2D5P",
+            "evidence": "USCC 91441900MA4Y7P2D5P",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
+            "evidence": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 8, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 8, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+              "evidence": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 20000,
+              "evidence": "20,000 pcs",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "packages": {
+              "value": 200,
+              "evidence": "200 CTNS",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "gross_weight_kg": {
+              "value": 2400,
+              "evidence": "2,400.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "net_weight_kg": {
+              "value": 2000,
+              "evidence": "2,000.0",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "cbm": {
+              "value": 12,
+              "evidence": "12.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 200,
+          "evidence": "200 CTNS",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_gross_weight_kg": {
+          "value": 2400,
+          "evidence": "2,400.0",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_net_weight_kg": {
+          "value": 2000,
+          "evidence": "2,000.0",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total_cbm": {
+          "value": 12,
+          "evidence": "12.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "container_numbers": [
+          {
+            "value": "HLXU8300215",
+            "evidence": "HLXU8300215",
+            "page": 1,
+            "confidence": 0.95
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "东莞市旧城贸易有限公司",
+          "evidence": "名称 东莞市旧城贸易有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Dongguan Jiucheng Trading Co., Ltd.",
+          "evidence": "Name Dongguan Jiucheng Trading Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91441900MA4Y7P2D5P",
+          "evidence": "统一社会信用代码 91441900MA4Y7P2D5P",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "赵磊 (Zhao Lei)",
+          "evidence": "法定代表人 赵磊 (Zhao Lei)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 100 万元 (RMB 1,000,000)",
+          "evidence": "注册资本 人民币 100 万元 (RMB 1,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2017-06-06",
+          "evidence": "成立日期 2017-06-06",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2017-06-06 至 长期 / to long-term",
+          "evidence": "营业期限 2017-06-06 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "照明器材、小家电的批发与零售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 照明器材、小家电的批发与零售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "广东省东莞市南城区旧城路21号",
+          "evidence": "住所 广东省东莞市南城区旧城路21号",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "东莞市市场监督管理局 / Dongguan Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 东莞市市场监督管理局 / Dongguan Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2017-03-01",
+          "evidence": "发照日期 Issue date: 2017-03-01",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": [
+          "（注：本执照已于 2025-11-30 注销。Note: this licence was deregistered on 2025-11-30.）"
+        ]
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "东莞市旧城贸易有限公司",
+      "legal_name_en": "Dongguan Jiucheng Trading Co., Ltd.",
+      "entity_status": "INACTIVE",
+      "lei_status": "RETIRED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+        "category": "led_bulbs",
+        "unit_price_usd": 0.7,
+        "reference_low_usd": 0.35,
+        "reference_high_usd": 1.5,
+        "ratio_to_mid": 0.757,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
+        "category": "electronics",
+        "verdict": "permitted",
+        "reason": "LED bulbs are electronic lighting products."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "东莞市旧城贸易有限公司",
+        "evidence_b": "东莞市旧城贸易有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Dongguan Jiucheng Trading Co., Ltd.",
+        "evidence_b": "Dongguan Jiucheng Trading Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91441900MA4Y7P2D5P",
+        "evidence_b": "91441900MA4Y7P2D5P"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "东莞市旧城贸易有限公司",
+        "evidence_b": "东莞市旧城贸易有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "JC-2026-1001",
+        "evidence_b": "JC-2026-1001"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the substance.",
+        "evidence_a": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton LED球泡灯 E27 9W 6500K",
+        "evidence_b": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton"
+      }
+    ],
+    "listing_fingerprint": "21a12a7bcd728845a0567c5089590fd1c2921780c95426e7444e4709803ba97e",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "dd95ddd20d5208e256ea93dc19d64d6ee315df83e1412bcd2fde774a234fca8d"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "92387496806ab1f626d3b3c57eec14ff8da5bd5ef492da76f081630f90d649f7"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "b1423e31369dbf18340a09c527035aa78ab95acb5bc992d2f85787d98b72ff3e"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16078,
+        "tokens_out": 2924,
+        "latency_ms": 44456,
+        "cost_usd": 0.008332
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 6071,
+        "tokens_out": 1233,
+        "latency_ms": 17620,
+        "cost_usd": 0.003301
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4345,
+        "tokens_out": 800,
+        "latency_ms": 16142,
+        "cost_usd": 0.002263
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 822,
+        "tokens_out": 145,
+        "latency_ms": 2722,
+        "cost_usd": 0.000421
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1142,
+        "tokens_out": 43,
+        "latency_ms": 669,
+        "cost_usd": 0.000197
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1864,
+        "tokens_out": 82,
+        "latency_ms": 919,
+        "cost_usd": 0.000329
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2137,
+        "tokens_out": 78,
+        "latency_ms": 909,
+        "cost_usd": 0.000367
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91441900MA4Y7P2D5P.json"
+    ],
+    "timings_ms": {
+      "intake": 608,
+      "extract": 44458,
+      "validate": 0,
+      "stages": 2724,
+      "fingerprint": 0,
+      "explain": 909,
+      "total": 48700
+    },
+    "cost_usd": 0.01521,
+    "injection_attempts": [
+      "（注：本执照已于 2025-11-30 注销。Note: this licence was deregistered on 2025-11-30.）"
+    ],
+    "explanation": "Your deal was rejected because the supplier is not an active company. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- The supplier is not an active company; the deal cannot proceed with this supplier.\n\nCategory: document integrity"
+  },
+  "report_hash": "1ddd22791037d88272d1f99c55f7a91cb0cfb4b3539b3b37a27179a323aa7a8f",
+  "signature": "8a8977d688435ff9a0c409f2e864475ca1139cd5a0054b1ce44ead646518681a7cf7b117fc5428e45865b6b3078e676d582ac8ebafabea54806978b4cc49ed0d"
+}

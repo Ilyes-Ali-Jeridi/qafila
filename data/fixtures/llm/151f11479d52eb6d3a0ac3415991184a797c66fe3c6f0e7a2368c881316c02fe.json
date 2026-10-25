@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:01:15.908Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "057dbfd1397741b275467c999a77ab3f2fd617a9e7ab9729efd45b05c79731da"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "led_bulbs",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 0.7,
+          "note": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton"
+        }
+      ]
+    },
+    "tokensIn": 1864,
+    "tokensOut": 82,
+    "repaired": false
+  }
+}

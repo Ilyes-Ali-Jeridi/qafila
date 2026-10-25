@@ -1,0 +1,93 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:35:21.845Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.business_licence",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_business_licence.v1",
+    "cacheKey": "extract:business_licence:63a48f5f908d446691b1b332d601bce24b0c6ed23deaae1317eab89b8d9bfee1"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "business_licence",
+      "name_zh": {
+        "value": "广州市恒远纺织有限公司",
+        "evidence": "名称 广州市恒远纺织有限公司",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "name_en": {
+        "value": "Guangzhou Hengyuan Textile Co., Ltd.",
+        "evidence": "Name Guangzhou Hengyuan Textile Co., Ltd.",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "uscc": {
+        "value": "91440101MA59TQ8W23",
+        "evidence": "统一社会信用代码 91440101MA59TQ8W23",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "legal_representative": {
+        "value": "林美玲 (Lin Meiling)",
+        "evidence": "法定代表人 林美玲 (Lin Meiling)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "company_type": {
+        "value": "有限责任公司（自然人投资或控股）",
+        "evidence": "类型 有限责任公司（自然人投资或控股）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registered_capital": {
+        "value": "人民币 1,000 万元 (RMB 10,000,000)",
+        "evidence": "注册资本 人民币 1,000 万元 (RMB 10,000,000)",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "establishment_date": {
+        "value": "2012-07-02",
+        "evidence": "成立日期 2012-07-02",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_term": {
+        "value": "2012-07-02 至 长期 / to long-term",
+        "evidence": "营业期限 2012-07-02 至 长期 / to long-term",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "business_scope": {
+        "value": "纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "经营范围 纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "address": {
+        "value": "广东省广州市白云区石井街道恒远路18号",
+        "evidence": "住所 广东省广州市白云区石井街道恒远路18号",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "registration_authority": {
+        "value": "广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
+        "evidence": "登记机关 Registration authority: 广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "issue_date": {
+        "value": "2012-06-30",
+        "evidence": "发照日期 Issue date: 2012-06-30",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 4323,
+    "tokensOut": 774,
+    "repaired": false
+  }
+}

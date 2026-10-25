@@ -1,0 +1,28 @@
+{
+  "adapter": "gleif",
+  "recorded_at": "2026-10-25T15:33:15.680Z",
+  "mode": "live",
+  "input": {
+    "uscc": "91440300MA5GK2Q7XL"
+  },
+  "response": {
+    "meta": {
+      "goldenCopy": {
+        "publishDate": "2026-10-25T08:00:00Z"
+      },
+      "pagination": {
+        "currentPage": 1,
+        "perPage": 5,
+        "from": null,
+        "to": null,
+        "total": 0,
+        "lastPage": 1
+      }
+    },
+    "links": {
+      "first": "https://api.gleif.org/api/v1/lei-records?filter%5Bentity.registeredAs%5D=91440300MA5GK2Q7XL&page%5Bnumber%5D=1&page%5Bsize%5D=5",
+      "last": "https://api.gleif.org/api/v1/lei-records?filter%5Bentity.registeredAs%5D=91440300MA5GK2Q7XL&page%5Bnumber%5D=1&page%5Bsize%5D=5"
+    },
+    "data": []
+  }
+}

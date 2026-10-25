@@ -1,0 +1,24 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:01:18.617Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-08:listing:21a12a7bcd728845a0567c5089590fd1c2921780c95426e7444e4709803ba97e:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,price.led_bulbs=pass,registry.status=fail,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,document.hidden_text=fail,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal was rejected because the supplier is not an active company. All other checks passed, including document consistency, pricing, and sanctions screening.",
+      "fixes": [
+        "The supplier is not an active company; the deal cannot proceed with this supplier."
+      ],
+      "category": "document_integrity"
+    },
+    "tokensIn": 2137,
+    "tokensOut": 78,
+    "repaired": false
+  }
+}

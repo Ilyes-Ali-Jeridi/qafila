@@ -1,0 +1,22 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:36:10.397Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-02:listing:aa46dda4cb4fe7682f7671d26d02d082ea70491c63626de0f035a7668c0386ca:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,price.cotton_fabric=pass,price.polyester_fabric=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal is approved for listing because all required checks passed. The invoice, packing list, and business licence are consistent and valid. No action is needed from your side.",
+      "fixes": [],
+      "category": null
+    },
+    "tokensIn": 2238,
+    "tokensOut": 64,
+    "repaired": false
+  }
+}

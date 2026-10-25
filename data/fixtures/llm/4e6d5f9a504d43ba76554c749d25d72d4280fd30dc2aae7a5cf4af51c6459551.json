@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:02:19.745Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "d00c7b30b332701007cda326c221394a9544863ffbfeb49b5ddd9fe7b57fbed8"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "water_pumps_1hp",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 55,
+          "note": "Centrifugal water pump 1 HP matches the water_pumps_1hp category."
+        },
+        {
+          "line_index": 2,
+          "category": "pvc_pipes",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 1.6,
+          "note": "PVC pressure pipes match the pvc_pipes category."
+        }
+      ]
+    },
+    "tokensIn": 1911,
+    "tokensOut": 126,
+    "repaired": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:39:11.205Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "41c25648c82ca4406f9c487c013ca667b2204682e89d01b39b5234a0e2daed8f"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "motorcycle_tyres",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 48,
+          "note": "Matches motorcycle tyres category."
+        },
+        {
+          "line_index": 2,
+          "category": "motorcycle_chain_sprocket_kits",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 8,
+          "note": "Matches motorcycle chain and sprocket kits category."
+        }
+      ]
+    },
+    "tokensIn": 1916,
+    "tokensOut": 111,
+    "repaired": false
+  }
+}

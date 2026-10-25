@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:36:09.612Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "6743858db55cfdeb046a8fccf391f8a6bf005b90713e159200eaa3d95ba54491"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "Both lists describe the same two goods with identical specifications; the invoice includes Chinese translations which are absent in the packing list, but the core descriptions match.",
+          "evidence_a": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 纯棉印花布 150cm 120克 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2 涤纶染色面料 150cm 95克",
+          "evidence_b": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2"
+        }
+      ]
+    },
+    "tokensIn": 884,
+    "tokensOut": 217,
+    "repaired": false
+  }
+}

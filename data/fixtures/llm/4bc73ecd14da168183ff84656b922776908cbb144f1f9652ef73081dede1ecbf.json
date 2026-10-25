@@ -1,0 +1,42 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:39:45.160Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "ac28f4d5e1c48c7183463a27dac773784c5fc8b66bfc8693041aba62c252dc82"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "electric_kettles",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 5.5,
+          "note": "Electric kettle matching the reference category."
+        },
+        {
+          "line_index": 2,
+          "category": "rice_cookers",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 12,
+          "note": "Electric rice cooker matching the reference category."
+        },
+        {
+          "line_index": 3,
+          "category": "wine_and_spirits",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 6.5,
+          "note": "Red wine matching the reference category."
+        }
+      ]
+    },
+    "tokensIn": 1990,
+    "tokensOut": 155,
+    "repaired": false
+  }
+}

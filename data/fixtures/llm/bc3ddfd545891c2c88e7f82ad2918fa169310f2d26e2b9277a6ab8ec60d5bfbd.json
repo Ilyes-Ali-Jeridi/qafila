@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:37:05.555Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "a3a97679213e3ba95c93c65a7fdd9b30bc6e53c36457e43a561db1e7aba31dce"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "stainless_steel_cookware_sets",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 18,
+          "note": "Matches stainless steel cookware sets by description and HS code."
+        },
+        {
+          "line_index": 2,
+          "category": "plastic_housewares",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 2.2,
+          "note": "Plastic containers fall under plastic housewares by weight."
+        }
+      ]
+    },
+    "tokensIn": 1892,
+    "tokensOut": 121,
+    "repaired": false
+  }
+}

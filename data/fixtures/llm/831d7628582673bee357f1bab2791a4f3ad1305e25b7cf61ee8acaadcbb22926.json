@@ -1,0 +1,223 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:38:19.567Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.invoice",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_invoice.v1",
+    "cacheKey": "extract:invoice:aa6b448fbfd45e04a28d7a1b8a63221464d6b54ff0df14f7bcaa2d9da805d69e"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "invoice",
+      "invoice_number": {
+        "value": "JX-2026-1009",
+        "evidence": "Invoice No. JX-2026-1009",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_date": {
+        "value": "2026-10-09",
+        "evidence": "Invoice date 2026-10-09",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "invoice_kind": {
+        "value": "proforma",
+        "evidence": "PROFORMA INVOICE",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "seller": {
+        "name_en": {
+          "value": "Foshan Jingxin Ceramics Co., Ltd.",
+          "evidence": "Foshan Jingxin Ceramics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": "佛山市晶鑫陶瓷有限公司",
+          "evidence": "佛山市晶鑫陶瓷有限公司",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "uscc": {
+          "value": "91440600MA4WJ3T8YU",
+          "evidence": "USCC 91440600MA4WJ3T8YU",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "address": {
+          "value": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "evidence": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 4",
+          "evidence": "Qafila Trade, deal 4",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.95
+        }
+      },
+      "consignee": {
+        "name_en": {
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 4",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 4",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "country": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        }
+      },
+      "notify_party": {
+        "value": "Adewale Trading Ltd",
+        "evidence": "Adewale Trading Ltd",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "incoterms": {
+        "value": "FOB Foshan (via Shenzhen Shekou) (CNSHK), Incoterms 2020",
+        "evidence": "FOB Foshan (via Shenzhen Shekou) (CNSHK), Incoterms 2020",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "currency": {
+        "value": "USD",
+        "evidence": "USD",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "total": {
+        "value": 13920,
+        "evidence": "USD 13,920.00",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "line_items": [
+        {
+          "description_en": {
+            "value": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+            "evidence": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "description_zh": {
+            "value": "600x600 哑光釉面地砖 优等品",
+            "evidence": "600x600 哑光釉面地砖 优等品",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "hs_code": {
+            "value": "690721",
+            "evidence": "690721",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "quantity": {
+            "value": 2400,
+            "evidence": "2,400",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit": {
+            "value": "sqm",
+            "evidence": "sqm",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "unit_price": {
+            "value": 5.8,
+            "evidence": "5.80",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "line_total": {
+            "value": 13920,
+            "evidence": "13,920.00",
+            "page": 1,
+            "confidence": 0.95
+          }
+        }
+      ],
+      "port_of_loading": {
+        "value": "Foshan (via Shenzhen Shekou), China (CNSHK)",
+        "evidence": "Foshan (via Shenzhen Shekou), China (CNSHK)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "port_of_discharge": {
+        "value": "Lagos (Apapa), Nigeria (NGAPP)",
+        "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "payment_terms": {
+        "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "page": 1,
+        "confidence": 0.95
+      },
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 16161,
+    "tokensOut": 2969,
+    "repaired": true
+  }
+}

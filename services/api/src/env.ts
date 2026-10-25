@@ -97,6 +97,17 @@ const EnvSchema = z.object({
   MAX_EXTENSION_SECS: z.coerce.number().default(600),
   COINVEST_BPS: z.coerce.number().default(500),
   QAFILA_ENTITY_NAME: z.string().default('Qafila Trade'),
+  // Deal economics used when the API builds DealTerms (PLAN 3.3.1 caps are enforced on-chain)
+  MARKUP_BPS: z.coerce.number().default(800),
+  PLATFORM_FEE_BPS: z.coerce.number().default(200),
+  LATE_FEE_BPS: z.coerce.number().default(100),
+  SUPPLIER_DEPOSIT_BPS: z.coerce.number().default(3000),
+  FUNDING_WINDOW_SECS: z.coerce.number().default(7 * 24 * 3600),
+  ACCEPT_WINDOW_SECS: z.coerce.number().default(7 * 24 * 3600),
+  BASE_IMPORTER_LIMIT: z.string().default('50000'),
+  IMPORTER_LIMIT_STEP: z.string().default('10000'),
+  FAUCET_AMOUNT: z.string().default('50'),
+  FAUCET_DAILY_CAP: z.string().default('100000'),
 
   ...Object.fromEntries(FEATURE_FLAGS.map((f) => [f, bool])),
 });

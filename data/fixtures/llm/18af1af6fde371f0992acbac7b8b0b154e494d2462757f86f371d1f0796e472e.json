@@ -1,0 +1,28 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:02:21.104Z",
+  "mode": "live",
+  "input": {
+    "stage": "consistency.listing",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "consistency.v1",
+    "cacheKey": "b91667f49cdc2876a2d2123d44eba8b6ace1c0c6c2ddf7b9f05aa04fea3ad4ca"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "judgments": [
+        {
+          "field": "goods_invoice_vs_packing_list",
+          "match": "yes",
+          "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+          "evidence_a": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body 离心水泵 1HP 220V 铸铁 | 2. PVC pressure pipes, 2 inch, 4 m lengths PVC压力管 2寸 4米",
+          "evidence_b": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body | 2. PVC pressure pipes, 2 inch, 4 m lengths"
+        }
+      ]
+    },
+    "tokensIn": 852,
+    "tokensOut": 176,
+    "repaired": false
+  }
+}

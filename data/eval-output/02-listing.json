@@ -1,0 +1,1117 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-02",
+    "created_at": "2026-10-25T15:36:09.613Z",
+    "decision": "approve",
+    "risk_score": 100,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 container number(s) pass the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          "OOLU9845110"
+        ]
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91440101MA59TQ8W23 passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "2 line amounts equal quantity x unit price and add up to the printed total 318000.00 CNY.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 318000,
+          "printed_total": 318000,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-09-17).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-09-17",
+          "plDate": "2026-09-18",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 2 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            12000,
+            8000
+          ],
+          "packing_list": [
+            12000,
+            8000
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 2\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 2"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "广州市恒远纺织有限公司",
+          "b": "广州市恒远纺织有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "b": "Guangzhou Hengyuan Textile Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91440101MA59TQ8W23",
+          "b": "91440101MA59TQ8W23"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "广州市恒远纺织有限公司",
+          "b": "广州市恒远纺织有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "HY-2026-0917",
+          "b": "HY-2026-0917"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe the same two goods with identical specifications; the invoice includes Chinese translations which are absent in the packing list, but the core descriptions match.",
+        "weight": 25,
+        "evidence": {
+          "a": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 纯棉印花布 150cm 120克 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2 涤纶染色面料 150cm 95克",
+          "b": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2) is textiles, clothing and footwear: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+          "category": "textiles",
+          "verdict": "permitted",
+          "reason": "Printed cotton fabric is a textile product."
+        }
+      },
+      {
+        "name": "halal.line_2",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (Dyed polyester fabric, 150 cm width, 95 g/m2) is textiles, clothing and footwear: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. Dyed polyester fabric, 150 cm width, 95 g/m2",
+          "category": "textiles",
+          "verdict": "permitted",
+          "reason": "Dyed polyester fabric is a textile product."
+        }
+      },
+      {
+        "name": "price.cotton_fabric",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2): 2.77 USD per metre vs reference 1.5 to 4.5 (cotton_fabric, 0.92x the midpoint, CNY converted at 0.1499 via ecb).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+          "category": "cotton_fabric",
+          "unit_price_usd": 2.7735,
+          "reference_low_usd": 1.5,
+          "reference_high_usd": 4.5,
+          "ratio_to_mid": 0.925,
+          "fx": {
+            "from": "CNY",
+            "rate": 0.14992,
+            "source": "ecb"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "price.polyester_fabric",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 2 (Dyed polyester fabric, 150 cm width, 95 g/m2): 1.80 USD per metre vs reference 0.8 to 2.5 (polyester_fabric, 1.09x the midpoint, CNY converted at 0.1499 via ecb).",
+        "weight": 25,
+        "evidence": {
+          "line": "2. Dyed polyester fabric, 150 cm width, 95 g/m2",
+          "category": "polyester_fabric",
+          "unit_price_usd": 1.799,
+          "reference_low_usd": 0.8,
+          "reference_high_usd": 2.5,
+          "ratio_to_mid": 1.09,
+          "fx": {
+            "from": "CNY",
+            "rate": 0.14992,
+            "source": "ecb"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91440101MA59TQ8W23 (广州市恒远纺织有限公司 / Guangzhou Hengyuan Textile Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91440101MA59TQ8W23",
+          "legal_name_zh": "广州市恒远纺织有限公司",
+          "legal_name_en": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91440101MA59TQ8W23",
+          "legal_name_zh": "广州市恒远纺织有限公司",
+          "legal_name_en": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Guangzhou Hengyuan Textile Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Mwangi Imports Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Lin Meiling\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "aa46dda4cb4fe7682f7671d26d02d082ea70491c63626de0f035a7668c0386ca",
+          "parts": {
+            "supplier": "91440101MA59TQ8W23",
+            "invoice_number": "HY-2026-0917",
+            "invoice_date": "2026-09-17",
+            "total": "318000.00",
+            "currency": "CNY"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "approve by policy 5.6: no flags.",
+        "weight": 0,
+        "evidence": []
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "HY-2026-0917",
+          "evidence": "Invoice No. HY-2026-0917",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-09-17",
+          "evidence": "Invoice date 2026-09-17",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Guangzhou Hengyuan Textile Co., Ltd.",
+            "evidence": "Guangzhou Hengyuan Textile Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "广州市恒远纺织有限公司",
+            "evidence": "广州市恒远纺织有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91440101MA59TQ8W23",
+            "evidence": "USCC 91440101MA59TQ8W23",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+            "evidence": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "CN",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 2",
+            "evidence": "Qafila Trade, deal 2",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "Qafila Trade, deal 2",
+            "evidence": "Qafila Trade, deal 2",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "PT",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 2",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 2",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 2",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 2",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Mwangi Imports Ltd",
+          "evidence": "Mwangi Imports Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Guangzhou (Nansha) (CNNSA), Incoterms 2020",
+          "evidence": "FOB Guangzhou (Nansha) (CNNSA), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "CNY",
+          "evidence": "CNY",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 318000,
+          "evidence": "TOTAL FOB CNNSA CNY 318,000.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+              "evidence": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "纯棉印花布 150cm 120克",
+              "evidence": "纯棉印花布 150cm 120克",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "520852",
+              "evidence": "520852",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 12000,
+              "evidence": "12,000 m",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "m",
+              "evidence": "m",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 18.5,
+              "evidence": "18.50",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 222000,
+              "evidence": "222,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          },
+          {
+            "description_en": {
+              "value": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+              "evidence": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "涤纶染色面料 150cm 95克",
+              "evidence": "涤纶染色面料 150cm 95克",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "540752",
+              "evidence": "540752",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 8000,
+              "evidence": "8,000 m",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "m",
+              "evidence": "m",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 12,
+              "evidence": "12.00",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 96000,
+              "evidence": "96,000.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Guangzhou (Nansha), China (CNNSA)",
+          "evidence": "Port of loading Guangzhou (Nansha), China (CNNSA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Mombasa, Kenya (KEMBA)",
+          "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-HY-2026-0917",
+          "evidence": "No. PL-HY-2026-0917",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-09-18",
+          "evidence": "Date 2026-09-18",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "HY-2026-0917",
+          "evidence": "HY-2026-0917",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Guangzhou Hengyuan Textile Co., Ltd.",
+            "evidence": "Guangzhou Hengyuan Textile Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "广州市恒远纺织有限公司",
+            "evidence": "广州市恒远纺织有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91440101MA59TQ8W23",
+            "evidence": "USCC 91440101MA59TQ8W23",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+            "evidence": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 2, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 2, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+              "evidence": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 12000,
+              "evidence": "12,000 m",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 120,
+              "evidence": "120 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 2280,
+              "evidence": "2,280.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 2160,
+              "evidence": "2,160.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 14.4,
+              "evidence": "14.40",
+              "page": 1,
+              "confidence": 0.98
+            }
+          },
+          {
+            "description_en": {
+              "value": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+              "evidence": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 8000,
+              "evidence": "8,000 m",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 64,
+              "evidence": "64 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 1020,
+              "evidence": "1,020.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 960,
+              "evidence": "960.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 7.7,
+              "evidence": "7.70",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 184,
+          "evidence": "184 CTNS",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 3300,
+          "evidence": "3,300.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 3120,
+          "evidence": "3,120.0",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 22.1,
+          "evidence": "22.10",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "OOLU9845110",
+            "evidence": "OOLU9845110",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "广州市恒远纺织有限公司",
+          "evidence": "名称 广州市恒远纺织有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "evidence": "Name Guangzhou Hengyuan Textile Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91440101MA59TQ8W23",
+          "evidence": "统一社会信用代码 91440101MA59TQ8W23",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "林美玲 (Lin Meiling)",
+          "evidence": "法定代表人 林美玲 (Lin Meiling)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 1,000 万元 (RMB 10,000,000)",
+          "evidence": "注册资本 人民币 1,000 万元 (RMB 10,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2012-07-02",
+          "evidence": "成立日期 2012-07-02",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2012-07-02 至 长期 / to long-term",
+          "evidence": "营业期限 2012-07-02 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 纺织品、面料的生产、加工与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "广东省广州市白云区石井街道恒远路18号",
+          "evidence": "住所 广东省广州市白云区石井街道恒远路18号",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 广州市市场监督管理局 / Guangzhou Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2012-06-30",
+          "evidence": "发照日期 Issue date: 2012-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "广州市恒远纺织有限公司",
+      "legal_name_en": "Guangzhou Hengyuan Textile Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+        "category": "cotton_fabric",
+        "unit_price_usd": 2.7735,
+        "reference_low_usd": 1.5,
+        "reference_high_usd": 4.5,
+        "ratio_to_mid": 0.925,
+        "fx": {
+          "from": "CNY",
+          "rate": 0.14992,
+          "source": "ecb"
+        },
+        "status": "pass"
+      },
+      {
+        "line": "2. Dyed polyester fabric, 150 cm width, 95 g/m2",
+        "category": "polyester_fabric",
+        "unit_price_usd": 1.799,
+        "reference_low_usd": 0.8,
+        "reference_high_usd": 2.5,
+        "ratio_to_mid": 1.09,
+        "fx": {
+          "from": "CNY",
+          "rate": 0.14992,
+          "source": "ecb"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+        "category": "textiles",
+        "verdict": "permitted",
+        "reason": "Printed cotton fabric is a textile product."
+      },
+      {
+        "line": "2. Dyed polyester fabric, 150 cm width, 95 g/m2",
+        "category": "textiles",
+        "verdict": "permitted",
+        "reason": "Dyed polyester fabric is a textile product."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "广州市恒远纺织有限公司",
+        "evidence_b": "广州市恒远纺织有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Guangzhou Hengyuan Textile Co., Ltd.",
+        "evidence_b": "Guangzhou Hengyuan Textile Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91440101MA59TQ8W23",
+        "evidence_b": "91440101MA59TQ8W23"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "广州市恒远纺织有限公司",
+        "evidence_b": "广州市恒远纺织有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "HY-2026-0917",
+        "evidence_b": "HY-2026-0917"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "Both lists describe the same two goods with identical specifications; the invoice includes Chinese translations which are absent in the packing list, but the core descriptions match.",
+        "evidence_a": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 纯棉印花布 150cm 120克 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2 涤纶染色面料 150cm 95克",
+        "evidence_b": "1. Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2 | 2. Dyed polyester fabric, 150 cm width, 95 g/m2"
+      }
+    ],
+    "listing_fingerprint": "aa46dda4cb4fe7682f7671d26d02d082ea70491c63626de0f035a7668c0386ca",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "c2c40b3afb0a0655d7968fe1ad8842c18f38dc7a76415f5021edb960b2423e02"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "3b759ee909d4072e6b483bd3e20836227aaad50f3c0911eb526833c7ab533dc4"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "63a48f5f908d446691b1b332d601bce24b0c6ed23deaae1317eab89b8d9bfee1"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16607,
+        "tokens_out": 3581,
+        "latency_ms": 55627,
+        "cost_usd": 0.009279
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 13420,
+        "tokens_out": 2609,
+        "latency_ms": 38371,
+        "cost_usd": 0.007157
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4323,
+        "tokens_out": 774,
+        "latency_ms": 11036,
+        "cost_usd": 0.002226
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 884,
+        "tokens_out": 217,
+        "latency_ms": 3173,
+        "cost_usd": 0.000526
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1193,
+        "tokens_out": 75,
+        "latency_ms": 1292,
+        "cost_usd": 0.000224
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1935,
+        "tokens_out": 118,
+        "latency_ms": 1745,
+        "cost_usd": 0.000361
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2238,
+        "tokens_out": 64,
+        "latency_ms": 785,
+        "cost_usd": 0.000374
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "live"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91440101MA59TQ8W23.json"
+    ],
+    "timings_ms": {
+      "intake": 613,
+      "extract": 55628,
+      "validate": 2,
+      "stages": 3175,
+      "fingerprint": 0,
+      "explain": 785,
+      "total": 60203
+    },
+    "cost_usd": 0.020147,
+    "injection_attempts": [],
+    "explanation": "Your deal is approved for listing because all required checks passed. The invoice, packing list, and business licence are consistent and valid. No action is needed from your side."
+  },
+  "report_hash": "6f660dc8ec7a594658ab1e8f8ec94239206252b7772433040a970feff4c16bdc",
+  "signature": "00b6d3f696e634d47e62ac864eff658a256359596ed551a7a57dbe0b37c3b0fd8ec2776f8c125f809cd9d20ebd1c276e40183fa9c251d89c3a1edaea83dab203"
+}

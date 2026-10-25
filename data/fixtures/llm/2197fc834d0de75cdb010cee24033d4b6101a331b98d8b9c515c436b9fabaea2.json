@@ -1,0 +1,22 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:37:07.796Z",
+  "mode": "live",
+  "input": {
+    "stage": "explain",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "explain.v1",
+    "cacheKey": "explain:packet-03:listing:44a12363afe3986126dd369e67c7b5a52b38473a13b545d1b097c718be7a9167:extraction.invoice=pass,extraction.packing_list=pass,extraction.business_licence=pass,validators.container_check_digit=pass,validators.uscc_check_digit=pass,validators.arithmetic=pass,validators.dates=pass,validators.quantities=pass,validators.formats=pass,structure.buyer=pass,consistency.seller_name_zh=pass,consistency.seller_name_en=pass,consistency.seller_uscc=pass,consistency.form_supplier_zh=pass,consistency.invoice_reference=pass,consistency.goods_invoice_vs_packing_list=pass,halal.line_1=pass,halal.line_2=pass,price.stainless_steel_cookware_sets=pass,price.plastic_housewares=pass,registry.status=pass,registry.name_match=pass,sanctions.supplier=pass,sanctions.importer=pass,sanctions.legal_representative=pass,fingerprint.listing=pass,decision.policy=pass"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "summary": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and document consistency are all valid. No further action is needed.",
+      "fixes": [],
+      "category": null
+    },
+    "tokensIn": 2162,
+    "tokensOut": 66,
+    "repaired": false
+  }
+}

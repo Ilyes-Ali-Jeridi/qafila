@@ -1,0 +1,35 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:36:08.188Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "81bf62a8f32f1fcf4f9caace194d9299be61f4c69e53fba4caa9799148440585"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "cotton_fabric",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 18.5,
+          "note": "Printed cotton fabric matches the cotton_fabric category."
+        },
+        {
+          "line_index": 2,
+          "category": "polyester_fabric",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 12,
+          "note": "Dyed polyester fabric matches the polyester_fabric category."
+        }
+      ]
+    },
+    "tokensIn": 1935,
+    "tokensOut": 118,
+    "repaired": false
+  }
+}

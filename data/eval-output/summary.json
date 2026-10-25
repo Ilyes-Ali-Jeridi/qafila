@@ -1,0 +1,32 @@
+{
+  "ran_at": "2026-10-25T15:33:18.167Z",
+  "llm_mode": "live",
+  "adapter_modes": {
+    "llm": "live",
+    "registry": "live",
+    "gleif": "live",
+    "qcc": "off",
+    "shipsgo": "mock",
+    "opensanctions": "mock",
+    "reflector": "off",
+    "fx": "live",
+    "resend": "off",
+    "storage": "live"
+  },
+  "passed": 0,
+  "total": 1,
+  "rows": [
+    {
+      "packet": "01",
+      "expected": "approve",
+      "actual": "review",
+      "ok": false,
+      "stage": "listing",
+      "risk": 75,
+      "latencyMs": 60423,
+      "costUsd": 0.016834,
+      "flags": "registry.status:r"
+    }
+  ],
+  "table": "| # | Expected | Actual | Stage | Risk | Latency | Cost (USD) | Result |\n|---|---|---|---|---|---|---|---|\n| 01 | approve | review | listing | 75 | 60.4 s | 0.0168 | FAIL registry.status:r |\n| | | | | | 60.4 s | 0.0168 | 0 of 1 |"
+}

@@ -1,0 +1,26 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T16:01:15.658Z",
+  "mode": "live",
+  "input": {
+    "stage": "halal",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "halal.v1+policy.v1",
+    "cacheKey": "d89301eb62369a2647583f44a76a6fd70bbbcaaa977f2086e401af27af5d7151"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "electronics",
+          "reason": "LED bulbs are electronic lighting products."
+        }
+      ]
+    },
+    "tokensIn": 1142,
+    "tokensOut": 43,
+    "repaired": false
+  }
+}

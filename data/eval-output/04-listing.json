@@ -1,0 +1,992 @@
+{
+  "report": {
+    "version": "1.1",
+    "stage": "listing",
+    "deal_ref": "packet-04",
+    "created_at": "2026-10-25T15:38:21.952Z",
+    "decision": "reject",
+    "risk_score": 60,
+    "checks": [
+      {
+        "name": "extraction.invoice",
+        "status": "pass",
+        "severity": "info",
+        "detail": "invoice read (1 page(s), live, one repair round).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.packing_list",
+        "status": "pass",
+        "severity": "info",
+        "detail": "packing list read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "extraction.business_licence",
+        "status": "pass",
+        "severity": "info",
+        "detail": "business licence read (1 page(s), live).",
+        "weight": 0
+      },
+      {
+        "name": "validators.container_check_digit",
+        "status": "fail",
+        "severity": "critical",
+        "detail": "Container number CSQU3054384 fails the ISO 6346 check digit.",
+        "weight": 40,
+        "evidence": [
+          {
+            "value": "CSQU3054384",
+            "document": "packing_list",
+            "expected_check_digit": 3
+          }
+        ],
+        "fix": "Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.",
+        "document": "packing_list",
+        "field": "container_number"
+      },
+      {
+        "name": "validators.uscc_check_digit",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Unified Social Credit Code 91440600MA4WJ3T8YU passes the GB 32100 check character.",
+        "weight": 40,
+        "document": "business_licence",
+        "field": "uscc"
+      },
+      {
+        "name": "validators.arithmetic",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "1 line amounts equal quantity x unit price and add up to the printed total 13920.00 USD.",
+        "weight": 40,
+        "evidence": {
+          "line_errors": [],
+          "sum_of_lines": 13920,
+          "printed_total": 13920,
+          "missing_lines": 0
+        }
+      },
+      {
+        "name": "validators.dates",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Dates are in order (invoice 2026-10-09).",
+        "weight": 15,
+        "evidence": {
+          "invDate": "2026-10-09",
+          "plDate": "2026-10-10",
+          "shipped": null,
+          "issued": null,
+          "today": "2026-10-25"
+        }
+      },
+      {
+        "name": "validators.quantities",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Quantities match on 1 line(s) between the invoice and the packing list.",
+        "weight": 25,
+        "evidence": {
+          "invoice": [
+            2400
+          ],
+          "packing_list": [
+            2400
+          ]
+        }
+      },
+      {
+        "name": "validators.formats",
+        "status": "pass",
+        "severity": "low",
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
+      },
+      {
+        "name": "structure.buyer",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The invoice is made out to Qafila Trade's deal entity (\"Qafila Trade, deal 4\").",
+        "weight": 25,
+        "evidence": "Qafila Trade, deal 4"
+      },
+      {
+        "name": "consistency.seller_name_zh",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Seller Chinese name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "佛山市晶鑫陶瓷有限公司",
+          "b": "佛山市晶鑫陶瓷有限公司"
+        }
+      },
+      {
+        "name": "consistency.seller_name_en",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Seller English name on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "Foshan Jingxin Ceramics Co., Ltd.",
+          "b": "Foshan Jingxin Ceramics Co., Ltd."
+        }
+      },
+      {
+        "name": "consistency.seller_uscc",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Unified Social Credit Code on the invoice and the licence match (invoice vs business_licence).",
+        "weight": 25,
+        "evidence": {
+          "a": "91440600MA4WJ3T8YU",
+          "b": "91440600MA4WJ3T8YU"
+        }
+      },
+      {
+        "name": "consistency.form_supplier_zh",
+        "status": "pass",
+        "severity": "medium",
+        "detail": "Supplier Chinese name on the form and the licence match (form vs business_licence).",
+        "weight": 15,
+        "evidence": {
+          "a": "佛山市晶鑫陶瓷有限公司",
+          "b": "佛山市晶鑫陶瓷有限公司"
+        }
+      },
+      {
+        "name": "consistency.invoice_reference",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Invoice number on the invoice and the packing list match (invoice vs packing_list).",
+        "weight": 25,
+        "evidence": {
+          "a": "JX-2026-1009",
+          "b": "JX-2026-1009"
+        }
+      },
+      {
+        "name": "consistency.goods_invoice_vs_packing_list",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The packing list description is a subset of the invoice description; both refer to the same item with identical specifications.",
+        "weight": 25,
+        "evidence": {
+          "a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA 600x600 哑光釉面地砖 优等品",
+          "b": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA"
+        }
+      },
+      {
+        "name": "halal.line_1",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 1 (Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA) is building materials and hardware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "1. Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+          "category": "building_materials",
+          "verdict": "permitted",
+          "reason": "Glazed ceramic floor tiles are a type of building material used for flooring."
+        }
+      },
+      {
+        "name": "price.ceramic_floor_tiles",
+        "status": "pass",
+        "severity": "high",
+        "detail": "Line 1 (Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA): 5.80 USD per sqm vs reference 3.5 to 9 (ceramic_floor_tiles, 0.93x the midpoint).",
+        "weight": 25,
+        "evidence": {
+          "line": "1. Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+          "category": "ceramic_floor_tiles",
+          "unit_price_usd": 5.8,
+          "reference_low_usd": 3.5,
+          "reference_high_usd": 9,
+          "ratio_to_mid": 0.928,
+          "fx": {
+            "from": "USD",
+            "rate": 1,
+            "source": "none"
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "name": "registry.status",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "registry fixture (mock): company 91440600MA4WJ3T8YU (佛山市晶鑫陶瓷有限公司 / Foshan Jingxin Ceramics Co., Ltd.) is ACTIVE, LEI ISSUED.",
+        "weight": 40,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91440600MA4WJ3T8YU",
+          "legal_name_zh": "佛山市晶鑫陶瓷有限公司",
+          "legal_name_en": "Foshan Jingxin Ceramics Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "registry.name_match",
+        "status": "pass",
+        "severity": "high",
+        "detail": "The licence name matches the registry record (Chinese name exact).",
+        "weight": 25,
+        "evidence": {
+          "source": "fixture",
+          "uscc": "91440600MA4WJ3T8YU",
+          "legal_name_zh": "佛山市晶鑫陶瓷有限公司",
+          "legal_name_en": "Foshan Jingxin Ceramics Co., Ltd.",
+          "entity_status": "ACTIVE",
+          "lei_status": "ISSUED",
+          "name_match_zh": "yes",
+          "name_match_en": "n/a"
+        }
+      },
+      {
+        "name": "sanctions.supplier",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Foshan Jingxin Ceramics Co., Ltd.\".",
+        "weight": 40,
+        "evidence": {
+          "party": "supplier",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.importer",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for company \"Adewale Trading Ltd\".",
+        "weight": 40,
+        "evidence": {
+          "party": "importer",
+          "schema": "Company",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "sanctions.legal_representative",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "OpenSanctions (mock fixture): no sanctions match for person \"Huang Zhiqiang\".",
+        "weight": 40,
+        "evidence": {
+          "party": "legal_representative",
+          "schema": "Person",
+          "score": 0,
+          "match_id": null,
+          "match_name": null,
+          "datasets": []
+        }
+      },
+      {
+        "name": "fingerprint.listing",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "This invoice has not been financed before.",
+        "weight": 40,
+        "evidence": {
+          "fingerprint": "86f2d1c65c73e600a333b3210bc4ce2ec6f312cf7b2f8b585b67d5de3482f09a",
+          "parts": {
+            "supplier": "91440600MA4WJ3T8YU",
+            "invoice_number": "JX-2026-1009",
+            "invoice_date": "2026-10-09",
+            "total": "13920.00",
+            "currency": "USD"
+          }
+        }
+      },
+      {
+        "name": "decision.policy",
+        "status": "pass",
+        "severity": "info",
+        "detail": "reject by policy 5.6: reject:container_check_digit.",
+        "weight": 0,
+        "evidence": [
+          {
+            "rule": "container_check_digit",
+            "level": "reject",
+            "detail": "A container number fails its check digit."
+          }
+        ]
+      }
+    ],
+    "extracted": {
+      "invoice": {
+        "type": "invoice",
+        "invoice_number": {
+          "value": "JX-2026-1009",
+          "evidence": "Invoice No. JX-2026-1009",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_date": {
+          "value": "2026-10-09",
+          "evidence": "Invoice date 2026-10-09",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "invoice_kind": {
+          "value": "proforma",
+          "evidence": "PROFORMA INVOICE",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "seller": {
+          "name_en": {
+            "value": "Foshan Jingxin Ceramics Co., Ltd.",
+            "evidence": "Foshan Jingxin Ceramics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": "佛山市晶鑫陶瓷有限公司",
+            "evidence": "佛山市晶鑫陶瓷有限公司",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "uscc": {
+            "value": "91440600MA4WJ3T8YU",
+            "evidence": "USCC 91440600MA4WJ3T8YU",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "address": {
+            "value": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+            "evidence": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 4",
+            "evidence": "Qafila Trade, deal 4",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.95
+          }
+        },
+        "consignee": {
+          "name_en": {
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 4",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 4",
+            "page": 1,
+            "confidence": 0.95
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "country": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          }
+        },
+        "notify_party": {
+          "value": "Adewale Trading Ltd",
+          "evidence": "Adewale Trading Ltd",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "incoterms": {
+          "value": "FOB Foshan (via Shenzhen Shekou) (CNSHK), Incoterms 2020",
+          "evidence": "FOB Foshan (via Shenzhen Shekou) (CNSHK), Incoterms 2020",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "currency": {
+          "value": "USD",
+          "evidence": "USD",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "total": {
+          "value": 13920,
+          "evidence": "USD 13,920.00",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "line_items": [
+          {
+            "description_en": {
+              "value": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+              "evidence": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "description_zh": {
+              "value": "600x600 哑光釉面地砖 优等品",
+              "evidence": "600x600 哑光釉面地砖 优等品",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "hs_code": {
+              "value": "690721",
+              "evidence": "690721",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "quantity": {
+              "value": 2400,
+              "evidence": "2,400",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit": {
+              "value": "sqm",
+              "evidence": "sqm",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "unit_price": {
+              "value": 5.8,
+              "evidence": "5.80",
+              "page": 1,
+              "confidence": 0.95
+            },
+            "line_total": {
+              "value": 13920,
+              "evidence": "13,920.00",
+              "page": 1,
+              "confidence": 0.95
+            }
+          }
+        ],
+        "port_of_loading": {
+          "value": "Foshan (via Shenzhen Shekou), China (CNSHK)",
+          "evidence": "Foshan (via Shenzhen Shekou), China (CNSHK)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "port_of_discharge": {
+          "value": "Lagos (Apapa), Nigeria (NGAPP)",
+          "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "payment_terms": {
+          "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "page": 1,
+          "confidence": 0.95
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "packing_list": {
+        "type": "packing_list",
+        "packing_list_number": {
+          "value": "PL-JX-2026-1009",
+          "evidence": "No. PL-JX-2026-1009",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "date": {
+          "value": "2026-10-10",
+          "evidence": "Date 2026-10-10",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "invoice_number": {
+          "value": "JX-2026-1009",
+          "evidence": "Invoice No. JX-2026-1009",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "seller": {
+          "name_en": {
+            "value": "Foshan Jingxin Ceramics Co., Ltd.",
+            "evidence": "Foshan Jingxin Ceramics Co., Ltd.",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": "佛山市晶鑫陶瓷有限公司",
+            "evidence": "佛山市晶鑫陶瓷有限公司",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "uscc": {
+            "value": "91440600MA4WJ3T8YU",
+            "evidence": "USCC 91440600MA4WJ3T8YU",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "address": {
+            "value": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+            "evidence": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "China",
+            "evidence": "China",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "buyer": {
+          "name_en": {
+            "value": "Qafila Trade, deal 4, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 4, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "name_zh": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "uscc": {
+            "value": null,
+            "evidence": null,
+            "page": null,
+            "confidence": 0
+          },
+          "address": {
+            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "country": {
+            "value": "Portugal",
+            "evidence": "Portugal",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        "items": [
+          {
+            "description_en": {
+              "value": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+              "evidence": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "quantity": {
+              "value": 2400,
+              "evidence": "2,400 sqm",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "packages": {
+              "value": 1200,
+              "evidence": "1200 CTNS",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "gross_weight_kg": {
+              "value": 31200,
+              "evidence": "31,200.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "net_weight_kg": {
+              "value": 30600,
+              "evidence": "30,600.0",
+              "page": 1,
+              "confidence": 0.98
+            },
+            "cbm": {
+              "value": 52,
+              "evidence": "52.00",
+              "page": 1,
+              "confidence": 0.98
+            }
+          }
+        ],
+        "total_packages": {
+          "value": 1200,
+          "evidence": "Total packages: 1200 cartons",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_gross_weight_kg": {
+          "value": 31200,
+          "evidence": "Total gross weight: 31,200.0 kg",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_net_weight_kg": {
+          "value": 30600,
+          "evidence": "Total net weight: 30,600.0 kg",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "total_cbm": {
+          "value": 52,
+          "evidence": "Total volume: 52.00 m3",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "container_numbers": [
+          {
+            "value": "CSQU3054384",
+            "evidence": "CSQU3054384 (40'HC)",
+            "page": 1,
+            "confidence": 0.98
+          }
+        ],
+        "hidden_or_suspicious_text": []
+      },
+      "business_licence": {
+        "type": "business_licence",
+        "name_zh": {
+          "value": "佛山市晶鑫陶瓷有限公司",
+          "evidence": "名称 佛山市晶鑫陶瓷有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_en": {
+          "value": "Foshan Jingxin Ceramics Co., Ltd.",
+          "evidence": "Name Foshan Jingxin Ceramics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91440600MA4WJ3T8YU",
+          "evidence": "统一社会信用代码 91440600MA4WJ3T8YU",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "legal_representative": {
+          "value": "黄志强 (Huang Zhiqiang)",
+          "evidence": "法定代表人 黄志强 (Huang Zhiqiang)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "company_type": {
+          "value": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registered_capital": {
+          "value": "人民币 2,000 万元 (RMB 20,000,000)",
+          "evidence": "注册资本 人民币 2,000 万元 (RMB 20,000,000)",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "establishment_date": {
+          "value": "2009-05-15",
+          "evidence": "成立日期 2009-05-15",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_term": {
+          "value": "2009-05-15 至 长期 / to long-term",
+          "evidence": "营业期限 2009-05-15 至 长期 / to long-term",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "business_scope": {
+          "value": "建筑陶瓷、瓷砖的生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）\nProduction and sale of architectural ceramics and tiles; import and export of goods.",
+          "evidence": "经营范围 建筑陶瓷、瓷砖的生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）\nProduction and sale of architectural ceramics and tiles; import and export of goods.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "广东省佛山市禅城区南庄镇陶博大道88号\nNo. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "evidence": "住所 广东省佛山市禅城区南庄镇陶博大道88号\nNo. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "registration_authority": {
+          "value": "佛山市市场监督管理局 / Foshan Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 佛山市市场监督管理局 / Foshan Administration for Market Regulation",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "issue_date": {
+          "value": "2009-06-30",
+          "evidence": "发照日期 Issue date: 2009-06-30",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "hidden_or_suspicious_text": []
+      },
+      "bill_of_lading": null
+    },
+    "registry": {
+      "source": "fixture",
+      "mode": "mock",
+      "found": true,
+      "lei": null,
+      "legal_name_zh": "佛山市晶鑫陶瓷有限公司",
+      "legal_name_en": "Foshan Jingxin Ceramics Co., Ltd.",
+      "entity_status": "ACTIVE",
+      "lei_status": "ISSUED",
+      "country": "CN",
+      "name_match_zh": "yes",
+      "name_match_en": "n/a",
+      "manual_check_url": "https://www.gsxt.gov.cn/"
+    },
+    "sanctions": [
+      {
+        "party": "supplier",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "importer",
+        "schema": "Company",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      },
+      {
+        "party": "legal_representative",
+        "schema": "Person",
+        "score": 0,
+        "match_id": null,
+        "match_name": null,
+        "datasets": []
+      }
+    ],
+    "tracking": null,
+    "price": [
+      {
+        "line": "1. Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+        "category": "ceramic_floor_tiles",
+        "unit_price_usd": 5.8,
+        "reference_low_usd": 3.5,
+        "reference_high_usd": 9,
+        "ratio_to_mid": 0.928,
+        "fx": {
+          "from": "USD",
+          "rate": 1,
+          "source": "none"
+        },
+        "status": "pass"
+      }
+    ],
+    "halal": [
+      {
+        "line": "1. Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+        "category": "building_materials",
+        "verdict": "permitted",
+        "reason": "Glazed ceramic floor tiles are a type of building material used for flooring."
+      }
+    ],
+    "consistency": [
+      {
+        "field": "seller_name_zh",
+        "match": "yes",
+        "reason": "Seller Chinese name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "佛山市晶鑫陶瓷有限公司",
+        "evidence_b": "佛山市晶鑫陶瓷有限公司"
+      },
+      {
+        "field": "seller_name_en",
+        "match": "yes",
+        "reason": "Seller English name on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "Foshan Jingxin Ceramics Co., Ltd.",
+        "evidence_b": "Foshan Jingxin Ceramics Co., Ltd."
+      },
+      {
+        "field": "seller_uscc",
+        "match": "yes",
+        "reason": "Unified Social Credit Code on the invoice and the licence: identical after normalisation.",
+        "evidence_a": "91440600MA4WJ3T8YU",
+        "evidence_b": "91440600MA4WJ3T8YU"
+      },
+      {
+        "field": "form_supplier_zh",
+        "match": "yes",
+        "reason": "Supplier Chinese name on the form and the licence: identical after normalisation.",
+        "evidence_a": "佛山市晶鑫陶瓷有限公司",
+        "evidence_b": "佛山市晶鑫陶瓷有限公司"
+      },
+      {
+        "field": "invoice_reference",
+        "match": "yes",
+        "reason": "Invoice number on the invoice and the packing list: identical after normalisation.",
+        "evidence_a": "JX-2026-1009",
+        "evidence_b": "JX-2026-1009"
+      },
+      {
+        "field": "goods_invoice_vs_packing_list",
+        "match": "yes",
+        "reason": "The packing list description is a subset of the invoice description; both refer to the same item with identical specifications.",
+        "evidence_a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA 600x600 哑光釉面地砖 优等品",
+        "evidence_b": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA"
+      }
+    ],
+    "listing_fingerprint": "86f2d1c65c73e600a333b3210bc4ce2ec6f312cf7b2f8b585b67d5de3482f09a",
+    "shipment_fingerprint": null,
+    "document_hashes": [
+      {
+        "type": "invoice",
+        "sha256": "aa6b448fbfd45e04a28d7a1b8a63221464d6b54ff0df14f7bcaa2d9da805d69e"
+      },
+      {
+        "type": "packing_list",
+        "sha256": "6e7cf66766b6e942a3ae16a0782187fc8be5eaa9ec4727cbd1c48c99f8cdfd5c"
+      },
+      {
+        "type": "business_licence",
+        "sha256": "16350f117403791d4fa3ab2a070dd37a5d03c9df977701e11bb721099fc09e2e"
+      }
+    ],
+    "models": [
+      {
+        "stage": "extract.invoice",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_invoice.v1",
+        "tokens_in": 16161,
+        "tokens_out": 2969,
+        "latency_ms": 40716,
+        "cost_usd": 0.008411
+      },
+      {
+        "stage": "extract.packing_list",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_packing_list.v1",
+        "tokens_in": 6092,
+        "tokens_out": 1269,
+        "latency_ms": 19597,
+        "cost_usd": 0.00335
+      },
+      {
+        "stage": "extract.business_licence",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "extract_common.v1+extract_business_licence.v1",
+        "tokens_in": 4321,
+        "tokens_out": 859,
+        "latency_ms": 12403,
+        "cost_usd": 0.002327
+      },
+      {
+        "stage": "consistency.listing",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-vl-235b-a22b",
+        "prompt_version": "consistency.v1",
+        "tokens_in": 818,
+        "tokens_out": 139,
+        "latency_ms": 2378,
+        "cost_usd": 0.000412
+      },
+      {
+        "stage": "halal",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "halal.v1+policy.v1",
+        "tokens_in": 1142,
+        "tokens_out": 53,
+        "latency_ms": 1278,
+        "cost_usd": 0.000203
+      },
+      {
+        "stage": "price",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "price.v1",
+        "tokens_in": 1865,
+        "tokens_out": 63,
+        "latency_ms": 1384,
+        "cost_usd": 0.000318
+      },
+      {
+        "stage": "explain",
+        "provider": "bedrock",
+        "model_id": "qwen.qwen3-32b-v1:0",
+        "prompt_version": "explain.v1",
+        "tokens_in": 2037,
+        "tokens_out": 116,
+        "latency_ms": 936,
+        "cost_usd": 0.000375
+      }
+    ],
+    "adapter_modes": {
+      "llm": "live",
+      "registry": "mock",
+      "opensanctions": "mock",
+      "shipsgo": "skipped",
+      "reflector": "skipped",
+      "fx": "skipped"
+    },
+    "fixtures_used": [
+      "opensanctions/<fallback>",
+      "registry/91440600MA4WJ3T8YU.json"
+    ],
+    "timings_ms": {
+      "intake": 585,
+      "extract": 40716,
+      "validate": 2,
+      "stages": 2380,
+      "fingerprint": 0,
+      "explain": 937,
+      "total": 44621
+    },
+    "cost_usd": 0.015396,
+    "injection_attempts": [],
+    "explanation": "Your deal was rejected because the container number on the packing list failed the ISO 6346 check digit. All other checks passed, including the USCC code, pricing, and document consistency. Please correct the container number and resubmit the packing list.\n\nWhat to fix:\n- Correct the container number on the packing list. Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.\n\nCategory: document integrity"
+  },
+  "report_hash": "d0aa7e58ec1105a65982ea7776cdcd6c657437ca238192c8432a44c34247cadd",
+  "signature": "a35a26145098d272e97a4a662b46ed106dffae6d7c7155c531ba8eb5ce963c7badeddbc82426cecdd1c3b015f560f6d4479b11dabf804a19f50e755e902d0a0c"
+}

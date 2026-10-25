@@ -1,0 +1,175 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:37:58.451Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.packing_list",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_packing_list.v1",
+    "cacheKey": "extract:packing_list:6e7cf66766b6e942a3ae16a0782187fc8be5eaa9ec4727cbd1c48c99f8cdfd5c"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "packing_list",
+      "packing_list_number": {
+        "value": "PL-JX-2026-1009",
+        "evidence": "No. PL-JX-2026-1009",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "date": {
+        "value": "2026-10-10",
+        "evidence": "Date 2026-10-10",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "invoice_number": {
+        "value": "JX-2026-1009",
+        "evidence": "Invoice No. JX-2026-1009",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "seller": {
+        "name_en": {
+          "value": "Foshan Jingxin Ceramics Co., Ltd.",
+          "evidence": "Foshan Jingxin Ceramics Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "佛山市晶鑫陶瓷有限公司",
+          "evidence": "佛山市晶鑫陶瓷有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91440600MA4WJ3T8YU",
+          "evidence": "USCC 91440600MA4WJ3T8YU",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "evidence": "No. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 4, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 4, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "items": [
+        {
+          "description_en": {
+            "value": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+            "evidence": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 2400,
+            "evidence": "2,400 sqm",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 1200,
+            "evidence": "1200 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 31200,
+            "evidence": "31,200.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 30600,
+            "evidence": "30,600.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 52,
+            "evidence": "52.00",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "total_packages": {
+        "value": 1200,
+        "evidence": "Total packages: 1200 cartons",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_gross_weight_kg": {
+        "value": 31200,
+        "evidence": "Total gross weight: 31,200.0 kg",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_net_weight_kg": {
+        "value": 30600,
+        "evidence": "Total net weight: 30,600.0 kg",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_cbm": {
+        "value": 52,
+        "evidence": "Total volume: 52.00 m3",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "container_numbers": [
+        {
+          "value": "CSQU3054384",
+          "evidence": "CSQU3054384 (40'HC)",
+          "page": 1,
+          "confidence": 0.98
+        }
+      ],
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 6092,
+    "tokensOut": 1269,
+    "repaired": false
+  }
+}

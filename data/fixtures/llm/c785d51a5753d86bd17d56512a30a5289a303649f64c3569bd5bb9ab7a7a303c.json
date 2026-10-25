@@ -1,0 +1,213 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:35:49.178Z",
+  "mode": "live",
+  "input": {
+    "stage": "extract.packing_list",
+    "model": "qwen.qwen3-vl-235b-a22b",
+    "promptVersion": "extract_common.v1+extract_packing_list.v1",
+    "cacheKey": "extract:packing_list:3b759ee909d4072e6b483bd3e20836227aaad50f3c0911eb526833c7ab533dc4"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "type": "packing_list",
+      "packing_list_number": {
+        "value": "PL-HY-2026-0917",
+        "evidence": "No. PL-HY-2026-0917",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "date": {
+        "value": "2026-09-18",
+        "evidence": "Date 2026-09-18",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "invoice_number": {
+        "value": "HY-2026-0917",
+        "evidence": "HY-2026-0917",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "seller": {
+        "name_en": {
+          "value": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "evidence": "Guangzhou Hengyuan Textile Co., Ltd.",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": "广州市恒远纺织有限公司",
+          "evidence": "广州市恒远纺织有限公司",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "uscc": {
+          "value": "91440101MA59TQ8W23",
+          "evidence": "USCC 91440101MA59TQ8W23",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "address": {
+          "value": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+          "evidence": "No. 18 Hengyuan Road, Shijing, Baiyun District, Guangzhou, Guangdong, China",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "China",
+          "evidence": "China",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "buyer": {
+        "name_en": {
+          "value": "Qafila Trade, deal 2, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Qafila Trade, deal 2, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "name_zh": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "uscc": {
+          "value": null,
+          "evidence": null,
+          "page": null,
+          "confidence": 0
+        },
+        "address": {
+          "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "page": 1,
+          "confidence": 0.98
+        },
+        "country": {
+          "value": "Portugal",
+          "evidence": "Portugal",
+          "page": 1,
+          "confidence": 0.98
+        }
+      },
+      "items": [
+        {
+          "description_en": {
+            "value": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+            "evidence": "Printed cotton fabric, 100% cotton, 150 cm width, 120 g/m2",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 12000,
+            "evidence": "12,000 m",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 120,
+            "evidence": "120 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 2280,
+            "evidence": "2,280.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 2160,
+            "evidence": "2,160.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 14.4,
+            "evidence": "14.40",
+            "page": 1,
+            "confidence": 0.98
+          }
+        },
+        {
+          "description_en": {
+            "value": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+            "evidence": "Dyed polyester fabric, 150 cm width, 95 g/m2",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "quantity": {
+            "value": 8000,
+            "evidence": "8,000 m",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "packages": {
+            "value": 64,
+            "evidence": "64 CTNS",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "gross_weight_kg": {
+            "value": 1020,
+            "evidence": "1,020.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "net_weight_kg": {
+            "value": 960,
+            "evidence": "960.0",
+            "page": 1,
+            "confidence": 0.98
+          },
+          "cbm": {
+            "value": 7.7,
+            "evidence": "7.70",
+            "page": 1,
+            "confidence": 0.98
+          }
+        }
+      ],
+      "total_packages": {
+        "value": 184,
+        "evidence": "184 CTNS",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_gross_weight_kg": {
+        "value": 3300,
+        "evidence": "3,300.0",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_net_weight_kg": {
+        "value": 3120,
+        "evidence": "3,120.0",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "total_cbm": {
+        "value": 22.1,
+        "evidence": "22.10",
+        "page": 1,
+        "confidence": 0.98
+      },
+      "container_numbers": [
+        {
+          "value": "OOLU9845110",
+          "evidence": "OOLU9845110",
+          "page": 1,
+          "confidence": 0.98
+        }
+      ],
+      "hidden_or_suspicious_text": []
+    },
+    "tokensIn": 13420,
+    "tokensOut": 2609,
+    "repaired": true
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "adapter": "llm",
+  "recorded_at": "2026-10-25T15:35:07.974Z",
+  "mode": "live",
+  "input": {
+    "stage": "price",
+    "model": "qwen.qwen3-32b-v1:0",
+    "promptVersion": "price.v1",
+    "cacheKey": "6e7e7bf381c36eb834e43461e7e7fd103070a1dbb7f031e363b71d287402b37d"
+  },
+  "provider": "bedrock",
+  "response": {
+    "output": {
+      "lines": [
+        {
+          "line_index": 1,
+          "category": "phone_cases",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 1.2,
+          "note": "TPU protective cases for smartphones match the phone_cases category."
+        },
+        {
+          "line_index": 2,
+          "category": "tempered_glass_protectors",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 0.45,
+          "note": "Tempered glass screen protectors 9H match the tempered_glass_protectors category."
+        },
+        {
+          "line_index": 3,
+          "category": "usb_cables",
+          "unit_matches": true,
+          "unit_price_per_reference_unit": 0.85,
+          "note": "USB-C charging and data cables match the usb_cables category."
+        }
+      ]
+    },
+    "tokensIn": 1960,
+    "tokensOut": 177,
+    "repaired": false
+  }
+}
