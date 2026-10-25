@@ -41,6 +41,8 @@ export function RouteMap({ route, vessel }: { route: DealDetail['route']; vessel
     (async () => {
       try {
         const maplibre = await import('maplibre-gl');
+        // Under webpack, import.meta.url inside maplibre is a file: URL, so its own worker lookup fails. Point it at the emitted asset.
+        maplibre.setWorkerUrl(new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', import.meta.url).href);
         if (cancelled || !ref.current) return;
         map = new maplibre.Map({ container: ref.current, style: STYLE_URL, interactive: true, attributionControl: { compact: true }, cooperativeGestures: true });
         map.on('error', () => setFailed(true));
