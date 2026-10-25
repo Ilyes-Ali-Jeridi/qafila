@@ -1,11 +1,10 @@
-import { z } from 'zod';
-import { ApiScreen } from '@/components/not-built';
+import type { Metadata } from 'next';
+import { DealScreen } from '@/components/deal/deal-screen';
 
-export default function Page() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Invest</h1>
-      <ApiScreen path="/deals/_" schema={z.unknown()} render={(d) => <pre className="text-xs">{JSON.stringify(d, null, 2)}</pre>} />
-    </div>
-  );
+export const metadata: Metadata = { title: 'Invest' };
+
+/** Investor deal detail: the public page plus the invest panel (same component, wallet aware). */
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <DealScreen id={id} />;
 }
