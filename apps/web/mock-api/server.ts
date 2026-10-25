@@ -235,20 +235,31 @@ function ensureUser(address: string): MockUser {
   return u;
 }
 
-/** First wallet that opens the importer area owns the demo importer deals (mock only). */
+/**
+ * The wallet that opens the importer area owns the seven seeded demo deals (mock only), so any
+ * demo wallet can walk the importer flows. Deals created through POST /deals keep their creator.
+ * The cancelled deal's refund follows the demo importer.
+ */
+const SEEDED_NUMBERS = new Set([1, 2, 3, 4, 5, 6, 7]);
 function bindDemoImporter(address: string) {
-  if (world.demoImporter && world.demoImporter !== address) return;
-  if (!world.demoImporter) {
-    world.demoImporter = address;
-    for (const d of world.deals) if (d.importer === null) d.importer = address;
-    const u = ensureUser(address);
-    if (!u.importer) {
-      u.importer = { legalName: 'Amina Trading Ltd', country: 'NG', registrationNumber: 'RC-1736620', kybStatus: 'approved', documents: [], faucetGrant: null, submittedAt: iso(nowSecs() - 3 * DAY) };
-      u.displayName = u.displayName ?? 'Amina';
-      u.country = u.country ?? 'NG';
+  if (world.demoImporter === address) return;
+  const previous = world.demoImporter;
+  world.demoImporter = address;
+  for (const d of world.deals) if (SEEDED_NUMBERS.has(d.number)) d.importer = address;
+  if (previous) {
+    const owed = world.refunds.get(previous) ?? 0n;
+    if (owed > 0n) {
+      world.refunds.set(previous, 0n);
+      world.refunds.set(address, (world.refunds.get(address) ?? 0n) + owed);
     }
-    log(`[mock] bound demo importer deals to ${address}`);
   }
+  const u = ensureUser(address);
+  if (!u.importer) {
+    u.importer = { legalName: 'Amina Trading Ltd', country: 'NG', registrationNumber: 'RC-1736620', kybStatus: 'approved', documents: [], faucetGrant: null, submittedAt: iso(nowSecs() - 3 * DAY) };
+    u.displayName = u.displayName ?? 'Amina';
+    u.country = u.country ?? 'NG';
+  }
+  log(`[mock] demo importer deals now belong to ${address}`);
 }
 
 /** First wallet that opens the portfolio inherits the demo positions (mock only). */
@@ -901,8 +912,17 @@ app.post('/kyb', async (c) => {
   u.displayName = b.displayName;
   u.email = b.email ?? null;
   u.country = b.country;
-  u.importer = { legalName: b.legalName, country: b.country, registrationNumber: b.registrationNumber, kybStatus: 'pending', documents: [], faucetGrant: null, submittedAt: nowIso() };
+  u.importer = { legalName: b.legalName, country: b.country, registrationNumber: b.registrationNumber, kybStatus: 'pending', documents: u.importer?.documents.filter((d) => !b.documentId || d.id === b.documentId) ?? [], faucetGrant: null, submittedAt: nowIso() };
   return reply(c, KycResponseSchema, { kycStatus: 'pending', approveTxHash: null, faucet: null });
+});
+app.post('/kyb/documents', async (c) => {
+  const u = requireUser(c);
+  const b = await body(c, RegisterDocumentRequest);
+  const id = randomUuid();
+  const rec = { id, type: 'kyb' as const, filename: b.filename, mime: b.mime, size: b.size, sha256: b.sha256, pages: null, stage: 'kyb' as const, status: 'pending_upload' as const, uploadedAt: nowIso(), viewUrl: null };
+  if (u.importer) u.importer.documents.push(rec);
+  else u.importer = { legalName: '', country: u.country ?? 'NG', registrationNumber: '', kybStatus: 'none', documents: [rec], faucetGrant: null, submittedAt: nowIso() };
+  return reply(c, RegisterDocumentResponseSchema, { documentId: id, uploadUrl: `http://localhost:${PORT}/uploads/${id}`, method: 'PUT', headers: { 'content-type': b.mime } }, 201);
 });
 app.post('/faucet', async (c) => {
   const u = requireUser(c);
@@ -1073,8 +1093,16 @@ app.put('/uploads/:id', async (c) => {
     if (doc) {
       doc.status = 'uploaded';
       doc.viewUrl = `http://localhost:${PORT}/uploads/${id}`;
-      doc.pages = doc.mime === 'application/pdf' ? 1 : 1;
+      doc.pages = 1;
       touch(d);
+    }
+  }
+  for (const u of world.users.values()) {
+    const doc = u.importer?.documents.find((x) => x.id === id);
+    if (doc) {
+      doc.status = 'uploaded';
+      doc.viewUrl = `http://localhost:${PORT}/uploads/${id}`;
+      doc.pages = 1;
     }
   }
   return c.body(null, 204);
@@ -1234,7 +1262,9 @@ app.post('/mock/chain', async (c) => {
   const raw = (await c.req.json().catch(() => ({}))) as { fn?: string; args?: Record<string, unknown> };
   const fn = raw.fn ?? '';
   const a = raw.args ?? {};
-  const str = (k: string) => String(a[k] ?? '');
+  // The contract learns the caller from the auth entry; the mock takes it from the session header.
+  const caller = who(c) ?? '';
+  const str = (k: string) => String(a[k] ?? (k === 'importer' || k === 'investor' || k === 'holder' || k === 'addr' ? caller : ''));
   const big = (k: string) => BigInt(String(a[k] ?? '0'));
   const num = (k: string) => Number(a[k] ?? 0);
   log(`[mock] chain call ${fn} ${JSON.stringify(a)}`);

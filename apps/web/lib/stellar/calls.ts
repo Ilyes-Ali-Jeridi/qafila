@@ -17,8 +17,8 @@ export interface ContractCall {
   args: Record<string, unknown>;
   /** Short line shown in the confirmation sheet. */
   summary: string;
-  /** ScVal args in the contract's argument order. */
-  scArgs: xdr.ScVal[];
+  /** ScVal args in the contract's argument order, built on demand (invalid input throws here, not at construction). */
+  scArgs(): xdr.ScVal[];
   assemble(client: Client): Promise<AssembledLike>;
 }
 
@@ -27,7 +27,7 @@ const u64 = (n: bigint) => nativeToScVal(n, { type: 'u64' });
 const i128 = (n: bigint) => nativeToScVal(n, { type: 'i128' });
 const bytes32 = (hex: string) => xdr.ScVal.scvBytes(hexToBuffer(hex));
 
-function make(method: CallMethod, args: Record<string, unknown>, scArgs: xdr.ScVal[], summary: string): ContractCall {
+function make(method: CallMethod, args: Record<string, unknown>, scArgs: () => xdr.ScVal[], summary: string): ContractCall {
   return {
     method,
     args,
@@ -42,18 +42,18 @@ function make(method: CallMethod, args: Record<string, unknown>, scArgs: xdr.ScV
 }
 
 export const calls = {
-  invest: (investor: string, dealId: number, amount: bigint) => make('invest', { investor, deal_id: BigInt(dealId), amount }, [addr(investor), u64(BigInt(dealId)), i128(amount)], 'Invest in this deal'),
+  invest: (investor: string, dealId: number, amount: bigint) => make('invest', { investor, deal_id: BigInt(dealId), amount }, () => [addr(investor), u64(BigInt(dealId)), i128(amount)], 'Invest in this deal'),
   promisePurchase: (importer: string, listingFingerprintHex: string, promiseHashHex: string, security: bigint) =>
     make(
       'promise_purchase',
       { importer, listing_fingerprint: hexToBuffer(listingFingerprintHex), promise_hash: hexToBuffer(promiseHashHex), security },
-      [addr(importer), bytes32(listingFingerprintHex), bytes32(promiseHashHex), i128(security)],
+      () => [addr(importer), bytes32(listingFingerprintHex), bytes32(promiseHashHex), i128(security)],
       'Sign the purchase promise and lock the security deposit',
     ),
-  withdrawPromise: (importer: string, listingFingerprintHex: string) => make('withdraw_promise', { importer, listing_fingerprint: hexToBuffer(listingFingerprintHex) }, [addr(importer), bytes32(listingFingerprintHex)], 'Withdraw the promise and get the deposit back'),
-  acceptMurabaha: (dealId: number) => make('accept_murabaha', { deal_id: BigInt(dealId) }, [u64(BigInt(dealId))], 'Sign the sale at the fixed price'),
-  repay: (dealId: number, amount: bigint) => make('repay', { deal_id: BigInt(dealId), amount }, [u64(BigInt(dealId)), i128(amount)], 'Repay'),
-  payLateFee: (dealId: number, amount: bigint) => make('pay_late_fee', { deal_id: BigInt(dealId), amount }, [u64(BigInt(dealId)), i128(amount)], 'Pay the late fee to charity'),
-  claim: (holder: string, dealId: number) => make('claim', { holder, deal_id: BigInt(dealId) }, [addr(holder), u64(BigInt(dealId))], 'Claim principal and profit'),
-  withdrawRefund: (address: string) => make('withdraw_refund', { addr: address }, [addr(address)], 'Collect the refund'),
+  withdrawPromise: (importer: string, listingFingerprintHex: string) => make('withdraw_promise', { importer, listing_fingerprint: hexToBuffer(listingFingerprintHex) }, () => [addr(importer), bytes32(listingFingerprintHex)], 'Withdraw the promise and get the deposit back'),
+  acceptMurabaha: (dealId: number) => make('accept_murabaha', { deal_id: BigInt(dealId) }, () => [u64(BigInt(dealId))], 'Sign the sale at the fixed price'),
+  repay: (dealId: number, amount: bigint) => make('repay', { deal_id: BigInt(dealId), amount }, () => [u64(BigInt(dealId)), i128(amount)], 'Repay'),
+  payLateFee: (dealId: number, amount: bigint) => make('pay_late_fee', { deal_id: BigInt(dealId), amount }, () => [u64(BigInt(dealId)), i128(amount)], 'Pay the late fee to charity'),
+  claim: (holder: string, dealId: number) => make('claim', { holder, deal_id: BigInt(dealId) }, () => [addr(holder), u64(BigInt(dealId))], 'Claim principal and profit'),
+  withdrawRefund: (address: string) => make('withdraw_refund', { addr: address }, () => [addr(address)], 'Collect the refund'),
 };

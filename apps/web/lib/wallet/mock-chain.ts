@@ -2,6 +2,7 @@
  * Offline chain for development and e2e against the mock API (CLAUDE.md: mock mode works
  * offline). Compiled in only when NEXT_PUBLIC_MOCK_CHAIN=1; production never includes it.
  */
+import { StrKey } from '@stellar/stellar-sdk';
 import { API_BASE } from '../api/client';
 import { authHeaders } from '../session';
 
@@ -23,19 +24,17 @@ export async function mockChainCall(fn: string, args: Record<string, unknown>): 
 }
 
 export function mockWalletAddress(): string {
-  // A stable, valid-looking contract address per browser for the offline mock.
+  // A stable, valid contract address per browser for the offline mock (random 32 bytes, StrKey-encoded).
   const key = 'qafila.mock-wallet';
   try {
     const existing = window.localStorage.getItem(key);
-    if (existing) return existing;
+    if (existing && StrKey.isValidContract(existing)) return existing;
   } catch {
     /* ignore */
   }
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-  let s = 'C';
-  const bytes = new Uint8Array(55);
+  const bytes = new Uint8Array(32);
   crypto.getRandomValues(bytes);
-  for (const b of bytes) s += alphabet[b % 32];
+  const s = StrKey.encodeContract(Buffer.from(bytes));
   try {
     window.localStorage.setItem(key, s);
   } catch {

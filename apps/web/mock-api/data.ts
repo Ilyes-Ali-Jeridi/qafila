@@ -568,7 +568,7 @@ export function makeWorld(): World {
   const d3 = baseDeal(3, {
     goodsSummary: '2,400 LED tube lights and drivers',
     route: route('nansha', 'lagos'),
-    terms: terms(5000, 400, 100, 25, 120, 2, { fundingDeadline: now - 3 * DAY, acceptWindowSecs: 2 * HOUR }),
+    terms: terms(5000, 400, 100, 25, 120, 2, { fundingDeadline: now - 3 * DAY, acceptWindowSecs: 24 * HOUR }),
     importerName: 'Olu Lighting',
     importerLegalName: 'Olu Lighting Nigeria Ltd',
     importerStats: stats(2, 0, 0, 5_000n * ONE, 12_960n * ONE),

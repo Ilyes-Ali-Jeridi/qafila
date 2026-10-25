@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit",
     "e2e": "playwright test",
     "mock-api": "tsx watch mock-api/server.ts",
-    "dev:mock": "NEXT_PUBLIC_API_BASE_URL=http://localhost:8788 next dev --webpack -p 3000"
+    "dev:mock": "NEXT_PUBLIC_API_BASE_URL=http://localhost:8788 next dev --webpack -p 3000",
+    "e2e:mock": "NEXT_PUBLIC_MOCK_CHAIN=1 playwright test",
+    "e2e:sp5": "playwright test e2e/sp5.spec.ts"
   },
   "dependencies": {
     "@creit.tech/stellar-wallets-kit": "2.7.1",

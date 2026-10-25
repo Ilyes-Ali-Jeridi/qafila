@@ -210,7 +210,7 @@ function RoleCard({ icon, title, body, onClick, testId }: { icon: React.ReactNod
   );
 }
 
-const KycForm = KycRequest.extend({ riskAcknowledged: z.boolean().refine((v) => v, 'Tick the box to continue.') });
+const KycForm = KycRequest.extend({ email: z.string().email('Enter a valid email or leave it empty.').or(z.literal('')).optional(), riskAcknowledged: z.boolean().refine((v) => v, 'Tick the box to continue.') });
 type KycForm = z.infer<typeof KycForm>;
 
 function InvestorForm({ defaultName, onDone, onBack }: { defaultName: string; onDone: (r: KycResponse) => void; onBack: () => void }) {

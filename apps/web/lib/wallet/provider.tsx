@@ -195,7 +195,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         }
         let result;
         if (PASSKEY_PATH === 'execute') {
-          result = await kit.executeAndSubmit(config.contractId, call.method, call.scArgs);
+          result = await kit.executeAndSubmit(config.contractId, call.method, call.scArgs());
         } else {
           // The generated client and the kit share one SDK copy (webpack alias), so the assembled
           // transaction's auth entries are signed by the passkey and re-simulated by the kit.
