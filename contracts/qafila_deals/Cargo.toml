@@ -16,3 +16,8 @@ stellar-macros = { workspace = true }
 [dev-dependencies]
 soroban-sdk = { workspace = true, features = ["testutils"] }
 proptest = { workspace = true }
+ed25519-dalek = "2.2.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+hex = "0.4.3"
+sha2 = "0.10.9"

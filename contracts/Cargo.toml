@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["qafila_deals", "spikes/probe"]
+members = ["qafila_deals", "spikes/probe", "spikes/sac_admin"]
 
 [workspace.dependencies]
 soroban-sdk = "28.0.0"
