@@ -9,11 +9,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@stellar/stellar-sdk": "^17.4.0",
+    "@stellar/stellar-sdk": "17.4.0",
     "buffer": "6.0.3"
   },
   "devDependencies": {
-    "typescript": "^5.9.0"
+    "typescript": "5.9.3"
   },
   "private": true
 }
