@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:39:43.267Z",
+  "recorded_at": "2026-10-25T16:38:32.277Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -14,13 +14,13 @@
       "type": "invoice",
       "invoice_number": {
         "value": "BH-2026-1003",
-        "evidence": "BH-2026-1003",
+        "evidence": "Invoice No. BH-2026-1003",
         "page": 1,
         "confidence": 0.95
       },
       "invoice_date": {
         "value": "2026-10-03",
-        "evidence": "2026-10-03",
+        "evidence": "Invoice date 2026-10-03",
         "page": 1,
         "confidence": 0.95
       },
@@ -304,8 +304,8 @@
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 7526,
-    "tokensOut": 2177,
-    "repaired": false
+    "tokensIn": 16689,
+    "tokensOut": 3723,
+    "repaired": true
   }
 }

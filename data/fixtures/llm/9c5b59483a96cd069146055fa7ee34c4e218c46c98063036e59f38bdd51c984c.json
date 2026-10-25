@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:05:21.380Z",
+  "recorded_at": "2026-10-25T16:43:29.871Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -14,13 +14,13 @@
       "type": "invoice",
       "invoice_number": {
         "value": "INV-LW-2024-1002",
-        "evidence": "Invoice No: INV-LW-2024-1002",
+        "evidence": "INV-LW-2024-1002",
         "page": 1,
         "confidence": 0.95
       },
       "invoice_date": {
-        "value": "2024-11-05",
-        "evidence": "Invoice date: 2024-11-05",
+        "value": "2024-10-09",
+        "evidence": "2024-10-09",
         "page": 1,
         "confidence": 0.95
       },
@@ -50,8 +50,8 @@
           "confidence": 0
         },
         "address": {
-          "value": "Building 3, Lanwan Industrial Park, Aiyang, Bao'an District, Shenzhen, Guangdong, China",
-          "evidence": "Building 3, Lanwan Industrial Park, Aiyang, Bao'an District, Shenzhen, Guangdong, China",
+          "value": "Building 3, Lanwan Industrial Park, Aoxing, Bao'an District, Shenzhen, Guangdong, China",
+          "evidence": "Building 3, Lanwan Industrial Park, Aoxing, Bao'an District, Shenzhen, Guangdong, China",
           "page": 1,
           "confidence": 0.95
         },
@@ -82,8 +82,8 @@
           "confidence": 0
         },
         "address": {
-          "value": "P.O. Box 32, Mombasa Road, Nairobi, Kenya",
-          "evidence": "P.O. Box 32, Mombasa Road, Nairobi, Kenya",
+          "value": "P.O. Box 22, Mombasa Road, Nairobi, Kenya",
+          "evidence": "P.O. Box 22, Mombasa Road, Nairobi, Kenya",
           "page": 1,
           "confidence": 0.95
         },
@@ -140,7 +140,7 @@
       },
       "currency": {
         "value": "USD",
-        "evidence": "USD 18,100.00",
+        "evidence": "USD",
         "page": 1,
         "confidence": 0.95
       },
@@ -241,27 +241,27 @@
         }
       ],
       "port_of_loading": {
-        "value": "Shenzhen, China (CNTN)",
-        "evidence": "Port of loading: Shenzhen, China (CNTN)",
+        "value": "Shenzhen, China (CNNTN)",
+        "evidence": "Shenzhen, China (CNNTN)",
         "page": 1,
         "confidence": 0.95
       },
       "port_of_discharge": {
         "value": "Mombasa, Kenya (KEMBA)",
-        "evidence": "Port of discharge: Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
         "page": 1,
         "confidence": 0.95
       },
       "payment_terms": {
         "value": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
-        "evidence": "Payment terms: 30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
+        "evidence": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
         "page": 1,
         "confidence": 0.95
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 15028,
-    "tokensOut": 3075,
+    "tokensIn": 15001,
+    "tokensOut": 3021,
     "repaired": true
   }
 }

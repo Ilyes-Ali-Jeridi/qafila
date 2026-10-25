@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:38:45.913Z",
+  "recorded_at": "2026-10-25T16:37:00.542Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",

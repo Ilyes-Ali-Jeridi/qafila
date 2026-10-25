@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:01:17.708Z",
+  "recorded_at": "2026-10-25T16:39:29.035Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -15,7 +15,7 @@
         {
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
-          "reason": "Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the substance.",
+          "reason": "Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the meaning.",
           "evidence_a": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton LED球泡灯 E27 9W 6500K",
           "evidence_b": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton"
         }

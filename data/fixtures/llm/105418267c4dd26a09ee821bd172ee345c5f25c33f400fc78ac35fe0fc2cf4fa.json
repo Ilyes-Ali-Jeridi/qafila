@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:37:33.639Z",
+  "recorded_at": "2026-10-25T16:35:23.771Z",
   "mode": "live",
   "input": {
     "stage": "extract.bill_of_lading",
@@ -69,8 +69,8 @@
         }
       },
       "consignee": {
-        "value": "TO ORDER OF QAFILA TRADE, DEAL 3 c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
-        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3 c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+        "value": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
         "page": 1,
         "confidence": 0.98
       },
@@ -81,8 +81,8 @@
         "confidence": 0.98
       },
       "notify_party": {
-        "value": "Adewale Trading Ltd 14 Balogun Street, Lagos Island, Lagos, Nigeria Tel +234 1 270 4455",
-        "evidence": "Adewale Trading Ltd 14 Balogun Street, Lagos Island, Lagos, Nigeria Tel +234 1 270 4455",
+        "value": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455",
+        "evidence": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455",
         "page": 1,
         "confidence": 0.98
       },
@@ -239,7 +239,7 @@
       "hidden_or_suspicious_text": []
     },
     "tokensIn": 7555,
-    "tokensOut": 1787,
+    "tokensOut": 1791,
     "repaired": false
   }
 }

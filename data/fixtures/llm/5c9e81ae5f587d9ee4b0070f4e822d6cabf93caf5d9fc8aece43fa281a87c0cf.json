@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:03:10.987Z",
+  "recorded_at": "2026-10-25T16:41:11.318Z",
   "mode": "live",
   "input": {
     "stage": "price",
@@ -17,12 +17,12 @@
           "category": "solar_panel_modules_400_600w",
           "unit_matches": true,
           "unit_price_per_reference_unit": 82.5,
-          "note": "Monocrystalline solar modules 550 W match the reference category solar_panel_modules_400_600w."
+          "note": "Monocrystalline solar modules 550 W match the solar_panel_modules_400_600w category."
         }
       ]
     },
     "tokensIn": 1864,
-    "tokensOut": 96,
+    "tokensOut": 95,
     "repaired": false
   }
 }

@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:00:46.670Z",
+  "recorded_at": "2026-10-25T16:38:52.562Z",
   "mode": "live",
   "input": {
     "stage": "extract.business_licence",

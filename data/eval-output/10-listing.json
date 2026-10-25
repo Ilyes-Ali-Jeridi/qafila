@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T16:06:05.557Z",
+    "created_at": "2026-10-25T16:43:54.634Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -164,7 +164,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both descriptions match exactly in English; the invoice includes Chinese translation which does not contradict the English text.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both values describe identical goods: monocrystalline solar modules with 550 W, half-cut cells, and 144 cells; the Chinese text in A is a translation and does not alter the substance.",
         "weight": 25,
         "evidence": {
           "a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
@@ -441,13 +441,13 @@
         },
         "currency": {
           "value": "USD",
-          "evidence": "Currency USD",
+          "evidence": "USD",
           "page": 1,
           "confidence": 0.95
         },
         "total": {
           "value": 33000,
-          "evidence": "TOTAL FOB CNSHA USD 33,000.00",
+          "evidence": "USD 33,000.00",
           "page": 1,
           "confidence": 0.95
         },
@@ -499,19 +499,19 @@
         ],
         "port_of_loading": {
           "value": "Shanghai, China (CNSHA)",
-          "evidence": "Port of loading Shanghai, China (CNSHA)",
+          "evidence": "Shanghai, China (CNSHA)",
           "page": 1,
           "confidence": 0.95
         },
         "port_of_discharge": {
           "value": "Mombasa, Kenya (KEMBA)",
-          "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+          "evidence": "Mombasa, Kenya (KEMBA)",
           "page": 1,
           "confidence": 0.95
         },
         "payment_terms": {
           "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
-          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "page": 1,
           "confidence": 0.95
         },
@@ -732,14 +732,14 @@
           "confidence": 0.98
         },
         "business_scope": {
-          "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
-          "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+          "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
           "page": 1,
           "confidence": 0.98
         },
         "address": {
-          "value": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
-          "evidence": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "value": "江苏省苏州市吴中区光耀路100号",
+          "evidence": "江苏省苏州市吴中区光耀路100号",
           "page": 1,
           "confidence": 0.98
         },
@@ -863,7 +863,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both descriptions match exactly in English; the invoice includes Chinese translation which does not contradict the English text.",
+        "reason": "Both values describe identical goods: monocrystalline solar modules with 550 W, half-cut cells, and 144 cells; the Chinese text in A is a translation and does not alter the substance.",
         "evidence_a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
         "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
       }
@@ -890,9 +890,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16101,
-        "tokens_out": 2985,
-        "latency_ms": 1,
+        "tokens_in": 16087,
+        "tokens_out": 2957,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -911,7 +911,7 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4329,
-        "tokens_out": 817,
+        "tokens_out": 727,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -921,8 +921,8 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 821,
-        "tokens_out": 140,
-        "latency_ms": 0,
+        "tokens_out": 166,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -941,8 +941,8 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "price.v1",
         "tokens_in": 1864,
-        "tokens_out": 96,
-        "latency_ms": 2,
+        "tokens_out": 95,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -950,8 +950,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2024,
-        "tokens_out": 69,
+        "tokens_in": 2050,
+        "tokens_out": 57,
         "latency_ms": 0,
         "cost_usd": 0
       }
@@ -976,18 +976,18 @@
       "registry/91320500MA1XQ6L3BR.json"
     ],
     "timings_ms": {
-      "intake": 935,
+      "intake": 600,
       "extract": 1,
-      "validate": 1,
-      "stages": 2,
+      "validate": 0,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 939
+      "explain": 1,
+      "total": 603
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice details, and consistency across documents are all valid. No action is needed from your side."
+    "explanation": "Your deal is approved for listing because all required checks passed. All documents and data are consistent and valid. No further action is needed."
   },
-  "report_hash": "099f4a6a15810b93c3a4a0c0910c5774e9c2b1cb74787e4487d080b8fc141b1a",
-  "signature": "ad5824c68dfcedf5b2d06fef0961b47f4bbb6c7c726348554b0bb308ebc5d8b8117a1022e7633f827fcbfb8b95cac89f7f799f87b3f22aa5fd6f87a5021aa705"
+  "report_hash": "6655fee9e305952c0e294fe86b53e244b346bc0ef8a9dbf6b798cb0efa44dbdf",
+  "signature": "e2f215d4f03e8c4fe9a00f601082839d137fe4b0067c6d23c60cfa25ab0b617d7b65ddbba0913677195931cdb906ff278b8402eb423953eccfa4bd72a20f0008"
 }

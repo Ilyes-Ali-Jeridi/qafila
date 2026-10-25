@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:03:10.004Z",
+  "recorded_at": "2026-10-25T16:41:10.348Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -140,13 +140,13 @@
       },
       "currency": {
         "value": "USD",
-        "evidence": "Currency USD",
+        "evidence": "USD",
         "page": 1,
         "confidence": 0.95
       },
       "total": {
         "value": 33000,
-        "evidence": "TOTAL FOB CNSHA USD 33,000.00",
+        "evidence": "USD 33,000.00",
         "page": 1,
         "confidence": 0.95
       },
@@ -198,26 +198,26 @@
       ],
       "port_of_loading": {
         "value": "Shanghai, China (CNSHA)",
-        "evidence": "Port of loading Shanghai, China (CNSHA)",
+        "evidence": "Shanghai, China (CNSHA)",
         "page": 1,
         "confidence": 0.95
       },
       "port_of_discharge": {
         "value": "Mombasa, Kenya (KEMBA)",
-        "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+        "evidence": "Mombasa, Kenya (KEMBA)",
         "page": 1,
         "confidence": 0.95
       },
       "payment_terms": {
         "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
-        "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+        "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
         "page": 1,
         "confidence": 0.95
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 16101,
-    "tokensOut": 2985,
+    "tokensIn": 16087,
+    "tokensOut": 2957,
     "repaired": true
   }
 }

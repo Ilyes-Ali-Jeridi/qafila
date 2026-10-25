@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:04:56.147Z",
+  "recorded_at": "2026-10-25T16:43:08.588Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",
@@ -16,50 +16,50 @@
         "value": "PL-LW-2026-1002",
         "evidence": "No. PL-LW-2026-1002",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "date": {
         "value": "2026-10-06",
         "evidence": "Date 2026-10-06",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "invoice_number": {
         "value": "INV-LW-2026-1002",
         "evidence": "Invoice No. INV-LW-2026-1002",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "seller": {
         "name_en": {
           "value": "Shenzhen Lanwan Electronics Co., Ltd.",
           "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": "深圳市蓝湾电子有限公司",
           "evidence": "深圳市蓝湾电子有限公司",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "uscc": {
           "value": "91440300MA5GK2Q7XL",
           "evidence": "USCC 91440300MA5GK2Q7XL",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "address": {
           "value": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
           "evidence": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "country": {
           "value": "China",
           "evidence": "China",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       },
       "buyer": {
@@ -67,7 +67,7 @@
           "value": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "evidence": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "name_zh": {
           "value": null,
@@ -85,13 +85,13 @@
           "value": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "evidence": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "country": {
           "value": "Portugal",
           "evidence": "Portugal",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       },
       "items": [
@@ -100,37 +100,37 @@
             "value": "Power banks 10,000 mAh, dual USB output, retail box",
             "evidence": "Power banks 10,000 mAh, dual USB output, retail box",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 2000,
             "evidence": "2,000 pcs",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "packages": {
             "value": 100,
             "evidence": "100 CTNS",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "gross_weight_kg": {
             "value": 1600,
             "evidence": "1,600.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "net_weight_kg": {
             "value": 1500,
             "evidence": "1,500.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "cbm": {
             "value": 5,
             "evidence": "5.00",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         {
@@ -138,37 +138,37 @@
             "value": "Wired in-ear earphones with microphone, 3.5 mm",
             "evidence": "Wired in-ear earphones with microphone, 3.5 mm",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "quantity": {
             "value": 5000,
             "evidence": "5,000 pcs",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "packages": {
             "value": 100,
             "evidence": "100 CTNS",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "gross_weight_kg": {
             "value": 800,
             "evidence": "800.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "net_weight_kg": {
             "value": 700,
             "evidence": "700.0",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "cbm": {
             "value": 4,
             "evidence": "4.00",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         }
       ],
@@ -176,32 +176,32 @@
         "value": 200,
         "evidence": "200 CTNS",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total_gross_weight_kg": {
         "value": 2400,
         "evidence": "2,400.0",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total_net_weight_kg": {
         "value": 2200,
         "evidence": "2,200.0",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "total_cbm": {
         "value": 9,
         "evidence": "9.00",
         "page": 1,
-        "confidence": 0.98
+        "confidence": 0.95
       },
       "container_numbers": [
         {
           "value": "TGHU6120905",
           "evidence": "TGHU6120905",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         }
       ],
       "hidden_or_suspicious_text": []

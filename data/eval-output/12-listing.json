@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-12",
-    "created_at": "2026-10-25T16:06:07.030Z",
+    "created_at": "2026-10-25T16:43:55.911Z",
     "decision": "review",
     "risk_score": 0,
     "checks": [
@@ -84,10 +84,10 @@
         "name": "validators.dates",
         "status": "pass",
         "severity": "medium",
-        "detail": "Dates are in order (invoice 2024-11-05).",
+        "detail": "Dates are in order (invoice 2024-10-09).",
         "weight": 15,
         "evidence": {
-          "invDate": "2024-11-05",
+          "invDate": "2024-10-09",
           "plDate": "2026-10-06",
           "shipped": null,
           "issued": null,
@@ -113,12 +113,10 @@
       },
       {
         "name": "validators.formats",
-        "status": "review",
+        "status": "pass",
         "severity": "low",
-        "detail": "port of loading code \"CNTN\" is not a 5-character UN/LOCODE.",
-        "weight": 8,
-        "fix": "Use an Incoterms 2020 term, 6 to 10 digit HS codes and 5-character UN/LOCODEs.",
-        "document": "invoice"
+        "detail": "Incoterm FOB is valid; HS codes and port codes are well formed.",
+        "weight": 8
       },
       {
         "name": "structure.buyer",
@@ -182,7 +180,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "review",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): no. The earphone jack size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): no. The earphone connector size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
         "weight": 25,
         "evidence": {
           "a": "Wired in-ear earphones with microphone, 2.5 mm",
@@ -202,7 +200,7 @@
           "line": "1. Power banks 10,000 mAh, dual USB output, retail box",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "Power banks fall under the electronics category as they are portable charging devices."
+          "reason": "Power banks fall under the electronics category as they are accessories for charging devices."
         }
       },
       {
@@ -215,7 +213,7 @@
           "line": "2. Wired in-ear earphones with microphone, 2.5 mm",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "Wired in-ear earphones are classified as electronics due to their function as audio devices."
+          "reason": "Wired earphones with a microphone are classified as electronics and accessories for audio devices."
         }
       },
       {
@@ -346,11 +344,11 @@
         "detail": "This invoice has not been financed before.",
         "weight": 40,
         "evidence": {
-          "fingerprint": "cb5198b7c6eab1d6e57ca7192f2eb40ff44c93a3a0c6b4cb027341cc90b1c859",
+          "fingerprint": "ef46dc5ac7814940d7e0ff034ecc7653745a2c62d5f8df3961eb7774f8a86e69",
           "parts": {
             "supplier": "91440300MA5GK2Q7XL",
             "invoice_number": "INV-LW-2024-1002",
-            "invoice_date": "2024-11-05",
+            "invoice_date": "2024-10-09",
             "total": "18100.00",
             "currency": "USD"
           }
@@ -391,13 +389,13 @@
         "type": "invoice",
         "invoice_number": {
           "value": "INV-LW-2024-1002",
-          "evidence": "Invoice No: INV-LW-2024-1002",
+          "evidence": "INV-LW-2024-1002",
           "page": 1,
           "confidence": 0.95
         },
         "invoice_date": {
-          "value": "2024-11-05",
-          "evidence": "Invoice date: 2024-11-05",
+          "value": "2024-10-09",
+          "evidence": "2024-10-09",
           "page": 1,
           "confidence": 0.95
         },
@@ -427,8 +425,8 @@
             "confidence": 0
           },
           "address": {
-            "value": "Building 3, Lanwan Industrial Park, Aiyang, Bao'an District, Shenzhen, Guangdong, China",
-            "evidence": "Building 3, Lanwan Industrial Park, Aiyang, Bao'an District, Shenzhen, Guangdong, China",
+            "value": "Building 3, Lanwan Industrial Park, Aoxing, Bao'an District, Shenzhen, Guangdong, China",
+            "evidence": "Building 3, Lanwan Industrial Park, Aoxing, Bao'an District, Shenzhen, Guangdong, China",
             "page": 1,
             "confidence": 0.95
           },
@@ -459,8 +457,8 @@
             "confidence": 0
           },
           "address": {
-            "value": "P.O. Box 32, Mombasa Road, Nairobi, Kenya",
-            "evidence": "P.O. Box 32, Mombasa Road, Nairobi, Kenya",
+            "value": "P.O. Box 22, Mombasa Road, Nairobi, Kenya",
+            "evidence": "P.O. Box 22, Mombasa Road, Nairobi, Kenya",
             "page": 1,
             "confidence": 0.95
           },
@@ -517,7 +515,7 @@
         },
         "currency": {
           "value": "USD",
-          "evidence": "USD 18,100.00",
+          "evidence": "USD",
           "page": 1,
           "confidence": 0.95
         },
@@ -618,20 +616,20 @@
           }
         ],
         "port_of_loading": {
-          "value": "Shenzhen, China (CNTN)",
-          "evidence": "Port of loading: Shenzhen, China (CNTN)",
+          "value": "Shenzhen, China (CNNTN)",
+          "evidence": "Shenzhen, China (CNNTN)",
           "page": 1,
           "confidence": 0.95
         },
         "port_of_discharge": {
           "value": "Mombasa, Kenya (KEMBA)",
-          "evidence": "Port of discharge: Mombasa, Kenya (KEMBA)",
+          "evidence": "Mombasa, Kenya (KEMBA)",
           "page": 1,
           "confidence": 0.95
         },
         "payment_terms": {
           "value": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
-          "evidence": "Payment terms: 30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
+          "evidence": "30% deposit by T/T before shipment, 70% balance against copy of the B/L of loading",
           "page": 1,
           "confidence": 0.95
         },
@@ -643,50 +641,50 @@
           "value": "PL-LW-2026-1002",
           "evidence": "No. PL-LW-2026-1002",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "date": {
           "value": "2026-10-06",
           "evidence": "Date 2026-10-06",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "invoice_number": {
           "value": "INV-LW-2026-1002",
           "evidence": "Invoice No. INV-LW-2026-1002",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "seller": {
           "name_en": {
             "value": "Shenzhen Lanwan Electronics Co., Ltd.",
             "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "深圳市蓝湾电子有限公司",
             "evidence": "深圳市蓝湾电子有限公司",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": "91440300MA5GK2Q7XL",
             "evidence": "USCC 91440300MA5GK2Q7XL",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "address": {
             "value": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
             "evidence": "Building 3, Lanwan Industrial Park, Xixiang, Bao'an District, Shenzhen, Guangdong, China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "China",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "buyer": {
@@ -694,7 +692,7 @@
             "value": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": null,
@@ -712,13 +710,13 @@
             "value": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Qafila Trade, deal 12, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "Portugal",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "items": [
@@ -727,37 +725,37 @@
               "value": "Power banks 10,000 mAh, dual USB output, retail box",
               "evidence": "Power banks 10,000 mAh, dual USB output, retail box",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 2000,
               "evidence": "2,000 pcs",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "packages": {
               "value": 100,
               "evidence": "100 CTNS",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "gross_weight_kg": {
               "value": 1600,
               "evidence": "1,600.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "net_weight_kg": {
               "value": 1500,
               "evidence": "1,500.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "cbm": {
               "value": 5,
               "evidence": "5.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           },
           {
@@ -765,37 +763,37 @@
               "value": "Wired in-ear earphones with microphone, 3.5 mm",
               "evidence": "Wired in-ear earphones with microphone, 3.5 mm",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 5000,
               "evidence": "5,000 pcs",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "packages": {
               "value": 100,
               "evidence": "100 CTNS",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "gross_weight_kg": {
               "value": 800,
               "evidence": "800.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "net_weight_kg": {
               "value": 700,
               "evidence": "700.0",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "cbm": {
               "value": 4,
               "evidence": "4.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           }
         ],
@@ -803,32 +801,32 @@
           "value": 200,
           "evidence": "200 CTNS",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total_gross_weight_kg": {
           "value": 2400,
           "evidence": "2,400.0",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total_net_weight_kg": {
           "value": 2200,
           "evidence": "2,200.0",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total_cbm": {
           "value": 9,
           "evidence": "9.00",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "container_numbers": [
           {
             "value": "TGHU6120905",
             "evidence": "TGHU6120905",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         ],
         "hidden_or_suspicious_text": []
@@ -987,13 +985,13 @@
         "line": "1. Power banks 10,000 mAh, dual USB output, retail box",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "Power banks fall under the electronics category as they are portable charging devices."
+        "reason": "Power banks fall under the electronics category as they are accessories for charging devices."
       },
       {
         "line": "2. Wired in-ear earphones with microphone, 2.5 mm",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "Wired in-ear earphones are classified as electronics due to their function as audio devices."
+        "reason": "Wired earphones with a microphone are classified as electronics and accessories for audio devices."
       }
     ],
     "consistency": [
@@ -1028,12 +1026,12 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "no",
-        "reason": "The earphone jack size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
+        "reason": "The earphone connector size differs: 2.5 mm in the invoice vs 3.5 mm in the packing list, indicating different goods.",
         "evidence_a": "Wired in-ear earphones with microphone, 2.5 mm",
         "evidence_b": "Wired in-ear earphones with microphone, 3.5 mm"
       }
     ],
-    "listing_fingerprint": "cb5198b7c6eab1d6e57ca7192f2eb40ff44c93a3a0c6b4cb027341cc90b1c859",
+    "listing_fingerprint": "ef46dc5ac7814940d7e0ff034ecc7653745a2c62d5f8df3961eb7774f8a86e69",
     "shipment_fingerprint": null,
     "document_hashes": [
       {
@@ -1055,8 +1053,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 15028,
-        "tokens_out": 3075,
+        "tokens_in": 15001,
+        "tokens_out": 3021,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -1077,7 +1075,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4324,
         "tokens_out": 759,
-        "latency_ms": 1,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1096,8 +1094,8 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1179,
-        "tokens_out": 87,
-        "latency_ms": 0,
+        "tokens_out": 86,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1107,7 +1105,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1916,
         "tokens_out": 135,
-        "latency_ms": 1,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1115,8 +1113,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2324,
-        "tokens_out": 196,
+        "tokens_in": 2291,
+        "tokens_out": 167,
         "latency_ms": 0,
         "cost_usd": 0
       }
@@ -1136,13 +1134,13 @@
       "llm/97c82a99f82263780c145208c4005f2de1dac90eacb3d3b0a81134f94487f58c.json",
       "llm/9c5b59483a96cd069146055fa7ee34c4e218c46c98063036e59f38bdd51c984c.json",
       "llm/afde50cbad179ae10b0ad9ed577f535543893b10c4addbfc98593415b8456050.json",
-      "llm/b6f3177d4ee998a6ed70559c20d1d213af0ccb7fef66bfc180d63e8f6c97648b.json",
+      "llm/ff7107d2a4d013a269bb3868244d75b4a8b8ca03bd8384621082c9042e514a32.json",
       "opensanctions/<fallback>",
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
       "intake": 505,
-      "extract": 1,
+      "extract": 2,
       "validate": 0,
       "stages": 2,
       "fingerprint": 0,
@@ -1151,8 +1149,8 @@
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal needs a review by our team because key fields on the invoice are not readable and there are discrepancies in the goods description and invoice details. The container check, USCC validation, and price checks passed. Please correct the issues listed below to proceed.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Confirm the rounding with the supplier or upload a corrected invoice.\n- Use an Incoterms 2020 term, 6 to 10 digit HS codes and 5-character UN/LOCODEs.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice."
+    "explanation": "Your deal needs a review by our team because the invoice buyer is not the correct entity and some fields are not readable with confidence. The container check digit, USCC check digit, date order, quantity match, and other checks passed. Please fix the issues listed below.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice.\n- Confirm the rounding with the supplier or upload a corrected invoice."
   },
-  "report_hash": "4cd11f994c223505b755f48c4ac2de5bc7e0da8d1ae37533db041db34a1028d4",
-  "signature": "4421015849e8618ecae18778a67069126c5d00186ad5cce871c439ad6d8e121d3efaa459be584078a3c51efb464baff8ab9b3a0008628735899038eb2a696909"
+  "report_hash": "63f0b9708eb7bce5952391ec15436da589d90b4cc165f9af06b6264ae7d1fe0d",
+  "signature": "2d41edd17967f75d68af60b4483f2dfa44d242f533ea8f301b7cec832588f2736b5276a24f8f78073a2bcec7b33d37ba78b197af60825c21ac7ca90d644dc000"
 }

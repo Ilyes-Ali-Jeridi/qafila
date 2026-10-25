@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T16:05:59.420Z",
+    "created_at": "2026-10-25T16:43:49.552Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -87,17 +87,17 @@
         "name": "structure.consignee",
         "status": "pass",
         "severity": "high",
-        "detail": "The B/L is made out to order of Qafila Trade's deal entity (\"TO ORDER OF QAFILA TRADE, DEAL 3 c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal\").",
+        "detail": "The B/L is made out to order of Qafila Trade's deal entity (\"TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal\").",
         "weight": 25,
-        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3 c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal"
+        "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal"
       },
       {
         "name": "structure.notify_party",
         "status": "pass",
         "severity": "medium",
-        "detail": "The notify party is the importer (\"Adewale Trading Ltd 14 Balogun Street, Lagos Island, Lagos, Nigeria Tel +234 1 270 4455\").",
+        "detail": "The notify party is the importer (\"Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455\").",
         "weight": 15,
-        "evidence": "Adewale Trading Ltd 14 Balogun Street, Lagos Island, Lagos, Nigeria Tel +234 1 270 4455"
+        "evidence": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455"
       },
       {
         "name": "consistency.seller_name_zh",
@@ -202,7 +202,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both documents list identical goods descriptions line by line, with only minor formatting differences (Chinese characters in invoice, omitted in packing list).",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both documents list identical goods descriptions line by line, with only minor formatting differences (Chinese characters in invoice are descriptive and do not alter the goods identity).",
         "weight": 25,
         "evidence": {
           "a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
@@ -213,7 +213,7 @@
         "name": "consistency.goods_bl_vs_invoice",
         "status": "pass",
         "severity": "high",
-        "detail": "Description of goods on the B/L vs the invoice line items (same goods?): match. The B/L lists the same categories of goods as the invoice, though in abbreviated form without quantities or material details.",
+        "detail": "Description of goods on the B/L vs the invoice line items (same goods?): match. The B/L lists the same categories of goods as the invoice, albeit in abbreviated form; 'STAINLESS STEEL COOKWARE SETS' and 'PLASTIC FOOD CONTAINERS' correspond to the detailed descriptions in the invoice.",
         "weight": 25,
         "evidence": {
           "a": "STAINLESS STEEL COOKWARE SETS; COOKWARE SETS; PLASTIC FOOD CONTAINERS",
@@ -318,14 +318,14 @@
         "name": "tracking.availability",
         "status": "pass",
         "severity": "info",
-        "detail": "carrier tracking: 5 event(s), status Sailing.",
+        "detail": "carrier tracking (mock fixture): 5 event(s), status Sailing.",
         "weight": 0
       },
       {
         "name": "tracking.container_present",
         "status": "pass",
         "severity": "critical",
-        "detail": "Container COSU6319486 appears in carrier tracking.",
+        "detail": "Container COSU6319486 appears in carrier tracking (mock fixture).",
         "weight": 40,
         "evidence": {
           "bl": [
@@ -341,7 +341,7 @@
         "name": "tracking.loading_vessel",
         "status": "pass",
         "severity": "critical",
-        "detail": "carrier tracking: loaded on OOCL ZHUHAI at NINGBO on 2026-09-20, matching the B/L vessel OOCL ZHUHAI (IMO 9400001 vs 9400001 (exact comparison)). Transshipment later in the voyage: MSC AURORA at TANGER MED.",
+        "detail": "carrier tracking (mock fixture): loaded on OOCL ZHUHAI at NINGBO on 2026-09-20, matching the B/L vessel OOCL ZHUHAI (IMO 9400001 vs 9400001 (exact comparison)). Transshipment later in the voyage: MSC AURORA at TANGER MED.",
         "weight": 40,
         "evidence": {
           "bl_vessel": "OOCL ZHUHAI",
@@ -368,7 +368,7 @@
         "name": "tracking.status",
         "status": "pass",
         "severity": "high",
-        "detail": "carrier tracking: status Sailing (40), loaded or later.",
+        "detail": "carrier tracking (mock fixture): status Sailing (40), loaded or later.",
         "weight": 25
       },
       {
@@ -422,50 +422,50 @@
           "value": "HC-2026-0805",
           "evidence": "Invoice No. HC-2026-0805",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "invoice_date": {
           "value": "2026-09-05",
           "evidence": "Invoice date 2026-09-05",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "invoice_kind": {
           "value": "commercial",
           "evidence": "COMMERCIAL INVOICE",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "seller": {
           "name_en": {
             "value": "Ningbo Haichuan Plastics Co., Ltd.",
             "evidence": "Ningbo Haichuan Plastics Co., Ltd.",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "宁波市海川塑业有限公司",
             "evidence": "宁波市海川塑业有限公司",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": "91330200MA2CH7N6M7",
             "evidence": "USCC 91330200MA2CH7N6M7",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "address": {
             "value": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
             "evidence": "No. 56 Haichuan Road, Daqi, Beilun District, Ningbo, Zhejiang, China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "CN",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "buyer": {
@@ -473,13 +473,13 @@
             "value": "Qafila Trade, deal 3",
             "evidence": "Qafila Trade, deal 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "Qafila Trade, deal 3",
             "evidence": "Qafila Trade, deal 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": null,
@@ -491,13 +491,13 @@
             "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "country": {
             "value": "PT",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           }
         },
         "consignee": {
@@ -505,13 +505,13 @@
             "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "name_zh": {
             "value": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3",
             "page": 1,
-            "confidence": 0.98
+            "confidence": 0.95
           },
           "uscc": {
             "value": null,
@@ -536,25 +536,25 @@
           "value": "Adewale Trading Ltd",
           "evidence": "Adewale Trading Ltd",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "incoterms": {
           "value": "FOB Ningbo (CNNGB), Incoterms 2020",
           "evidence": "FOB Ningbo (CNNGB), Incoterms 2020",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "currency": {
           "value": "USD",
           "evidence": "Currency USD",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "total": {
           "value": 28200,
           "evidence": "TOTAL FOB CNNGB USD 28,200.00",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "line_items": [
           {
@@ -562,43 +562,43 @@
               "value": "Stainless steel cookware sets, 8 pieces, induction base",
               "evidence": "Stainless steel cookware sets, 8 pieces, induction base",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "description_zh": {
               "value": "不锈钢锅具八件套",
               "evidence": "不锈钢锅具八件套",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "hs_code": {
               "value": "732393",
               "evidence": "732393",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 1200,
               "evidence": "1,200 sets",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit": {
               "value": "sets",
               "evidence": "sets",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit_price": {
               "value": 18,
               "evidence": "18.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "line_total": {
               "value": 21600,
               "evidence": "21,600.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           },
           {
@@ -606,43 +606,43 @@
               "value": "Plastic food storage containers, PP, assorted sizes",
               "evidence": "Plastic food storage containers, PP, assorted sizes",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "description_zh": {
               "value": "PP塑料保鲜盒 多规格",
               "evidence": "PP塑料保鲜盒 多规格",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "hs_code": {
               "value": "392410",
               "evidence": "392410",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "quantity": {
               "value": 3000,
               "evidence": "3,000 kg",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit": {
               "value": "kg",
               "evidence": "kg",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "unit_price": {
               "value": 2.2,
               "evidence": "2.20",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             },
             "line_total": {
               "value": 6600,
               "evidence": "6,600.00",
               "page": 1,
-              "confidence": 0.98
+              "confidence": 0.95
             }
           }
         ],
@@ -650,19 +650,19 @@
           "value": "Ningbo, China (CNNGB)",
           "evidence": "Port of loading Ningbo, China (CNNGB)",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "port_of_discharge": {
           "value": "Lagos (Apapa), Nigeria (NGAPP)",
           "evidence": "Port of discharge Lagos (Apapa), Nigeria (NGAPP)",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "payment_terms": {
           "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "page": 1,
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "hidden_or_suspicious_text": []
       },
@@ -1003,8 +1003,8 @@
           }
         },
         "consignee": {
-          "value": "TO ORDER OF QAFILA TRADE, DEAL 3 c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
-          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3 c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "value": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+          "evidence": "TO ORDER OF QAFILA TRADE, DEAL 3\nc/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
           "confidence": 0.98
         },
@@ -1015,8 +1015,8 @@
           "confidence": 0.98
         },
         "notify_party": {
-          "value": "Adewale Trading Ltd 14 Balogun Street, Lagos Island, Lagos, Nigeria Tel +234 1 270 4455",
-          "evidence": "Adewale Trading Ltd 14 Balogun Street, Lagos Island, Lagos, Nigeria Tel +234 1 270 4455",
+          "value": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455",
+          "evidence": "Adewale Trading Ltd\n14 Balogun Street, Lagos Island, Lagos, Nigeria\nTel +234 1 270 4455",
           "page": 1,
           "confidence": 0.98
         },
@@ -1222,7 +1222,7 @@
       }
     ],
     "tracking": {
-      "mode": "live",
+      "mode": "mock",
       "statusCode": 40,
       "status": "Sailing",
       "vessel": "OOCL ZHUHAI",
@@ -1276,7 +1276,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T16:05:59.419Z"
+      "lastPolledAt": "2026-10-25T16:43:49.552Z"
     },
     "price": [],
     "halal": [],
@@ -1347,14 +1347,14 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both documents list identical goods descriptions line by line, with only minor formatting differences (Chinese characters in invoice, omitted in packing list).",
+        "reason": "Both documents list identical goods descriptions line by line, with only minor formatting differences (Chinese characters in invoice are descriptive and do not alter the goods identity).",
         "evidence_a": "1. Stainless steel cookware sets, 8 pieces, induction base 不锈钢锅具八件套 | 2. Plastic food storage containers, PP, assorted sizes PP塑料保鲜盒 多规格",
         "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
       },
       {
         "field": "goods_bl_vs_invoice",
         "match": "yes",
-        "reason": "The B/L lists the same categories of goods as the invoice, though in abbreviated form without quantities or material details.",
+        "reason": "The B/L lists the same categories of goods as the invoice, albeit in abbreviated form; 'STAINLESS STEEL COOKWARE SETS' and 'PLASTIC FOOD CONTAINERS' correspond to the detailed descriptions in the invoice.",
         "evidence_a": "STAINLESS STEEL COOKWARE SETS; COOKWARE SETS; PLASTIC FOOD CONTAINERS",
         "evidence_b": "1. Stainless steel cookware sets, 8 pieces, induction base | 2. Plastic food storage containers, PP, assorted sizes"
       }
@@ -1386,8 +1386,8 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
         "tokens_in": 7555,
-        "tokens_out": 1787,
-        "latency_ms": 1,
+        "tokens_out": 1791,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1396,7 +1396,7 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 918,
-        "tokens_out": 260,
+        "tokens_out": 290,
         "latency_ms": 0,
         "cost_usd": 0
       },
@@ -1405,9 +1405,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2669,
-        "tokens_out": 67,
-        "latency_ms": 0,
+        "tokens_in": 2711,
+        "tokens_out": 68,
+        "latency_ms": 1,
         "cost_usd": 0
       }
     ],
@@ -1415,7 +1415,7 @@
       "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
-      "shipsgo": "live",
+      "shipsgo": "mock",
       "reflector": "skipped",
       "fx": "skipped"
     },
@@ -1429,18 +1429,18 @@
       "shipsgo/COSU6319486.json"
     ],
     "timings_ms": {
-      "intake": 158,
-      "extract": 2,
+      "intake": 230,
+      "extract": 3,
       "validate": 0,
-      "stages": 3,
+      "stages": 4,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 164
+      "explain": 1,
+      "total": 238
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal is approved for listing because all required checks passed. All documents are consistent, the shipment is verified, and no sanctions or duplicates were found. You can proceed with the deal."
+    "explanation": "Your deal is approved for listing because all required checks passed. All documents are consistent, the company is active and not sanctioned, and the shipment details match. You can proceed with the deal."
   },
-  "report_hash": "feae7a26012a07978a8f8814cfb1fafe59a76b9a8150d4983919ae94392e423a",
-  "signature": "db863d530673d62ed540938f7206acffa75596c288b53ba51164def3d1f3c1230c3b8e48590621b2ea6c328d328dfebb90d74ead6b90e79e75822d687fa2eb02"
+  "report_hash": "d53fecca434d28e9ff9dd88c93b927e10b6b297b6d03b6435d41aa45070ff685",
+  "signature": "cf00b4b436aa508a9248a173b83f9a26a08ddc7839c94c65d3fc4890ab9133f6adbcda5d6a60ecd2e1868d38684fba01d17092f26d45961baca7cc6e253ea200"
 }

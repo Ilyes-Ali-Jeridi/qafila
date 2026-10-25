@@ -18,3 +18,22 @@ Times are WET (Lisbon). H0 = Sun 25 Oct 2026 09:00. Branch `track/intel`, worktr
 - 17:55 (H9) Live on testnet through the API (local API on :8791, `CHAIN_MODE=live`, LLM fixtures): fresh importer `GDHHZ47K…` with a qUSD trustline; `POST /ops/kyc/:id/approve` granted 27,000 qUSD (1.35 x the 20,000 base limit, tx `62165c2a…`); packet 12 verified (review, blurry photo) and overridden by ops with a reason; `POST /deals/:id/promise` gave the 20% deposit (3,620 qUSD on 18,100); the importer signed `promise_purchase` (tx `cf79f042…`); `POST /ops/deals/:id/list` ran the share-token factory (5 txs: create issuer, set flags, deploy SAC, set admin, lock issuer), signed the LIST attestation and called `list_deal`: **on-chain deal 5, `Listed`, share token `CCWUZY4Z…`, issuer `GAXVC5CW…` locked** (tx `fb29a550…`). Two earlier attempts refused with `LimitExceeded` (packets 02 and 03 cost 47.7k and 28.2k, above the 20,000 qUSD testnet base limit): the contract did its job, so the listing route now pre-checks the importer limit and says by how much the deal is over, contract errors come back as 409 `contract_error`, and a share token created by a failed attempt is reused on retry.
   - Indexer bug found and fixed: the mock chain reused the real contract id, so the flow test left a mock cursor under the live key. Cursor rows are now keyed `<contractId>:<mode>`, a bad cursor resets itself, `getEvents` has a 25 s bound and every job a hard timeout. Live: 27 events archived with the RPC cursor; `GET /events` shows the testnet feed.
   - x402 (SP7): 402 challenge and the lender agent's auth-entry signing work against the OZ facilitator; settlement waits for USDC on `LENDER_AGENT_ADDRESS` (faucet.circle.com).
+- 18:05 (H9.1) `pnpm eval` **12 of 12 live** against Bedrock Qwen (eu-west-1) and **12 of 12 in mock mode** on the refreshed fixtures (`data/eval-output/TABLE-live.md`, `TABLE.md`). Live: 700 s for the twelve packets (47 to 89 s each, 1.9 s for packet 07 through the live LLM cache), $0.20 in total. Full suite green: typecheck for shared, chain, api and lender-agent; tests 11 (shared) + 32 (chain) + 92 (api, incl. the 13-step flow test) = 135.
+
+### Eval table (live, Bedrock Qwen, registry/ShipsGo/OpenSanctions fixtures)
+
+| # | Expected | Actual | Stage | Risk | Latency | Cost (USD) | Result |
+|---|---|---|---|---|---|---|---|
+| 01 | approve | approve | listing | 100 | 65.7 s | 0.0169 | pass |
+| 02 | approve | approve | listing | 100 | 59.6 s | 0.0164 | pass |
+| 03 | approve | approve | shipment | 100 | 89.3 s | 0.0215 | pass |
+| 04 | reject | reject | listing | 0 | 69.6 s | 0.0176 | pass |
+| 05 | review | review | listing | 75 | 56.1 s | 0.0162 | pass |
+| 06 | reject | reject | listing | 60 | 63.2 s | 0.0215 | pass |
+| 07 | reject | reject | listing | 45 | 1.9 s | 0.0004 | pass |
+| 08 | reject | reject | listing | 57 | 50.2 s | 0.0152 | pass |
+| 09 | reject | reject | listing | 60 | 52.9 s | 0.0202 | pass |
+| 10 | reject | reject | shipment | 60 | 85.1 s | 0.0208 | pass |
+| 11 | reject | reject | listing | 57 | 59.6 s | 0.0203 | pass |
+| 12 | review | review | listing | 0 | 46.6 s | 0.0154 | pass |
+| | | | | | 699.8 s | 0.2024 | 12 of 12 |

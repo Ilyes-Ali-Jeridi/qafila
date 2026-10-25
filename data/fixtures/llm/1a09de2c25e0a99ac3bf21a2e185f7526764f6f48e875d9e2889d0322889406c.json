@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:29:10.290Z",
+  "recorded_at": "2026-10-25T16:40:18.645Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -14,13 +14,13 @@
       "type": "invoice",
       "invoice_number": {
         "value": "BC-2026-0930",
-        "evidence": "BC-2026-0930",
+        "evidence": "Invoice No. BC-2026-0930",
         "page": 1,
         "confidence": 0.95
       },
       "invoice_date": {
         "value": "2026-09-30",
-        "evidence": "2026-09-30",
+        "evidence": "Invoice date 2026-09-30",
         "page": 1,
         "confidence": 0.95
       },
@@ -178,7 +178,7 @@
           },
           "unit": {
             "value": "pcs",
-            "evidence": "400 pcs",
+            "evidence": "pcs",
             "page": 1,
             "confidence": 0.95
           },
@@ -222,7 +222,7 @@
           },
           "unit": {
             "value": "kg",
-            "evidence": "5,000 kg",
+            "evidence": "kg",
             "page": 1,
             "confidence": 0.95
           },
@@ -260,8 +260,8 @@
       },
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 16431,
-    "tokensOut": 3419,
+    "tokensIn": 16411,
+    "tokensOut": 3397,
     "repaired": true
   }
 }

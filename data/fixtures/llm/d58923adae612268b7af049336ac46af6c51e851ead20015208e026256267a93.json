@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:04:35.237Z",
+  "recorded_at": "2026-10-25T16:42:47.535Z",
   "mode": "live",
   "input": {
     "stage": "explain",
@@ -11,14 +11,14 @@
   "provider": "bedrock",
   "response": {
     "output": {
-      "summary": "Your deal was rejected because the invoice total does not match the sum of the line items. All other checks passed, including container numbers, dates, quantities, and supplier information. You need to correct the invoice before resubmitting.",
+      "summary": "Your deal was rejected because the invoice total does not match the sum of the line items. All other checks passed, including the container numbers, USCC code, dates, quantities, and goods descriptions. You should ask the supplier for a corrected invoice with accurate totals.",
       "fixes": [
         "Ask the supplier for a corrected invoice whose line amounts add up to the total."
       ],
       "category": "document_integrity"
     },
     "tokensIn": 2194,
-    "tokensOut": 96,
+    "tokensOut": 102,
     "repaired": false
   }
 }

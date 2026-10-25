@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-05",
-    "created_at": "2026-10-25T16:06:00.904Z",
+    "created_at": "2026-10-25T16:43:51.214Z",
     "decision": "review",
     "risk_score": 75,
     "checks": [
@@ -165,7 +165,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not alter the substance.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not contradict the match.",
         "weight": 25,
         "evidence": {
           "a": "1. Motorcycle tyres 2.75-18, 6PR, tube type 摩托车轮胎 2.75-18 6PR | 2. Motorcycle chain and sprocket kits, 428H 摩托车链条链轮套件 428H",
@@ -1003,7 +1003,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not alter the substance.",
+        "reason": "Both lists describe the same two items in the same order, with identical English descriptions; the invoice includes Chinese translations which are not present in the packing list but do not contradict the match.",
         "evidence_a": "1. Motorcycle tyres 2.75-18, 6PR, tube type 摩托车轮胎 2.75-18 6PR | 2. Motorcycle chain and sprocket kits, 428H 摩托车链条链轮套件 428H",
         "evidence_b": "1. Motorcycle tyres 2.75-18, 6PR, tube type | 2. Motorcycle chain and sprocket kits, 428H"
       }
@@ -1030,8 +1030,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16294,
-        "tokens_out": 3199,
+        "tokens_in": 16418,
+        "tokens_out": 3327,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -1052,7 +1052,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4308,
         "tokens_out": 758,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1062,7 +1062,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 858,
         "tokens_out": 198,
-        "latency_ms": 4,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1072,7 +1072,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1180,
         "tokens_out": 85,
-        "latency_ms": 5,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1082,7 +1082,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1916,
         "tokens_out": 111,
-        "latency_ms": 4,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1116,18 +1116,18 @@
       "registry/91500100MA5UE9K1RR.json"
     ],
     "timings_ms": {
-      "intake": 921,
-      "extract": 2,
-      "validate": 0,
-      "stages": 7,
+      "intake": 1015,
+      "extract": 1,
+      "validate": 1,
+      "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 930
+      "total": 1018
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the unit price for motorcycle tyres is far above the reference range. All other checks passed, including document consistency, format, and sanctions screening. Please provide a reason for the high price or a corrected quote.\n\nWhat to fix:\n- Provide a reason for the high unit price of motorcycle tyres (48.00 USD per piece) on the invoice or upload a corrected quote."
   },
-  "report_hash": "95397ddbaba87373324f71f93894c0e1ff7e6f34a3c3852336454b2872aa4f5b",
-  "signature": "445edd6e49e1edf7a2d981b0d7ef3b853b8c1ff445a4facb1f4cd79cfb7e56f0b99a8e2f001fadcbf988a9a1eb26a0f85ab827e0f9ea68341cd14df1e6943f03"
+  "report_hash": "812c3d057df24078caa7aa540b0e776acded3869c45d926d35ea443343584a6b",
+  "signature": "01d7d528e11625a3987592883ce32c24d24d1da778d7c50edf156e32af69994de0a6ddb1be61c6568cc85054699d7f2812c4ef959071709c574e37c3b7f0270f"
 }

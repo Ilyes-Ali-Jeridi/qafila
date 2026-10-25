@@ -3,29 +3,29 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-07",
-    "created_at": "2026-10-25T16:28:08.770Z",
-    "decision": "review",
-    "risk_score": 85,
+    "created_at": "2026-10-25T16:43:52.613Z",
+    "decision": "reject",
+    "risk_score": 45,
     "checks": [
       {
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -170,7 +170,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese translations in invoice).",
         "weight": 25,
         "evidence": {
           "a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
@@ -181,13 +181,13 @@
         "name": "halal.line_1",
         "status": "pass",
         "severity": "critical",
-        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is textiles, clothing and footwear: permitted.",
+        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is electronics and phone accessories: permitted.",
         "weight": 40,
         "evidence": {
           "line": "1. TPU protective cases for smartphones, assorted models",
-          "category": "textiles",
+          "category": "electronics",
           "verdict": "permitted",
-          "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
+          "reason": "TPU protective cases for smartphones are accessories for electronic devices."
         }
       },
       {
@@ -200,7 +200,7 @@
           "line": "2. Tempered glass screen protectors 9H, retail packed",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
+          "reason": "Tempered glass screen protectors are accessories for electronic devices."
         }
       },
       {
@@ -213,7 +213,7 @@
           "line": "3. USB-C charging and data cables, 1 m, nylon braided",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "USB-C charging and data cables are electronic accessories used for connecting and charging devices."
+          "reason": "USB-C charging and data cables are accessories for electronic devices."
         }
       },
       {
@@ -360,9 +360,9 @@
       },
       {
         "name": "fingerprint.listing",
-        "status": "pass",
+        "status": "fail",
         "severity": "critical",
-        "detail": "This invoice has not been financed before.",
+        "detail": "This invoice (INV-LW-2026-1001 of 2026-09-28, 14700.00 USD) was already financed (deal packet-01).",
         "weight": 40,
         "evidence": {
           "fingerprint": "f02f6c179ec1c681c308a447b77bb93471697013e58444e3fab6aad6daa8daaa",
@@ -372,16 +372,24 @@
             "invoice_date": "2026-09-28",
             "total": "14700.00",
             "currency": "USD"
-          }
-        }
+          },
+          "used_by": "packet-01"
+        },
+        "fix": "The same invoice cannot be financed twice. The account goes under review.",
+        "document": "invoice"
       },
       {
         "name": "decision.policy",
         "status": "pass",
         "severity": "info",
-        "detail": "review by policy 5.6: review:deal_structure.",
+        "detail": "reject by policy 5.6: reject:duplicate_invoice, review:deal_structure.",
         "weight": 0,
         "evidence": [
+          {
+            "rule": "duplicate_invoice",
+            "level": "reject",
+            "detail": "The invoice fingerprint was already financed."
+          },
           {
             "rule": "deal_structure",
             "level": "review",
@@ -757,8 +765,8 @@
             "confidence": 0
           },
           "address": {
-            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
-            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "value": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 1, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
             "confidence": 0.98
           },
@@ -923,73 +931,73 @@
         "type": "business_licence",
         "name_zh": {
           "value": "深圳市蓝湾电子有限公司",
-          "evidence": "名称 深圳市蓝湾电子有限公司",
+          "evidence": "深圳市蓝湾电子有限公司",
           "page": 1,
           "confidence": 0.98
         },
         "name_en": {
           "value": "Shenzhen Lanwan Electronics Co., Ltd.",
-          "evidence": "Name Shenzhen Lanwan Electronics Co., Ltd.",
+          "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
           "page": 1,
           "confidence": 0.98
         },
         "uscc": {
           "value": "91440300MA5GK2Q7XL",
-          "evidence": "统一社会信用代码 91440300MA5GK2Q7XL",
+          "evidence": "91440300MA5GK2Q7XL",
           "page": 1,
           "confidence": 0.98
         },
         "legal_representative": {
           "value": "陈伟 (Chen Wei)",
-          "evidence": "法定代表人 陈伟 (Chen Wei)",
+          "evidence": "陈伟 (Chen Wei)",
           "page": 1,
           "confidence": 0.98
         },
         "company_type": {
           "value": "有限责任公司（自然人投资或控股）",
-          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "evidence": "有限责任公司（自然人投资或控股）",
           "page": 1,
           "confidence": 0.98
         },
         "registered_capital": {
           "value": "人民币 500 万元 (RMB 5,000,000)",
-          "evidence": "注册资本 人民币 500 万元 (RMB 5,000,000)",
+          "evidence": "人民币 500 万元 (RMB 5,000,000)",
           "page": 1,
           "confidence": 0.98
         },
         "establishment_date": {
           "value": "2016-03-18",
-          "evidence": "成立日期 2016-03-18",
+          "evidence": "2016-03-18",
           "page": 1,
           "confidence": 0.98
         },
         "business_term": {
           "value": "2016-03-18 至 长期 / to long-term",
-          "evidence": "营业期限 2016-03-18 至 长期 / to long-term",
+          "evidence": "2016-03-18 至 长期 / to long-term",
           "page": 1,
           "confidence": 0.98
         },
         "business_scope": {
           "value": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
-          "evidence": "经营范围 电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
           "page": 1,
           "confidence": 0.98
         },
         "address": {
           "value": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
-          "evidence": "住所 广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+          "evidence": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
           "page": 1,
           "confidence": 0.98
         },
         "registration_authority": {
           "value": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
-          "evidence": "登记机关 Registration authority: 深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+          "evidence": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
           "page": 1,
           "confidence": 0.98
         },
         "issue_date": {
           "value": "2016-06-30",
-          "evidence": "发照日期 Issue date: 2016-06-30",
+          "evidence": "2016-06-30",
           "page": 1,
           "confidence": 0.98
         },
@@ -1085,21 +1093,21 @@
     "halal": [
       {
         "line": "1. TPU protective cases for smartphones, assorted models",
-        "category": "textiles",
+        "category": "electronics",
         "verdict": "permitted",
-        "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
+        "reason": "TPU protective cases for smartphones are accessories for electronic devices."
       },
       {
         "line": "2. Tempered glass screen protectors 9H, retail packed",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
+        "reason": "Tempered glass screen protectors are accessories for electronic devices."
       },
       {
         "line": "3. USB-C charging and data cables, 1 m, nylon braided",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "USB-C charging and data cables are electronic accessories used for connecting and charging devices."
+        "reason": "USB-C charging and data cables are accessories for electronic devices."
       }
     ],
     "consistency": [
@@ -1141,7 +1149,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "reason": "The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese translations in invoice).",
         "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
         "evidence_b": "TPU protective cases for smartphones, assorted models"
       }
@@ -1170,8 +1178,8 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16629,
         "tokens_out": 3653,
-        "latency_ms": 66328,
-        "cost_usd": 0.009372
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
@@ -1179,9 +1187,9 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6173,
-        "tokens_out": 1701,
-        "latency_ms": 34424,
-        "cost_usd": 0.003893
+        "tokens_out": 1733,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -1189,9 +1197,9 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4332,
-        "tokens_out": 759,
-        "latency_ms": 16604,
-        "cost_usd": 0.00221
+        "tokens_out": 713,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -1199,9 +1207,9 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 876,
-        "tokens_out": 106,
-        "latency_ms": 3152,
-        "cost_usd": 0.00039
+        "tokens_out": 107,
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -1209,9 +1217,9 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1201,
-        "tokens_out": 125,
-        "latency_ms": 1967,
-        "cost_usd": 0.000255
+        "tokens_out": 108,
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -1220,22 +1228,22 @@
         "prompt_version": "price.v1",
         "tokens_in": 1960,
         "tokens_out": 177,
-        "latency_ms": 2279,
-        "cost_usd": 0.0004
+        "latency_ms": 0,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2303,
-        "tokens_out": 80,
-        "latency_ms": 2227,
-        "cost_usd": 0.000393
+        "tokens_in": 2360,
+        "tokens_out": 71,
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1243,22 +1251,29 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/2b334978049d5134f7da1b0b6b927e7d057ec4ab68ae30027f7d9b946b8a902e.json",
+      "llm/3e42875d123e552e53d73149909cc6c881c68853cc69039bb12cb68bb487fcfb.json",
+      "llm/41bca718858faa3df96008f6d2fb723e8fa552805709b39d228aa2b0dd0f2bdf.json",
+      "llm/6277988317617f9b71eed19329cd71af02a144f1fac47a0c5731fe5b2bfe347c.json",
+      "llm/6d099f39517e181ef576243df60489c891f53537e19fa5321d663b64aab786ef.json",
+      "llm/965ba17719e4a495b37723ebc75d2610b7b9a8ccb3b7efda139788385e121c09.json",
+      "llm/eb429eb0c6fdfe5f2d48a00246e42dfcc334f4f1fa26cadaa2d2962e2fd79313.json",
       "opensanctions/<fallback>",
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 692,
-      "extract": 66330,
-      "validate": 2,
-      "stages": 3155,
+      "intake": 650,
+      "extract": 1,
+      "validate": 0,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 2227,
-      "total": 72407
+      "explain": 0,
+      "total": 652
     },
-    "cost_usd": 0.016913,
+    "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal needs a review by our team because the invoice buyer refers to the wrong deal number. All other checks passed, including document formats, quantities, prices, and sanctions screening.\n\nWhat to fix:\n- Update the invoice to reference deal 7 in the buyer field."
+    "explanation": "Your deal was rejected because the invoice was already financed. All other checks passed, including document formats, quantities, and price validations.\n\nWhat to fix:\n- The same invoice cannot be financed twice. The account goes under review.\n\nCategory: duplicate"
   },
-  "report_hash": "a8796f530fb63270311ae26489ad34c57aac81b8223d47146eba9992b3c14560",
-  "signature": "3a3c44ac51c97eab955514ba889f34a9ac085b4cbf39d543ce3aa0dce81c419943df7755c59359409735fd5a69d3a316460d3fc0684b09bed98063764e4ca705"
+  "report_hash": "3632c09def75c1c1c4d33b0a86ef44cf3c1d04ad51d4c8e2257d87040cbb92d5",
+  "signature": "511b7921207a35f9144229d3f8e5e38f8e7c581ed53e57f2a6693b7d643ed62bcb1a7f160f31956df3932171c9b820a62c5006cd58b09f9bac873e83922a7c05"
 }

@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:04:31.993Z",
+  "recorded_at": "2026-10-25T16:42:43.545Z",
   "mode": "live",
   "input": {
     "stage": "price",
@@ -24,12 +24,12 @@
           "category": "none",
           "unit_matches": true,
           "unit_price_per_reference_unit": 9,
-          "note": "Not in reference categories; HS 7016 is not listed."
+          "note": "Not in reference categories."
         }
       ]
     },
     "tokensIn": 1919,
-    "tokensOut": 115,
+    "tokensOut": 105,
     "repaired": false
   }
 }

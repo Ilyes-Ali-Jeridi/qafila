@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:03:12.272Z",
+  "recorded_at": "2026-10-25T16:41:13.310Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -15,14 +15,14 @@
         {
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
-          "reason": "Both descriptions match exactly in English; the invoice includes Chinese translation which does not contradict the English text.",
+          "reason": "Both values describe identical goods: monocrystalline solar modules with 550 W, half-cut cells, and 144 cells; the Chinese text in A is a translation and does not alter the substance.",
           "evidence_a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
           "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
         }
       ]
     },
     "tokensIn": 821,
-    "tokensOut": 140,
+    "tokensOut": 166,
     "repaired": false
   }
 }

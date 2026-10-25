@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:02:35.015Z",
+  "recorded_at": "2026-10-25T16:40:35.500Z",
   "mode": "live",
   "input": {
     "stage": "extract.business_licence",
@@ -61,14 +61,14 @@
         "confidence": 0.98
       },
       "business_scope": {
-        "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
-        "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+        "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+        "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
         "page": 1,
         "confidence": 0.98
       },
       "address": {
-        "value": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
-        "evidence": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+        "value": "江苏省苏州市吴中区光耀路100号",
+        "evidence": "江苏省苏州市吴中区光耀路100号",
         "page": 1,
         "confidence": 0.98
       },
@@ -87,7 +87,7 @@
       "hidden_or_suspicious_text": []
     },
     "tokensIn": 4329,
-    "tokensOut": 817,
+    "tokensOut": 727,
     "repaired": false
   }
 }

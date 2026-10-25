@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:39:47.626Z",
+  "recorded_at": "2026-10-25T16:38:36.765Z",
   "mode": "live",
   "input": {
     "stage": "consistency.listing",
@@ -15,14 +15,14 @@
         {
           "field": "goods_invoice_vs_packing_list",
           "match": "yes",
-          "reason": "The goods descriptions match line by line in substance, with the invoice including Chinese translations that do not alter the meaning.",
+          "reason": "The goods descriptions match line by line; the invoice includes Chinese translations which are absent in the packing list, but the English descriptions are identical.",
           "evidence_a": "1. Electric kettles 1.8 L, stainless steel, 1500 W 不锈钢电热水壶 1.8L 1500W | 2. Electric rice cookers 2.8 L, non-stick pot 电饭煲 2.8L 不粘内胆 | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc. 赤霞珠干红葡萄酒 750ml 13%",
           "evidence_b": "1. Electric kettles 1.8 L, stainless steel, 1500 W | 2. Electric rice cookers 2.8 L, non-stick pot | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc."
         }
       ]
     },
     "tokensIn": 930,
-    "tokensOut": 255,
+    "tokensOut": 260,
     "repaired": false
   }
 }

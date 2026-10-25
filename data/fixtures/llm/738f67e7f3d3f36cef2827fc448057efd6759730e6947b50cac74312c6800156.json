@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:03:44.796Z",
+  "recorded_at": "2026-10-25T16:41:47.964Z",
   "mode": "live",
   "input": {
     "stage": "explain",
@@ -11,14 +11,14 @@
   "provider": "bedrock",
   "response": {
     "output": {
-      "summary": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed.",
+      "summary": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed, including document consistency, sanctions, and shipment tracking status. Please correct the vessel name on the bill of lading to match the tracking record.",
       "fixes": [
-        "Update the vessel name on the bill of lading to match the carrier tracking record (MSC AURORA)."
+        "Correct the vessel name on the bill of lading to match the carrier tracking record."
       ],
       "category": "shipment_mismatch"
     },
-    "tokensIn": 2703,
-    "tokensOut": 83,
+    "tokensIn": 2736,
+    "tokensOut": 106,
     "repaired": false
   }
 }

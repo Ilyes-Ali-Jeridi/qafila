@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:37:38.244Z",
+  "recorded_at": "2026-10-25T16:35:28.900Z",
   "mode": "live",
   "input": {
     "stage": "explain",
@@ -11,12 +11,12 @@
   "provider": "bedrock",
   "response": {
     "output": {
-      "summary": "Your deal is approved for listing because all required checks passed. All documents are consistent, the shipment is verified, and no sanctions or duplicates were found. You can proceed with the deal.",
+      "summary": "Your deal is approved for listing because all required checks passed. All documents are consistent, the company is active and not sanctioned, and the shipment details match. You can proceed with the deal.",
       "fixes": [],
       "category": null
     },
-    "tokensIn": 2669,
-    "tokensOut": 67,
+    "tokensIn": 2711,
+    "tokensOut": 68,
     "repaired": false
   }
 }

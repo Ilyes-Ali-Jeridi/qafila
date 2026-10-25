@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-08",
-    "created_at": "2026-10-25T16:06:03.774Z",
+    "created_at": "2026-10-25T16:43:53.398Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -163,7 +163,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the substance.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the meaning.",
         "weight": 25,
         "evidence": {
           "a": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton LED球泡灯 E27 9W 6500K",
@@ -335,50 +335,50 @@
           "value": "JC-2026-1001",
           "evidence": "Invoice No. JC-2026-1001",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "invoice_date": {
           "value": "2026-10-01",
           "evidence": "Invoice date 2026-10-01",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "invoice_kind": {
           "value": "proforma",
           "evidence": "PROFORMA INVOICE",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "seller": {
           "name_en": {
             "value": "Dongguan Jiucheng Trading Co., Ltd.",
             "evidence": "Dongguan Jiucheng Trading Co., Ltd.",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": "东莞市旧城贸易有限公司",
             "evidence": "东莞市旧城贸易有限公司",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "uscc": {
             "value": "91441900MA4Y7P2D5P",
             "evidence": "USCC 91441900MA4Y7P2D5P",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "address": {
             "value": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
             "evidence": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "country": {
             "value": "CN",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         },
         "buyer": {
@@ -386,7 +386,7 @@
             "value": "Qafila Trade, deal 8",
             "evidence": "Qafila Trade, deal 8",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": null,
@@ -404,13 +404,13 @@
             "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "country": {
             "value": "PT",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         },
         "consignee": {
@@ -418,7 +418,7 @@
             "value": "TO ORDER OF QAFILA TRADE, DEAL 8",
             "evidence": "TO ORDER OF QAFILA TRADE, DEAL 8",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": null,
@@ -449,25 +449,25 @@
           "value": "Adewale Trading Ltd",
           "evidence": "Adewale Trading Ltd",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "incoterms": {
           "value": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
           "evidence": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "currency": {
           "value": "USD",
           "evidence": "USD",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total": {
           "value": 14000,
           "evidence": "USD 14,000.00",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "line_items": [
           {
@@ -475,43 +475,43 @@
               "value": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
               "evidence": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "description_zh": {
               "value": "LED球泡灯 E27 9W 6500K",
               "evidence": "LED球泡灯 E27 9W 6500K",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "hs_code": {
               "value": "853950",
               "evidence": "853950",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "quantity": {
               "value": 20000,
               "evidence": "20,000 pcs",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "unit": {
               "value": "pcs",
               "evidence": "pcs",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "unit_price": {
               "value": 0.7,
               "evidence": "0.70",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "line_total": {
               "value": 14000,
               "evidence": "14,000.00",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             }
           }
         ],
@@ -519,19 +519,19 @@
           "value": "Shenzhen (Yantian), China (CNYTN)",
           "evidence": "Shenzhen (Yantian), China (CNYTN)",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "port_of_discharge": {
           "value": "Lagos (Apapa), Nigeria (NGAPP)",
           "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "payment_terms": {
           "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "hidden_or_suspicious_text": []
       },
@@ -541,50 +541,50 @@
           "value": "PL-JC-2026-1001",
           "evidence": "No. PL-JC-2026-1001",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "date": {
           "value": "2026-10-02",
           "evidence": "Date 2026-10-02",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "invoice_number": {
           "value": "JC-2026-1001",
           "evidence": "Invoice No. JC-2026-1001",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "seller": {
           "name_en": {
             "value": "Dongguan Jiucheng Trading Co., Ltd.",
             "evidence": "Dongguan Jiucheng Trading Co., Ltd.",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": "东莞市旧城贸易有限公司",
             "evidence": "东莞市旧城贸易有限公司",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "uscc": {
             "value": "91441900MA4Y7P2D5P",
             "evidence": "USCC 91441900MA4Y7P2D5P",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "address": {
             "value": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
             "evidence": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "country": {
             "value": "China",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         },
         "buyer": {
@@ -592,7 +592,7 @@
             "value": "Qafila Trade, deal 8, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Qafila Trade, deal 8, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": null,
@@ -610,13 +610,13 @@
             "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "country": {
             "value": "Portugal",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         },
         "items": [
@@ -625,37 +625,37 @@
               "value": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
               "evidence": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "quantity": {
               "value": 20000,
               "evidence": "20,000 pcs",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "packages": {
               "value": 200,
               "evidence": "200 CTNS",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "gross_weight_kg": {
               "value": 2400,
               "evidence": "2,400.0",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "net_weight_kg": {
               "value": 2000,
               "evidence": "2,000.0",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "cbm": {
               "value": 12,
               "evidence": "12.00",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             }
           }
         ],
@@ -663,32 +663,32 @@
           "value": 200,
           "evidence": "200 CTNS",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total_gross_weight_kg": {
           "value": 2400,
           "evidence": "2,400.0",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total_net_weight_kg": {
           "value": 2000,
           "evidence": "2,000.0",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total_cbm": {
           "value": 12,
           "evidence": "12.00",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "container_numbers": [
           {
             "value": "HLXU8300215",
             "evidence": "HLXU8300215",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         ],
         "hidden_or_suspicious_text": []
@@ -877,7 +877,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the substance.",
+        "reason": "Both descriptions match exactly in content and order, with the invoice including an additional Chinese translation that does not alter the meaning.",
         "evidence_a": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton LED球泡灯 E27 9W 6500K",
         "evidence_b": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton"
       }
@@ -906,7 +906,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16078,
         "tokens_out": 2924,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -926,7 +926,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4345,
         "tokens_out": 800,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -936,7 +936,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 822,
         "tokens_out": 145,
-        "latency_ms": 2,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -990,13 +990,13 @@
       "registry/91441900MA4Y7P2D5P.json"
     ],
     "timings_ms": {
-      "intake": 1157,
-      "extract": 2,
+      "intake": 779,
+      "extract": 1,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 1162
+      "explain": 0,
+      "total": 782
     },
     "cost_usd": 0,
     "injection_attempts": [
@@ -1004,6 +1004,6 @@
     ],
     "explanation": "Your deal was rejected because the supplier is not an active company. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- The supplier is not an active company; the deal cannot proceed with this supplier.\n\nCategory: document integrity"
   },
-  "report_hash": "3a8927f77b0d677a93ca60a2be5a1a4cc19d999eebb5584369b9e4a762424f2e",
-  "signature": "63f261e0f15b4d12a209b7d51b5cd9921e6311fbacd159a7756f1ee9366e42a169ae3c9cce632fcc808c2e84e657bc1ca9f621818c7a22b381cf218a8ccb3704"
+  "report_hash": "1c169e4d5d1241c5e71fc37e6840e289360b675020fdfababc0e412b752be2f1",
+  "signature": "4c2ca176fbbaec5fa5d9109ce7b741c4603e41e0a6406239ff6a80975329300b8b6dad3fd679c83a0e73531e1fd2a5f4da1362f55d3cc633f1beba2601cd2206"
 }

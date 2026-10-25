@@ -3,9 +3,9 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-04",
-    "created_at": "2026-10-25T16:05:59.971Z",
+    "created_at": "2026-10-25T16:43:50.194Z",
     "decision": "reject",
-    "risk_score": 60,
+    "risk_score": 0,
     "checks": [
       {
         "name": "extraction.invoice",
@@ -56,16 +56,19 @@
       },
       {
         "name": "validators.arithmetic",
-        "status": "pass",
-        "severity": "critical",
-        "detail": "1 line amounts equal quantity x unit price and add up to the printed total 13920.00 USD.",
-        "weight": 40,
+        "status": "review",
+        "severity": "high",
+        "detail": "The invoice total or the line amounts could not be read.",
+        "weight": 25,
         "evidence": {
           "line_errors": [],
-          "sum_of_lines": 13920,
+          "sum_of_lines": 0,
           "printed_total": 13920,
-          "missing_lines": 0
-        }
+          "missing_lines": 7
+        },
+        "fix": "Upload a clearer invoice showing every line amount and the total.",
+        "document": "invoice",
+        "field": "total"
       },
       {
         "name": "validators.dates",
@@ -83,18 +86,27 @@
       },
       {
         "name": "validators.quantities",
-        "status": "pass",
+        "status": "review",
         "severity": "high",
-        "detail": "Quantities match on 1 line(s) between the invoice and the packing list.",
+        "detail": "Quantities differ: 7 invoice lines vs 1 packing list lines.",
         "weight": 25,
         "evidence": {
           "invoice": [
-            2400
+            null,
+            null,
+            null,
+            2400,
+            null,
+            null,
+            null
           ],
           "packing_list": [
             2400
           ]
-        }
+        },
+        "fix": "The packed quantities must equal the invoiced quantities line by line.",
+        "document": "packing_list",
+        "field": "items"
       },
       {
         "name": "validators.formats",
@@ -170,10 +182,10 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The packing list description is a subset of the invoice description; both refer to the same item with identical specifications.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in wording, specifications, and order.",
         "weight": 25,
         "evidence": {
-          "a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA 600x600 哑光釉面地砖 优等品",
+          "a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
           "b": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA"
         }
       },
@@ -191,25 +203,143 @@
         }
       },
       {
-        "name": "price.ceramic_floor_tiles",
+        "name": "halal.line_2",
         "status": "pass",
+        "severity": "critical",
+        "detail": "Line 2 (600x600 哑光釉面地砖 优等品) is building materials and hardware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "2. 600x600 哑光釉面地砖 优等品",
+          "category": "building_materials",
+          "verdict": "permitted",
+          "reason": "600x600 哑光釉面地砖 (matte glazed ceramic floor tiles) are a type of building material."
+        }
+      },
+      {
+        "name": "halal.line_3",
+        "status": "pass",
+        "severity": "critical",
+        "detail": "Line 3 (line 3) is building materials and hardware: permitted.",
+        "weight": 40,
+        "evidence": {
+          "line": "3. line 3",
+          "category": "building_materials",
+          "verdict": "permitted",
+          "reason": "HS 690721 refers to ceramic tiles, which are a type of building material."
+        }
+      },
+      {
+        "name": "halal.line_4",
+        "status": "review",
         "severity": "high",
-        "detail": "Line 1 (Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA): 5.80 USD per sqm vs reference 3.5 to 9 (ceramic_floor_tiles, 0.93x the midpoint).",
+        "detail": "Line 4 (line 4) is nothing in the policy fits: the policy asks for a review.",
         "weight": 25,
         "evidence": {
-          "line": "1. Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
-          "category": "ceramic_floor_tiles",
-          "unit_price_usd": 5.8,
-          "reference_low_usd": 3.5,
-          "reference_high_usd": 9,
-          "ratio_to_mid": 0.928,
-          "fx": {
-            "from": "USD",
-            "rate": 1,
-            "source": "none"
-          },
-          "status": "pass"
-        }
+          "line": "4. line 4",
+          "category": "unclassified",
+          "verdict": "review",
+          "reason": "No description is provided for this line item."
+        },
+        "fix": "Provide certification or details for this line, or remove it.",
+        "document": "invoice",
+        "field": "line_items[3]"
+      },
+      {
+        "name": "halal.line_5",
+        "status": "review",
+        "severity": "high",
+        "detail": "Line 5 (line 5) is nothing in the policy fits: the policy asks for a review.",
+        "weight": 25,
+        "evidence": {
+          "line": "5. line 5",
+          "category": "unclassified",
+          "verdict": "review",
+          "reason": "No description is provided for this line item."
+        },
+        "fix": "Provide certification or details for this line, or remove it.",
+        "document": "invoice",
+        "field": "line_items[4]"
+      },
+      {
+        "name": "halal.line_6",
+        "status": "review",
+        "severity": "high",
+        "detail": "Line 6 (line 6) is nothing in the policy fits: the policy asks for a review.",
+        "weight": 25,
+        "evidence": {
+          "line": "6. line 6",
+          "category": "unclassified",
+          "verdict": "review",
+          "reason": "No description is provided for this line item."
+        },
+        "fix": "Provide certification or details for this line, or remove it.",
+        "document": "invoice",
+        "field": "line_items[5]"
+      },
+      {
+        "name": "halal.line_7",
+        "status": "review",
+        "severity": "high",
+        "detail": "Line 7 (line 7) is nothing in the policy fits: the policy asks for a review.",
+        "weight": 25,
+        "evidence": {
+          "line": "7. line 7",
+          "category": "unclassified",
+          "verdict": "review",
+          "reason": "No description is provided for this line item."
+        },
+        "fix": "Provide certification or details for this line, or remove it.",
+        "document": "invoice",
+        "field": "line_items[6]"
+      },
+      {
+        "name": "price.ceramic_floor_tiles",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 1 (Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA): no reference category in the table (Line 1 matches ceramic_floor_tiles by description and HS code.).",
+        "weight": 0
+      },
+      {
+        "name": "price.ceramic_floor_tiles",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 2 (600x600 哑光釉面地砖 优等品): no reference category in the table (Line 2 matches ceramic_floor_tiles by description and HS code.).",
+        "weight": 0
+      },
+      {
+        "name": "price.ceramic_floor_tiles",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 3 (line 3): no reference category in the table (Line 3 matches ceramic_floor_tiles by HS code.).",
+        "weight": 0
+      },
+      {
+        "name": "price.line_4",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 4 (line 4): no reference category in the table (Line 4 lacks sufficient detail to map.).",
+        "weight": 0
+      },
+      {
+        "name": "price.ceramic_floor_tiles",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 5 (line 5): no reference category in the table (Line 5 matches ceramic_floor_tiles by unit and context.).",
+        "weight": 0
+      },
+      {
+        "name": "price.line_6",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 6 (line 6): no reference category in the table (Line 6 lacks sufficient detail to map.).",
+        "weight": 0
+      },
+      {
+        "name": "price.line_7",
+        "status": "skipped",
+        "severity": "low",
+        "detail": "Line 7 (line 7): no reference category in the table (Line 7 lacks sufficient detail to map.).",
+        "weight": 0
       },
       {
         "name": "registry.status",
@@ -311,13 +441,28 @@
         "name": "decision.policy",
         "status": "pass",
         "severity": "info",
-        "detail": "reject by policy 5.6: reject:container_check_digit.",
+        "detail": "reject by policy 5.6: reject:container_check_digit, reject:arithmetic, review:halal_review, review:quantities.",
         "weight": 0,
         "evidence": [
           {
             "rule": "container_check_digit",
             "level": "reject",
             "detail": "A container number fails its check digit."
+          },
+          {
+            "rule": "arithmetic",
+            "level": "reject",
+            "detail": "Invoice arithmetic is off by 100.0%."
+          },
+          {
+            "rule": "halal_review",
+            "level": "review",
+            "detail": "A line item needs a halal review."
+          },
+          {
+            "rule": "quantities",
+            "level": "review",
+            "detail": "Quantities differ between the invoice and the packing list."
           }
         ]
       }
@@ -369,7 +514,7 @@
             "confidence": 0.95
           },
           "country": {
-            "value": "China",
+            "value": "CN",
             "evidence": "China",
             "page": 1,
             "confidence": 0.95
@@ -383,10 +528,10 @@
             "confidence": 0.95
           },
           "name_zh": {
-            "value": null,
-            "evidence": null,
-            "page": null,
-            "confidence": 0
+            "value": "Qafila Trade, deal 4",
+            "evidence": "Qafila Trade, deal 4",
+            "page": 1,
+            "confidence": 0.95
           },
           "uscc": {
             "value": null,
@@ -401,7 +546,7 @@
             "confidence": 0.95
           },
           "country": {
-            "value": "Portugal",
+            "value": "PT",
             "evidence": "Portugal",
             "page": 1,
             "confidence": 0.95
@@ -415,10 +560,10 @@
             "confidence": 0.95
           },
           "name_zh": {
-            "value": null,
-            "evidence": null,
-            "page": null,
-            "confidence": 0
+            "value": "TO ORDER OF QAFILA TRADE, DEAL 4",
+            "evidence": "TO ORDER OF QAFILA TRADE, DEAL 4",
+            "page": 1,
+            "confidence": 0.95
           },
           "uscc": {
             "value": null,
@@ -472,10 +617,98 @@
               "confidence": 0.95
             },
             "description_zh": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "hs_code": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "quantity": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit_price": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "line_total": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            }
+          },
+          {
+            "description_en": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "description_zh": {
               "value": "600x600 哑光釉面地砖 优等品",
               "evidence": "600x600 哑光釉面地砖 优等品",
               "page": 1,
               "confidence": 0.95
+            },
+            "hs_code": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "quantity": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit_price": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "line_total": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            }
+          },
+          {
+            "description_en": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "description_zh": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
             },
             "hs_code": {
               "value": "690721",
@@ -484,10 +717,98 @@
               "confidence": 0.95
             },
             "quantity": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit_price": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "line_total": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            }
+          },
+          {
+            "description_en": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "description_zh": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "hs_code": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "quantity": {
               "value": 2400,
-              "evidence": "2,400",
+              "evidence": "2,400 sqm",
               "page": 1,
               "confidence": 0.95
+            },
+            "unit": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit_price": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "line_total": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            }
+          },
+          {
+            "description_en": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "description_zh": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "hs_code": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "quantity": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
             },
             "unit": {
               "value": "sqm",
@@ -496,10 +817,98 @@
               "confidence": 0.95
             },
             "unit_price": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "line_total": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            }
+          },
+          {
+            "description_en": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "description_zh": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "hs_code": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "quantity": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit_price": {
               "value": 5.8,
               "evidence": "5.80",
               "page": 1,
               "confidence": 0.95
+            },
+            "line_total": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            }
+          },
+          {
+            "description_en": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "description_zh": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "hs_code": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "quantity": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
+            },
+            "unit_price": {
+              "value": null,
+              "evidence": null,
+              "page": null,
+              "confidence": 0
             },
             "line_total": {
               "value": 13920,
@@ -601,8 +1010,8 @@
             "confidence": 0
           },
           "address": {
-            "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
-            "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "value": "Qafila Trade, deal 4, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
+            "evidence": "Qafila Trade, deal 4, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
             "confidence": 0.98
           },
@@ -691,73 +1100,73 @@
         "type": "business_licence",
         "name_zh": {
           "value": "佛山市晶鑫陶瓷有限公司",
-          "evidence": "名称 佛山市晶鑫陶瓷有限公司",
+          "evidence": "佛山市晶鑫陶瓷有限公司",
           "page": 1,
           "confidence": 0.98
         },
         "name_en": {
           "value": "Foshan Jingxin Ceramics Co., Ltd.",
-          "evidence": "Name Foshan Jingxin Ceramics Co., Ltd.",
+          "evidence": "Foshan Jingxin Ceramics Co., Ltd.",
           "page": 1,
           "confidence": 0.98
         },
         "uscc": {
           "value": "91440600MA4WJ3T8YU",
-          "evidence": "统一社会信用代码 91440600MA4WJ3T8YU",
+          "evidence": "91440600MA4WJ3T8YU",
           "page": 1,
           "confidence": 0.98
         },
         "legal_representative": {
           "value": "黄志强 (Huang Zhiqiang)",
-          "evidence": "法定代表人 黄志强 (Huang Zhiqiang)",
+          "evidence": "黄志强 (Huang Zhiqiang)",
           "page": 1,
           "confidence": 0.98
         },
         "company_type": {
           "value": "有限责任公司（自然人投资或控股）",
-          "evidence": "类型 有限责任公司（自然人投资或控股）",
+          "evidence": "有限责任公司（自然人投资或控股）",
           "page": 1,
           "confidence": 0.98
         },
         "registered_capital": {
           "value": "人民币 2,000 万元 (RMB 20,000,000)",
-          "evidence": "注册资本 人民币 2,000 万元 (RMB 20,000,000)",
+          "evidence": "人民币 2,000 万元 (RMB 20,000,000)",
           "page": 1,
           "confidence": 0.98
         },
         "establishment_date": {
           "value": "2009-05-15",
-          "evidence": "成立日期 2009-05-15",
+          "evidence": "2009-05-15",
           "page": 1,
           "confidence": 0.98
         },
         "business_term": {
           "value": "2009-05-15 至 长期 / to long-term",
-          "evidence": "营业期限 2009-05-15 至 长期 / to long-term",
+          "evidence": "2009-05-15 至 长期 / to long-term",
           "page": 1,
           "confidence": 0.98
         },
         "business_scope": {
           "value": "建筑陶瓷、瓷砖的生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）\nProduction and sale of architectural ceramics and tiles; import and export of goods.",
-          "evidence": "经营范围 建筑陶瓷、瓷砖的生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）\nProduction and sale of architectural ceramics and tiles; import and export of goods.",
+          "evidence": "建筑陶瓷、瓷砖的生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）\nProduction and sale of architectural ceramics and tiles; import and export of goods.",
           "page": 1,
           "confidence": 0.98
         },
         "address": {
           "value": "广东省佛山市禅城区南庄镇陶博大道88号\nNo. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
-          "evidence": "住所 广东省佛山市禅城区南庄镇陶博大道88号\nNo. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
+          "evidence": "广东省佛山市禅城区南庄镇陶博大道88号\nNo. 88 Taobo Avenue, Nanzhuang, Chancheng District, Foshan, Guangdong, China",
           "page": 1,
           "confidence": 0.98
         },
         "registration_authority": {
           "value": "佛山市市场监督管理局 / Foshan Administration for Market Regulation",
-          "evidence": "登记机关 Registration authority: 佛山市市场监督管理局 / Foshan Administration for Market Regulation",
+          "evidence": "佛山市市场监督管理局 / Foshan Administration for Market Regulation",
           "page": 1,
           "confidence": 0.98
         },
         "issue_date": {
           "value": "2009-06-30",
-          "evidence": "发照日期 Issue date: 2009-06-30",
+          "evidence": "2009-06-30",
           "page": 1,
           "confidence": 0.98
         },
@@ -810,16 +1219,72 @@
       {
         "line": "1. Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
         "category": "ceramic_floor_tiles",
-        "unit_price_usd": 5.8,
-        "reference_low_usd": 3.5,
-        "reference_high_usd": 9,
-        "ratio_to_mid": 0.928,
-        "fx": {
-          "from": "USD",
-          "rate": 1,
-          "source": "none"
-        },
-        "status": "pass"
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
+      },
+      {
+        "line": "2. 600x600 哑光釉面地砖 优等品",
+        "category": "ceramic_floor_tiles",
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
+      },
+      {
+        "line": "3. line 3",
+        "category": "ceramic_floor_tiles",
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
+      },
+      {
+        "line": "4. line 4",
+        "category": null,
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
+      },
+      {
+        "line": "5. line 5",
+        "category": "ceramic_floor_tiles",
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
+      },
+      {
+        "line": "6. line 6",
+        "category": null,
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
+      },
+      {
+        "line": "7. line 7",
+        "category": null,
+        "unit_price_usd": null,
+        "reference_low_usd": null,
+        "reference_high_usd": null,
+        "ratio_to_mid": null,
+        "fx": null,
+        "status": "skipped"
       }
     ],
     "halal": [
@@ -828,6 +1293,42 @@
         "category": "building_materials",
         "verdict": "permitted",
         "reason": "Glazed ceramic floor tiles are a type of building material used for flooring."
+      },
+      {
+        "line": "2. 600x600 哑光釉面地砖 优等品",
+        "category": "building_materials",
+        "verdict": "permitted",
+        "reason": "600x600 哑光釉面地砖 (matte glazed ceramic floor tiles) are a type of building material."
+      },
+      {
+        "line": "3. line 3",
+        "category": "building_materials",
+        "verdict": "permitted",
+        "reason": "HS 690721 refers to ceramic tiles, which are a type of building material."
+      },
+      {
+        "line": "4. line 4",
+        "category": "unclassified",
+        "verdict": "review",
+        "reason": "No description is provided for this line item."
+      },
+      {
+        "line": "5. line 5",
+        "category": "unclassified",
+        "verdict": "review",
+        "reason": "No description is provided for this line item."
+      },
+      {
+        "line": "6. line 6",
+        "category": "unclassified",
+        "verdict": "review",
+        "reason": "No description is provided for this line item."
+      },
+      {
+        "line": "7. line 7",
+        "category": "unclassified",
+        "verdict": "review",
+        "reason": "No description is provided for this line item."
       }
     ],
     "consistency": [
@@ -869,8 +1370,8 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "The packing list description is a subset of the invoice description; both refer to the same item with identical specifications.",
-        "evidence_a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA 600x600 哑光釉面地砖 优等品",
+        "reason": "The goods descriptions are identical in wording, specifications, and order.",
+        "evidence_a": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA",
         "evidence_b": "Glazed ceramic floor tiles 600 x 600 mm, matt, grade AAA"
       }
     ],
@@ -896,8 +1397,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16161,
-        "tokens_out": 2969,
+        "tokens_in": 17127,
+        "tokens_out": 4272,
         "latency_ms": 0,
         "cost_usd": 0
       },
@@ -907,8 +1408,8 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6092,
-        "tokens_out": 1269,
-        "latency_ms": 0,
+        "tokens_out": 1301,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -917,8 +1418,8 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4321,
-        "tokens_out": 859,
-        "latency_ms": 0,
+        "tokens_out": 817,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -926,9 +1427,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
-        "tokens_in": 818,
-        "tokens_out": 139,
-        "latency_ms": 0,
+        "tokens_in": 798,
+        "tokens_out": 110,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -936,8 +1437,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
-        "tokens_in": 1142,
-        "tokens_out": 53,
+        "tokens_in": 1180,
+        "tokens_out": 256,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -946,8 +1447,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "price.v1",
-        "tokens_in": 1865,
-        "tokens_out": 63,
+        "tokens_in": 1980,
+        "tokens_out": 331,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -956,8 +1457,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2037,
-        "tokens_out": 116,
+        "tokens_in": 2395,
+        "tokens_out": 176,
         "latency_ms": 0,
         "cost_usd": 0
       }
@@ -972,28 +1473,28 @@
     },
     "fixtures_used": [
       "llm/13990c5deb6b01a854340a34057d45db51a4422d03bb4001119e8e0443d11a4f.json",
-      "llm/1dbbf9a6dc2b4e023f1d3aea8f3a3c187524746fd9b92a1906603b80047ba6d6.json",
+      "llm/2e677a6ecbb1ed312488f244fe7434d106ea162c15a7bf61ba8a9d9b7f0fb534.json",
       "llm/3ee7fcad033b4d02f62441a83b86894253da2d5c1dfcd69e5212ea3eae7af1ef.json",
-      "llm/41cfd79a3f61a9737c5f4b3d1a11ac49bd700a4e1d54bcc6d97900e5d2e8444c.json",
-      "llm/783d69b83075fd07aa8477c8eb993010b6bbb2b7b449a151ef0676231e75e9c2.json",
-      "llm/7995e6c7cbb777a8d9b7aff1b35631cd396644b0a2b76f0bd1119f4e4cb2cb96.json",
+      "llm/65d75133c6b8ab3c6685b874f1c86e9f02a8382c26203a105f1a2dcc05d48975.json",
       "llm/831d7628582673bee357f1bab2791a4f3ad1305e25b7cf61ee8acaadcbb22926.json",
+      "llm/a37fac6b031e8497be59fd2f2759daefe69747a467ac0230705e9f92cf8edae5.json",
+      "llm/abbc58e8f76328a6406fc604d4ffa1246dc08238cb8170e2f02cc98ed002ea1c.json",
       "opensanctions/<fallback>",
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 544,
+      "intake": 634,
       "extract": 1,
-      "validate": 1,
-      "stages": 1,
+      "validate": 0,
+      "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 547
+      "total": 637
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal was rejected because the container number on the packing list failed the ISO 6346 check digit. All other checks passed, including the USCC code, pricing, and document consistency. Please correct the container number and resubmit the packing list.\n\nWhat to fix:\n- Correct the container number on the packing list. Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.\n\nCategory: document integrity"
+    "explanation": "Your deal was rejected because the container number is invalid and some invoice details are unclear. The USCC code and dates passed. Please correct the container number and upload a clearer invoice with all line items and quantities matching.\n\nWhat to fix:\n- Ask the supplier or carrier for the correct container number; a typo of one character changes the check digit.\n- Upload a clearer invoice showing every line amount and the total.\n- The packed quantities must equal the invoiced quantities line by line.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n- Provide certification or details for this line, or remove it.\n\nCategory: document integrity"
   },
-  "report_hash": "9bb9af73fd3df88a8163fcd80eecc6c8f55cdfb7472cd2ec8157abe3490dc6b0",
-  "signature": "1efd10120dbdf96bf34176252928845873c2e9ee175571cfc9e5133f9209b3851c9ea0b2c65326bb71745760c225caa4334800bdd9ee6ea28711a0b6322d7e08"
+  "report_hash": "f6bef4404b503da8f85addfbd0b1c2b699090b8ffd45bc9a976bf7faf839ccfa",
+  "signature": "2488b14777f0bcc9e4f175b777dc2b65471d6f0fc6457b6102004aa779b058c4344b643233d2b6a5d7792071219a55fcadd16a9aee98828e24e79529b267d907"
 }

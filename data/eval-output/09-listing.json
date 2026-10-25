@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-09",
-    "created_at": "2026-10-25T16:29:13.912Z",
+    "created_at": "2026-10-25T16:43:54.029Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -11,21 +11,21 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), live, one repair round).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), live).",
+        "detail": "packing list read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.business_licence",
         "status": "pass",
         "severity": "info",
-        "detail": "business licence read (1 page(s), live).",
+        "detail": "business licence read (1 page(s), mock).",
         "weight": 0
       },
       {
@@ -183,7 +183,7 @@
           "line": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body",
           "category": "machinery",
           "verdict": "permitted",
-          "reason": "Centrifugal water pumps are classified under machinery and tools for their function as mechanical equipment."
+          "reason": "Centrifugal water pumps are classified under machinery and tools for water management."
         }
       },
       {
@@ -196,7 +196,7 @@
           "line": "2. PVC pressure pipes, 2 inch, 4 m lengths",
           "category": "building_materials",
           "verdict": "permitted",
-          "reason": "PVC pressure pipes are used in construction and plumbing, fitting the building materials category."
+          "reason": "PVC pressure pipes are building materials used in plumbing and construction."
         }
       },
       {
@@ -360,13 +360,13 @@
         "type": "invoice",
         "invoice_number": {
           "value": "BC-2026-0930",
-          "evidence": "BC-2026-0930",
+          "evidence": "Invoice No. BC-2026-0930",
           "page": 1,
           "confidence": 0.95
         },
         "invoice_date": {
           "value": "2026-09-30",
-          "evidence": "2026-09-30",
+          "evidence": "Invoice date 2026-09-30",
           "page": 1,
           "confidence": 0.95
         },
@@ -524,7 +524,7 @@
             },
             "unit": {
               "value": "pcs",
-              "evidence": "400 pcs",
+              "evidence": "pcs",
               "page": 1,
               "confidence": 0.95
             },
@@ -568,7 +568,7 @@
             },
             "unit": {
               "value": "kg",
-              "evidence": "5,000 kg",
+              "evidence": "kg",
               "page": 1,
               "confidence": 0.95
             },
@@ -612,50 +612,50 @@
           "value": "PL-BC-2026-0930",
           "evidence": "No. PL-BC-2026-0930",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "date": {
           "value": "2026-10-01",
           "evidence": "Date 2026-10-01",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "invoice_number": {
           "value": "BC-2026-0930",
           "evidence": "Invoice No. BC-2026-0930",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "seller": {
           "name_en": {
             "value": "Tianjin Beichen Heavy Industry Co., Ltd.",
             "evidence": "Tianjin Beichen Heavy Industry Co., Ltd.",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": "天津市北辰重工有限公司",
             "evidence": "天津市北辰重工有限公司",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "uscc": {
             "value": "91120113MA06R4F7KT",
             "evidence": "USCC 91120113MA06R4F7KT",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "address": {
             "value": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
             "evidence": "No. 7 Beichen Industrial Park, Shuangjie, Beichen District, Tianjin, China",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "country": {
             "value": "China",
             "evidence": "China",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         },
         "buyer": {
@@ -663,7 +663,7 @@
             "value": "Qafila Trade, deal 9, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Qafila Trade, deal 9, c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "name_zh": {
             "value": null,
@@ -681,13 +681,13 @@
             "value": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "evidence": "Rua Augusta 100, 1100-053 Lisbon, Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "country": {
             "value": "Portugal",
             "evidence": "Portugal",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         },
         "items": [
@@ -696,37 +696,37 @@
               "value": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
               "evidence": "Centrifugal water pumps 1 HP, 220 V, cast iron body",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "quantity": {
               "value": 400,
               "evidence": "400 pcs",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "packages": {
               "value": 400,
               "evidence": "400 CTNS",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "gross_weight_kg": {
               "value": 7200,
               "evidence": "7,200.0",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "net_weight_kg": {
               "value": 6800,
               "evidence": "6,800.0",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "cbm": {
               "value": 22,
               "evidence": "22.00",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             }
           },
           {
@@ -734,37 +734,37 @@
               "value": "PVC pressure pipes, 2 inch, 4 m lengths",
               "evidence": "PVC pressure pipes, 2 inch, 4 m lengths",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "quantity": {
               "value": 5000,
               "evidence": "5,000 kg",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "packages": {
               "value": 250,
               "evidence": "250 CTNS",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "gross_weight_kg": {
               "value": 5200,
               "evidence": "5,200.0",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "net_weight_kg": {
               "value": 5000,
               "evidence": "5,000.0",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             },
             "cbm": {
               "value": 30,
               "evidence": "30.00",
               "page": 1,
-              "confidence": 0.95
+              "confidence": 0.98
             }
           }
         ],
@@ -772,38 +772,38 @@
           "value": 650,
           "evidence": "650 CTNS",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total_gross_weight_kg": {
           "value": 12400,
           "evidence": "12,400.0",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total_net_weight_kg": {
           "value": 11800,
           "evidence": "11,800.0",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "total_cbm": {
           "value": 52,
           "evidence": "52.00",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "container_numbers": [
           {
             "value": "MSKU9070323",
             "evidence": "MSKU9070323",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           {
             "value": "MSKU7731208",
             "evidence": "MSKU7731208",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         ],
         "hidden_or_suspicious_text": []
@@ -964,13 +964,13 @@
         "line": "1. Centrifugal water pumps 1 HP, 220 V, cast iron body",
         "category": "machinery",
         "verdict": "permitted",
-        "reason": "Centrifugal water pumps are classified under machinery and tools for their function as mechanical equipment."
+        "reason": "Centrifugal water pumps are classified under machinery and tools for water management."
       },
       {
         "line": "2. PVC pressure pipes, 2 inch, 4 m lengths",
         "category": "building_materials",
         "verdict": "permitted",
-        "reason": "PVC pressure pipes are used in construction and plumbing, fitting the building materials category."
+        "reason": "PVC pressure pipes are building materials used in plumbing and construction."
       }
     ],
     "consistency": [
@@ -1039,20 +1039,20 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16431,
-        "tokens_out": 3419,
-        "latency_ms": 58635,
-        "cost_usd": 0.009032
+        "tokens_in": 16411,
+        "tokens_out": 3397,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.packing_list",
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 6135,
-        "tokens_out": 1519,
-        "latency_ms": 24476,
-        "cost_usd": 0.003663
+        "tokens_in": 13495,
+        "tokens_out": 2941,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "extract.business_licence",
@@ -1061,8 +1061,8 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4318,
         "tokens_out": 768,
-        "latency_ms": 13690,
-        "cost_usd": 0.002217
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "consistency.listing",
@@ -1071,8 +1071,8 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 852,
         "tokens_out": 184,
-        "latency_ms": 3619,
-        "cost_usd": 0.000476
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "halal",
@@ -1080,9 +1080,9 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1174,
-        "tokens_out": 92,
-        "latency_ms": 1971,
-        "cost_usd": 0.000231
+        "tokens_out": 85,
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "price",
@@ -1091,8 +1091,8 @@
         "prompt_version": "price.v1",
         "tokens_in": 1911,
         "tokens_out": 126,
-        "latency_ms": 1832,
-        "cost_usd": 0.000362
+        "latency_ms": 1,
+        "cost_usd": 0
       },
       {
         "stage": "explain",
@@ -1101,12 +1101,12 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2210,
         "tokens_out": 76,
-        "latency_ms": 3427,
-        "cost_usd": 0.000377
+        "latency_ms": 0,
+        "cost_usd": 0
       }
     ],
     "adapter_modes": {
-      "llm": "live",
+      "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
       "shipsgo": "skipped",
@@ -1114,22 +1114,29 @@
       "fx": "skipped"
     },
     "fixtures_used": [
+      "llm/18af1af6fde371f0992acbac7b8b0b154e494d2462757f86f371d1f0796e472e.json",
+      "llm/1a09de2c25e0a99ac3bf21a2e185f7526764f6f48e875d9e2889d0322889406c.json",
+      "llm/1ae15a29d8368233d95fb1027904f7883357619b28462cbc2e5df697e5d8cb2f.json",
+      "llm/4e6d5f9a504d43ba76554c749d25d72d4280fd30dc2aae7a5cf4af51c6459551.json",
+      "llm/956e89299f3b9d7da88d79d3617e7b6acb788fac83b9d6b16749200435051bd8.json",
+      "llm/ac756752a47d3361ccee9c70e97845f8ed18cb18b28e502475c98f9060330cdd.json",
+      "llm/b83fe486032d5657d0940c996b286939fe8bf3221342d19867959e1f13ee4434.json",
       "opensanctions/tianjin-beichen-heavy-industry-co-ltd.json",
       "registry/91120113MA06R4F7KT.json"
     ],
     "timings_ms": {
-      "intake": 612,
-      "extract": 58635,
+      "intake": 624,
+      "extract": 1,
       "validate": 1,
-      "stages": 3620,
+      "stages": 2,
       "fingerprint": 0,
-      "explain": 3429,
-      "total": 66297
+      "explain": 0,
+      "total": 628
     },
-    "cost_usd": 0.016358,
+    "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because the supplier is on a sanctions list. All other checks passed, including document consistency, pricing, and company registration.\n\nWhat to fix:\n- A sanctioned party cannot take part in a deal. The account goes under review.\n\nCategory: sanctions"
   },
-  "report_hash": "485250dcfb72e6bba101bb4f8f965e36fc9e81119531aef759579fe49f29344b",
-  "signature": "e998c8bb151b588dfbf9100b8854b96acc4b2a68b766445b6bee3e68e006ee5db35e47df32bef408c4f15699c99b73e9c7de9efc4e2009315e1e3db146b7b90e"
+  "report_hash": "fce31f7fa60e64d2afcc2e14132bc457622e16e0271a8934a87c3669f96906dc",
+  "signature": "6863fd69a78ce7d132d7167e74922a71bbcc807cbbe9917b733847c35734889a9b47c450e2fe01bb9377d531d1ed1d80d56e979716ab50f83a571802e86b7608"
 }

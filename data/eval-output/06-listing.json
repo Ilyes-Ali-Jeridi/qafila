@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-06",
-    "created_at": "2026-10-25T16:06:01.884Z",
+    "created_at": "2026-10-25T16:43:51.958Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -11,14 +11,14 @@
         "name": "extraction.invoice",
         "status": "pass",
         "severity": "info",
-        "detail": "invoice read (1 page(s), mock).",
+        "detail": "invoice read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
         "name": "extraction.packing_list",
         "status": "pass",
         "severity": "info",
-        "detail": "packing list read (1 page(s), mock).",
+        "detail": "packing list read (1 page(s), mock, one repair round).",
         "weight": 0
       },
       {
@@ -167,7 +167,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions match line by line in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions match line by line; the invoice includes Chinese translations which are absent in the packing list, but the English descriptions are identical.",
         "weight": 25,
         "evidence": {
           "a": "1. Electric kettles 1.8 L, stainless steel, 1500 W 不锈钢电热水壶 1.8L 1500W | 2. Electric rice cookers 2.8 L, non-stick pot 电饭煲 2.8L 不粘内胆 | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc. 赤霞珠干红葡萄酒 750ml 13%",
@@ -197,7 +197,7 @@
           "line": "2. Electric rice cookers 2.8 L, non-stick pot",
           "category": "household",
           "verdict": "permitted",
-          "reason": "Electric rice cookers are kitchen appliances used for cooking rice."
+          "reason": "Electric rice cookers are common kitchen appliances used for cooking rice."
         }
       },
       {
@@ -395,13 +395,13 @@
         "type": "invoice",
         "invoice_number": {
           "value": "BH-2026-1003",
-          "evidence": "BH-2026-1003",
+          "evidence": "Invoice No. BH-2026-1003",
           "page": 1,
           "confidence": 0.95
         },
         "invoice_date": {
           "value": "2026-10-03",
-          "evidence": "2026-10-03",
+          "evidence": "Invoice date 2026-10-03",
           "page": 1,
           "confidence": 0.95
         },
@@ -912,7 +912,7 @@
         "container_numbers": [
           {
             "value": "TCLU9902171",
-            "evidence": "TCLU9902171",
+            "evidence": "TCLU9902171 (40'HC)",
             "page": 1,
             "confidence": 0.98
           }
@@ -1093,7 +1093,7 @@
         "line": "2. Electric rice cookers 2.8 L, non-stick pot",
         "category": "household",
         "verdict": "permitted",
-        "reason": "Electric rice cookers are kitchen appliances used for cooking rice."
+        "reason": "Electric rice cookers are common kitchen appliances used for cooking rice."
       },
       {
         "line": "3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc.",
@@ -1141,7 +1141,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "The goods descriptions match line by line in substance, with the invoice including Chinese translations that do not alter the meaning.",
+        "reason": "The goods descriptions match line by line; the invoice includes Chinese translations which are absent in the packing list, but the English descriptions are identical.",
         "evidence_a": "1. Electric kettles 1.8 L, stainless steel, 1500 W 不锈钢电热水壶 1.8L 1500W | 2. Electric rice cookers 2.8 L, non-stick pot 电饭煲 2.8L 不粘内胆 | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc. 赤霞珠干红葡萄酒 750ml 13%",
         "evidence_b": "1. Electric kettles 1.8 L, stainless steel, 1500 W | 2. Electric rice cookers 2.8 L, non-stick pot | 3. Red wine, Cabernet Sauvignon, 750 ml bottles, 13% alc."
       }
@@ -1168,9 +1168,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 7526,
-        "tokens_out": 2177,
-        "latency_ms": 1,
+        "tokens_in": 16689,
+        "tokens_out": 3723,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1178,8 +1178,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 6192,
-        "tokens_out": 1748,
+        "tokens_in": 13771,
+        "tokens_out": 3360,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -1199,7 +1199,7 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 930,
-        "tokens_out": 255,
+        "tokens_out": 260,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -1209,8 +1209,8 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1236,
-        "tokens_out": 108,
-        "latency_ms": 0,
+        "tokens_out": 109,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1228,8 +1228,8 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2382,
-        "tokens_out": 76,
+        "tokens_in": 2387,
+        "tokens_out": 77,
         "latency_ms": 0,
         "cost_usd": 0
       }
@@ -1254,18 +1254,18 @@
       "registry/91330782MA2A3G9H8J.json"
     ],
     "timings_ms": {
-      "intake": 973,
+      "intake": 736,
       "extract": 1,
       "validate": 0,
       "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 976
+      "total": 739
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal was rejected because it includes a prohibited item. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- Remove the red wine line from the invoice; Qafila cannot finance it.\n\nCategory: prohibited goods"
+    "explanation": "Your deal was rejected because it includes a prohibited item. All other checks passed, including container numbers, pricing, and document consistency.\n\nWhat to fix:\n- Remove the line for red wine from the invoice; Qafila cannot finance it.\n\nCategory: prohibited goods"
   },
-  "report_hash": "f91eb616ee94dd4d906e5ff49da9d9829381f8818f32e267f50c7d0ef5063939",
-  "signature": "93b54a8bed8fee96b18e6a8a2dddc74858c017a473d03262c9fc625ca252cfbceb71138df4c70cc349a0b877d9f9f3cfcab8142fdb9547082947122f2e0f6505"
+  "report_hash": "bd0ab41bfa1ccbaf653ad5044cf15d4baccbf8b78add8ecb97e58daec1bfc442",
+  "signature": "f776a2ccb3625015790fe59134b1bfe96e0d858f44165c394c6709e6e5c7670565f32f600673e06ce41eb2518d6c5b6ef5f91be5680af02fe2592fb6de560409"
 }

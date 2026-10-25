@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:03:39.930Z",
+  "recorded_at": "2026-10-25T16:41:41.711Z",
   "mode": "live",
   "input": {
     "stage": "extract.bill_of_lading",
@@ -88,13 +88,13 @@
       },
       "vessel": {
         "value": "COSCO SHIPPING ARIES",
-        "evidence": "COSCO SHIPPING ARIES",
+        "evidence": "COSCO SHIPPING ARIES V.052W",
         "page": 1,
         "confidence": 0.98
       },
       "voyage": {
         "value": "V.052W",
-        "evidence": "V.052W",
+        "evidence": "COSCO SHIPPING ARIES V.052W",
         "page": 1,
         "confidence": 0.98
       },
@@ -136,7 +136,7 @@
       },
       "issue_date": {
         "value": "2026-09-27",
-        "evidence": "2026-09-27",
+        "evidence": "Shanghai, 2026-09-27",
         "page": 1,
         "confidence": 0.98
       },
@@ -214,19 +214,19 @@
       },
       "total_packages": {
         "value": 400,
-        "evidence": "400 CARTONS",
+        "evidence": "TOTAL: 400 CARTONS",
         "page": 1,
         "confidence": 0.98
       },
       "gross_weight_kg": {
         "value": 11640,
-        "evidence": "11,640.0 KGS",
+        "evidence": "GROSS WEIGHT 11,640.0 KGS",
         "page": 1,
         "confidence": 0.98
       },
       "measurement_cbm": {
         "value": 60,
-        "evidence": "60.00 CBM",
+        "evidence": "MEASUREMENT 60.00 CBM",
         "page": 1,
         "confidence": 0.98
       },
@@ -239,7 +239,7 @@
       "hidden_or_suspicious_text": []
     },
     "tokensIn": 7552,
-    "tokensOut": 1762,
+    "tokensOut": 1789,
     "repaired": false
   }
 }

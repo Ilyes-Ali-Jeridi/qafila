@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T15:39:37.646Z",
+  "recorded_at": "2026-10-25T16:38:28.142Z",
   "mode": "live",
   "input": {
     "stage": "extract.packing_list",
@@ -237,15 +237,15 @@
       "container_numbers": [
         {
           "value": "TCLU9902171",
-          "evidence": "TCLU9902171",
+          "evidence": "TCLU9902171 (40'HC)",
           "page": 1,
           "confidence": 0.98
         }
       ],
       "hidden_or_suspicious_text": []
     },
-    "tokensIn": 6192,
-    "tokensOut": 1748,
-    "repaired": false
+    "tokensIn": 13771,
+    "tokensOut": 3360,
+    "repaired": true
   }
 }

@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T16:06:05.818Z",
+    "created_at": "2026-10-25T16:43:54.799Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -202,7 +202,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both values describe identical goods: monocrystalline solar modules 550W with half-cut cells and 144 cells, differing only by the inclusion of Chinese text in the invoice which is a translation.",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. Both values describe identical goods: monocrystalline solar modules 550 W, half-cut cells, 144 cells, with the invoice including Chinese translation which does not alter the substance.",
         "weight": 25,
         "evidence": {
           "a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
@@ -213,7 +213,7 @@
         "name": "consistency.goods_bl_vs_invoice",
         "status": "pass",
         "severity": "high",
-        "detail": "Description of goods on the B/L vs the invoice line items (same goods?): match. The B/L description 'SOLAR MODULES 550W' is a shortened but consistent reference to the full description on the invoice, which specifies the same product type and wattage.",
+        "detail": "Description of goods on the B/L vs the invoice line items (same goods?): match. The B/L description 'SOLAR MODULES 550W' is a general but consistent match with the invoice's more detailed 'Monocrystalline solar modules 550 W, half-cut cells, 144 cells', as both refer to the same category and wattage of solar modules.",
         "weight": 25,
         "evidence": {
           "a": "SOLAR MODULES 550W",
@@ -318,14 +318,14 @@
         "name": "tracking.availability",
         "status": "pass",
         "severity": "info",
-        "detail": "carrier tracking: 3 event(s), status Sailing.",
+        "detail": "carrier tracking (mock fixture): 3 event(s), status Sailing.",
         "weight": 0
       },
       {
         "name": "tracking.container_present",
         "status": "pass",
         "severity": "critical",
-        "detail": "Container COSU8123403 appears in carrier tracking.",
+        "detail": "Container COSU8123403 appears in carrier tracking (mock fixture).",
         "weight": 40,
         "evidence": {
           "bl": [
@@ -341,7 +341,7 @@
         "name": "tracking.loading_vessel",
         "status": "fail",
         "severity": "critical",
-        "detail": "carrier tracking: the loading event at SHANGHAI names MSC AURORA, but the B/L says COSCO SHIPPING ARIES (IMO 9783497 vs 9876543 (exact comparison)).",
+        "detail": "carrier tracking (mock fixture): the loading event at SHANGHAI names MSC AURORA, but the B/L says COSCO SHIPPING ARIES (IMO 9783497 vs 9876543 (exact comparison)).",
         "weight": 40,
         "evidence": {
           "bl_vessel": "COSCO SHIPPING ARIES",
@@ -362,7 +362,7 @@
         "name": "tracking.status",
         "status": "pass",
         "severity": "high",
-        "detail": "carrier tracking: status Sailing (40), loaded or later.",
+        "detail": "carrier tracking (mock fixture): status Sailing (40), loaded or later.",
         "weight": 25
       },
       {
@@ -546,13 +546,13 @@
         },
         "currency": {
           "value": "USD",
-          "evidence": "Currency USD",
+          "evidence": "USD",
           "page": 1,
           "confidence": 0.95
         },
         "total": {
           "value": 33000,
-          "evidence": "TOTAL FOB CNSHA USD 33,000.00",
+          "evidence": "USD 33,000.00",
           "page": 1,
           "confidence": 0.95
         },
@@ -604,19 +604,19 @@
         ],
         "port_of_loading": {
           "value": "Shanghai, China (CNSHA)",
-          "evidence": "Port of loading Shanghai, China (CNSHA)",
+          "evidence": "Shanghai, China (CNSHA)",
           "page": 1,
           "confidence": 0.95
         },
         "port_of_discharge": {
           "value": "Mombasa, Kenya (KEMBA)",
-          "evidence": "Port of discharge Mombasa, Kenya (KEMBA)",
+          "evidence": "Mombasa, Kenya (KEMBA)",
           "page": 1,
           "confidence": 0.95
         },
         "payment_terms": {
           "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
-          "evidence": "Payment terms 30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
+          "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
           "page": 1,
           "confidence": 0.95
         },
@@ -837,14 +837,14 @@
           "confidence": 0.98
         },
         "business_scope": {
-          "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
-          "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）R&D, production and sale of solar photovoltaic modules and inverters; import and export of goods.",
+          "value": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "太阳能光伏组件、逆变器的研发、生产与销售；货物进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
           "page": 1,
           "confidence": 0.98
         },
         "address": {
-          "value": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
-          "evidence": "江苏省苏州市吴中区光耀路100号No. 100 Guangyao Road, Wuzhong District, Suzhou, Jiangsu, China",
+          "value": "江苏省苏州市吴中区光耀路100号",
+          "evidence": "江苏省苏州市吴中区光耀路100号",
           "page": 1,
           "confidence": 0.98
         },
@@ -940,13 +940,13 @@
         },
         "vessel": {
           "value": "COSCO SHIPPING ARIES",
-          "evidence": "COSCO SHIPPING ARIES",
+          "evidence": "COSCO SHIPPING ARIES V.052W",
           "page": 1,
           "confidence": 0.98
         },
         "voyage": {
           "value": "V.052W",
-          "evidence": "V.052W",
+          "evidence": "COSCO SHIPPING ARIES V.052W",
           "page": 1,
           "confidence": 0.98
         },
@@ -988,7 +988,7 @@
         },
         "issue_date": {
           "value": "2026-09-27",
-          "evidence": "2026-09-27",
+          "evidence": "Shanghai, 2026-09-27",
           "page": 1,
           "confidence": 0.98
         },
@@ -1066,19 +1066,19 @@
         },
         "total_packages": {
           "value": 400,
-          "evidence": "400 CARTONS",
+          "evidence": "TOTAL: 400 CARTONS",
           "page": 1,
           "confidence": 0.98
         },
         "gross_weight_kg": {
           "value": 11640,
-          "evidence": "11,640.0 KGS",
+          "evidence": "GROSS WEIGHT 11,640.0 KGS",
           "page": 1,
           "confidence": 0.98
         },
         "measurement_cbm": {
           "value": 60,
-          "evidence": "60.00 CBM",
+          "evidence": "MEASUREMENT 60.00 CBM",
           "page": 1,
           "confidence": 0.98
         },
@@ -1140,7 +1140,7 @@
       }
     ],
     "tracking": {
-      "mode": "live",
+      "mode": "mock",
       "statusCode": 40,
       "status": "Sailing",
       "vessel": "MSC AURORA",
@@ -1178,7 +1178,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T16:06:05.818Z"
+      "lastPolledAt": "2026-10-25T16:43:54.799Z"
     },
     "price": [],
     "halal": [],
@@ -1249,14 +1249,14 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "Both values describe identical goods: monocrystalline solar modules 550W with half-cut cells and 144 cells, differing only by the inclusion of Chinese text in the invoice which is a translation.",
+        "reason": "Both values describe identical goods: monocrystalline solar modules 550 W, half-cut cells, 144 cells, with the invoice including Chinese translation which does not alter the substance.",
         "evidence_a": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells 单晶硅光伏组件 550W 半片 144片",
         "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
       },
       {
         "field": "goods_bl_vs_invoice",
         "match": "yes",
-        "reason": "The B/L description 'SOLAR MODULES 550W' is a shortened but consistent reference to the full description on the invoice, which specifies the same product type and wattage.",
+        "reason": "The B/L description 'SOLAR MODULES 550W' is a general but consistent match with the invoice's more detailed 'Monocrystalline solar modules 550 W, half-cut cells, 144 cells', as both refer to the same category and wattage of solar modules.",
         "evidence_a": "SOLAR MODULES 550W",
         "evidence_b": "Monocrystalline solar modules 550 W, half-cut cells, 144 cells"
       }
@@ -1288,8 +1288,8 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_bill_of_lading.v1",
         "tokens_in": 7552,
-        "tokens_out": 1762,
-        "latency_ms": 1,
+        "tokens_out": 1789,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1298,8 +1298,8 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 898,
-        "tokens_out": 270,
-        "latency_ms": 0,
+        "tokens_out": 293,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1307,9 +1307,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "explain.v1",
-        "tokens_in": 2703,
-        "tokens_out": 83,
-        "latency_ms": 1,
+        "tokens_in": 2736,
+        "tokens_out": 106,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1317,7 +1317,7 @@
       "llm": "mock",
       "registry": "mock",
       "opensanctions": "mock",
-      "shipsgo": "live",
+      "shipsgo": "mock",
       "reflector": "skipped",
       "fx": "skipped"
     },
@@ -1331,18 +1331,18 @@
       "shipsgo/COSU8123403.json"
     ],
     "timings_ms": {
-      "intake": 256,
-      "extract": 1,
+      "intake": 162,
+      "extract": 0,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 260
+      "explain": 0,
+      "total": 163
     },
     "cost_usd": 0,
     "injection_attempts": [],
-    "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed.\n\nWhat to fix:\n- Update the vessel name on the bill of lading to match the carrier tracking record (MSC AURORA).\n\nCategory: shipment mismatch"
+    "explanation": "Your deal was rejected because the vessel name on the bill of lading does not match the carrier tracking record. All other checks passed, including document consistency, sanctions, and shipment tracking status. Please correct the vessel name on the bill of lading to match the tracking record.\n\nWhat to fix:\n- Correct the vessel name on the bill of lading to match the carrier tracking record.\n\nCategory: shipment mismatch"
   },
-  "report_hash": "3367830b1ecf10a3b2334f8ef78b036cab061d8b9c645ff581d394ca227bb831",
-  "signature": "8c6f06afdc38553bfed39aa9afc874fae629313dacadf6fcd931f973cb6424b8147a695b7fb0f6ca79ff33cbfcf251960a1fffecc12d97a1e65be9d2fa093e02"
+  "report_hash": "4fb053441f39aff5460cff9e2d8a3efe10dfc94a10445b77e1a26ccfe8c3e42d",
+  "signature": "000f1950dd538dded7b89067e40351154706eb8ee3e5626b4cdf3cc530ffcc39e95fce817d68046b036cf2e22c68d81a1768aaf47157d1bed7d01779ab62090d"
 }

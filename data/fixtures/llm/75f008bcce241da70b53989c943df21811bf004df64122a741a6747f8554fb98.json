@@ -1,6 +1,6 @@
 {
   "adapter": "llm",
-  "recorded_at": "2026-10-25T16:01:14.983Z",
+  "recorded_at": "2026-10-25T16:39:25.758Z",
   "mode": "live",
   "input": {
     "stage": "extract.invoice",
@@ -16,50 +16,50 @@
         "value": "JC-2026-1001",
         "evidence": "Invoice No. JC-2026-1001",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "invoice_date": {
         "value": "2026-10-01",
         "evidence": "Invoice date 2026-10-01",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "invoice_kind": {
         "value": "proforma",
         "evidence": "PROFORMA INVOICE",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "seller": {
         "name_en": {
           "value": "Dongguan Jiucheng Trading Co., Ltd.",
           "evidence": "Dongguan Jiucheng Trading Co., Ltd.",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "name_zh": {
           "value": "东莞市旧城贸易有限公司",
           "evidence": "东莞市旧城贸易有限公司",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "uscc": {
           "value": "91441900MA4Y7P2D5P",
           "evidence": "USCC 91441900MA4Y7P2D5P",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "address": {
           "value": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
           "evidence": "No. 21 Jiucheng Road, Nancheng District, Dongguan, Guangdong, China",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "country": {
           "value": "CN",
           "evidence": "China",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         }
       },
       "buyer": {
@@ -67,7 +67,7 @@
           "value": "Qafila Trade, deal 8",
           "evidence": "Qafila Trade, deal 8",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "name_zh": {
           "value": null,
@@ -85,13 +85,13 @@
           "value": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "evidence": "c/o Qafila, Rua Augusta 100, 1100-053 Lisbon, Portugal",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "country": {
           "value": "PT",
           "evidence": "Portugal",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         }
       },
       "consignee": {
@@ -99,7 +99,7 @@
           "value": "TO ORDER OF QAFILA TRADE, DEAL 8",
           "evidence": "TO ORDER OF QAFILA TRADE, DEAL 8",
           "page": 1,
-          "confidence": 0.95
+          "confidence": 0.98
         },
         "name_zh": {
           "value": null,
@@ -130,25 +130,25 @@
         "value": "Adewale Trading Ltd",
         "evidence": "Adewale Trading Ltd",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "incoterms": {
         "value": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
         "evidence": "FOB Shenzhen (Yantian) (CNYTN), Incoterms 2020",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "currency": {
         "value": "USD",
         "evidence": "USD",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "total": {
         "value": 14000,
         "evidence": "USD 14,000.00",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "line_items": [
         {
@@ -156,43 +156,43 @@
             "value": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
             "evidence": "LED bulbs E27 9 W, 6500 K, 100 pcs per carton",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "description_zh": {
             "value": "LED球泡灯 E27 9W 6500K",
             "evidence": "LED球泡灯 E27 9W 6500K",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "hs_code": {
             "value": "853950",
             "evidence": "853950",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "quantity": {
             "value": 20000,
             "evidence": "20,000 pcs",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "unit": {
             "value": "pcs",
             "evidence": "pcs",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "unit_price": {
             "value": 0.7,
             "evidence": "0.70",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           },
           "line_total": {
             "value": 14000,
             "evidence": "14,000.00",
             "page": 1,
-            "confidence": 0.95
+            "confidence": 0.98
           }
         }
       ],
@@ -200,19 +200,19 @@
         "value": "Shenzhen (Yantian), China (CNYTN)",
         "evidence": "Shenzhen (Yantian), China (CNYTN)",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "port_of_discharge": {
         "value": "Lagos (Apapa), Nigeria (NGAPP)",
         "evidence": "Lagos (Apapa), Nigeria (NGAPP)",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "payment_terms": {
         "value": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
         "evidence": "30% deposit by transfer before shipment, 70% balance against copy of the bill of lading",
         "page": 1,
-        "confidence": 0.95
+        "confidence": 0.98
       },
       "hidden_or_suspicious_text": []
     },
