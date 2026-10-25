@@ -8,7 +8,7 @@ Testnet only, test dollars everywhere. Rehearse twice before recording. Keep a f
 2. `curl https://api.qafila.dev/health`: `ok: true`, indexer lag under 30 s, adapters `live` except what is deliberately mocked.
 3. `pnpm demo-reset`: lists fresh copies of the three demo deals on the same contract (never redeploys, so venue wallets and positions survive). Then adopt them into the API with `POST /ops/deals/import-onchain` from the ops console or `curl` with the ops token (`/opt/qafila/ops-token` on the server) for the new on-chain ids the script prints.
 4. Open https://qafila.dev on the demo laptop and https://qafila.dev/join?screen=1 on the venue screen.
-5. Ops login: https://qafila.dev/onboarding?mode=signin with `ops@qafila.dev`; the code arrives by email (Resend) or, from the server, `GET /auth/dev-otp` is disabled in production, so use the real inbox.
+5. Sign in: https://qafila.dev/onboarding?mode=signin with `i.jeridi20013@pi.tn`; the 6-digit code arrives by email through Resend. That profile holds the importer, ops and Sharia roles, owns the seeded demo deals, and is linked to the demo importer wallet `GB67IU…EXAKN` (Freighter, secret `DEMO_IMPORTER_SECRET` in `.env`) for the on-chain signatures.
 6. Feature flags as intended (`GET /config`): off for anything not green.
 
 ## Video script (2 minutes 45 seconds, PLAN 16.2)
@@ -26,7 +26,7 @@ Testnet only, test dollars everywhere. Rehearse twice before recording. Keep a f
 
 ## Scene details
 
-**AI screening (0:15).** Importer account: sign in with the demo importer email. New deal, supplier "Shenzhen Lanwan Electronics Co., Ltd.", goods "phone accessories", Shenzhen to Lagos. Upload `data/packets/04/*` first (rejected: container check digit), then replace with `data/packets/01/*` (approved). Cost 14,700. Screening takes about 60 seconds live; keep talking. The report shows evidence quotes per field and the registry line marked "fixture (mock)" for the fictional supplier; for a real registry hit, use the Huawei code `914403001922038216` in the verifier demo.
+**AI screening (0:15).** Importer account: the signed-in demo profile above. New deal, supplier "Shenzhen Lanwan Electronics Co., Ltd.", goods "phone accessories", Shenzhen to Lagos. Upload `data/packets/04/*` first (rejected: container check digit), then replace with `data/packets/01/*` (approved). Cost 14,700. Screening takes about 60 seconds live; keep talking. The report shows evidence quotes per field and the registry line marked "fixture (mock)" for the fictional supplier; for a real registry hit, use the Huawei code `914403001922038216` in the verifier demo.
 
 **Join (0:40).** Phone on the venue hotspot. Scan, tap "Create my wallet", Face ID, "Finish sign-up" (approves the investor on-chain and sends 50 test dollars), invest 10 in the venue deal, confirm with the passkey. Progress updates within 10 seconds on the deal page.
 
