@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Qafila brag</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="assets/audio-bands.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Bricolage Grotesque';
+        src: url('assets/fonts/bricolage-grotesque.woff2') format('woff2');
+        font-weight: 200 800;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'Figtree';
+        src: url('assets/fonts/figtree.woff2') format('woff2');
+        font-weight: 500;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('assets/fonts/jetbrains-mono.woff2') format('woff2');
+        font-weight: 500;
+        font-display: block;
+      }
+      :root {
+        --page: #070a12;
+        --surface: #0e1322;
+        --surface-2: #131b30;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(255, 255, 255, 0.16);
+        --ink: #eef2ff;
+        --muted: #9aa6c8;
+        --saffron: #f2b23e;
+        --teal: #2de2c3;
+        --indigo: #3b4cff;
+        --display: 'Bricolage Grotesque', sans-serif;
+        --body: 'Figtree', sans-serif;
+        --mono: 'JetBrains Mono', monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--page); color: var(--ink); font-family: var(--body); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--page); }
+      .clip { position: absolute; inset: 0; }
+
+      /* ---------- background layers ---------- */
+      #bg { position: absolute; inset: 0; }
+      #grid {
+        position: absolute; inset: 0; opacity: 0.35;
+        background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 96px 96px;
+        mask-image: radial-gradient(ellipse 70% 60% at 50% 55%, #000 30%, transparent 100%);
+        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 55%, #000 30%, transparent 100%);
+      }
+      #aurora { position: absolute; left: -200px; right: -200px; bottom: -420px; height: 1100px; filter: blur(70px); opacity: 0.65; }
+      .blob { position: absolute; border-radius: 50%; }
+      #blob-indigo { left: 120px; bottom: 60px; width: 1100px; height: 640px; background: radial-gradient(closest-side, rgba(59, 76, 255, 0.85), rgba(59, 76, 255, 0)); }
+      #blob-teal { left: 760px; bottom: 140px; width: 1000px; height: 620px; background: radial-gradient(closest-side, rgba(45, 226, 195, 0.7), rgba(45, 226, 195, 0)); }
+      #blob-saffron { left: 1300px; bottom: 40px; width: 900px; height: 560px; background: radial-gradient(closest-side, rgba(242, 178, 62, 0.65), rgba(242, 178, 62, 0)); }
+      #grain {
+        position: absolute; inset: 0; opacity: 0.045; pointer-events: none; mix-blend-mode: screen;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgba(7, 10, 18, 0.75) 100%); }
+
+      /* ---------- shared type ---------- */
+      .eyebrow { font-family: var(--mono); font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+      .display { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; color: var(--ink); }
+      .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+      .line { display: block; }
+
+      /* ---------- scene 1: hook ---------- */
+      #s1-wrap { position: absolute; left: 160px; top: 300px; width: 1600px; }
+      #s1-eyebrow { margin-bottom: 36px; }
+      #s1-title { font-size: 128px; }
+      #s1-title .line { will-change: transform; }
+
+      /* ---------- scene 2: reveal ---------- */
+      #s2-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      #s2-mark { font-family: var(--display); font-weight: 800; font-size: 220px; letter-spacing: -0.045em; line-height: 1;
+        background: linear-gradient(100deg, #ffd27a 0%, var(--saffron) 35%, var(--teal) 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+        filter: drop-shadow(0 0 32px rgba(242, 178, 62, 0.35)); }
+      #s2-promise { margin-top: 34px; font-size: 46px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+      #s2-pill { margin-top: 44px; display: inline-flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 999px; border: 1px solid rgba(45, 226, 195, 0.35); background: rgba(45, 226, 195, 0.1); color: var(--teal); font-family: var(--mono); font-size: 28px; letter-spacing: 0.04em; }
+      #s2-pill .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 18px var(--teal); }
+
+      /* ---------- scene 3: deal + report ---------- */
+      #s3-wrap { position: absolute; inset: 0; }
+      .panel { position: absolute; border-radius: 28px; border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgba(19, 27, 48, 0.92), rgba(14, 19, 34, 0.92)); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08); overflow: hidden; }
+      #card { left: 140px; top: 190px; width: 820px; height: 700px; padding: 48px; }
+      #card-spot { position: absolute; left: -200px; top: -240px; width: 820px; height: 620px; border-radius: 50%; background: radial-gradient(closest-side, rgba(242, 178, 62, 0.28), rgba(242, 178, 62, 0)); filter: blur(10px); }
+      #card-eyebrow { color: var(--teal); }
+      #card-title { margin-top: 20px; font-family: var(--display); font-weight: 700; font-size: 54px; line-height: 1.04; letter-spacing: -0.02em; width: 720px; }
+      #route { margin-top: 36px; display: flex; align-items: center; gap: 18px; font-family: var(--mono); font-size: 28px; color: var(--muted); }
+      #route .track { position: relative; flex: 1; height: 2px; background: var(--line-strong); }
+      #route .ship { position: absolute; top: -9px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 22px var(--teal); }
+      #figures { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+      .figure { padding: 22px 24px; border-radius: 18px; border: 1px solid var(--line); background: rgba(7, 10, 18, 0.45); }
+      .figure .k { font-family: var(--mono); font-size: 28px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+      .figure .v { margin-top: 10px; font-family: var(--mono); font-size: 32px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+      .figure .v.saffron { color: var(--saffron); }
+      #funding { margin-top: 44px; }
+      #funding .row { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 28px; color: var(--muted); }
+      #funding .row b { color: var(--ink); font-weight: 500; }
+      #bar { margin-top: 14px; height: 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+      #bar-fill { width: 100%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--saffron), var(--teal)); transform-origin: left center; }
+
+      #report { left: 1020px; top: 190px; width: 760px; height: 700px; padding: 48px; }
+      #report-eyebrow { color: var(--muted); }
+      #report-title { margin-top: 16px; font-family: var(--display); font-weight: 700; font-size: 44px; letter-spacing: -0.02em; }
+      #checks { margin-top: 30px; display: grid; gap: 14px; }
+      .check { display: flex; align-items: center; gap: 18px; padding: 15px 22px; border-radius: 18px; border: 1px solid var(--line); background: rgba(7, 10, 18, 0.45); font-size: 28px; color: var(--ink); }
+      .check .tick { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: rgba(45, 226, 195, 0.16); color: var(--teal); font-family: var(--mono); font-size: 24px; }
+      .check .src { margin-left: auto; font-family: var(--mono); font-size: 28px; color: var(--muted); }
+      #approved { margin-top: 24px; display: flex; align-items: center; gap: 22px; }
+      #badge { display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 999px; background: var(--saffron); color: #1a1200; font-family: var(--display); font-weight: 800; font-size: 32px; letter-spacing: -0.01em; white-space: nowrap; box-shadow: 0 0 40px rgba(242, 178, 62, 0.45); }
+      #signed { font-family: var(--mono); font-size: 28px; color: var(--muted); }
+
+      /* ---------- scene 4: the rule ---------- */
+      #s4-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      #s4-title { font-size: 112px; }
+      #s4-title .never { color: var(--saffron); }
+      #receipt { margin-top: 64px; display: inline-flex; align-items: center; gap: 28px; padding: 24px 36px; border-radius: 20px; border: 1px solid var(--line-strong); background: rgba(14, 19, 34, 0.9); font-family: var(--mono); font-size: 28px; color: var(--ink); }
+      #receipt .sep { color: var(--muted); }
+      #receipt .hash { color: var(--teal); }
+      #receipt .expert { color: var(--muted); font-size: 28px; }
+
+      /* ---------- scene 5: outro ---------- */
+      #s5-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      #s5-mark { font-family: var(--display); font-weight: 800; font-size: 240px; letter-spacing: -0.045em; line-height: 1; color: var(--ink); filter: drop-shadow(0 0 40px rgba(242, 178, 62, 0.3)); }
+      #s5-domain { margin-top: 24px; font-family: var(--mono); font-size: 48px; color: var(--saffron); }
+      #s5-sub { margin-top: 28px; font-size: 30px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="23" data-width="1920" data-height="1080" data-fps="30">
+      <div id="bg">
+        <div id="grid"></div>
+        <div id="aurora" data-layout-allow-overflow>
+          <div id="blob-indigo" class="blob"></div>
+          <div id="blob-teal" class="blob"></div>
+          <div id="blob-saffron" class="blob"></div>
+        </div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </div>
+
+      <section id="s1" class="clip" data-start="0" data-duration="4.6" data-track-index="1">
+        <div id="s1-wrap">
+          <div id="s1-eyebrow" class="eyebrow">Global Trade Review, AfDB data</div>
+          <h1 id="s1-title" class="display"><span class="line" id="s1-l1">Banks say no to 47%</span><span class="line" id="s1-l2">of Africa's small importers.</span></h1>
+        </div>
+      </section>
+
+      <section id="s2" class="clip" data-start="4" data-duration="4.4" data-track-index="1">
+        <div id="s2-wrap">
+          <div id="s2-mark">Qafila</div>
+          <p id="s2-promise">Fund a real shipment. Own the goods. Share a fixed profit.</p>
+          <div id="s2-pill"><span class="dot"></span><span>on Stellar · testnet, test money</span></div>
+        </div>
+      </section>
+
+      <section id="s3" class="clip" data-start="8" data-duration="9.1" data-track-index="1">
+        <div id="s3-wrap">
+          <div id="card" class="panel">
+            <div id="card-spot" data-layout-allow-overflow></div>
+            <div id="card-eyebrow" class="eyebrow">Open for funding · deal 2</div>
+            <h2 id="card-title">2,000 phone cases and screen protectors</h2>
+            <div id="route"><span>Shenzhen (Yantian)</span><span class="track"><span class="ship" id="ship"></span></span><span>Lagos (Apapa)</span></div>
+            <div id="figures">
+              <div class="figure" id="fig-cost"><div class="k">Cost</div><div class="v">20,000.00</div></div>
+              <div class="figure" id="fig-return"><div class="k">Return</div><div class="v saffron">6% · 90d</div></div>
+              <div class="figure" id="fig-deposit"><div class="k">Deposit</div><div class="v">20%</div></div>
+            </div>
+            <div id="funding">
+              <div class="row"><span>Funded</span><span><b id="funded">0.00</b> of 20,000.00 test dollars</span></div>
+              <div id="bar"><div id="bar-fill"></div></div>
+            </div>
+          </div>
+          <div id="report" class="panel">
+            <div id="report-eyebrow" class="eyebrow">Screening report · listing stage</div>
+            <h2 id="report-title">Three documents, live data, under a minute</h2>
+            <div id="checks">
+              <div class="check" id="check-1"><span class="tick">✓</span><span>Container check digit valid</span><span class="src">ISO 6346</span></div>
+              <div class="check" id="check-2"><span class="tick">✓</span><span>Company register: active</span><span class="src">GLEIF</span></div>
+              <div class="check" id="check-3"><span class="tick">✓</span><span>Sanctions: no match</span><span class="src">OpenSanctions</span></div>
+              <div class="check" id="check-4"><span class="tick">✓</span><span>Carrier: loaded at Yantian</span><span class="src">ShipsGo</span></div>
+            </div>
+            <div id="approved">
+              <div id="badge">Approved · risk 100</div>
+              <div id="signed" class="mono">report signed · 08c1ef0f…</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4" class="clip" data-start="17" data-duration="2.6" data-track-index="1">
+        <div id="s4-wrap">
+          <h2 id="s4-title" class="display"><span class="line" id="s4-l1">Late fees go to charity.</span><span class="line never" id="s4-l2">Never to investors.</span></h2>
+          <div id="receipt"><span>Late fee</span><span class="sep">·</span><span>50.00 test dollars</span><span class="sep">·</span><span class="hash">6c10230c…ad1f</span><span class="sep">·</span><span class="expert">stellar.expert ↗</span></div>
+        </div>
+      </section>
+
+      <section id="s5" class="clip" data-start="19.6" data-duration="3.4" data-track-index="1">
+        <div id="s5-wrap">
+          <div id="s5-mark">Qafila</div>
+          <div id="s5-domain">qafila.dev</div>
+          <div id="s5-sub">Built on Stellar at HackMeridian 2026</div>
+        </div>
+      </section>
+
+      <audio id="music" data-start="0" data-duration="23" data-track-index="10" data-volume="0.32" src="assets/music/bed.mp3"></audio>
+      <audio id="sfx-land" data-start="4.2" data-duration="0.18" data-track-index="11" data-volume="0.6" src="assets/sfx/impact/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-check1" data-start="9.8" data-duration="0.11" data-track-index="12" data-volume="0.55" src="assets/sfx/interface/drop_001.ogg"></audio>
+      <audio id="sfx-check4" data-start="11.44" data-duration="0.11" data-track-index="13" data-volume="0.55" src="assets/sfx/interface/drop_001.ogg"></audio>
+      <audio id="sfx-approved" data-start="13.08" data-duration="1.48" data-track-index="14" data-volume="0.6" src="assets/sfx/impact/impactBell_heavy_000.ogg"></audio>
+      <audio id="sfx-outro" data-start="19.64" data-duration="0.12" data-track-index="15" data-volume="0.65" src="assets/sfx/interface/bong_001.ogg"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const EASE = 'power3.out';
+
+      // ---------- background: slow aurora drift for the whole film ----------
+      tl.fromTo('#aurora', { y: 160, opacity: 0.25 }, { y: 0, opacity: 0.65, duration: 3.2, ease: 'power2.out' }, 0);
+      tl.fromTo('#blob-indigo', { x: -60 }, { x: 80, duration: 23, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#blob-saffron', { x: 60 }, { x: -90, duration: 23, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#blob-teal', { y: 40 }, { y: -70, duration: 23, ease: 'sine.inOut' }, 0);
+
+      // ---------- scene 1: hook (0 to 4.6) ----------
+      // The hook is already on screen at frame 0 (the thumbnail); only the second line enters.
+      tl.fromTo('#s1-l2', { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 0.35);
+      tl.to('#s1-wrap', { opacity: 0, y: -30, duration: 0.6, ease: 'power2.in' }, 4.0);
+
+      // ---------- scene 2: reveal (4 to 8.4) ----------
+      // beat-locked: 4.39s (name lands near the beat; soft impact at 4.2s)
+      tl.fromTo('#s2-mark', { opacity: 0, scale: 1.08, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: EASE }, 4.2);
+      tl.fromTo('#s2-promise', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 4.75);
+      tl.fromTo('#s2-pill', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, 5.2);
+      tl.to('#s2-wrap', { opacity: 0, duration: 0.6, ease: 'power2.in' }, 7.8);
+
+      // ---------- scene 3: the deal and the checks (8 to 17.4) ----------
+      // beat-locked: 8.74s (deal card lands on the strong cue)
+      tl.fromTo('#card', { opacity: 0, x: -60, rotateY: 6 }, { opacity: 1, x: 0, rotateY: 0, duration: 0.7, ease: EASE }, 8.74);
+      tl.fromTo('#report', { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.7, ease: EASE }, 9.0);
+      tl.fromTo('#ship', { x: 0 }, { x: 120, duration: 7.5, ease: 'sine.inOut' }, 8.9);
+      // funding bar to 62% with the counter (no sound on the counter)
+      const funded = { v: 0 };
+      const fundedEl = document.getElementById('funded');
+      tl.fromTo('#bar-fill', { scaleX: 0 }, { scaleX: 0.62, duration: 2.6, ease: 'power2.inOut' }, 8.9);
+      tl.to(funded, { v: 12400, duration: 2.6, ease: 'power2.inOut', onUpdate() { fundedEl.textContent = funded.v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); } }, 8.9);
+      // beat-grid: check 1 at 9.83s, check 2 at 10.37s, check 3 at 10.93s, check 4 at 11.46s (each holds; the set stays on screen)
+      [['#check-1', 9.83], ['#check-2', 10.37], ['#check-3', 10.93], ['#check-4', 11.46]].forEach(([sel, at]) => {
+        tl.fromTo(sel, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: EASE }, at);
+        tl.fromTo(sel + ' .tick', { scale: 0.4 }, { scale: 1, duration: 0.45, ease: 'back.out(2)' }, at + 0.1);
+      });
+      // beat-locked: 13.11s (Approved badge with the bell)
+      tl.fromTo('#badge', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.6)' }, 13.11);
+      tl.fromTo('#signed', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.5, ease: EASE }, 13.5);
+      tl.to('#s3-wrap', { opacity: 0, duration: 0.5, ease: 'power2.in' }, 16.55);
+
+      // ---------- scene 4: the rule (17 to 19.9) ----------
+      tl.fromTo('#s4-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.55, ease: EASE }, 17.05);
+      // beat-locked: 17.47s (second line on the strong cue)
+      tl.fromTo('#s4-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.55, ease: EASE }, 17.47);
+      tl.fromTo('#receipt', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, 18.1);
+      tl.to('#s4-wrap', { opacity: 0, duration: 0.5, ease: 'power2.in' }, 19.1);
+
+      // ---------- scene 5: outro (19.4 to 21) ----------
+      // beat-locked: 19.66s (final wordmark with the bong)
+      tl.fromTo('#s5-mark', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.6, ease: EASE }, 19.66);
+      tl.fromTo('#s5-domain', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, 20.0);
+      tl.fromTo('#s5-sub', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, 20.25);
+
+      // ---------- audio-reactive: bass breathes the aurora and the card spotlight, treble lifts the wordmark glow ----------
+      const A = window.AUDIO_BANDS;
+      const aurora = document.getElementById('aurora');
+      const spot = document.getElementById('card-spot');
+      const mark2 = document.getElementById('s2-mark');
+      const mark5 = document.getElementById('s5-mark');
+      function draw(i) {
+        const bass = A.bass[i] || 0;
+        const treb = A.treble[i] || 0;
+        aurora.style.filter = 'blur(' + (70 - bass * 14).toFixed(1) + 'px)';
+        spot.style.opacity = (0.75 + bass * 0.25).toFixed(3);
+        const glow = (0.25 + treb * 0.3).toFixed(3);
+        mark2.style.filter = 'drop-shadow(0 0 32px rgba(242, 178, 62, ' + glow + '))';
+        mark5.style.filter = 'drop-shadow(0 0 40px rgba(242, 178, 62, ' + glow + '))';
+      }
+      for (let f = 0; f < A.bass.length; f++) {
+        tl.call((function (frame) { return function () { draw(frame); }; })(f), [], f / A.fps);
+      }
+      tl.to({}, { duration: 0.01 }, 23);
+
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
