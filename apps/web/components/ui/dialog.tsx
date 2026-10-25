@@ -19,11 +19,11 @@ export function Dialog({ open, onClose, title, children, className }: { open: bo
       onClick={(e) => {
         if (e.target === ref.current) onClose();
       }}
-      className={cn('m-auto w-[calc(100vw-2rem)] max-w-lg rounded-card border border-line bg-surface p-0 text-ink shadow-pop backdrop:bg-transparent', className)}
+      className={cn('glass-strong m-auto w-[calc(100vw-2rem)] max-w-lg rounded-card p-0 text-ink backdrop:bg-transparent open:rise', className)}
     >
       <div className="flex items-start justify-between gap-4 px-5 pt-5">
-        <h2 className="text-lg font-semibold leading-tight">{title}</h2>
-        <button type="button" onClick={onClose} aria-label="Close" className="-m-1 rounded-md p-1 text-ink-muted hover:bg-sand-200 hover:text-ink">
+        <h2 className="font-display text-lg font-semibold leading-tight tracking-tight">{title}</h2>
+        <button type="button" onClick={onClose} aria-label="Close" className="-m-1 rounded-md p-1 text-ink-muted transition-colors hover:bg-white/[0.08] hover:text-ink">
           <X className="size-5" />
         </button>
       </div>

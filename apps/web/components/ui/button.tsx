@@ -3,18 +3,19 @@ import { Loader2 } from 'lucide-react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'saffron';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'saffron' | 'teal';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-control)] font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 select-none';
+  'relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-control)] font-medium transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-[var(--ease-out-expo)] active:scale-[0.985] disabled:pointer-events-none disabled:opacity-50 motion-reduce:active:scale-100';
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-indigo text-white hover:bg-indigo-700 active:bg-indigo-700',
-  secondary: 'bg-indigo-50 text-indigo hover:bg-indigo-100',
-  outline: 'border border-line-strong bg-surface text-ink hover:bg-sand-100',
-  ghost: 'text-ink hover:bg-indigo-50',
-  danger: 'bg-danger text-white hover:brightness-95',
-  saffron: 'bg-saffron text-white hover:bg-saffron-700',
+  primary: 'bg-saffron text-saffron-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_-10px_rgba(242,178,62,0.7)] hover:bg-saffron-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_12px_32px_-10px_rgba(242,178,62,0.8)]',
+  saffron: 'bg-saffron text-saffron-ink glow-saffron hover:bg-saffron-700',
+  teal: 'bg-teal text-teal-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_24px_-10px_rgba(45,226,195,0.7)] hover:bg-teal-700',
+  secondary: 'border border-line-strong bg-white/[0.07] text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.11]',
+  outline: 'border border-line-strong bg-transparent text-ink hover:border-white/30 hover:bg-white/[0.05]',
+  ghost: 'text-ink hover:bg-white/[0.06]',
+  danger: 'bg-danger text-white shadow-[0_8px_24px_-10px_rgba(255,92,92,0.6)] hover:brightness-110',
 };
 const sizes: Record<ButtonSize, string> = {
   sm: 'h-9 px-3 text-sm',
@@ -36,7 +37,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({ variant = 'primary', size = 'md', loading = false, icon, className, children, disabled, type = 'button', ...rest }: ButtonProps) {
   return (
     <button type={type} className={buttonClasses(variant, size, className)} disabled={disabled || loading} aria-busy={loading || undefined} {...rest}>
-      {loading ? <Loader2 className="size-4 animate-spin" aria-hidden /> : icon}
+      {loading ? <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden /> : icon}
       {children}
     </button>
   );
