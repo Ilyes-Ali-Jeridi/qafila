@@ -44,7 +44,7 @@ pnpm deploy:testnet                # scripts/deploy-testnet.ts, writes deploymen
 pnpm bindings                      # regenerates packages/contract-client
 pnpm seed                          # the three demo deals
 pnpm demo-reset                    # fresh demo deals on the same contract (never redeploys)
-pnpm doctor                        # pre-demo health check
+pnpm run doctor                    # pre-demo health check (bare `pnpm doctor` is a pnpm builtin)
 ```
 
 ## Rules
