@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T18:52:15.037Z",
+    "created_at": "2026-10-25T19:37:51.933Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -287,7 +287,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -302,7 +303,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -317,7 +319,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -898,7 +901,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -906,7 +910,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -914,7 +919,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -1030,7 +1036,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16282,
         "tokens_out": 3249,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1040,7 +1046,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6142,
         "tokens_out": 1524,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1060,7 +1066,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 823,
         "tokens_out": 157,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1080,7 +1086,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1892,
         "tokens_out": 121,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1090,7 +1096,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2166,
         "tokens_out": 69,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       }
     ],
@@ -1114,18 +1120,18 @@
       "registry/91330200MA2CH7N6M7.json"
     ],
     "timings_ms": {
-      "intake": 623,
+      "intake": 548,
       "extract": 1,
       "validate": 0,
-      "stages": 2,
+      "stages": 1,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 626
+      "explain": 1,
+      "total": 551
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container numbers, USCC code, invoice calculations, and consistency between documents are all valid. No action is needed from your side."
   },
-  "report_hash": "824cc9f704b136b99a702bcf2e86c6d12136b87aff8eb1158658e367be4f6826",
-  "signature": "d077867cfa69cd3ec8bf72fb0feea381da6a77f28e8d3d9397908bcf319290331a91894cbb3bfb11b525120404c416821b268f8d320dd34ec34815e6dbe11c0f"
+  "report_hash": "20feaafb4ad0d25ac9009debb2e3a870e7401781f7f648bd397473d29c05838a",
+  "signature": "8e6d7b54a61592ccdd2ef91f885af25b4563ace75b3160483cd34b6edd0e028bd251860655c050f428cde1a9b9d95c79f9c28f4ca87fc64ec606085d0e7ccc02"
 }

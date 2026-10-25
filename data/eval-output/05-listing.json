@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-05",
-    "created_at": "2026-10-25T18:52:16.289Z",
+    "created_at": "2026-10-25T19:37:53.279Z",
     "decision": "review",
     "risk_score": 75,
     "checks": [
@@ -289,7 +289,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -304,7 +305,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -319,7 +321,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -900,7 +903,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -908,7 +912,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -916,7 +921,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -1092,7 +1098,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2220,
         "tokens_out": 110,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       }
     ],
@@ -1116,18 +1122,18 @@
       "registry/91500100MA5UE9K1RR.json"
     ],
     "timings_ms": {
-      "intake": 544,
-      "extract": 1,
+      "intake": 549,
+      "extract": 2,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
-      "explain": 0,
-      "total": 546
+      "explain": 1,
+      "total": 553
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the unit price for motorcycle tyres is far above the reference range. All other checks passed, including document consistency, format, and sanctions screening. Please provide a reason for the high price or a corrected quote.\n\nWhat to fix:\n- Provide a reason for the high unit price of motorcycle tyres (48.00 USD per piece) on the invoice or upload a corrected quote."
   },
-  "report_hash": "d2a592ea36c4bede6684cc09f8684e3c74f10bca01895cca630117080f8902c7",
-  "signature": "fc434478a924f33bb5ffd16568c12643c14a6f4fc6277e1834ff1e0ccb1ab790d5ef9c4008e239e1281a18658160ba66982ac61b9a704dea731e38c852e46808"
+  "report_hash": "7e18220e54275b5bb1471d9f658f3d428383e634233169d9637e86cc686e8505",
+  "signature": "dd918f9791d3706244ea5ba1ec4c12b481ae03cadabcdc8a0375f20ab906ab24ab5cd7276d6fa458bd4c624cef8e45189dd0348a4ed246a1e205ce397f823505"
 }

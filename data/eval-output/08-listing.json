@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-08",
-    "created_at": "2026-10-25T18:52:17.914Z",
+    "created_at": "2026-10-25T19:37:55.145Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -253,7 +253,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -268,7 +269,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -283,7 +285,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -794,7 +797,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -802,7 +806,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -810,7 +815,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -990,13 +996,13 @@
       "registry/91441900MA4Y7P2D5P.json"
     ],
     "timings_ms": {
-      "intake": 528,
+      "intake": 642,
       "extract": 1,
       "validate": 0,
-      "stages": 1,
-      "fingerprint": 1,
+      "stages": 2,
+      "fingerprint": 0,
       "explain": 0,
-      "total": 531
+      "total": 645
     },
     "cost_usd": 0,
     "injection_attempts": [
@@ -1004,6 +1010,6 @@
     ],
     "explanation": "Your deal was rejected because the supplier is not an active company. All other checks passed, including document consistency, pricing, and sanctions screening.\n\nWhat to fix:\n- The supplier is not an active company; the deal cannot proceed with this supplier.\n\nCategory: document integrity"
   },
-  "report_hash": "3e14f81ae98a8cb6105941c210ffc969e7d64e745a2f3c9b039a960eac4dc984",
-  "signature": "d5c00b8ef50ada0865546c75514d9409eda8efac4c483fa2de50a6e52f14409d34b392a0261b246a88bcc9d8495f654a9267c0ee7e9392e35219f37729c33d0e"
+  "report_hash": "8e99c526b0294c8c57a260a6bdda36d8cff6cf8e2c6a07cc392c754c97f3f6cb",
+  "signature": "481558374b4170095c61f4ba4a460f5280466ee5b54fc0b348898dc65c08633960124847bf96bcaac8b6e125bc4159358b9c39de8c791d532493b9cc8e987d09"
 }

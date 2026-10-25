@@ -47,6 +47,7 @@ export interface SanctionsHit {
   matchId: string | null;
   matchName: string | null;
   datasets: string[];
+  topics: string[];
 }
 
 export const slug = (s: string): string => s.normalize('NFKC').toLowerCase().replace(/[^a-z0-9㐀-鿿]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
@@ -55,7 +56,8 @@ export function mapMatches(raw: MatchResponse, queries: SanctionsQuery[]): Sanct
   return queries.map((q) => {
     const r = raw.responses[q.id];
     const top = r?.results.slice().sort((a, b) => b.score - a.score)[0];
-    return { party: q.id, schema: q.schema, score: top?.score ?? 0, matchId: top?.id ?? null, matchName: top?.caption ?? null, datasets: top?.datasets ?? [] };
+    const topics = Array.isArray(top?.properties?.['topics']) ? (top!.properties!['topics'] as unknown[]).filter((t): t is string => typeof t === 'string') : [];
+    return { party: q.id, schema: q.schema, score: top?.score ?? 0, matchId: top?.id ?? null, matchName: top?.caption ?? null, datasets: top?.datasets ?? [], topics };
   });
 }
 

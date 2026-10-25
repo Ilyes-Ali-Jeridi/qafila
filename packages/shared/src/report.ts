@@ -55,6 +55,8 @@ export const SanctionsHitSchema = z.object({
   match_id: z.string().nullable(),
   match_name: z.string().nullable(),
   datasets: z.array(z.string()),
+  /** OpenSanctions topics of the match (sanction, role.pep, ...); empty when the source gives none. */
+  topics: z.array(z.string()).default([]),
 });
 
 export const PriceCheckSchema = z.object({

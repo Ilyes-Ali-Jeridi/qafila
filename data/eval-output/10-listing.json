@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-10",
-    "created_at": "2026-10-25T18:52:18.999Z",
+    "created_at": "2026-10-25T19:37:56.329Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -251,7 +251,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -266,7 +267,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -281,7 +283,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -780,7 +783,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -788,7 +792,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -796,7 +801,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -902,7 +908,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6093,
         "tokens_out": 1303,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -932,7 +938,7 @@
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1143,
         "tokens_out": 51,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -976,18 +982,18 @@
       "registry/91320500MA1XQ6L3BR.json"
     ],
     "timings_ms": {
-      "intake": 529,
+      "intake": 608,
       "extract": 1,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 531
+      "total": 610
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. All documents and data are consistent and valid. No further action is needed."
   },
-  "report_hash": "5acc8ec2bb8cd34865102aa0579fafa626fa4f271f9b775a8ac5a4a082b1394e",
-  "signature": "0ff5c92dc1ea845c4761c5517cff7d7e4b244ff5b7a2e9626ceae42e82d71e471e6c9ee7b3618c83fc8aa789d200c372f75f20ac4c9f0166261d5c44bcfa520c"
+  "report_hash": "e6e79749b5ace97f500b63fdee5895dc275d9d13acd331e33e2f5e95114ebabc",
+  "signature": "fdd70d494ef9a155413d370c823ff9a488d6045d897cc3355691d5143877deeced0d5a3865678368aa4981ae8686835468a95e3f378dddbff774d928e1520a0d"
 }

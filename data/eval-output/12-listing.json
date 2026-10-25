@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-12",
-    "created_at": "2026-10-25T18:52:20.050Z",
+    "created_at": "2026-10-25T19:37:57.586Z",
     "decision": "review",
     "risk_score": 0,
     "checks": [
@@ -304,7 +304,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -319,7 +320,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -334,7 +336,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -930,7 +933,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -938,7 +942,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -946,7 +951,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -1065,7 +1071,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 6122,
         "tokens_out": 1508,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1105,7 +1111,7 @@
         "prompt_version": "price.v1",
         "tokens_in": 1916,
         "tokens_out": 135,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1139,18 +1145,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 343,
+      "intake": 362,
       "extract": 2,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
       "explain": 0,
-      "total": 346
+      "total": 365
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal needs a review by our team because the invoice buyer is not the correct entity and some fields are not readable with confidence. The container check digit, USCC check digit, date order, quantity match, and other checks passed. Please fix the issues listed below.\n\nWhat to fix:\n- Upload a clearer invoice: a scanned PDF or a sharp, straight photo where every number is legible.\n- Ask the supplier to re-issue the invoice to \"Qafila Trade, deal 12\".\n- The packing list must reference this invoice number.\n- The packing list must list the same goods as the invoice.\n- Confirm the rounding with the supplier or upload a corrected invoice."
   },
-  "report_hash": "fd61684cad0eb4108f5af123fa7b730a634ded99d65c980bdb4e45bede486dca",
-  "signature": "2f9a3df6dffd51f39aad35ce72cfd47ad297c7b283bcb6243eb07b12135d704263da7bbbbfdf0b9208a2929f898cc726828e83849d0adf5ebe50ffd334173003"
+  "report_hash": "d6a4e1a21612f03861e619e7a85a14ea49054c5e1510ab675ef623ffac8ddc4e",
+  "signature": "38ffb46b235d0aa9d682c4693a27dc130c94b7c905a6bab5c5716bd5d2bf83ebe05ca0dbcb1bc2d77679e25c86cbcd4a971fc48915e19591dd7a42ad1e58e907"
 }

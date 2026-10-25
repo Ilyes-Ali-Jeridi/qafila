@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "shipment",
     "deal_ref": "packet-03",
-    "created_at": "2026-10-25T18:52:15.196Z",
+    "created_at": "2026-10-25T19:37:52.164Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -266,7 +266,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -281,7 +282,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -296,7 +298,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -311,7 +314,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -1194,7 +1198,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -1202,7 +1207,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -1210,7 +1216,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "vessel",
@@ -1218,7 +1225,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": {
@@ -1276,7 +1284,7 @@
           "isActual": false
         }
       ],
-      "lastPolledAt": "2026-10-25T18:52:15.196Z"
+      "lastPolledAt": "2026-10-25T19:37:52.163Z"
     },
     "price": [],
     "halal": [],
@@ -1407,7 +1415,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2711,
         "tokens_out": 68,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       }
     ],
@@ -1429,18 +1437,18 @@
       "shipsgo/COSU6319486.json"
     ],
     "timings_ms": {
-      "intake": 154,
+      "intake": 224,
       "extract": 2,
       "validate": 0,
       "stages": 2,
-      "fingerprint": 0,
-      "explain": 1,
-      "total": 159
+      "fingerprint": 1,
+      "explain": 0,
+      "total": 229
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. All documents are consistent, the company is active and not sanctioned, and the shipment details match. You can proceed with the deal."
   },
-  "report_hash": "fdab8ca5074bdc4926b75a56b66fbf91fa5943e8740aaea400b18f8e1ef352e5",
-  "signature": "7412763eb75a93eacb3397e68dac9aa02276c18b96b51a9f2b172b2d3c1d2309822086b69596a83f97ce149c59e80218d284c2c0f89a978435dfcc5acbab650d"
+  "report_hash": "5b64accae174bb3e53abdef58dfaae730b72c56d57ad8c5c7938700e717c058b",
+  "signature": "cb3935d033072db84384d474e580a5cba6d22b9c2cd2f5f8649f1d293f13889575216c55696612ad57c1a6151ee09fbb29a828b228d0e506c3c43253c6aed505"
 }

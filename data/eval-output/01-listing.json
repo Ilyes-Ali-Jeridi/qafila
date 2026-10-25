@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-01",
-    "created_at": "2026-10-25T18:52:13.849Z",
+    "created_at": "2026-10-25T19:37:50.752Z",
     "decision": "approve",
     "risk_score": 100,
     "checks": [
@@ -167,7 +167,7 @@
         "name": "consistency.goods_invoice_vs_packing_list",
         "status": "pass",
         "severity": "high",
-        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese translations in invoice).",
+        "detail": "Goods descriptions line by line on the invoice vs the packing list (same order, same goods?): match. The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
         "weight": 25,
         "evidence": {
           "a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
@@ -178,13 +178,13 @@
         "name": "halal.line_1",
         "status": "pass",
         "severity": "critical",
-        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is textiles, clothing and footwear: permitted.",
+        "detail": "Line 1 (TPU protective cases for smartphones, assorted models) is electronics and phone accessories: permitted.",
         "weight": 40,
         "evidence": {
           "line": "1. TPU protective cases for smartphones, assorted models",
-          "category": "textiles",
+          "category": "electronics",
           "verdict": "permitted",
-          "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
+          "reason": "TPU protective cases for smartphones are accessories for electronic devices."
         }
       },
       {
@@ -197,7 +197,7 @@
           "line": "2. Tempered glass screen protectors 9H, retail packed",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
+          "reason": "Tempered glass screen protectors are accessories for electronic devices."
         }
       },
       {
@@ -210,7 +210,7 @@
           "line": "3. USB-C charging and data cables, 1 m, nylon braided",
           "category": "electronics",
           "verdict": "permitted",
-          "reason": "USB-C charging and data cables are electronic accessories used for charging and data transfer."
+          "reason": "USB-C charging and data cables are accessories for electronic devices."
         }
       },
       {
@@ -322,7 +322,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -337,7 +338,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -352,7 +354,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -878,32 +881,32 @@
         ],
         "total_packages": {
           "value": 240,
-          "evidence": "240 CTNS",
+          "evidence": "TOTAL 240 CTNS",
           "page": 1,
           "confidence": 0.98
         },
         "total_gross_weight_kg": {
           "value": 2430,
-          "evidence": "2,430.0",
+          "evidence": "Total gross weight: 2,430.0 kg",
           "page": 1,
           "confidence": 0.98
         },
         "total_net_weight_kg": {
           "value": 2140,
-          "evidence": "2,140.0",
+          "evidence": "Total net weight: 2,140.0 kg",
           "page": 1,
           "confidence": 0.98
         },
         "total_cbm": {
           "value": 11.8,
-          "evidence": "11.80",
+          "evidence": "Total volume: 11.80 m3",
           "page": 1,
           "confidence": 0.98
         },
         "container_numbers": [
           {
             "value": "TGHU6120042",
-            "evidence": "TGHU6120042",
+            "evidence": "Container No. TGHU6120042 (20'GP)",
             "page": 1,
             "confidence": 0.98
           }
@@ -914,73 +917,73 @@
         "type": "business_licence",
         "name_zh": {
           "value": "深圳市蓝湾电子有限公司",
-          "evidence": "深圳市蓝湾电子有限公司",
+          "evidence": "名称 深圳市蓝湾电子有限公司",
           "page": 1,
           "confidence": 0.98
         },
         "name_en": {
           "value": "Shenzhen Lanwan Electronics Co., Ltd.",
-          "evidence": "Shenzhen Lanwan Electronics Co., Ltd.",
+          "evidence": "Name Shenzhen Lanwan Electronics Co., Ltd.",
           "page": 1,
           "confidence": 0.98
         },
         "uscc": {
           "value": "91440300MA5GK2Q7XL",
-          "evidence": "91440300MA5GK2Q7XL",
+          "evidence": "统一社会信用代码 91440300MA5GK2Q7XL",
           "page": 1,
           "confidence": 0.98
         },
         "legal_representative": {
           "value": "陈伟 (Chen Wei)",
-          "evidence": "陈伟 (Chen Wei)",
+          "evidence": "法定代表人 陈伟 (Chen Wei)",
           "page": 1,
           "confidence": 0.98
         },
         "company_type": {
           "value": "有限责任公司（自然人投资或控股）",
-          "evidence": "有限责任公司（自然人投资或控股）",
+          "evidence": "类型 有限责任公司（自然人投资或控股）",
           "page": 1,
           "confidence": 0.98
         },
         "registered_capital": {
           "value": "人民币 500 万元 (RMB 5,000,000)",
-          "evidence": "人民币 500 万元 (RMB 5,000,000)",
+          "evidence": "注册资本 人民币 500 万元 (RMB 5,000,000)",
           "page": 1,
           "confidence": 0.98
         },
         "establishment_date": {
           "value": "2016-03-18",
-          "evidence": "2016-03-18",
+          "evidence": "成立日期 2016-03-18",
           "page": 1,
           "confidence": 0.98
         },
         "business_term": {
           "value": "2016-03-18 至 长期 / to long-term",
-          "evidence": "2016-03-18 至 长期 / to long-term",
+          "evidence": "营业期限 2016-03-18 至 长期 / to long-term",
           "page": 1,
           "confidence": 0.98
         },
         "business_scope": {
           "value": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
-          "evidence": "电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
+          "evidence": "经营范围 电子产品、手机配件的研发、生产与销售；货物及技术进出口。（依法须经批准的项目，经相关部门批准后方可开展经营活动）",
           "page": 1,
           "confidence": 0.98
         },
         "address": {
           "value": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
-          "evidence": "广东省深圳市宝安区西乡街道蓝湾工业园3栋",
+          "evidence": "住所 广东省深圳市宝安区西乡街道蓝湾工业园3栋",
           "page": 1,
           "confidence": 0.98
         },
         "registration_authority": {
           "value": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
-          "evidence": "深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
+          "evidence": "登记机关 Registration authority: 深圳市市场监督管理局 / Shenzhen Administration for Market Regulation",
           "page": 1,
           "confidence": 0.98
         },
         "issue_date": {
           "value": "2016-06-30",
-          "evidence": "2016-06-30",
+          "evidence": "发照日期 Issue date: 2016-06-30",
           "page": 1,
           "confidence": 0.98
         },
@@ -1009,7 +1012,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -1017,7 +1021,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -1025,7 +1030,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -1076,21 +1082,21 @@
     "halal": [
       {
         "line": "1. TPU protective cases for smartphones, assorted models",
-        "category": "textiles",
+        "category": "electronics",
         "verdict": "permitted",
-        "reason": "TPU protective cases for smartphones are made of synthetic materials and fall under the textiles category."
+        "reason": "TPU protective cases for smartphones are accessories for electronic devices."
       },
       {
         "line": "2. Tempered glass screen protectors 9H, retail packed",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "Tempered glass screen protectors are accessories for electronic devices and fall under the electronics category."
+        "reason": "Tempered glass screen protectors are accessories for electronic devices."
       },
       {
         "line": "3. USB-C charging and data cables, 1 m, nylon braided",
         "category": "electronics",
         "verdict": "permitted",
-        "reason": "USB-C charging and data cables are electronic accessories used for charging and data transfer."
+        "reason": "USB-C charging and data cables are accessories for electronic devices."
       }
     ],
     "consistency": [
@@ -1132,7 +1138,7 @@
       {
         "field": "goods_invoice_vs_packing_list",
         "match": "yes",
-        "reason": "The goods descriptions are identical in substance, with only minor formatting and language differences (Chinese translations in invoice).",
+        "reason": "The goods descriptions are identical in substance, with the invoice including Chinese translations that do not alter the meaning.",
         "evidence_a": "TPU protective cases for smartphones, assorted models 手机TPU保护壳，多款",
         "evidence_b": "TPU protective cases for smartphones, assorted models"
       }
@@ -1159,7 +1165,7 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_invoice.v1",
-        "tokens_in": 16597,
+        "tokens_in": 16595,
         "tokens_out": 3653,
         "latency_ms": 2,
         "cost_usd": 0
@@ -1169,9 +1175,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
-        "tokens_in": 13704,
-        "tokens_out": 3343,
-        "latency_ms": 3,
+        "tokens_in": 13633,
+        "tokens_out": 2961,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1179,9 +1185,9 @@
         "provider": "bedrock",
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
-        "tokens_in": 4316,
-        "tokens_out": 713,
-        "latency_ms": 4,
+        "tokens_in": 4315,
+        "tokens_out": 759,
+        "latency_ms": 3,
         "cost_usd": 0
       },
       {
@@ -1190,7 +1196,7 @@
         "model_id": "qwen.qwen3-vl-235b-a22b",
         "prompt_version": "consistency.v1",
         "tokens_in": 876,
-        "tokens_out": 107,
+        "tokens_out": 106,
         "latency_ms": 2,
         "cost_usd": 0
       },
@@ -1200,8 +1206,8 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "halal.v1+policy.v1",
         "tokens_in": 1201,
-        "tokens_out": 125,
-        "latency_ms": 1,
+        "tokens_out": 108,
+        "latency_ms": 2,
         "cost_usd": 0
       },
       {
@@ -1210,7 +1216,7 @@
         "model_id": "qwen.qwen3-32b-v1:0",
         "prompt_version": "price.v1",
         "tokens_in": 1960,
-        "tokens_out": 176,
+        "tokens_out": 177,
         "latency_ms": 1,
         "cost_usd": 0
       },
@@ -1245,18 +1251,18 @@
       "registry/91440300MA5GK2Q7XL.json"
     ],
     "timings_ms": {
-      "intake": 579,
+      "intake": 630,
       "extract": 5,
       "validate": 2,
-      "stages": 3,
+      "stages": 5,
       "fingerprint": 1,
       "explain": 1,
-      "total": 591
+      "total": 644
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal is approved for listing because all required checks passed. The container number, USCC code, invoice calculations, and consistency between documents were all valid. You can proceed with the deal."
   },
-  "report_hash": "22796f834a692847f4d0c49f8057c2ec37abf84d9965b44187f860242af034aa",
-  "signature": "fc21fcd9622aa36c23916294b2b6fadf0f0cc8be506c13e2366f482ca1c464667161b65f152b090752f93cdd64a70672ba6c262119160c299918acf0a95c1006"
+  "report_hash": "e9e148238db76e986c1ad914415875d4227205abda6262efdc2ecb81bde62ef1",
+  "signature": "b2fa789c576f822c262eb8d850b2dcbbaeb9605eda0e585a49bd74182fedd31f70d80b8ed56c3ff958c352a63511f23bb9ccae30347101e89efdae1523891100"
 }

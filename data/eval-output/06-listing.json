@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-06",
-    "created_at": "2026-10-25T18:52:16.831Z",
+    "created_at": "2026-10-25T19:37:53.896Z",
     "decision": "reject",
     "risk_score": 60,
     "checks": [
@@ -325,7 +325,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -340,7 +341,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -355,7 +357,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -1018,7 +1021,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -1026,7 +1030,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -1034,7 +1039,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -1170,7 +1176,7 @@
         "prompt_version": "extract_common.v1+extract_invoice.v1",
         "tokens_in": 16689,
         "tokens_out": 3723,
-        "latency_ms": 0,
+        "latency_ms": 1,
         "cost_usd": 0
       },
       {
@@ -1180,7 +1186,7 @@
         "prompt_version": "extract_common.v1+extract_packing_list.v1",
         "tokens_in": 13771,
         "tokens_out": 3360,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1190,7 +1196,7 @@
         "prompt_version": "extract_common.v1+extract_business_licence.v1",
         "tokens_in": 4317,
         "tokens_out": 765,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1200,7 +1206,7 @@
         "prompt_version": "consistency.v1",
         "tokens_in": 930,
         "tokens_out": 260,
-        "latency_ms": 1,
+        "latency_ms": 0,
         "cost_usd": 0
       },
       {
@@ -1230,7 +1236,7 @@
         "prompt_version": "explain.v1",
         "tokens_in": 2387,
         "tokens_out": 77,
-        "latency_ms": 0,
+        "latency_ms": 2,
         "cost_usd": 0
       }
     ],
@@ -1254,18 +1260,18 @@
       "registry/91330782MA2A3G9H8J.json"
     ],
     "timings_ms": {
-      "intake": 537,
-      "extract": 1,
+      "intake": 611,
+      "extract": 2,
       "validate": 0,
       "stages": 1,
       "fingerprint": 0,
-      "explain": 1,
-      "total": 540
+      "explain": 2,
+      "total": 616
     },
     "cost_usd": 0,
     "injection_attempts": [],
     "explanation": "Your deal was rejected because it includes a prohibited item. All other checks passed, including container numbers, pricing, and document consistency.\n\nWhat to fix:\n- Remove the line for red wine from the invoice; Qafila cannot finance it.\n\nCategory: prohibited goods"
   },
-  "report_hash": "b4c7b02987aaabf7982fca595b22bd351ce3392f2bcdf7fa65eeb48b8d612e50",
-  "signature": "bc22b0f3606036389b4793c1c35749b8fea9f708ace3a2c1baf60f6c3bcd728485557e24986e0ca438b5d152fb0f40abe715186ad10acc2880eea5463f5dc206"
+  "report_hash": "95d6d03a74a98b0b2f01b68ceb61b250024261993cdc6586b71466a08b25033e",
+  "signature": "c0c0cde612221cfb512c0dbb900aee524bc9904f723cb1e09b71a896094e7b0864576a3f2cdffb8953e225bd72b2f92ecdfebadc84e24075cb43c898ac5f3808"
 }

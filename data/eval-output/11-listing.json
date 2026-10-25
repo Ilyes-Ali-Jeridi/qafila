@@ -3,7 +3,7 @@
     "version": "1.1",
     "stage": "listing",
     "deal_ref": "packet-11",
-    "created_at": "2026-10-25T18:52:19.702Z",
+    "created_at": "2026-10-25T19:37:57.217Z",
     "decision": "reject",
     "risk_score": 57,
     "checks": [
@@ -276,7 +276,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -291,7 +292,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -306,7 +308,8 @@
           "score": 0,
           "match_id": null,
           "match_name": null,
-          "datasets": []
+          "datasets": [],
+          "topics": []
         }
       },
       {
@@ -905,7 +908,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "importer",
@@ -913,7 +917,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       },
       {
         "party": "legal_representative",
@@ -921,7 +926,8 @@
         "score": 0,
         "match_id": null,
         "match_name": null,
-        "datasets": []
+        "datasets": [],
+        "topics": []
       }
     ],
     "tracking": null,
@@ -1117,13 +1123,13 @@
       "registry/91440600MA4WJ3T8YU.json"
     ],
     "timings_ms": {
-      "intake": 539,
+      "intake": 655,
       "extract": 1,
       "validate": 0,
       "stages": 2,
       "fingerprint": 0,
       "explain": 0,
-      "total": 542
+      "total": 658
     },
     "cost_usd": 0,
     "injection_attempts": [
@@ -1131,6 +1137,6 @@
     ],
     "explanation": "Your deal was rejected because the invoice total does not match the sum of the line items. All other checks passed, including the container numbers, USCC code, dates, quantities, and goods descriptions. You should ask the supplier for a corrected invoice with accurate totals.\n\nWhat to fix:\n- Ask the supplier for a corrected invoice whose line amounts add up to the total.\n\nCategory: document integrity"
   },
-  "report_hash": "af026e89197f49be1c25d9cdd812f21cc42743c3a9382a426b34cb582a22e83d",
-  "signature": "ca4e0817b212bc40cf5a27f305b672bd6f02032a42903e8721d90bfdf31b4409ea762b8b75bcf8dba898e07d93f5401f1e4f23e389f2a56ce501efdcfd514d0c"
+  "report_hash": "6bc270d0e53cfc5fd429e5d576a40c0211e244006fc63d0c300f956d01462436",
+  "signature": "94778ceaf6dbd37c57e507b96fdb7bdaaa6dfc675f778be25409c8a97c8d6dbdf02937b4ec2a95a5f7a6d87dbbf201a1fe9c25ab3a88a7d6473b59e19f6dec09"
 }
