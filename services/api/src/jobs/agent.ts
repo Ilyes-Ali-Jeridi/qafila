@@ -36,11 +36,21 @@ async function record(svc: Services, dealId: string | null, action: string, deci
   return { action, decision, reasoning, txHash };
 }
 
+/**
+ * A-1 gate over the report's checks with a name prefix (`registry.`, `sanctions.`): every
+ * check must be `pass`. `skipped` (no company code, no names to screen) and `unavailable`
+ * are not passes: only an ops registry override after a manual check unblocks the deposit
+ * (review finding R-2).
+ */
+export function gateChecks(rows: Array<{ name: string; status: string }>, prefix: string): { failed: string[]; passed: boolean } {
+  const relevant = rows.filter((r) => r.name.startsWith(prefix));
+  const failed = relevant.filter((r) => r.status !== 'pass').map((r) => `${r.name}:${r.status}`);
+  return { failed, passed: relevant.length > 0 && failed.length === 0 };
+}
+
 async function checkStatus(svc: Services, reportId: string, prefix: string): Promise<{ failed: string[]; passed: boolean }> {
   const rows = await svc.db.query.checks.findMany({ where: eq(checksTable.reportId, reportId) });
-  const relevant = rows.filter((r) => r.name.startsWith(prefix));
-  const failed = relevant.filter((r) => r.status === 'fail' || r.status === 'review' || r.status === 'unavailable').map((r) => `${r.name}:${r.status}`);
-  return { failed, passed: relevant.length > 0 && failed.length === 0 };
+  return gateChecks(rows, prefix);
 }
 
 /** Job 1 and Job 2 for one deal. `force` lets ops run the confirmation as admin. */
