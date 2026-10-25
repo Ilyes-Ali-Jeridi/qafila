@@ -1,7 +1,7 @@
 /** Verification and shipment report schemas (PLAN 5.2 Report, 6 Job 2). */
 import { z } from 'zod';
-import { DecisionSchema, Hex32, Hex64, TrackingSnapshotSchema } from './schemas.js';
-import { BillOfLadingSchema, BusinessLicenceSchema, InvoiceSchema, PackingListSchema } from './documents.js';
+import { DecisionSchema, Hex32, Hex64, TrackingSnapshotSchema } from './schemas';
+import { BillOfLadingSchema, BusinessLicenceSchema, InvoiceSchema, PackingListSchema } from './documents';
 
 export const CheckStatus = z.enum(['pass', 'fail', 'review', 'unavailable', 'skipped']);
 export const CheckSeverity = z.enum(['critical', 'high', 'medium', 'low', 'info']);

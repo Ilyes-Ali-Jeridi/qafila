@@ -1,4 +1,4 @@
-import { DECIMALS, NETWORKS, type NetworkName } from './constants.js';
+import { DECIMALS, NETWORKS, type NetworkName } from './constants';
 
 /** i128 stroops (bigint or decimal string) to a display string with two decimals. */
 export function formatAmount(stroops: bigint | string | number, code = 'qUSD'): string {
