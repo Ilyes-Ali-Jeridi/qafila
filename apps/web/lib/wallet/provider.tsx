@@ -20,8 +20,12 @@ import { MOCK_CHAIN, mockChainCall, mockWalletAddress } from './mock-chain';
 export type WalletKind = 'passkey' | 'freighter' | 'mock';
 export type SubmitMode = WalletKind;
 
-/** How passkey calls reach the contract. SP5 decided `execute` (wallet.execute -> Qafila) through the hosted relayer proxy. */
-export const PASSKEY_PATH: 'execute' | 'direct' = process.env['NEXT_PUBLIC_PASSKEY_PATH'] === 'direct' ? 'direct' : 'execute';
+/**
+ * How passkey calls reach the contract (SP5, docs/SPIKES-product.md): `direct` builds the call with the
+ * generated client and the smart account signs its own auth entry (`kit.signAndSubmit`); `execute` routes
+ * through the smart account's `execute` (`kit.executeAndSubmit`). Both passed; direct is PLAN 4.1's path.
+ */
+export const PASSKEY_PATH: 'execute' | 'direct' = process.env['NEXT_PUBLIC_PASSKEY_PATH'] === 'execute' ? 'execute' : 'direct';
 
 export interface TxReceipt {
   hash: string;
@@ -193,7 +197,8 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         if (PASSKEY_PATH === 'execute') {
           result = await kit.executeAndSubmit(config.contractId, call.method, call.scArgs);
         } else {
-          // Direct path: only valid when the kit and the generated client share one SDK copy.
+          // The generated client and the kit share one SDK copy (webpack alias), so the assembled
+          // transaction's auth entries are signed by the passkey and re-simulated by the kit.
           const client = makeQafilaClient(config, { publicKey: kit.deployerPublicKey });
           const tx = await call.assemble(client);
           result = await kit.signAndSubmit(tx as unknown as Parameters<typeof kit.signAndSubmit>[0]);

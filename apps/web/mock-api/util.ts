@@ -4,6 +4,8 @@ import { resolve } from 'node:path';
 import { Keypair, StrKey } from '@stellar/stellar-sdk';
 
 export const ROOT = resolve(import.meta.dirname, '../../..');
+/** The cross-track handoff folder: ../.shared next to the worktrees, or .shared in the main checkout. */
+export const SHARED = existsSync(resolve(ROOT, '../../.shared')) ? resolve(ROOT, '../../.shared') : resolve(ROOT, '.shared');
 
 /** Tiny .env reader (no dependency). Values already in process.env win. */
 export function loadDotEnv(): Record<string, string> {

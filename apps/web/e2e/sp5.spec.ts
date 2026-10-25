@@ -29,7 +29,8 @@ test('SP5: passkey wallet calls probe(require_auth + transfer) with sponsored fe
     await expect(done).toBeVisible({ timeout });
     const items = await page.getByTestId('sp5-log').locator('li').allTextContents();
     const line = items.slice(before).find((l) => /PASS|FAIL/.test(l)) ?? items[items.length - 1]!;
-    const hash = (await done.locator('[data-testid=sp5-hash]').textContent().catch(() => null)) ?? undefined;
+    const hashEl = done.locator('[data-testid=sp5-hash]');
+    const hash = (await hashEl.count()) > 0 ? ((await hashEl.textContent()) ?? undefined) : undefined;
     results[step] = { ok: /PASS/.test(line), line, hash, secs: (Date.now() - t0) / 1000 };
     console.log(`SP5 ${step}: ${line}`);
   }

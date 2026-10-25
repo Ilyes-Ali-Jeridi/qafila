@@ -74,10 +74,13 @@ import {
   UpdateDealTermsRequest,
   VerifyResponseSchema,
   type ImporterDeal,
+  type ImporterStage,
   type Me,
   type OpsQueueItem,
 } from '../lib/api/schemas';
 import { sendFaucet } from './faucet.js';
+import { relayerApp } from './relayer.js';
+import { approveInvestorOnchain, chainReader, readDealOnchain, readSeed } from './chain.js';
 import {
   COINVEST_BPS,
   CONTRACT_CFG,
@@ -97,12 +100,82 @@ import {
   type MockUser,
   type World,
 } from './data.js';
-import { DAY, HOUR, ROOT, fakeC, fakeG, fakeTx, iso, loadDotEnv, nowIso, nowSecs, randomUuid, readJson, sha256hex } from './util.js';
+import { DAY, HOUR, ROOT, SHARED, fakeC, fakeG, fakeTx, iso, loadDotEnv, nowIso, nowSecs, randomUuid, readJson, sha256hex } from './util.js';
 
 const env = { ...loadDotEnv(), ...process.env } as Record<string, string | undefined>;
 const PORT = Number(env['MOCK_API_PORT'] ?? 8788);
 const log = (m: string) => console.log(`${new Date().toISOString()} ${m}`);
 const world: World = makeWorld();
+
+/**
+ * Align the three demo deals with Track A's testnet seed when it exists: real on-chain ids,
+ * share tokens, issuers, fingerprints and transaction hashes, so every link on the public deal
+ * page points at a real transaction while the real API is still being built.
+ */
+const seed = readSeed();
+if (seed) {
+  const byName: Record<string, number> = { venue: 1, shipping: 2, late: 3 };
+  for (const sd of seed.deals) {
+    const d = world.deals.find((x) => x.number === byName[sd.name]);
+    if (!d) continue;
+    d.onchainId = Number(sd.dealId);
+    d.shareToken = sd.shareToken;
+    d.issuerPublicKey = sd.shareIssuer;
+    d.supplier.payoutAddress = seed.supplier;
+    d.importer = d.importer ?? null;
+    if (d.promise) {
+      d.promise.listingFingerprint = sd.listingFingerprintHex;
+      if (sd.txs['promise']) d.promise.txHash = sd.txs['promise'];
+    }
+    d.listingTxHashes = {
+      issuer_created: sd.txs['factory_createIssuer'] ?? d.listingTxHashes['issuer_created']!,
+      flags_set: sd.txs['factory_setFlags'] ?? d.listingTxHashes['flags_set']!,
+      sac_deployed: sd.txs['factory_deploySac'] ?? d.listingTxHashes['sac_deployed']!,
+      admin_set: sd.txs['factory_setAdmin'] ?? d.listingTxHashes['admin_set']!,
+      issuer_locked: sd.txs['factory_lockIssuer'] ?? d.listingTxHashes['issuer_locked']!,
+      list_deal: sd.txs['list'] ?? d.listingTxHashes['list_deal']!,
+    };
+    const map: Record<string, string | undefined> = { promised: sd.txs['promise'], deal_listed: sd.txs['list'], deposit_paid: sd.txs['deposit'], shipment_confirmed: sd.txs['confirm'] };
+    for (const e of d.timeline) {
+      const h = map[e.type];
+      if (h) e.txHash = h;
+    }
+    // Replace the fabricated investors with the seed's real ones (coinvest 5%, investors A and B).
+    d.holders.clear();
+    d.investTx.clear();
+    d.timeline = d.timeline.filter((e) => e.type !== 'invested' && e.type !== 'funded');
+    const coin = (d.terms.cost * BigInt(COINVEST_BPS)) / 10000n;
+    const realInvestors: Array<[string, bigint, string | undefined]> = [[seed.investors['coinvest'] ?? fakeG('coinvest'), coin, sd.txs['coinvest']]];
+    if (sd.txs['investA'] && sd.txs['investB']) {
+      const rest = d.terms.cost - coin;
+      realInvestors.push([seed.investors['a'] ?? fakeG('a'), rest / 2n, sd.txs['investA']], [seed.investors['b'] ?? fakeG('b'), rest - rest / 2n, sd.txs['investB']]);
+    }
+    d.funded = 0n;
+    let at = d.listedAt + 60;
+    for (const [who, amt, tx] of realInvestors) {
+      investAt(d, who, amt, at, 1_980_000);
+      if (tx) {
+        d.investTx.set(who, { txHash: tx, at: iso(at) });
+        const e = d.timeline[d.timeline.length - 1];
+        if (e && e.type === 'invested') e.txHash = tx;
+        else {
+          const f = [...d.timeline].reverse().find((x) => x.type === 'invested' && x.data['investor'] === who);
+          if (f) f.txHash = tx;
+        }
+      }
+      at += 3 * HOUR;
+    }
+    if (d.state !== 'Listed' && d.funded >= d.terms.cost) d.state = d.state === 'Funded' ? 'Funded' : d.state;
+    for (const p of d.payments) {
+      if (p.kind === 'security_locked' && sd.txs['promise']) p.txHash = sd.txs['promise'];
+      if (p.kind === 'supplier_deposit' && sd.txs['deposit']) p.txHash = sd.txs['deposit'];
+      if (p.kind === 'supplier_balance' && sd.txs['confirm']) p.txHash = sd.txs['confirm'];
+    }
+    d.audit = d.audit.map((a) => (a.action === 'list_deal' && sd.txs['list'] ? { ...a, txHash: sd.txs['list'] } : a));
+  }
+  log(`[mock] aligned demo deals with the testnet seed ${seed.contractId} (${seed.seededAt})`);
+}
+
 
 // ------------------------------------------------------------------ helpers
 
@@ -229,12 +302,12 @@ const ledger = () => 1_980_000 + Math.floor((Date.now() / 1000 - 1_761_400_000) 
 function deploymentContractId(): string | null {
   const fromEnv = env['QAFILA_CONTRACT_ID'];
   if (fromEnv) return fromEnv;
-  const shared = readJson<{ contractId?: string; qafilaContractId?: string }>(`${ROOT}/../.shared/testnet.json`) ?? readJson<{ contractId?: string; qafilaContractId?: string }>(`${ROOT}/deployments/testnet.json`);
+  const shared = readJson<{ contractId?: string; qafilaContractId?: string }>(`${SHARED}/testnet.json`) ?? readJson<{ contractId?: string; qafilaContractId?: string }>(`${ROOT}/deployments/testnet.json`);
   return shared?.contractId ?? shared?.qafilaContractId ?? null;
 }
 
 function verifierHex(): string | null {
-  const acc = readJson<{ roles?: { verifier?: { stellarPublic?: string } } }>(`${ROOT}/../.shared/accounts.json`);
+  const acc = readJson<{ roles?: { verifier?: { stellarPublic?: string } } }>(`${SHARED}/accounts.json`);
   const g = acc?.roles?.verifier?.stellarPublic;
   if (!g) return null;
   try {
@@ -268,6 +341,35 @@ function publicConfig(): PublicConfig {
     flags: Object.fromEntries(FEATURE_FLAGS.map((f) => [f, (env[f] ?? ({ FF_EXTENSIONS: 'true', FF_COINVEST: 'true', FF_X402: 'true', FF_REFLECTOR: 'true', FF_TRADE_PASSPORT: 'true', FF_TRADE_FILE: 'true', FF_QR_JOIN: 'true' } as Record<string, string>)[f] ?? 'false') === 'true'])) as PublicConfig['flags'],
     version: 'mock-0.1.0',
   };
+}
+
+const chainEnv = () => ({ contractId: publicConfig().contractId, rpcUrl: publicConfig().rpcUrl, networkPassphrase: publicConfig().networkPassphrase, adminSecret: env['ADMIN_SECRET'] });
+const reader = chainReader(chainEnv());
+
+/** Overlay live contract state on a seed-aligned deal (funded, state, repayments) so the UI shows real numbers. */
+async function overlay(d: MockDeal): Promise<void> {
+  if (!reader || d.onchainId === null || !seed) return;
+  const oc = await readDealOnchain(reader, d.onchainId);
+  if (!oc) return;
+  const stateMap: Record<string, ImporterStage> = { Listed: 'listed', Funded: 'funded', DepositPaid: 'deposit_paid', Owned: 'owned', Sold: 'sold', Repaid: 'repaid', Cancelled: 'cancelled', Defaulted: 'defaulted', Liquidated: 'liquidated', Closed: 'closed' };
+  d.state = oc.state as MockDeal['state'];
+  d.stage = stateMap[oc.state] ?? d.stage;
+  d.funded = oc.funded;
+  d.supplierPaid = oc.supplierPaid;
+  d.salePrice = oc.salePrice;
+  d.principalRepaid = oc.principalRepaid;
+  d.dueAt = oc.dueAt;
+  d.ownedAt = oc.ownedAt;
+  d.acceptedAt = oc.acceptedAt;
+  d.lateFeeDue = oc.lateFeeDue;
+  d.lateFeePaid = oc.lateFeePaid;
+  d.recovered = oc.recovered;
+  d.distributable = oc.distributable;
+  d.claimedShares = oc.claimedShares;
+  d.paidOut = oc.paidOut;
+  d.holderCount = Math.max(oc.holderCount, d.holders.size);
+  d.securityHeld = oc.security;
+  if (oc.listedAt) d.listedAt = oc.listedAt;
 }
 
 // ------------------------------------------------------------------ serializers
@@ -660,7 +762,7 @@ function seedRefundFor(address: string) {
 // ------------------------------------------------------------------ app
 
 const app = new Hono();
-app.use('*', cors({ origin: (o) => o ?? '*', allowHeaders: ['authorization', 'content-type', 'x-wallet-address', 'x-dev-role'], allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'] }));
+app.use('*', cors({ origin: (o) => o ?? '*', allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], maxAge: 600 }));
 app.use('*', async (c, next) => {
   const t = Date.now();
   await next();
@@ -715,13 +817,15 @@ app.get('/charity', (c) =>
   }),
 );
 
-app.get('/deals', (c) => {
+app.get('/deals', async (c) => {
   const listed = world.deals.filter((d) => d.state !== null).sort((a, b) => b.listedAt - a.listedAt);
+  await Promise.all(listed.map(overlay));
   return reply(c, DealSummarySchema.array(), listed.map(summary));
 });
-app.get('/deals/:id', (c) => {
+app.get('/deals/:id', async (c) => {
   const d = findDeal(c.req.param('id'));
   if (!d.state) throw new HttpError(404, 'deal_not_found', 'This deal is not public yet.');
+  await overlay(d);
   return reply(c, DealDetailSchema, detail(d));
 });
 app.get('/deals/:id/tracking', (c) => {
@@ -749,7 +853,13 @@ app.post('/kyc', async (c) => {
   u.email = b.email ?? null;
   u.kycStatus = 'approved';
   u.investorApproved = true;
-  u.approveTxHash = u.approveTxHash ?? fakeTx();
+  if (!u.approveTxHash) {
+    const real = await approveInvestorOnchain(chainEnv(), u.address, log).catch((e: Error) => {
+      log(`[mock] approve_investor failed: ${e.message.slice(0, 200)}`);
+      return null;
+    });
+    u.approveTxHash = real ?? fakeTx();
+  }
   let faucet: { amount: string; txHash: string } | null = null;
   if (!u.faucetTaken) {
     const r = await sendFaucet({ secret: env['FAUCET_SECRET'], tokenId: env['SETTLEMENT_TOKEN_ID'], rpcUrl: publicConfig().rpcUrl, networkPassphrase: publicConfig().networkPassphrase }, u.address, 50n * ONE, log).catch((e: Error) => {
@@ -770,7 +880,10 @@ app.post('/join', async (c) => {
   u.joinedVia = 'hackmeridian';
   u.kycStatus = 'approved';
   u.investorApproved = true;
-  u.approveTxHash = u.approveTxHash ?? fakeTx();
+  if (!u.approveTxHash) {
+    const real = await approveInvestorOnchain(chainEnv(), u.address, log).catch(() => null);
+    u.approveTxHash = real ?? fakeTx();
+  }
   let faucet: { amount: string; txHash: string } | null = null;
   if (!u.faucetTaken) {
     const r = await sendFaucet({ secret: env['FAUCET_SECRET'], tokenId: env['SETTLEMENT_TOKEN_ID'], rpcUrl: publicConfig().rpcUrl, networkPassphrase: publicConfig().networkPassphrase }, u.address, 50n * ONE, log).catch(() => null);
@@ -1400,6 +1513,27 @@ app.put('/ops/policy', async (c) => {
   return reply(c, PolicySchema, world.policy);
 });
 
+// --- fee-sponsoring relayer for smart accounts (kit relayer-proxy protocol)
+if (env['RELAYER_SECRET']) {
+  const cfg = publicConfig();
+  app.route(
+    '/relayer',
+    relayerApp(
+      {
+        secret: env['RELAYER_SECRET'],
+        rpcUrl: cfg.rpcUrl,
+        networkPassphrase: cfg.networkPassphrase,
+        allowedContracts: [cfg.contractId, env['PROBE_CONTRACT_ID'], env['NEXT_PUBLIC_PROBE_CONTRACT_ID'], cfg.settlementToken.id].filter((x): x is string => Boolean(x)),
+        allowedWasmHashes: [cfg.smartAccount.wasmHash].filter((x): x is string => Boolean(x)),
+        maxResourceFeeStroops: BigInt(env['RELAYER_MAX_RESOURCE_FEE_STROOPS'] ?? '1500000000'),
+        inclusionFeeStroops: env['RELAYER_INCLUSION_FEE_STROOPS'] ?? '10000',
+        perIpPerMinute: Number(env['RELAYER_PER_IP_PER_MINUTE'] ?? 30),
+      },
+      log,
+    ),
+  );
+}
+
 serve({ fetch: app.fetch, port: PORT }, () => {
-  log(`[mock] Qafila mock API listening on http://localhost:${PORT} (deals: ${world.deals.length}, faucet: ${env['FAUCET_SECRET'] && env['SETTLEMENT_TOKEN_ID'] ? 'live testnet qUSD' : 'mock'})`);
+  log(`[mock] Qafila mock API listening on http://localhost:${PORT} (deals: ${world.deals.length}, faucet: ${env['FAUCET_SECRET'] && env['SETTLEMENT_TOKEN_ID'] ? 'live testnet qUSD' : 'mock'}, relayer: ${env['RELAYER_SECRET'] ? `/relayer from ${env['RELAYER_SECRET'].slice(0, 2)}…` : 'off'})`);
 });

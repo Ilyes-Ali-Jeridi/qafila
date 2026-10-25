@@ -3,9 +3,8 @@
  * config. Never a hard-coded contract id: callers pass the PublicConfig from GET /config.
  *
  * Note on SDK copies: smart-account-kit 0.8.0 needs stellar-sdk 16 (its XDR accessors changed
- * in 17), so the web app pins 16.4.1 for the kit and for hand-built ScVals, while the generated
- * client carries its own 17.4.0. Nothing xdr-typed crosses between the two: the kit gets ScVals
- * built with 16, the generated client is used for simulation (views) and for G-wallet signing.
+ * in 17). The web app pins 16.4.1 and webpack aliases every `@stellar/stellar-sdk` import, the
+ * generated bindings included, to that one copy, so transactions built here can be signed by the kit.
  */
 import { Client } from '@qafila/contract-client';
 import type { PublicConfig } from '@qafila/shared';
