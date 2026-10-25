@@ -23,8 +23,8 @@ pkg['private'] = true;
 pkg['exports'] = { '.': './src/index.ts' };
 delete pkg['typings'];
 pkg['scripts'] = { typecheck: 'tsc --noEmit' };
-pkg['dependencies'] = { '@stellar/stellar-sdk': '^17.4.0', buffer: '6.0.3' };
-pkg['devDependencies'] = { typescript: '^5.9.0' };
+pkg['dependencies'] = { '@stellar/stellar-sdk': '17.4.0', buffer: '6.0.3' };
+pkg['devDependencies'] = { typescript: '5.9.3' };
 writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
 
 writeFileSync(
