@@ -60,14 +60,26 @@ auth.post('/auth/verify', rateLimit('otp-verify', 10, 10 * 60 * 1000), async (c)
 auth.get('/auth/dev-otp', async (c) => {
   const env = c.get('env');
   if (env.NODE_ENV === 'production') throw new ApiError(404, 'not_found', 'no route');
-  const email = c.req.query('email') ?? '';
+  const email = (c.req.query('email') ?? '').toLowerCase();
   const base = process.env['INBUCKET_URL'] ?? 'http://127.0.0.1:54324';
-  const list = (await fetch(`${base}/api/v1/mailbox/${encodeURIComponent(email.split('@')[0] ?? '')}`, { signal: AbortSignal.timeout(5000) }).then((r) => r.json()).catch(() => [])) as Array<{ id: string }>;
+  const codeIn = (t: string) => /\b(\d{6})\b/.exec(t)?.[1] ?? null;
+  // Mailpit (current supabase CLI): list, then fetch the newest message to this address.
+  try {
+    const list = (await fetch(`${base}/api/v1/messages?limit=20`, { signal: AbortSignal.timeout(5000) }).then((r) => r.json())) as { messages?: Array<{ ID: string; To?: Array<{ Address: string }> }> };
+    const hit = (list.messages ?? []).find((m) => (m.To ?? []).some((t) => t.Address.toLowerCase() === email));
+    if (hit) {
+      const msg = (await fetch(`${base}/api/v1/message/${hit.ID}`, { signal: AbortSignal.timeout(5000) }).then((r) => r.json())) as { Text?: string; HTML?: string };
+      return c.json({ code: codeIn(`${msg.Text ?? ''} ${msg.HTML ?? ''}`) });
+    }
+  } catch {
+    /* fall through to the Inbucket shape */
+  }
+  const box = encodeURIComponent(email.split('@')[0] ?? '');
+  const list = (await fetch(`${base}/api/v1/mailbox/${box}`, { signal: AbortSignal.timeout(5000) }).then((r) => r.json()).catch(() => [])) as Array<{ id: string }>;
   const last = list[list.length - 1];
   if (!last) return c.json({ code: null });
-  const msg = (await fetch(`${base}/api/v1/mailbox/${encodeURIComponent(email.split('@')[0] ?? '')}/${last.id}`, { signal: AbortSignal.timeout(5000) }).then((r) => r.json())) as { body?: { text?: string } };
-  const code = /\b(\d{6})\b/.exec(msg.body?.text ?? '')?.[1] ?? null;
-  return c.json({ code });
+  const msg = (await fetch(`${base}/api/v1/mailbox/${box}/${last.id}`, { signal: AbortSignal.timeout(5000) }).then((r) => r.json())) as { body?: { text?: string } };
+  return c.json({ code: codeIn(msg.body?.text ?? '') });
 });
 
 async function meOf(c: Parameters<typeof requireUser>[0], profileId: string): Promise<Me> {

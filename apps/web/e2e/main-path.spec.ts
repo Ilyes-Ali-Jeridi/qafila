@@ -59,6 +59,22 @@ test('importer: new deal, documents, screening, promise with the security deposi
   await page.getByTestId('onb-label').fill('E2E Importer');
   await page.getByTestId('onb-create').click();
   await expect(page.getByTestId('onb-wallet-ready')).toBeVisible({ timeout: 120_000 });
+  // Real API: importers sign in with an email code first (the mock skips it). The code is read from the dev mail catcher.
+  if (await page.getByTestId('email-step').isVisible({ timeout: 5_000 }).catch(() => false)) {
+    const email = `e2e-importer-${Date.now()}@qafila.dev`;
+    await page.getByTestId('email-input').fill(email);
+    await page.getByTestId('email-send').click();
+    await expect(page.getByTestId('otp-input')).toBeVisible({ timeout: 30_000 });
+    const api = process.env['E2E_API_URL'] ?? 'http://localhost:8787';
+    let code: string | null = null;
+    for (let i = 0; i < 20 && !code; i++) {
+      await page.waitForTimeout(1500);
+      code = ((await (await page.request.get(`${api}/auth/dev-otp?email=${encodeURIComponent(email)}`)).json()) as { code: string | null }).code;
+    }
+    expect(code, 'one-time code from the mail catcher').toBeTruthy();
+    await page.getByTestId('otp-input').fill(code!);
+    await page.getByTestId('otp-verify').click();
+  }
   await page.getByTestId('kyb-legal').fill('E2E Trading Ltd');
   await page.getByTestId('kyb-reg').fill('RC-E2E-001');
   await page.getByTestId('kyb-submit').click();

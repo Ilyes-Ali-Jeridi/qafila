@@ -1,5 +1,5 @@
 'use client';
-import { readSession } from '@/lib/session';
+import { readSession, setSessionToken, writeSession } from '@/lib/session';
 /**
  * Passkey onboarding (PLAN 4.1, 9.2): one button creates the wallet, then role, then KYC-lite
  * or KYB, then the testnet faucet. Target: under 30 seconds on a phone. No seed phrase, no XLM.
@@ -25,7 +25,13 @@ import { COUNTRIES } from '@/lib/countries';
 import { useWallet } from '@/lib/wallet/provider';
 import { cn } from '@/lib/utils';
 
-type Step = 'wallet' | 'role' | 'investor' | 'importer' | 'done';
+type Step = 'wallet' | 'role' | 'investor' | 'email' | 'importer' | 'done';
+
+/** True once the user holds a real server session (email code verified), not the wallet-only placeholder. */
+function hasServerSession(): boolean {
+  const t = readSession().token;
+  return Boolean(t && !t.startsWith('mock.'));
+}
 
 export function Onboarding() {
   const params = useSearchParams();
@@ -45,7 +51,7 @@ export function Onboarding() {
 
   // Already connected: the wallet step is skipped by derivation, no state update needed.
   const alreadyDone = w.status === 'connected' && me.data?.profile.kycStatus === 'approved' && Boolean(me.data?.profile.displayName);
-  const shown: Step = step !== 'wallet' || w.status !== 'connected' ? step : alreadyDone ? 'done' : roleParam === 'importer' ? 'importer' : roleParam === 'investor' ? 'investor' : 'role';
+  const shown: Step = step !== 'wallet' || w.status !== 'connected' ? step : alreadyDone ? 'done' : roleParam === 'importer' ? (hasServerSession() ? 'importer' : 'email') : roleParam === 'investor' ? 'investor' : 'role';
   useEffect(() => {
     if (alreadyDone && next && step === 'wallet') router.replace(next);
   }, [alreadyDone, next, router, step]);
@@ -149,7 +155,7 @@ export function Onboarding() {
       {shown === 'role' ? (
         <div className="grid gap-3 sm:grid-cols-2 rise">
           <RoleCard icon={<LineChart className="size-5" />} title="I want to invest" body="Fund a shipment and earn a share of its fixed profit." onClick={() => setStep('investor')} testId="onb-role-investor" />
-          <RoleCard icon={<Briefcase className="size-5" />} title="I import goods" body="Ask Qafila to buy goods for you and pay a fixed price later." onClick={() => setStep('importer')} testId="onb-role-importer" />
+          <RoleCard icon={<Briefcase className="size-5" />} title="I import goods" body="Ask Qafila to buy goods for you and pay a fixed price later." onClick={() => setStep(hasServerSession() ? 'importer' : 'email')} testId="onb-role-importer" />
         </div>
       ) : null}
 
@@ -164,6 +170,7 @@ export function Onboarding() {
           onBack={() => setStep('role')}
         />
       ) : null}
+      {shown === 'email' ? <EmailSignIn walletAddress={w.address ?? null} walletKind={w.address?.startsWith('C') ? 'smart_account' : 'g_account'} onDone={() => setStep('importer')} onBack={() => setStep('role')} /> : null}
       {shown === 'importer' ? (
         <ImporterForm
           defaultName={w.label ?? ''}
@@ -264,6 +271,87 @@ function InvestorForm({ defaultName, onDone, onBack }: { defaultName: string; on
           </Button>
         </div>
       </form>
+    </Card>
+  );
+}
+
+
+const VerifyResponse = z.object({ token: z.string().min(10) }).passthrough();
+
+/**
+ * Email sign-in with a one-time code (PLAN 4.3): importers and ops need a server session;
+ * the API proxies Supabase Auth, so the browser never talks to it directly.
+ */
+function EmailSignIn({ walletAddress, walletKind, onDone, onBack }: { walletAddress: string | null; walletKind: 'smart_account' | 'g_account'; onDone: () => void; onBack: () => void }) {
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  async function send() {
+    setError(null);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError('Enter a valid email address.');
+    setBusy(true);
+    try {
+      await apiPost('/auth/otp', { email }, z.object({ ok: z.literal(true) }));
+      setSent(true);
+    } catch (e) {
+      setError(describeError(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function verify() {
+    setError(null);
+    setBusy(true);
+    try {
+      const r = await apiPost('/auth/verify', { email, code: code.trim(), walletAddress: walletAddress ?? undefined, walletKind: walletAddress ? walletKind : undefined }, VerifyResponse);
+      setSessionToken(r.token);
+      writeSession({ token: r.token });
+      onDone();
+    } catch (e) {
+      setError(describeError(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <Card className="rise" data-testid="email-step">
+      <CardBody className="space-y-4">
+        <div>
+          <p className="eyebrow">Step 3</p>
+          <h2 className="text-xl font-semibold">Your email</h2>
+          <p className="mt-1 text-sm text-ink-muted">Importers sign in with a one-time code so Qafila can reach you about your deals. No password.</p>
+        </div>
+        <Field label="Email" htmlFor="email-input">
+          <Input id="email-input" data-testid="email-input" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={sent} placeholder="you@company.com" />
+        </Field>
+        {sent ? (
+          <Field label="Code from the email (6 digits)" htmlFor="otp-input">
+            <Input id="otp-input" data-testid="otp-input" inputMode="numeric" autoComplete="one-time-code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="123456" />
+          </Field>
+        ) : null}
+        {error ? <InlineError>{error}</InlineError> : null}
+        <div className="flex flex-wrap gap-2">
+          {sent ? (
+            <>
+              <Button data-testid="otp-verify" onClick={() => void verify()} disabled={busy || code.trim().length < 6}>
+                {busy ? 'Checking…' : 'Verify and continue'}
+              </Button>
+              <Button variant="outline" onClick={() => void send()} disabled={busy}>
+                Send a new code
+              </Button>
+            </>
+          ) : (
+            <Button data-testid="email-send" onClick={() => void send()} disabled={busy}>
+              {busy ? 'Sending…' : 'Send me a code'}
+            </Button>
+          )}
+          <Button variant="ghost" onClick={onBack} disabled={busy}>
+            Back
+          </Button>
+        </div>
+      </CardBody>
     </Card>
   );
 }
