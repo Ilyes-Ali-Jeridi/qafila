@@ -10,7 +10,7 @@ export function HeroTitle({ className }: { className: string }) {
     <h1 className={className}>
       <span className="sr-only">{HEADLINE}</span>
       <span aria-hidden className="block">
-        <SplitText text={HEADLINE} tag="span" splitType="words" effect="blur" trigger="load" delay={45} duration={0.9} staggerFrom="start" className="block" />
+        <SplitText text={HEADLINE} tag="span" splitType="words" effect="blur" trigger="load" delay={45} duration={0.9} staggerFrom="start" textAlign="left" className="block" />
       </span>
     </h1>
   );

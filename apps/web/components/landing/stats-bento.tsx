@@ -2,7 +2,7 @@
 /** Live stats from GET /stats as a bento grid, refreshed every 10 seconds. Every number comes from the API. */
 import CountUp from '@/components/bits/CountUp';
 import SpotlightCard from '@/components/bits/SpotlightCard';
-import { InView } from '@/components/motion/reveal';
+import { Reveal } from '@/components/motion/reveal';
 import { ErrorState, Skeleton } from '@/components/ui/states';
 import { describeError } from '@/lib/api/client';
 import { useStats } from '@/lib/api/hooks';
@@ -41,7 +41,7 @@ export function StatsBento() {
   const total = Object.values(s.dealsByState).reduce((a, b) => a + b, 0);
   const money = (v: string) => <CountUp to={toUnits(v)} decimals={2} separator="," duration={1.4} trigger="load" suffix={token.code ? ` ${token.code}` : ''} />;
   return (
-    <InView>
+    <Reveal delay={0.2}>
       <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4" data-testid="live-stats">
         <Tile label="Funded" hint={token.label || undefined} tone="saffron" className="sm:col-span-2 lg:row-span-2 lg:flex lg:flex-col lg:justify-end [&>div]:text-4xl [&>div]:sm:text-5xl [&>div]:lg:text-6xl">
           {money(s.funded)}
@@ -62,6 +62,6 @@ export function StatsBento() {
           {money(s.charityTotal)}
         </Tile>
       </div>
-    </InView>
+    </Reveal>
   );
 }
