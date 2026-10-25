@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-'use client';
-import { z } from 'zod';
-import { ApiScreen } from '@/components/not-built';
-=======
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { JoinScreen } from './join';
 import { SkeletonCard } from '@/components/ui/states';
->>>>>>> track/product
 
 export const metadata: Metadata = { title: 'Join' };
 

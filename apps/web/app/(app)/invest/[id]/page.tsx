@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-'use client';
-import { z } from 'zod';
-import { ApiScreen } from '@/components/not-built';
-=======
 import type { Metadata } from 'next';
 import { DealScreen } from '@/components/deal/deal-screen';
->>>>>>> track/product
 
 export const metadata: Metadata = { title: 'Invest' };
 
