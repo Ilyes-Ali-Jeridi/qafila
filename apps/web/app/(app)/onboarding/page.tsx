@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 'use client';
 import { z } from 'zod';
 import { ApiScreen } from '@/components/not-built';
+=======
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { Onboarding } from './onboarding';
+import { SkeletonCard } from '@/components/ui/states';
+
+export const metadata: Metadata = { title: 'Create my wallet' };
+>>>>>>> track/product
 
 export default function Page() {
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Create my wallet</h1>
-      <ApiScreen path="/config" schema={z.unknown()} render={(d) => <pre className="text-xs">{JSON.stringify(d, null, 2)}</pre>} />
-    </div>
+    <Suspense fallback={<SkeletonCard lines={4} />}>
+      <Onboarding />
+    </Suspense>
   );
 }

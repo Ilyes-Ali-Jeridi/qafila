@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import { JoinCta } from '@/components/join-cta';
+import { LiveFeed } from '@/components/live-feed';
 import { LiveStats } from '@/components/live-stats';
+import { buttonClasses } from '@/components/ui/button';
 
 const STEPS: [string, string][] = [
   ['Verify', 'The importer uploads the invoice, packing list and supplier licence. AI checks them against each other, the company register, sanctions lists and live carrier data. A person signs off.'],
-  ['Fund', 'Investors fund the shipment and receive locked shares. The importer has already locked a security deposit.'],
+  ['Fund', 'The importer locks a security deposit first. Investors fund the shipment and receive locked shares.'],
   ['Ship', 'The contract pays the supplier. The bill of lading is made out to Qafila. An agent confirms the loading event from carrier tracking and the balance is paid.'],
   ['Repay', 'The importer buys the goods at a price fixed from day one and repays by the due date. Investors claim principal plus profit. Late fees go to charity.'],
 ];
@@ -26,62 +29,88 @@ const FAQ: [string, string][] = [
 export default function Landing() {
   return (
     <div className="space-y-16">
-      <section className="space-y-6 pt-6">
-        <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-          Fund a real shipment for an importer that banks turn down.
-        </h1>
-        <p className="max-w-2xl text-lg text-ink-muted">
-          For centuries, caravans crossing the Sahara were financed by partners who pooled money, bought goods and shared the profit of a real trade. Qafila is that partnership on Stellar.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/invest" className="rounded-md bg-indigo px-4 py-2 text-white hover:bg-indigo-700">
-            See the deals
-          </Link>
-          <Link href="/importer" className="rounded-md border border-indigo px-4 py-2 text-indigo hover:bg-sand-200">
-            I am an importer
-          </Link>
+      <section className="relative -mx-4 overflow-hidden px-4 pb-8 pt-6 sm:pt-10">
+        <div aria-hidden className="ledger-bg pointer-events-none absolute inset-0" />
+        <div className="relative space-y-6">
+          <p className="eyebrow rise">Halal trade finance on Stellar</p>
+          <h1 className="rise rise-1 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">Fund a real shipment for an importer that banks turn down.</h1>
+          <p className="rise rise-2 max-w-2xl text-lg text-ink-muted">
+            For centuries, caravans crossing the Sahara were financed by partners who pooled money, bought goods and shared the profit of a real trade. Qafila is that partnership on Stellar: shared ownership of real goods, profit from a sale instead of interest, and proof at every step.
+          </p>
+          <div className="rise rise-3 flex flex-wrap gap-3">
+            <Link href="/invest" className={buttonClasses('primary', 'lg')} data-testid="hero-deals">
+              See the deals
+            </Link>
+            <Link href="/importer" className={buttonClasses('outline', 'lg')}>
+              I am an importer
+            </Link>
+            <JoinCta className="h-12 px-5 text-base" />
+          </div>
         </div>
       </section>
 
-      <section aria-labelledby="stats">
-        <h2 id="stats" className="mb-3 text-sm font-medium uppercase tracking-wide text-ink-muted">
-          Live on testnet
-        </h2>
+      <section aria-labelledby="stats" className="space-y-3">
+        <div className="flex items-center justify-between">
+          <h2 id="stats" className="eyebrow">
+            Live on testnet
+          </h2>
+          <span className="flex items-center gap-1.5 text-xs text-ink-muted">
+            <span aria-hidden className="live-dot size-1.5 rounded-full bg-success" /> updates every 10 seconds
+          </span>
+        </div>
         <LiveStats />
       </section>
 
       <section aria-labelledby="how">
-        <h2 id="how" className="mb-6 text-2xl font-semibold">
+        <h2 id="how" className="mb-6 text-2xl font-semibold tracking-tight">
           How it works
         </h2>
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map(([title, body], i) => (
-            <li key={title} className="rounded-card border border-sand-200 bg-surface p-5">
-              <p className="text-sm text-saffron">Step {i + 1}</p>
-              <p className="mt-1 text-lg font-medium">{title}</p>
+            <li key={title} className="rounded-card border border-line bg-surface p-5 shadow-card">
+              <p className="tabular text-sm font-medium text-saffron">Step {i + 1}</p>
+              <p className="mt-1 text-lg font-semibold">{title}</p>
               <p className="mt-2 text-sm text-ink-muted">{body}</p>
             </li>
           ))}
         </ol>
       </section>
 
+      <section aria-labelledby="feed" className="space-y-3">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <h2 id="feed" className="text-2xl font-semibold tracking-tight">
+              Happening on-chain
+            </h2>
+            <p className="text-sm text-ink-muted">Every step is a transaction on Stellar. Click one to see it on stellar.expert.</p>
+          </div>
+          <Link href="/charity" className="text-sm text-indigo hover:underline">
+            Charity ledger
+          </Link>
+        </div>
+        <LiveFeed />
+      </section>
+
       <section aria-labelledby="sharia" className="rounded-card bg-indigo p-8 text-white">
-        <h2 id="sharia" className="text-2xl font-semibold">
+        <h2 id="sharia" className="text-2xl font-semibold tracking-tight">
           Why this is designed for Sharia compliance
         </h2>
         <ul className="mt-4 space-y-2 text-white/90">
-          {SHARIA.map((s) => (
-            <li key={s}>{s}</li>
+          {SHARIA.map((s, i) => (
+            <li key={s} className="flex gap-3">
+              <span className="tabular text-saffron">{i + 1}</span>
+              {s}
+            </li>
           ))}
         </ul>
-        <p className="mt-4 text-sm text-white/70">Formal review by a Sharia board is pending.</p>
+        <p className="mt-4 text-sm text-white/70">Based on AAOIFI Shari&apos;ah Standard No. 8 (Murabahah). Formal review by a Sharia board is pending.</p>
       </section>
 
       <section aria-labelledby="faq">
-        <h2 id="faq" className="mb-4 text-2xl font-semibold">
+        <h2 id="faq" className="mb-4 text-2xl font-semibold tracking-tight">
           Questions
         </h2>
-        <dl className="divide-y divide-sand-200">
+        <dl className="divide-y divide-line">
           {FAQ.map(([q, a]) => (
             <div key={q} className="py-4">
               <dt className="font-medium">{q}</dt>
@@ -89,6 +118,12 @@ export default function Landing() {
             </div>
           ))}
         </dl>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/invest" className={buttonClasses('primary')}>
+            See the deals
+          </Link>
+          <JoinCta />
+        </div>
       </section>
     </div>
   );

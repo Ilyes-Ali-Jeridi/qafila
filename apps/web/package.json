@@ -4,27 +4,38 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev -p 3000",
-    "build": "next build",
+    "dev": "next dev --webpack -p 3000",
+    "build": "next build --webpack",
     "start": "next start -p 3000",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "mock-api": "tsx watch mock-api/server.ts",
+    "dev:mock": "NEXT_PUBLIC_API_BASE_URL=http://localhost:8788 next dev --webpack -p 3000",
+    "e2e:mock": "NEXT_PUBLIC_MOCK_CHAIN=1 playwright test",
+    "e2e:sp5": "playwright test e2e/sp5.spec.ts"
   },
   "dependencies": {
+    "@creit.tech/stellar-wallets-kit": "2.7.1",
+    "@hookform/resolvers": "5.9.1",
     "@qafila/contract-client": "workspace:*",
     "@qafila/shared": "workspace:*",
-    "@stellar/stellar-sdk": "17.4.0",
+    "@stellar/stellar-sdk": "16.4.1",
     "@tanstack/react-query": "5.104.5",
     "clsx": "2.1.1",
     "lucide-react": "0.560.0",
+    "maplibre-gl": "6.16.0",
     "next": "16.4.3",
+    "qrcode.react": "4.2.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "react-hook-form": "7.89.0",
+    "smart-account-kit": "0.8.0",
     "tailwind-merge": "3.7.0",
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@hono/node-server": "1.19.17",
     "@playwright/test": "1.64.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "22.20.5",
@@ -32,6 +43,7 @@
     "@types/react-dom": "19.3.0",
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.3",
+    "hono": "4.13.14",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3"
   }

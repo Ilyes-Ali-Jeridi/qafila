@@ -1,42 +1,147 @@
 @import "tailwindcss";
 
-/* Design tokens (PLAN 9.1): a trade ledger, not a crypto casino. */
+/*
+  Design tokens (PLAN 9.1): calm, precise, trustworthy. A trade ledger, not a crypto casino.
+  Deep indigo for text and primary actions, warm sand for the page, saffron only as an accent.
+  Numbers are always tabular.
+*/
 @theme {
   --color-indigo: #1b2a4a;
   --color-indigo-700: #142039;
+  --color-indigo-500: #2a3d66;
   --color-indigo-300: #4a5e85;
+  --color-indigo-100: #dde3ee;
+  --color-indigo-50: #eef1f7;
+
   --color-sand: #f5efe6;
+  --color-sand-100: #faf7f1;
   --color-sand-200: #ebe2d3;
+  --color-sand-300: #ddd0bb;
+
   --color-saffron: #c9821b;
+  --color-saffron-700: #a56613;
+  --color-saffron-100: #f7e8d0;
+
   --color-success: #2f7d5b;
+  --color-success-100: #dcefe5;
   --color-warning: #b7791f;
+  --color-warning-100: #f6e9cf;
   --color-danger: #b42318;
+  --color-danger-100: #f9dcd9;
+
   --color-ink: #1b2a4a;
   --color-ink-muted: #5b6577;
+  --color-ink-faint: #8a93a3;
   --color-surface: #ffffff;
-  --color-page: var(--color-sand);
+  --color-surface-2: #faf7f1;
+  --color-page: #f5efe6;
+  --color-line: #e4dccd;
+  --color-line-strong: #cbbfa9;
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+  --shadow-card: 0 1px 2px rgb(27 42 74 / 0.06), 0 0 0 1px rgb(27 42 74 / 0.03);
+  --shadow-pop: 0 12px 32px rgb(27 42 74 / 0.18), 0 2px 6px rgb(27 42 74 / 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-page: #0f1626;
     --color-surface: #182238;
+    --color-surface-2: #1d2a44;
     --color-ink: #f0ebe2;
     --color-ink-muted: #a9b1c3;
+    --color-ink-faint: #7b8498;
+    --color-line: #26324b;
+    --color-line-strong: #38466a;
     --color-sand-200: #26324b;
+    --color-sand-100: #1d2a44;
+    --color-indigo-50: rgb(255 255 255 / 0.06);
+    --color-indigo-100: rgb(255 255 255 / 0.12);
+    --color-success-100: rgb(47 125 91 / 0.22);
+    --color-warning-100: rgb(183 121 31 / 0.22);
+    --color-danger-100: rgb(180 35 24 / 0.22);
+    --color-saffron-100: rgb(201 130 27 / 0.22);
+    --color-success: #5fb98f;
+    --color-warning: #d9a24a;
+    --color-danger: #e0665c;
+    --color-saffron: #e0a04a;
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.04);
   }
 }
 :root[data-theme="dark"] {
   --color-page: #0f1626;
   --color-surface: #182238;
+  --color-surface-2: #1d2a44;
   --color-ink: #f0ebe2;
   --color-ink-muted: #a9b1c3;
+  --color-ink-faint: #7b8498;
+  --color-line: #26324b;
+  --color-line-strong: #38466a;
   --color-sand-200: #26324b;
+  --color-sand-100: #1d2a44;
+  --color-indigo-50: rgb(255 255 255 / 0.06);
+  --color-indigo-100: rgb(255 255 255 / 0.12);
+  --color-success-100: rgb(47 125 91 / 0.22);
+  --color-warning-100: rgb(183 121 31 / 0.22);
+  --color-danger-100: rgb(180 35 24 / 0.22);
+  --color-saffron-100: rgb(201 130 27 / 0.22);
+  --color-success: #5fb98f;
+  --color-warning: #d9a24a;
+  --color-danger: #e0665c;
+  --color-saffron: #e0a04a;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.04);
 }
 
-html { background: var(--color-page); color: var(--color-ink); }
-body { font-feature-settings: "tnum" 1; }
+html {
+  background: var(--color-page);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-feature-settings: "tnum" 1, "cv11" 1;
+  font-variant-numeric: tabular-nums;
+}
 .tabular { font-variant-numeric: tabular-nums; }
 :focus-visible { outline: 2px solid var(--color-saffron); outline-offset: 2px; }
+::selection { background: var(--color-saffron-100); }
+
+/* Hairline rules and the ledger grid texture used on headers. */
+.rule { border-top: 1px solid var(--color-line); }
+.ledger-bg {
+  background-image:
+    linear-gradient(to right, rgb(27 42 74 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(27 42 74 / 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+}
+:root[data-theme="dark"] .ledger-bg,
+:root:not([data-theme="light"]) .ledger-bg { background-image: linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .ledger-bg {
+    background-image:
+      linear-gradient(to right, rgb(27 42 74 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(27 42 74 / 0.035) 1px, transparent 1px);
+  }
+}
+
+/* Staggered reveal for page loads. Respects reduced motion. */
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-1 { animation-delay: 60ms; } .rise-2 { animation-delay: 120ms; } .rise-3 { animation-delay: 180ms; } .rise-4 { animation-delay: 240ms; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.live-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .rise, .live-dot { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* Labels: small caps tracking, used for metadata everywhere. */
+.eyebrow { font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-muted); font-weight: 500; }
+
+/* Native dialog */
+dialog::backdrop { background: rgb(15 22 38 / 0.55); backdrop-filter: blur(2px); }
+
+/* MapLibre container sizing */
+.maplibregl-map { font: inherit; }

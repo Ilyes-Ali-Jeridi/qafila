@@ -1,12 +1,15 @@
+<<<<<<< HEAD
 'use client';
 import { z } from 'zod';
 import { ApiScreen } from '@/components/not-built';
+=======
+import type { Metadata } from 'next';
+import { ImporterDealScreen } from './deal';
+>>>>>>> track/product
 
-export default function Page() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Your deal</h1>
-      <ApiScreen path="/deals/_" schema={z.unknown()} render={(d) => <pre className="text-xs">{JSON.stringify(d, null, 2)}</pre>} />
-    </div>
-  );
+export const metadata: Metadata = { title: 'My deal' };
+
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <ImporterDealScreen id={id} />;
 }

@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 'use client';
 import { z } from 'zod';
 import { ApiScreen } from '@/components/not-built';
+=======
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { JoinScreen } from './join';
+import { SkeletonCard } from '@/components/ui/states';
+>>>>>>> track/product
 
+export const metadata: Metadata = { title: 'Join' };
+
+/** S6 QR join flow (PLAN 9.3). Renders only when FF_QR_JOIN is on. */
 export default function Page() {
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Join</h1>
-      <ApiScreen path="/config" schema={z.unknown()} render={(d) => <pre className="text-xs">{JSON.stringify(d, null, 2)}</pre>} />
-    </div>
+    <Suspense fallback={<SkeletonCard lines={4} />}>
+      <JoinScreen />
+    </Suspense>
   );
 }
