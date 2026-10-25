@@ -31,3 +31,9 @@ Note for anyone running the stellar CLI from the repo root: the CLI reads `.env`
 ## Share-token factory (PLAN 3.1) live run
 
 `packages/chain/src/shareToken.ts` run once against testnet with admin = probe contract: issuer `GAC75JLFH5QPHGJMVWXZVWXKY53K3RW73FAVBC3FVQBMOYYQRAABJMI4`, asset `QF00000001`, SAC `CC5BR6EQVM3EWUMW2CNEGSBLN6F3FDDTASRXKNHXEF6VCNSLGBDZKKPA`; Horizon shows the three auth flags, one signer with weight 0, home domain `qafila.dev`; `admin()` returns the probe contract. Hashes in `packages/chain/FACTORY_SPIKE.md`. Finding: a 2 XLM issuer cannot pay the SAC deploy resource fee, so the funder is the source account of step 4 (the SAC deploy needs no issuer signature).
+
+## TTL and rent on testnet (17:10, unplanned spike)
+
+`contracts/spikes/ttl/rent-probe.mts`. Uploading the 50 KB `qafila_deals` wasm cost 8,129 XLM (fee-bump tx `4a5320accff78e2c62695e9ac82e6d639167738a349e219a8bae0a91e0df3208`, min persistent TTL 120,960 ledgers = 7 days). Simulating `ExtendFootprintTtl` on that code entry: to 121,000 ledgers 7.8 XLM, 125,000 → 328 XLM, 138,240 (8 days) → 1,386 XLM, 172,800 (10 days) → 4,149 XLM, 259,200 (15 days) → 11,057 XLM, 518,400 (30 days) → 31,778 XLM. Rent for large entries is about 0.08 XLM per ledger per 50 KB at the current testnet state size, so the PLAN 3.3.2 policy ("about 30 days") made the constructor's `extend_instance` cost 30,855 XLM and exceed the uint32 fee cap.
+
+Decision: `TTL_THRESHOLD = 1 day`, `TTL_EXTEND_TO = 7 days` (the testnet minimum). New entries keep their minimum TTL, the extension only fires in the last day before expiry, every write still calls `extend_ttl` (CLAUDE.md rule). The code entry expires about 1 Nov 2026 unless bumped; `pnpm doctor` should warn when the instance TTL falls under 2 days. Revisit for mainnet, where rent is far cheaper and a 30 to 120 day policy is right.

@@ -5,9 +5,14 @@ use soroban_sdk::{Address, BytesN, Env};
 use crate::{errors::Error, types::*};
 
 pub const DAY_LEDGERS: u32 = 17_280;
-/// Extend when fewer than 14 days remain, to about 30 days (PLAN 3.3.2).
-pub const TTL_THRESHOLD: u32 = 14 * DAY_LEDGERS;
-pub const TTL_EXTEND_TO: u32 = 30 * DAY_LEDGERS;
+/// Extend when fewer than 1 day remains, to 7 days (the testnet minimum persistent
+/// TTL, 120,960 ledgers). PLAN 3.3.2 said "about 30 days"; the testnet rent probe
+/// (docs/SPIKES-chain.md, TTL) showed that bumping the 50 KB code entry to 30 days
+/// costs about 31,000 XLM at the current testnet rent rate, so new entries keep the
+/// minimum TTL and are only re-extended when they are about to expire. Revisit for
+/// mainnet (longer TTL, cheaper rent) before the micro-deal.
+pub const TTL_THRESHOLD: u32 = DAY_LEDGERS;
+pub const TTL_EXTEND_TO: u32 = 7 * DAY_LEDGERS;
 
 pub fn extend_instance(env: &Env) {
     env.storage()
