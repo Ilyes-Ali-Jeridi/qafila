@@ -1,0 +1,191 @@
+[
+ {
+  "section": "problem",
+  "n": 1,
+  "file": "assets/voice/problem-1.mp3",
+  "duration": 5.47,
+  "text": "Meet Amina. She sells phone accessories in Lagos and buys them from a factory in Shenzhen."
+ },
+ {
+  "section": "problem",
+  "n": 2,
+  "file": "assets/voice/problem-2.mp3",
+  "duration": 5.81,
+  "text": "Her bank says no. Her orders are too small to be worth checking, and trade documents are easy to forge."
+ },
+ {
+  "section": "problem",
+  "n": 3,
+  "file": "assets/voice/problem-3.mp3",
+  "duration": 3.86,
+  "text": "She also refuses to pay interest, like many Muslim business owners."
+ },
+ {
+  "section": "problem",
+  "n": 4,
+  "file": "assets/voice/problem-4.mp3",
+  "duration": 6.46,
+  "text": "Across Africa, more than a third of small importers are turned down: a gap of up to 92 billion dollars a year."
+ },
+ {
+  "section": "problem",
+  "n": 5,
+  "file": "assets/voice/problem-5.mp3",
+  "duration": 2.52,
+  "text": "So the goods wait, and the shelves stay empty."
+ },
+ {
+  "section": "demo",
+  "n": 1,
+  "file": "assets/voice/demo-1.mp3",
+  "duration": 5.18,
+  "text": "This is Qafila, live on Stellar testnet. Here is how an investor funds Amina's shipment."
+ },
+ {
+  "section": "demo",
+  "n": 2,
+  "file": "assets/voice/demo-2.mp3",
+  "duration": 6.62,
+  "text": "No seed phrase and no crypto to buy: the wallet is a passkey, created with a fingerprint or a password manager."
+ },
+ {
+  "section": "demo",
+  "n": 3,
+  "file": "assets/voice/demo-3.mp3",
+  "duration": 3.94,
+  "text": "Behind it is a smart account on Stellar, and Qafila pays the fees."
+ },
+ {
+  "section": "demo",
+  "n": 4,
+  "file": "assets/voice/demo-4.mp3",
+  "duration": 4.25,
+  "text": "The investor picks a role, invest or import, and fills in a few details."
+ },
+ {
+  "section": "demo",
+  "n": 5,
+  "file": "assets/voice/demo-5.mp3",
+  "duration": 3.05,
+  "text": "They confirm they can lose money if an importer does not pay."
+ },
+ {
+  "section": "demo",
+  "n": 6,
+  "file": "assets/voice/demo-6.mp3",
+  "duration": 5.3,
+  "text": "Done. The wallet is approved on-chain and receives fifty test dollars, in under thirty seconds."
+ },
+ {
+  "section": "demo",
+  "n": 7,
+  "file": "assets/voice/demo-7.mp3",
+  "duration": 5.64,
+  "text": "Every step is a real transaction. Here it is on stellar expert: the contract approved the investor."
+ },
+ {
+  "section": "demo",
+  "n": 8,
+  "file": "assets/voice/demo-8.mp3",
+  "duration": 5.52,
+  "text": "The same contract runs every deal: investing, confirming the shipment, repayment and claims."
+ },
+ {
+  "section": "demo",
+  "n": 9,
+  "file": "assets/voice/demo-9.mp3",
+  "duration": 4.42,
+  "text": "Back in the app, the marketplace lists real shipments with their routes and a fixed profit."
+ },
+ {
+  "section": "demo",
+  "n": 10,
+  "file": "assets/voice/demo-10.mp3",
+  "duration": 7.27,
+  "text": "Amina's deal: phone accessories, Shenzhen to Lagos, the map, the fixed price, and her own deposit locked first."
+ },
+ {
+  "section": "demo",
+  "n": 11,
+  "file": "assets/voice/demo-11.mp3",
+  "duration": 3.86,
+  "text": "The investor puts in twenty-five test dollars and confirms with the passkey."
+ },
+ {
+  "section": "demo",
+  "n": 12,
+  "file": "assets/voice/demo-12.mp3",
+  "duration": 3.26,
+  "text": "The money goes to the contract, not to a company account."
+ },
+ {
+  "section": "demo",
+  "n": 13,
+  "file": "assets/voice/demo-13.mp3",
+  "duration": 5.64,
+  "text": "Their shares are a locked token on Stellar, one per dollar, and the investment shows on the deal's timeline."
+ },
+ {
+  "section": "how",
+  "n": 1,
+  "file": "assets/voice/how-1.mp3",
+  "duration": 7.44,
+  "text": "How it works. A Soroban contract buys the goods from the factory, owns them, and sells them to Amina at a price fixed on day one."
+ },
+ {
+  "section": "how",
+  "n": 2,
+  "file": "assets/voice/how-2.mp3",
+  "duration": 3.12,
+  "text": "Investors share that fixed profit, with no interest."
+ },
+ {
+  "section": "how",
+  "n": 3,
+  "file": "assets/voice/how-3.mp3",
+  "duration": 7.27,
+  "text": "Before money moves, AI checks her documents against the company register, sanctions lists and live ship tracking, and a person approves."
+ },
+ {
+  "section": "how",
+  "n": 4,
+  "file": "assets/voice/how-4.mp3",
+  "duration": 7.01,
+  "text": "Why Stellar: passkey smart accounts, one locked share token per deal, and USDC payments for other lenders' agents."
+ },
+ {
+  "section": "next",
+  "n": 1,
+  "file": "assets/voice/next-1.mp3",
+  "duration": 3.82,
+  "text": "What is next. A Sharia board review of the contract and the terms."
+ },
+ {
+  "section": "next",
+  "n": 2,
+  "file": "assets/voice/next-2.mp3",
+  "duration": 5.42,
+  "text": "A first corridor, China to Nigeria, with a licensed partner and real USDC."
+ },
+ {
+  "section": "next",
+  "n": 3,
+  "file": "assets/voice/next-3.mp3",
+  "duration": 3.86,
+  "text": "A mainnet micro deal right after this hackathon, with our own money."
+ },
+ {
+  "section": "next",
+  "n": 4,
+  "file": "assets/voice/next-4.mp3",
+  "duration": 4.32,
+  "text": "Late fees never go to investors. They go to charity, on a public ledger."
+ },
+ {
+  "section": "next",
+  "n": 5,
+  "file": "assets/voice/next-5.mp3",
+  "duration": 6.36,
+  "text": "Qafila. Fund real shipments. Earn a fixed profit from trade, not interest. qafila dot dev."
+ }
+]

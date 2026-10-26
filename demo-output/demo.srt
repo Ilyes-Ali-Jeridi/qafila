@@ -1,0 +1,108 @@
+1
+00:00:00,500 --> 00:00:06,270
+Meet Amina. She sells phone accessories in Lagos and buys them from a factory in Shenzhen.
+
+2
+00:00:06,320 --> 00:00:12,430
+Her bank says no. Her orders are too small to be worth checking, and trade documents are easy to forge.
+
+3
+00:00:12,480 --> 00:00:16,640
+She also refuses to pay interest, like many Muslim business owners.
+
+4
+00:00:16,690 --> 00:00:23,450
+Across Africa, more than a third of small importers are turned down: a gap of up to 92 billion dollars a year.
+
+5
+00:00:23,500 --> 00:00:26,320
+So the goods wait, and the shelves stay empty.
+
+6
+00:00:30,000 --> 00:00:35,480
+This is Qafila, live on Stellar testnet. Here is how an investor funds Amina's shipment.
+
+7
+00:00:35,530 --> 00:00:42,450
+No seed phrase and no crypto to buy: the wallet is a passkey, created with a fingerprint or a password manager.
+
+8
+00:00:43,500 --> 00:00:47,740
+Behind it is a smart account on Stellar, and Qafila pays the fees.
+
+9
+00:00:47,790 --> 00:00:52,340
+The investor picks a role, invest or import, and fills in a few details.
+
+10
+00:00:55,500 --> 00:00:58,850
+They confirm they can lose money if an importer does not pay.
+
+11
+00:01:03,500 --> 00:01:09,100
+Done. The wallet is approved on-chain and receives fifty test dollars, in under thirty seconds.
+
+12
+00:01:12,000 --> 00:01:17,940
+Every step is a real transaction. Here it is on stellar expert: the contract approved the investor.
+
+13
+00:01:20,000 --> 00:01:25,820
+The same contract runs every deal: investing, confirming the shipment, repayment and claims.
+
+14
+00:01:28,000 --> 00:01:32,720
+Back in the app, the marketplace lists real shipments with their routes and a fixed profit.
+
+15
+00:01:33,500 --> 00:01:41,070
+Amina's deal: phone accessories, Shenzhen to Lagos, the map, the fixed price, and her own deposit locked first.
+
+16
+00:01:41,120 --> 00:01:45,280
+The investor puts in twenty-five test dollars and confirms with the passkey.
+
+17
+00:01:48,000 --> 00:01:51,560
+The money goes to the contract, not to a company account.
+
+18
+00:01:53,000 --> 00:01:58,940
+Their shares are a locked token on Stellar, one per dollar, and the investment shows on the deal's timeline.
+
+19
+00:02:00,230 --> 00:02:07,970
+How it works. A Soroban contract buys the goods from the factory, owns them, and sells them to Amina at a price fixed on day one.
+
+20
+00:02:08,020 --> 00:02:11,440
+Investors share that fixed profit, with no interest.
+
+21
+00:02:11,490 --> 00:02:19,060
+Before money moves, AI checks her documents against the company register, sanctions lists and live ship tracking, and a person approves.
+
+22
+00:02:19,110 --> 00:02:26,420
+Why Stellar: passkey smart accounts, one locked share token per deal, and USDC payments for other lenders' agents.
+
+23
+00:02:30,400 --> 00:02:34,520
+What is next. A Sharia board review of the contract and the terms.
+
+24
+00:02:34,570 --> 00:02:40,290
+A first corridor, China to Nigeria, with a licensed partner and real USDC.
+
+25
+00:02:40,340 --> 00:02:44,500
+A mainnet micro deal right after this hackathon, with our own money.
+
+26
+00:02:44,550 --> 00:02:49,170
+Late fees never go to investors. They go to charity, on a public ledger.
+
+27
+00:02:49,220 --> 00:02:55,880
+Qafila. Fund real shipments. Earn a fixed profit from trade, not interest. qafila dot dev.
+

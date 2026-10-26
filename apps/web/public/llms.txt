@@ -1,0 +1,21 @@
+# Qafila
+
+> Halal trade finance on Stellar. Investors fund real shipments of goods for African importers that banks turn down. A Soroban contract buys the goods from the supplier, owns them, and sells them to the importer at a price fixed on day one (murabaha). AI checks every deal's documents against each other, the company register, sanctions lists and live carrier data. Late fees go to charity, never to investors. Built for HackMeridian 2026 (Lisbon). Live on Stellar testnet with test money only.
+
+## Pages
+- https://qafila.dev/ : landing, live counters
+- https://qafila.dev/deals : open and running shipments
+- https://qafila.dev/deals/1 : a deal page: map, terms, AI report, payments, on-chain timeline
+- https://qafila.dev/join : create a passkey wallet and fund a shipment
+- https://qafila.dev/demo : the judges' tour (read-only importer and ops views)
+- https://qafila.dev/charity : the charity ledger
+- https://qafila.dev/verifier : the verifier key and the paid verification API (x402)
+
+## API and chain
+- https://api.qafila.dev/config : contract id, network, feature flags
+- https://api.qafila.dev/stats : live counters
+- https://api.qafila.dev/deals : public deals (JSON)
+- Contract: https://stellar.expert/explorer/testnet/contract/CAJW4MIEZXIUFHGLQISXLDF3XIHJOLGSKGDQQHBIQJ2BJU34ZT3COSPV
+
+## Source
+- https://github.com/Ilyes-Ali-Jeridi/qafila
