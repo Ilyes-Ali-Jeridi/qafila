@@ -15,32 +15,41 @@ Testnet only, test dollars everywhere. Rehearse twice before recording. Keep a f
 
 The tour page (FF_DEMO_MODE on) has three stories: fund a shipment with a passkey wallet on /join, enter the importer's desk, enter the ops console. The two "Enter as" views are read-only sessions of the demo profile narrowed to one role; the account menu signs out of them. Every deal is listed with its state in plain words and a link to its public page.
 
-## Video script (2 minutes 45 seconds, PLAN 16.2)
+## State of production for filming (26 Oct, late morning)
 
-| Time | Show | Say |
+| Deal | Where it stands | Use it for |
 |---|---|---|
-| 0:00 | Landing: caravan line, live stats | Banks turn down up to 47% of small importers; many also avoid interest |
-| 0:15 | Importer workspace: upload packet 04 (bad container check digit), run screening, rejected in under a minute with the failing check and evidence; then packet 01 approved with the risk score | Three documents and live registry, sanctions and carrier data checked in under a minute. The model never decides alone |
-| 0:40 | Phone: scan the QR on /join, passkey wallet, 50 test dollars, invest 10 in the venue deal, name appears on the live counter | No seed phrase, no XLM, under 30 seconds |
-| 1:05 | Shipping deal: importer uploads the bill of lading; agent log shows the loading event match and the on-chain confirmation; supplier payments on the deal page | The pool owns the goods before it sells them |
-| 1:30 | Late deal: importer signs the sale (deposit counted as the first payment), repays after the 120-second tenor, pays the late fee; charity ledger shows it | The deposit counts as the importer's first payment; profit from trade, not time; late fees go to charity |
-| 1:55 | stellar.expert: the share asset's flags, issuer master weight 0; the "If things go wrong" box | Sharia rules enforced by the protocol itself |
-| 2:15 | Terminal: `examples/lender-agent` pays 0.50 USDC over x402 and verifies the signature on-chain | Other lenders and agents can buy our checks |
-| 2:30 | Live counter, roadmap slide | Real users this weekend; next: Sharia board, first corridor, licence |
+| 1, 4 | Listed, open for funding | the phone join and invest shot |
+| 2 | DepositPaid, bill of lading uploaded, tracked: OOCL ZHUHAI, Ningbo to Lagos Apapa, 5 events (recorded carrier fixture) | the map with the vessel, the tracking events, the ops "Record the next event" button (demo mode). Its shipment check is in review (the deal says Mombasa, the B/L says Lagos), so the agent refuses to confirm: say so, it is the safety check working |
+| 3 | Closed: shipped, sold, repaid after the due date, 50 test dollars late fee to charity, three holders claimed | "already shipped and claimed": payments list, on-chain timeline, /charity |
+| 6, 7, 8 | Screened: rejected (container check digit), review (price 4x reference), approved | the ops queue and a review page with evidence |
+| 9 | Approved, promise text generated; cannot be listed (another wallet holds the on-chain promise for these documents from an earlier run) | nothing; leave it |
 
-## Scene details
+Fresh packets for a live screening: 06 (bottled wine, halal reject), 09 (sanctions hit), 08 (registry status), 10 (B/L vessel mismatch). Packets 01 to 05 and 07 are already on deals or blocked by fingerprints.
 
-**AI screening (0:15).** Importer account: the signed-in demo profile above. New deal, supplier "Shenzhen Lanwan Electronics Co., Ltd.", goods "phone accessories", Shenzhen to Lagos. Upload `data/packets/04/*` first (rejected: container check digit), then replace with `data/packets/01/*` (approved). Cost 14,700. Screening takes about 60 seconds live; keep talking. The report shows evidence quotes per field and the registry line marked "fixture (mock)" for the fictional supplier; for a real registry hit, use the Huawei code `914403001922038216` in the verifier demo.
+`pnpm tsx scripts/demo-story.ts late <n>` runs the whole late path on an Owned deal; `hero` builds a new deal up to the shipment check; `sweep` sends what is owed to charity.
 
-**Join (0:40).** Phone on the venue hotspot. Scan, tap "Create my wallet", Face ID, "Finish sign-up" (approves the investor on-chain and sends 50 test dollars), invest 10 in the venue deal, confirm with the passkey. Progress updates within 10 seconds on the deal page.
+## Filming order, 90 second video
 
-**Shipment (1:05).** The shipping deal is in `DepositPaid`. Upload `data/packets/03/bill_of_lading.pdf` with carrier and container from the packet; the agent confirms within a minute (ShipsGo returns a labelled fixture for demo containers). If the agent has not confirmed, ops presses "Check now" in the agent panel.
+Record in this order; each shot leaves the state the next one needs. Sign in on the laptop as the demo profile first, Freighter unlocked with the demo importer wallet, phone on the hotspot.
 
-**Late deal (1:30).** The late deal is `Owned` with a 120-second tenor. The demo importer wallet (Freighter, `qafila-demo-importer`) signs the sale, waits past the due date, repays the rest, the late-fee card appears, pays it, the agent sweeps to charity (or ops presses sweep). The charity ledger lists the fee with its transaction.
+| Time | Shot | Show |
+|---|---|---|
+| 0:00 | Landing | qafila.dev, the live counters |
+| 0:10 | Ops queue | Deals 6, 7, 8 and their decisions. Open deal 6: the failing check and its evidence |
+| 0:25 | Phone | Scan the QR on /join, passkey, 50 test dollars, invest 10 in deal 4. The counter moves on the laptop |
+| 0:40 | Deal 2 public page | The map with the route and the vessel, the tracking events. Ops: "Record the next event: Arrived", the tracking updates |
+| 0:60 | Deal 3 public page | Sold at the fixed price, repaid late, the late fee, the claims in the payments list. Open /charity for the receipt |
+| 1:15 | Proof | stellar.expert contract page, then qafila.dev/demo as the closing frame |
 
-**Protocol proof (1:55).** stellar.expert asset page of the deal's `QF…` asset: flags and the issuer's signers (master weight 0). Try "send" from a holder in the Stellar Lab to show the transfer fails (optional).
+## Live demo order for the judges
 
-**x402 (2:15).** `pnpm --filter @qafila/lender-agent start` with USDC on the lender agent account. It prints the 402 challenge, pays, receives the job id, polls, verifies the signature locally and through `verify_attestation`.
+1. qafila.dev/demo: the three stories.
+2. Screening live: importer workspace, new deal with packet 06. Start it first and come back to it; it returns rejected on the halal check in one to three minutes.
+3. Importer approval: the pending registration at /ops/kyc, press Approve.
+4. Phone: join and invest in deal 4.
+5. Deal 2: the map, "Record the next event" (Arrived, then Discharged), the incident that explains why the agent did not confirm.
+6. Deal 3: the closed deal, the charity ledger, the verifier page.
 
 ## If something breaks
 
