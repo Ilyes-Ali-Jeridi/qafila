@@ -41,6 +41,8 @@ export function RouteMap({ route, vessel }: { route: DealDetail['route']; vessel
     (async () => {
       try {
         const maplibre = await import('maplibre-gl');
+        // The worker ships as a static file: the bundler's chunk URL for maplibre's module worker fails in production.
+        maplibre.setWorkerUrl('/maplibre-gl-worker.mjs');
         if (cancelled || !ref.current) return;
         map = new maplibre.Map({ container: ref.current, style: STYLE_URL, interactive: true, attributionControl: { compact: true }, cooperativeGestures: true });
         map.on('error', () => setFailed(true));
