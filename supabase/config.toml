@@ -418,3 +418,13 @@ enabled = true
 [auth.email.template.magic_link]
 subject = "Your Qafila sign-in code"
 content_path = "./supabase/templates/magic_link.html"
+
+# Production mail: codes go out through Resend (the local catcher is only for `supabase start` on a laptop).
+[auth.email.smtp]
+enabled = true
+host = "smtp.resend.com"
+port = 465
+user = "resend"
+pass = "env(RESEND_API_KEY)"
+admin_email = "notifications@qafila.dev"
+sender_name = "Qafila"
