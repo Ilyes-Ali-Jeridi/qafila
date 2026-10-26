@@ -11,6 +11,10 @@ Testnet only, test dollars everywhere. Rehearse twice before recording. Keep a f
 5. Sign in: https://qafila.dev/onboarding?mode=signin with `i.jeridi20013@pi.tn`; the 6-digit code arrives by email through Resend. That profile holds the importer, ops and Sharia roles, owns the seeded demo deals, and is linked to the demo importer wallet `GB67IU…EXAKN` (Freighter, secret `DEMO_IMPORTER_SECRET` in `.env`) for the on-chain signatures.
 6. Feature flags as intended (`GET /config`): off for anything not green.
 
+## Judges on their own: https://qafila.dev/demo
+
+The tour page (FF_DEMO_MODE on) has three stories: fund a shipment with a passkey wallet on /join, enter the importer's desk, enter the ops console. The two "Enter as" views are read-only sessions of the demo profile narrowed to one role; the account menu signs out of them. Every deal is listed with its state in plain words and a link to its public page.
+
 ## Video script (2 minutes 45 seconds, PLAN 16.2)
 
 | Time | Show | Say |

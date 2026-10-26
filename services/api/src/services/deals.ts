@@ -420,6 +420,7 @@ export async function dealsForList(svc: Services, where: { statuses?: string[]; 
   });
   const out: DealSummary[] = [];
   for (const d of rows) {
+    if (d.status === 'kyb') continue; // the hidden row that only holds an importer's registration documents
     if (!where.all && !where.importerId && ['draft', 'verifying', 'rejected', 'review', 'approved', 'promised'].includes(d.status)) continue;
     const onchain = d.onchainId ? await svc.chain.getDeal(d.onchainId).catch(() => null) : null;
     const report = d.reportId ? await svc.db.query.reports.findFirst({ where: eq(reports.id, d.reportId), columns: { decision: true, riskScore: true } }) : null;

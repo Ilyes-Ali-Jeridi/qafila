@@ -17,7 +17,7 @@ import { getKit, smartAccountReady } from './kit';
 import { connectExternalWallet, disconnectExternalWallet, externalSignTransaction } from './freighter';
 import { MOCK_CHAIN, mockChainCall, mockWalletAddress } from './mock-chain';
 
-export type WalletKind = 'passkey' | 'freighter' | 'mock';
+export type WalletKind = 'passkey' | 'freighter' | 'mock' | 'demo';
 export type SubmitMode = WalletKind;
 
 /**
@@ -70,7 +70,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       setKind(k);
       setLabel(lbl);
       setStatus('connected');
-      writeSession({ address: addr, kind: k === 'freighter' ? 'g_account' : 'smart_account', label: lbl });
+      writeSession({ address: addr, kind: k === 'freighter' ? 'g_account' : k === 'demo' ? 'demo' : 'smart_account', label: lbl });
       void qc.invalidateQueries({ queryKey: ['me'] });
     },
     [qc],
@@ -84,6 +84,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     (async () => {
       if (!s.address) return setStatus('disconnected');
       if (MOCK_CHAIN) return connectedState(s.address, 'mock', s.label);
+      if (s.kind === 'demo') return connectedState(s.address, 'demo', s.label);
       if (s.kind === 'g_account') return connectedState(s.address, 'freighter', s.label);
       if (!smartAccountReady(config)) return setStatus('disconnected');
       try {
@@ -175,6 +176,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       run(async (): Promise<TxReceipt> => {
         if (!config) throw new WalletError('Still loading. Try again in a second.', 'config');
         if (!address || !kind) throw new WalletError('Connect your wallet first.', 'disconnected');
+        if (kind === 'demo') throw new WalletError('Demo views are read-only. Create your own wallet to act.', 'demo');
         if (kind === 'mock') {
           const r = await mockChainCall(call.method, call.args);
           return { hash: r.hash, mode: 'mock' };

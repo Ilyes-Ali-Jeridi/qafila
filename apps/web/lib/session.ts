@@ -7,7 +7,7 @@
 export interface Session {
   token: string | null;
   address: string | null;
-  kind: 'smart_account' | 'g_account' | null;
+  kind: 'smart_account' | 'g_account' | 'demo' | null;
   label: string | null;
 }
 

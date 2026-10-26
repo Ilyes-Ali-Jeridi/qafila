@@ -121,6 +121,10 @@ Evaluation (`pnpm eval`, 12 packets, run live against Bedrock on 25 October 2026
 
 The same 12 packets pass in mock mode offline (recorded responses, used in CI).
 
+## 6b. Judges' tour
+
+`https://qafila.dev/demo` (feature flag `FF_DEMO_MODE`): three stories, every deal with its state in plain words, and read-only "Enter as the importer" and "Enter as ops" views minted by `POST /demo/session` for the demo profile. Writes from those sessions are refused (`demo_readonly`); acting goes through the person's own passkey wallet.
+
 ## 7. Shipment agent and x402 API
 
 The agent runs on every `funded` event, every bill-of-lading upload and a 10-minute tick. It pays the supplier deposit only when the registry and sanctions checks passed (or ops overrode them after a manual check), the supplier's payout address is on record and no incident is open. It confirms a shipment only when a B/L container appears in tracking, the carrier's loading event at the port of loading names the B/L vessel, the status is Loaded or later, the B/L is made out to Qafila's order and the shipment fingerprint is unused. Every decision is stored with its inputs and transaction hash and shown on the deal timeline. Dry-run mode exists.

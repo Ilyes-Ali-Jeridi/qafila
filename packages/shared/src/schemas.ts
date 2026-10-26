@@ -368,3 +368,11 @@ export const JobStatusSchema = z.object({
   lastError: z.string().nullable(),
   result: z.unknown().nullable(),
 });
+
+// ------------------------------------------------------------------ demo mode (FF_DEMO_MODE)
+
+/** POST /demo/session: a read-only session as one persona of the demo profile (judges' tour, testnet only). */
+export const DemoSessionRequestSchema = z.object({ persona: z.enum(['importer', 'ops']) });
+export type DemoPersona = z.infer<typeof DemoSessionRequestSchema>['persona'];
+export const DemoSessionResponseSchema = z.object({ token: z.string(), address: z.string(), label: z.string(), roles: z.array(z.string()), expiresAt: z.string() });
+export type DemoSessionResponse = z.infer<typeof DemoSessionResponseSchema>;

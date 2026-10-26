@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { WalletButton } from './wallet-button';
 import { useFlag } from '@/lib/config';
+import { useWallet } from '@/lib/wallet/provider';
 import { cn } from '@/lib/utils';
 
 const NAV: Array<{ href: string; label: string; match: (p: string) => boolean }> = [
@@ -30,7 +31,9 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
 export function SiteHeader() {
   const path = usePathname();
   const qr = useFlag('FF_QR_JOIN');
-  const links = qr ? [...NAV, { href: '/join', label: 'Join', match: (p: string) => p.startsWith('/join') }] : NAV;
+  const demo = useFlag('FF_DEMO_MODE');
+  const w = useWallet();
+  const links = [...(qr ? [...NAV, { href: '/join', label: 'Join', match: (p: string) => p.startsWith('/join') }] : NAV), ...(demo ? [{ href: '/demo', label: 'Demo', match: (p: string) => p.startsWith('/demo') }] : [])];
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-page/70 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5" aria-label="Main">
@@ -51,7 +54,14 @@ export function SiteHeader() {
             ))}
           </div>
         </div>
-        <WalletButton />
+        <div className="flex items-center gap-2">
+          {w.kind === 'demo' ? (
+            <span className="hidden items-center rounded-full border border-saffron/40 bg-saffron-100 px-2.5 py-1 text-xs font-medium text-saffron sm:inline-flex" data-testid="demo-pill">
+              Demo view, read-only
+            </span>
+          ) : null}
+          <WalletButton />
+        </div>
       </nav>
       <div className="flex gap-1 overflow-x-auto px-3 pb-2 md:hidden" aria-label="Sections">
         {links.map((n) => (

@@ -87,6 +87,9 @@ async function meOf(c: Parameters<typeof requireUser>[0], profileId: string): Pr
   const env = c.get('env');
   const p = await svc.db.query.profiles.findFirst({ where: eq(profiles.id, profileId) });
   if (!p) throw new ApiError(404, 'not_found', 'profile not found');
+  // A demo persona (FF_DEMO_MODE) sees only the roles of its persona, not everything the demo profile holds.
+  const current = c.get('user');
+  const roles = (current?.demo && current.profileId === profileId ? current.roles : (p.roles as Role[])) as Role[];
   const imp = await svc.db.query.importers.findFirst({ where: eq(importers.profileId, profileId) });
   const approved = p.walletAddress ? await svc.chain.isInvestorApproved(p.walletAddress).catch(() => false) : false;
   let importerBlock: Me['importer'] = null;
@@ -108,7 +111,7 @@ async function meOf(c: Parameters<typeof requireUser>[0], profileId: string): Pr
     };
   }
   return {
-    profile: { id: p.id, displayName: p.displayName, email: p.email, country: p.country, roles: p.roles as Role[], walletAddress: p.walletAddress as Me['profile']['walletAddress'], walletKind: p.walletKind as Me['profile']['walletKind'], kycStatus: p.kycStatus as Me['profile']['kycStatus'], joinedVia: p.joinedVia, createdAt: p.createdAt.toISOString() },
+    profile: { id: p.id, displayName: p.displayName, email: p.email, country: p.country, roles, walletAddress: p.walletAddress as Me['profile']['walletAddress'], walletKind: p.walletKind as Me['profile']['walletKind'], kycStatus: p.kycStatus as Me['profile']['kycStatus'], joinedVia: p.joinedVia, createdAt: p.createdAt.toISOString() },
     investorApproved: approved,
     investorApproveTxHash: p.kycApprovedTx,
     importer: importerBlock,
@@ -241,6 +244,8 @@ auth.post('/kyb/documents', async (c) => {
   const body = await readJson(c, RegisterDocumentRequest);
   const svc = c.get('svc');
   const env = c.get('env');
+  // Registering a KYB document is the first thing a new importer does; the upload route needs the importer role, so grant it here rather than only on /kyb.
+  if (!u.roles.includes('importer')) await svc.db.update(profiles).set({ roles: await rolesPlus(c, u.profileId, 'importer') }).where(eq(profiles.id, u.profileId));
   // KYB documents hang off a placeholder deal-less row: store them under a per-profile pseudo deal id in storage.
   const [row] = await svc.db
     .insert(documents)

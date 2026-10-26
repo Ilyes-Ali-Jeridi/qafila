@@ -98,6 +98,7 @@ const EnvSchema = z.object({
   API_BASE_URL: z.string().default('http://localhost:8787'),
   JWT_AUDIENCE: z.string().default('qafila'),
   JWT_SECRET: opt,
+  DEMO_PROFILE_AUTH_USER_ID: opt, // FF_DEMO_MODE: the profile the judges' read-only personas browse as
 
   MIN_SECURITY_BPS: z.coerce.number().default(2000),
   SECURITY_STEP_BPS: z.coerce.number().default(250),

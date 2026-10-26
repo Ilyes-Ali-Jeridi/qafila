@@ -66,5 +66,6 @@ export const FEATURE_FLAGS = [
   'FF_SUPPLIER_CONFIRM',
   'FF_EXTENSIONS',
   'FF_COINVEST',
+  'FF_DEMO_MODE',
 ] as const;
 export type FeatureFlag = (typeof FEATURE_FLAGS)[number];

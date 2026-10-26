@@ -24,6 +24,8 @@ export interface AuthUser {
   walletAddress: string | null;
   kycStatus: string;
   displayName: string;
+  /** FF_DEMO_MODE persona session: roles narrowed, nothing can be written. */
+  demo?: boolean;
 }
 
 export type Vars = { env: Env; svc: Services; user?: AuthUser };
@@ -60,12 +62,21 @@ export function authMiddleware(db: Db, env: Env): MiddlewareHandler<{ Variables:
     if (auth?.startsWith('Bearer ')) {
       // The web sends `Bearer mock.<address>` as a placeholder before any email sign-in (auth contract); treat it as anonymous, routes that need a user still answer 401.
       if (auth.slice(7).startsWith('mock.')) return next();
+      let claims;
       try {
-        const claims = await verifyJwt(auth.slice(7), { secret: env.SUPABASE_JWT_SECRET ?? env.JWT_SECRET, jwksUrl: env.SUPABASE_URL ? `${env.SUPABASE_URL.replace(/\/$/, '')}/auth/v1/.well-known/jwks.json` : undefined, audience: 'authenticated' });
-        c.set('user', await profileFor(db, claims.sub, claims.email ?? null));
+        claims = await verifyJwt(auth.slice(7), { secret: env.SUPABASE_JWT_SECRET ?? env.JWT_SECRET, jwksUrl: env.SUPABASE_URL ? `${env.SUPABASE_URL.replace(/\/$/, '')}/auth/v1/.well-known/jwks.json` : undefined, audience: 'authenticated' });
       } catch (e) {
         throw new ApiError(401, 'unauthorized', `invalid session: ${(e as Error).message}`);
       }
+      const user = await profileFor(db, claims.sub, claims.email ?? null);
+      if (claims['demo'] === true) {
+        // FF_DEMO_MODE: a judge browsing as one persona of the demo profile. Roles narrow to the persona; writes are refused so the demo data cannot be changed from a tour.
+        const allowed = Array.isArray(claims['demo_roles']) ? (claims['demo_roles'] as string[]) : [];
+        user.roles = user.roles.filter((r) => allowed.includes(r));
+        user.demo = true;
+        if (!['GET', 'HEAD', 'OPTIONS'].includes(c.req.method) && !c.req.path.startsWith('/demo/')) throw new ApiError(403, 'demo_readonly', 'Demo views are read-only. Create your own wallet to act.');
+      }
+      c.set('user', user);
     }
     return next();
   };

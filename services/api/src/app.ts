@@ -12,6 +12,7 @@ import { relayerApp } from './relayer.js';
 import { auth } from './routes/auth.js';
 import { config } from './routes/config.js';
 import { dealRoutes } from './routes/deals.js';
+import { demoRoutes } from './routes/demo.js';
 import { adapterModes, rpcProbe } from './routes/health.js';
 import { ops } from './routes/ops.js';
 import { publicRoutes } from './routes/public.js';
@@ -55,6 +56,7 @@ export function createApp(env: Env, svc?: Services) {
     app.route('/', dealRoutes);
     app.route('/', publicRoutes);
     app.route('/ops', ops);
+    if (env.FF_DEMO_MODE) app.route('/', demoRoutes);
     if (env.FF_X402) app.route('/x402', createX402Routes(env));
     if (env.RELAYER_SECRET) {
       const dep = loadDeployment(env.STELLAR_NETWORK);

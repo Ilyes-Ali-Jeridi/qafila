@@ -20,7 +20,7 @@ export function describeError(e: unknown): string {
   if (e instanceof ApiRequestError) {
     if (e.status === 501) return 'This part of the API is not built yet.';
     if (e.status === 401) return 'Sign in to continue.';
-    if (e.status === 403) return 'Your account cannot do that.';
+    if (e.status === 403) return e.code === 'demo_readonly' ? e.message : 'Your account cannot do that.';
     return e.message;
   }
   if (e instanceof TypeError && /fetch/i.test(e.message)) return 'Could not reach the server. Check your connection and try again.';
