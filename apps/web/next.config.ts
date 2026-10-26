@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   agentRules: false,
   transpilePackages: ['@qafila/shared', '@qafila/contract-client'],
-  serverExternalPackages: ['@stellar/stellar-sdk'],
+  // The SDK is bundled for the server too: externalised, Node's require() hits its ESM @noble/hashes dependency and every deal page answers 500 on Vercel.
   webpack: (config) => {
     config.resolve.extensionAlias = { '.js': ['.ts', '.tsx', '.js'], '.mjs': ['.mts', '.mjs'] };
     config.resolve.alias = {

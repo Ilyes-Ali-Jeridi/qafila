@@ -1,4 +1,4 @@
-export const HEADLINE = 'Fund a real shipment for an importer that banks turn down.';
+export const HEADLINE = 'Fund real shipments. Earn a fixed profit from trade, not interest.';
 
 export const STEPS: Array<{ n: string; title: string; body: string; accent: string }> = [
   { n: '01', title: 'Verify', body: 'The importer uploads the invoice, packing list and supplier licence. AI checks them against each other, the company register, sanctions lists and live carrier data. A person signs off.', accent: 'text-indigo' },
