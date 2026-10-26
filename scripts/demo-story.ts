@@ -253,16 +253,23 @@ async function late(number: number): Promise<void> {
   }
 }
 
-const { positionals, values } = parseArgs({ allowPositionals: true, options: { packet: { type: 'string', default: '03' }, 'skip-bl': { type: 'boolean', default: false } } });
-const cmd = positionals[0];
-const config = await api<{ network: string; contractId: string; settlementToken: { id: string } }>('/config', { auth: false });
-if (config.network !== cfg.network) throw new Error(`the API is on ${config.network}, this .env on ${cfg.network}`);
-if (config.settlementToken.id !== qctx.sacId) throw new Error('the settlement token in .env differs from the API');
-contractId = config.contractId;
-TOKEN = sessionToken();
-const me = await api<{ profile: { displayName: string; walletAddress: string | null } }>('/me');
-if (me.profile.walletAddress !== importer.publicKey()) throw new Error(`the demo profile wallet ${me.profile.walletAddress} is not DEMO_IMPORTER_SECRET's ${importer.publicKey()}`);
-log(`${me.profile.displayName} on ${cfg.network}, contract ${contractId}`);
-if (cmd === 'hero') await hero(values.packet ?? '03', values['skip-bl'] ?? false);
-else if (cmd === 'late') await late(Number(positionals[1]));
-else throw new Error('usage: demo-story.ts hero [--packet 03] [--skip-bl] | late <dealNumber>');
+async function main(): Promise<void> {
+  const { positionals, values } = parseArgs({ allowPositionals: true, options: { packet: { type: 'string', default: '03' }, 'skip-bl': { type: 'boolean', default: false } } });
+  const cmd = positionals[0];
+  const config = await api<{ network: string; contractId: string; settlementToken: { id: string } }>('/config', { auth: false });
+  if (config.network !== cfg.network) throw new Error(`the API is on ${config.network}, this .env on ${cfg.network}`);
+  if (config.settlementToken.id !== qctx.sacId) throw new Error('the settlement token in .env differs from the API');
+  contractId = config.contractId;
+  TOKEN = sessionToken();
+  const me = await api<{ profile: { displayName: string; walletAddress: string | null } }>('/me');
+  if (me.profile.walletAddress !== importer.publicKey()) throw new Error(`the demo profile wallet ${me.profile.walletAddress} is not DEMO_IMPORTER_SECRET's ${importer.publicKey()}`);
+  log(`${me.profile.displayName} on ${cfg.network}, contract ${contractId}`);
+  if (cmd === 'hero') await hero(values.packet ?? '03', values['skip-bl'] ?? false);
+  else if (cmd === 'late') await late(Number(positionals[1]));
+  else throw new Error('usage: demo-story.ts hero [--packet 03] [--skip-bl] | late <dealNumber>');
+}
+
+main().catch((err: unknown) => {
+  console.error(`[story] failed: ${err instanceof Error ? err.message : String(err)}`);
+  process.exit(1);
+});
