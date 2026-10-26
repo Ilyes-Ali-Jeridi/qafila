@@ -151,10 +151,10 @@ async function hero(packet: string, skipBl: boolean, resume?: number): Promise<v
   }
   const screened = await poll('the screening', async () => {
     const d = await api<{ stage: string; decision?: string | null; riskScore?: number | null }>(`/importer/deals/${created.id}`);
-    return ['rejected', 'review', 'approved'].includes(d.stage) ? d : null;
-  }, 5000, 60);
+    return ['rejected', 'review', 'approved', 'promised'].includes(d.stage) ? d : null;
+  }, resume ? 10 : 5000, 60);
   log(`screening: ${screened.stage}, decision ${screened.decision ?? '?'}, risk ${screened.riskScore ?? '?'}`);
-  if (screened.stage !== 'approved') throw new Error(`deal ${created.number} is ${screened.stage}: override it in the ops console, then continue by hand from the promise`);
+  if (screened.stage !== 'approved' && screened.stage !== 'promised') throw new Error(`deal ${created.number} is ${screened.stage}: override it in the ops console, then rerun with --deal ${created.number}`);
 
   const p = await api<{ textHash: string; listingFingerprint: string; security: string; cost: string }>(`/deals/${created.id}/promise`, { method: 'POST' });
   const security = BigInt(p.security);
