@@ -234,6 +234,26 @@
       #risk-body { display: grid; gap: 14px; }
       #inv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 
+      /* ---------- scene 2b: how qafila earns ---------- */
+      .teal-ink { color: var(--teal); }
+      #s2b-frame { left: 800px; top: 170px; width: 980px; height: 700px; }
+      #s2b-col { width: 620px; }
+      #split { margin-top: 36px; padding: 26px 30px; }
+      #split-bar { display: flex; gap: 6px; height: 58px; margin-top: 16px; }
+      #split-inv, #split-fee { display: flex; align-items: center; padding-left: 18px; border-radius: 12px; font-family: var(--mono); font-size: 24px; white-space: nowrap; }
+      #split-inv { flex: 1; background: rgba(45, 226, 195, 0.22); border: 1px solid rgba(45, 226, 195, 0.5); color: var(--teal); }
+      #split-fee { flex: 0 0 200px; background: rgba(242, 178, 62, 0.2); border: 1px solid rgba(242, 178, 62, 0.5); color: var(--saffron); }
+      #split-note { margin-top: 16px; font-size: 25px; line-height: 1.35; color: var(--muted); }
+      #s2b-chip { position: relative; margin-top: 26px; width: max-content; max-width: 620px; }
+      .ui .kv.hl-teal { background: rgba(45, 226, 195, 0.1); margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 10px; }
+      /* ---------- scene 6b: the numbers ---------- */
+      #num-grid { position: absolute; left: 160px; top: 320px; width: 1600px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+      .tile { padding: 34px 40px; min-height: 236px; }
+      .tile .n { font-family: var(--display); font-weight: 800; font-size: 96px; line-height: 1; letter-spacing: -0.03em; white-space: nowrap; }
+      .tile .l { margin-top: 18px; font-size: 28px; line-height: 1.3; color: var(--muted); }
+      #num-contract { position: absolute; left: 160px; top: 866px; font-family: var(--mono); font-size: 26px; color: var(--teal); letter-spacing: 0.02em; }
+      #num-contract span { color: var(--muted); margin-right: 16px; }
+
       /* ---------- scene 5: shipment and repayment ---------- */
       #s5-head { position: absolute; left: 160px; top: 90px; }
       #s5-rail { position: absolute; left: 160px; top: 170px; width: 1600px; height: 100px; }
@@ -272,7 +292,7 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="150" data-width="1920" data-height="1080" data-fps="30">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="149.0" data-width="1920" data-height="1080" data-fps="30">
       <div id="bg">
         <div id="grid"></div>
         <div id="aurora" data-layout-allow-overflow>
@@ -286,7 +306,7 @@
       </div>
 
       <!-- 1. the problem -->
-      <section id="s1" class="clip" data-start="0" data-duration="30.2" data-track-index="1">
+      <section id="s1" class="clip" data-start="0" data-duration="29.0" data-track-index="1">
         <div id="s1-wrap">
           <div id="s1-eyebrow" class="eyebrow">The problem · trade finance in Africa</div>
           <div class="stat1 card-bg" id="s1-a" data-hold>
@@ -318,7 +338,7 @@
       </section>
 
       <!-- 2. the product -->
-      <section id="s2" class="clip" data-start="29.8" data-duration="24.7" data-track-index="1">
+      <section id="s2" class="clip" data-start="28.7" data-duration="22.6" data-track-index="1">
         <div id="s2-a">
           <div id="s2-mark">Qafila</div>
           <div id="s2-tag">Fund a real shipment for an importer that banks turn down.</div>
@@ -334,7 +354,7 @@
                   <div class="prog" style="margin-top: 16px;"><span class="fill" id="dc1-fill"></span></div>
                   <div class="row sub" style="margin-top: 8px;"><span><b class="amt" style="color: var(--ink);">100<span class="dec">.00</span></b> of <span class="amt">2,000<span class="dec">.00</span><span class="unit">qUSD</span></span></span><span class="mono">5%</span></div>
                   <div class="row dl"><div><div class="eb">Importer deposit</div><div class="mono" style="font-size: 20px; font-weight: 600; margin-top: 2px;">20% <span style="font-family: var(--body); font-weight: 400; color: var(--muted);">locked first</span></div></div><div style="text-align: right;"><div class="eb">History</div><div class="sub" style="margin-top: 2px;">First deal</div></div></div>
-                  <div style="margin-top: 12px;"><span class="badge success">AI approved <span style="opacity: .8;">· 92/100</span></span></div>
+                  <div style="margin-top: 12px;"><span class="badge success">AI approved <span style="opacity: .8;">· 100/100</span></span></div>
                 </div>
                 <div class="card strong dc" id="dc-3">
                   <div class="row"><span class="eb">Deal 3</span><span class="badge indigo">Goods owned, awaiting sale</span></div>
@@ -367,8 +387,48 @@
         </div>
       </section>
 
+      <!-- 2b. how qafila earns -->
+      <section id="s2b" class="clip" data-start="51.0" data-duration="14.0" data-track-index="1">
+        <div id="s2b-wrap">
+          <div class="col" id="s2b-col">
+            <div class="eyebrow teal">The business model</div>
+            <h2 class="display">Qafila earns only when the deal is repaid.</h2>
+            <div class="card-bg" id="split">
+              <div class="eyebrow">On this deal: 8% markup</div>
+              <div id="split-bar"><div id="split-inv">6% to investors</div><div id="split-fee">2% Qafila</div></div>
+              <div id="split-note">The fee comes out of the markup and is paid only on repayment. If the importer does not pay, Qafila earns nothing.</div>
+            </div>
+            <div class="chip gold" id="s2b-chip"><span class="dot"></span><span>Qafila co-invests 5% of every deal</span></div>
+          </div>
+          <!-- the deal's terms card (apps/web/app/(app)/invest/[id]) -->
+          <div class="frame" id="s2b-frame">
+            <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1 · terms</span></div>
+            <div class="view"><div class="ui">
+              <div class="card strong" id="terms-card">
+                <div class="ch"><div><div class="eb">Fixed at listing</div><h3>Terms</h3></div></div>
+                <div class="cb">
+                  <div class="kv" id="t-cost"><span class="k">Cost of the goods</span><span class="v amt">2,000<span class="dec">.00</span><span class="unit">qUSD</span></span></div>
+                  <div class="kv" id="t-markup"><span class="k">Fixed profit (markup)</span><span class="v amt">160<span class="dec">.00</span><span class="unit">qUSD</span> (8%)</span></div>
+                  <div class="kv" id="t-fee"><span class="k">Platform fee</span><span class="v"><span class="amt">40<span class="dec">.00</span><span class="unit">qUSD</span></span> <span class="sub">out of the markup, earned only on repayment</span></span></div>
+                  <div class="kv" id="t-inv"><span class="k">To investors on repayment</span><span class="v amt">2,120<span class="dec">.00</span><span class="unit">qUSD</span> (6% profit)</span></div>
+                  <div class="kv" id="t-price"><span class="k">Sale price the importer owes</span><span class="v amt">2,160<span class="dec">.00</span><span class="unit">qUSD</span></span></div>
+                  <div class="kv" id="t-dep"><span class="k">Importer security deposit</span><span class="v"><span class="amt">400<span class="dec">.00</span><span class="unit">qUSD</span></span> <span class="sub">(20%), counts as first payment</span></span></div>
+                  <div class="kv" id="t-late"><span class="k">Late fee (to charity)</span><span class="v amt">20<span class="dec">.00</span><span class="unit">qUSD</span></span></div>
+                </div>
+              </div>
+              <div class="card" id="coinvest-card" style="margin-top: 18px;">
+                <div class="cb" style="padding-top: 18px;">
+                  <div class="bullet" id="ci-1"><i></i><span>Qafila invests 5% of this deal and loses alongside you.</span></div>
+                  <div class="bullet" id="ci-2" style="margin-top: 8px;"><i></i><span>The platform fee is earned only when the deal is repaid.</span></div>
+                </div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
       <!-- 3. the importer -->
-      <section id="s3" class="clip" data-start="54.1" data-duration="23.2" data-track-index="1">
+      <section id="s3" class="clip" data-start="64.7" data-duration="18.8" data-track-index="1">
         <div id="s3-wrap">
           <div class="col" id="s3-col">
             <div class="eyebrow teal">The importer</div>
@@ -460,7 +520,7 @@
       </section>
 
       <!-- 4. the investor -->
-      <section id="s4" class="clip" data-start="76.9" data-duration="18.6" data-track-index="1">
+      <section id="s4" class="clip" data-start="83.2" data-duration="11.7" data-track-index="1">
         <div id="s4-wrap">
           <div class="col" id="s4-col">
             <div class="eyebrow teal">The investor</div>
@@ -469,14 +529,8 @@
               <div class="step" id="s4-st-1"><span class="num">1</span><span class="txt">Scan the QR code</span></div>
               <div class="step" id="s4-st-2"><span class="num">2</span><span class="txt">Create a wallet with a passkey</span></div>
               <div class="step" id="s4-st-3"><span class="num">3</span><span class="txt">Pick a shipment</span></div>
-            </div>
-          </div>
-          <div id="s4-loss">
-            <div class="eyebrow">Before paying: who loses first</div>
-            <div class="steps">
-              <div class="step" id="s4-l-1"><span class="num">1</span><span class="txt">The importer's own deposit</span></div>
-              <div class="step" id="s4-l-2"><span class="num">2</span><span class="txt">Recoveries: supplier, insurance, resale</span></div>
-              <div class="step" id="s4-l-3"><span class="num">3</span><span class="txt">Investors, Qafila's own 5% included</span></div>
+              <div class="step" id="s4-st-4"><span class="num">4</span><span class="txt">Read the AI report</span></div>
+              <div class="step" id="s4-st-5"><span class="num">5</span><span class="txt">Fund the deal, receive shares</span></div>
             </div>
           </div>
 
@@ -497,23 +551,21 @@
             </div></div></div>
           </div>
 
-          <!-- if things go wrong (apps/web/components/deal/if-things-go-wrong) -->
+          <!-- AI verification, as investors see it (apps/web/components/deal/checks-list) -->
           <div class="frame" id="s4-frame-b">
-            <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1 · before you decide</span></div>
+            <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1 · AI verification</span></div>
             <div class="view"><div class="ui">
-              <div class="card warn" id="risk-card">
-                <div class="ch"><div><div class="eb">Before you decide</div><h3>If things go wrong</h3></div><span class="eb" style="color: var(--warning);">⚠</span></div>
-                <div class="cb" id="risk-body">
-                  <div class="callout" id="risk-dep"><div class="eb gold">The importer put money in first</div><p><span class="amt saffron" style="font-size: 30px; color: var(--saffron);"><b>400</b><span class="dec">.00</span><span class="unit">qUSD</span></span> <span>(20% of the cost), locked when they signed the promise.</span></p></div>
-                  <div><div class="eb" style="margin-bottom: 10px;">Who loses first</div>
-                    <div class="rail">
-                      <div class="ri a" id="ri-1"><span class="n">1</span><span>The importer's own money: the security deposit, and after the sale everything they have paid.</span></div>
-                      <div class="ri b" id="ri-2"><span class="n">2</span><span>Recoveries: from the supplier, insurance, resale of the goods, legal collection.</span></div>
-                      <div class="ri c" id="ri-3"><span class="n">3</span><span>Investors pro rata, Qafila Trade's own 5% included.</span></div>
-                    </div>
-                  </div>
-                  <div class="note" id="risk-worst"><div class="eb">Worst case</div><div style="margin-top: 4px;">If the importer pays nothing after buying and nothing is recovered, investors get back the deposit's share: <b class="mono">20%</b> of what you put in comes back.</div></div>
-                  <div class="bullet" id="risk-rule"><i></i><span>Late fees go to charity, never to investors.</span></div>
+              <div class="card" id="aiv-card">
+                <div class="ch"><div><div class="eb">Listing screening, 26 Oct, 00:11</div><h3>AI verification</h3></div><span class="badge success" id="aiv-badge">AI approved <span style="opacity: .8;">· 100/100</span></span></div>
+                <div class="cb">
+                  <div class="chk" id="aiv-1"><span class="ic">✓</span><div><div class="n">Supplier company code</div><div class="d">Unified Social Credit Code 91440300MA5F8KQX3W has a valid check digit (ISO 7064 MOD 31-3).</div></div></div>
+                  <div class="chk" id="aiv-2"><span class="ic">✓</span><div><div class="n">Container numbers</div><div class="d">All container numbers pass the ISO 6346 check digit.</div></div></div>
+                  <div class="chk" id="aiv-3"><span class="ic">✓</span><div><div class="n">Invoice arithmetic</div><div class="d">Line totals sum to the invoice total of 2,000 USD within 0.01.</div></div></div>
+                  <div class="chk" id="aiv-4"><span class="ic">✓</span><div><div class="n">Company registry</div><div class="d">GLEIF: entity ACTIVE, LEI ISSUED, Chinese legal name matches the licence.</div></div></div>
+                  <div class="chk" id="aiv-5"><span class="ic">✓</span><div><div class="n">Sanctions lists</div><div class="d">No match above 0.7 for the supplier, the importer or the legal representative.</div></div></div>
+                  <div class="chk" id="aiv-6"><span class="ic">✓</span><div><div class="n">Price against reference</div><div class="d">Unit prices are within 0.8x to 1.3x of the reference range for this category.</div></div></div>
+                  <div class="chk" id="aiv-7"><span class="ic">✓</span><div><div class="n">Not financed before</div><div class="d">This invoice has not been financed before (database and on-chain).</div></div></div>
+                  <div class="row" id="aiv-foot" style="margin-top: 14px; justify-content: flex-start; gap: 12px;"><span class="sub">Report hash</span><span class="mono sub" style="padding: 2px 8px; border-radius: 6px; background: rgba(255,255,255,0.06);">08c1ef0f3a92c1d4…</span><span class="badge indigo">Signed by the verifier</span></div>
                 </div>
               </div>
             </div></div>
@@ -567,7 +619,7 @@
       </section>
 
       <!-- 5. shipment and repayment -->
-      <section id="s5" class="clip" data-start="95.1" data-duration="17.2" data-track-index="1">
+      <section id="s5" class="clip" data-start="94.6" data-duration="15.4" data-track-index="1">
         <div id="s5-wrap">
           <div id="s5-head" class="eyebrow teal">Shipment and repayment</div>
           <div id="s5-rail">
@@ -670,7 +722,7 @@
       </section>
 
       <!-- 6. built with -->
-      <section id="s6" class="clip" data-start="111.9" data-duration="17.7" data-track-index="1">
+      <section id="s6" class="clip" data-start="109.7" data-duration="12.8" data-track-index="1">
         <div id="s6-wrap">
           <div class="head" id="s6-head">
             <div class="eyebrow">Under the hood</div>
@@ -686,8 +738,27 @@
         </div>
       </section>
 
+      <!-- 6b. the numbers -->
+      <section id="s6b" class="clip" data-start="122.2" data-duration="13.8" data-track-index="1">
+        <div id="s6b-wrap">
+          <div class="head" id="s6b-head">
+            <div class="eyebrow saffron">HackMeridian 2026, Lisbon</div>
+            <h2 class="display">Built for HackMeridian. <span class="teal-ink">Live on testnet.</span></h2>
+          </div>
+          <div id="num-grid">
+            <div class="tile card-bg" id="num-1"><div class="n saffron"><span id="n-tests">0</span></div><div class="l">contract tests, property tests on the Sharia rules</div></div>
+            <div class="tile card-bg" id="num-2"><div class="n teal-ink">12/12</div><div class="l">AI test packets judged right, run live</div></div>
+            <div class="tile card-bg" id="num-3"><div class="n saffron">9/9</div><div class="l">full lifecycle scenarios on a local network</div></div>
+            <div class="tile card-bg" id="num-4"><div class="n teal-ink"><span id="n-ts">0</span></div><div class="l">TypeScript tests across API, chain and shared code</div></div>
+            <div class="tile card-bg" id="num-5"><div class="n saffron">0.50</div><div class="l">USDC paid live over x402 for one verification</div></div>
+            <div class="tile card-bg" id="num-6"><div class="n teal-ink">&lt;10s</div><div class="l">to a passkey wallet, fees sponsored</div></div>
+          </div>
+          <div id="num-contract" data-layout-ignore><span>contract</span>CAJW4MIEZXIUFHGLQISXLDF3XIHJOLGSKGDQQHBIQJ2BJU34ZT3COSPV</div>
+        </div>
+      </section>
+
       <!-- 7. why stellar, outro -->
-      <section id="s7" class="clip" data-start="129.2" data-duration="20.8" data-track-index="1">
+      <section id="s7" class="clip" data-start="135.7" data-duration="13.3" data-track-index="1">
         <div id="s7-a">
           <div class="head" id="s7-head"><div class="eyebrow">Why Stellar · HackMeridian 2026</div></div>
           <h2 id="s7-lines" class="display"><span class="line" id="s7-l1">A forgotten market.</span><span class="line saffron" id="s7-l2">$90bn a year.</span></h2>
@@ -700,38 +771,43 @@
         <div id="s7-outro" data-hold>
           <div id="s7-mark">Qafila</div>
           <div id="s7-built">Built in one weekend at HackMeridian 2026 · live on Stellar testnet</div>
-          <div id="s7-domain">qafila.dev</div>
+          <div id="s7-domain">Visit qafila.dev</div>
           <div id="s7-promise">Fund a real shipment. Own the goods. Share a fixed profit.</div>
         </div>
       </section>
 
       <!-- audio: narration, bed, sparse sfx -->
-      <audio id="v1" data-start="0.5" data-duration="28.58" data-track-index="20" data-volume="1" src="assets/voice/v1.mp3"></audio>
-      <audio id="v2" data-start="30.4" data-duration="23.71" data-track-index="20" data-volume="1" src="assets/voice/v2.mp3"></audio>
-      <audio id="v3" data-start="54.7" data-duration="22.22" data-track-index="20" data-volume="1" src="assets/voice/v3.mp3"></audio>
-      <audio id="v4" data-start="77.5" data-duration="17.57" data-track-index="20" data-volume="1" src="assets/voice/v4.mp3"></audio>
-      <audio id="v5" data-start="95.7" data-duration="16.2" data-track-index="20" data-volume="1" src="assets/voice/v5.mp3"></audio>
-      <audio id="v6" data-start="112.5" data-duration="16.73" data-track-index="20" data-volume="1" src="assets/voice/v6.mp3"></audio>
-      <audio id="v7" data-start="129.8" data-duration="18.31" data-track-index="20" data-volume="1" src="assets/voice/v7.mp3"></audio>
-      <audio id="music" data-start="0" data-duration="150" data-track-index="21" data-volume="0.15" src="assets/music/bed.mp3"></audio>
-      <audio id="sfx-mark" data-start="30.2" data-duration="0.18" data-track-index="22" data-volume="0.5" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
-      <audio id="sfx-c1" data-start="64.9" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-c6" data-start="69.8" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-approved" data-start="71.3" data-duration="1.48" data-track-index="22" data-volume="0.5" src="assets/sfx/impactBell_heavy_000.ogg"></audio>
-      <audio id="sfx-t1" data-start="112.8" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-t5" data-start="124.1" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-outro" data-start="138.8" data-duration="0.12" data-track-index="22" data-volume="0.55" src="assets/sfx/bong_001.ogg"></audio>
+      <audio id="v1" data-start="0.4" data-duration="27.84" data-track-index="20" data-volume="1" src="assets/voice/v1.mp3"></audio>
+      <audio id="v2" data-start="29.2" data-duration="21.89" data-track-index="20" data-volume="1" src="assets/voice/v2.mp3"></audio>
+      <audio id="v3" data-start="51.5" data-duration="13.25" data-track-index="20" data-volume="1" src="assets/voice/v3.mp3"></audio>
+      <audio id="v4" data-start="65.2" data-duration="18.12" data-track-index="20" data-volume="1" src="assets/voice/v4.mp3"></audio>
+      <audio id="v5" data-start="83.7" data-duration="10.99" data-track-index="20" data-volume="1" src="assets/voice/v5.mp3"></audio>
+      <audio id="v6" data-start="95.1" data-duration="14.74" data-track-index="20" data-volume="1" src="assets/voice/v6.mp3"></audio>
+      <audio id="v7" data-start="110.2" data-duration="12.05" data-track-index="20" data-volume="1" src="assets/voice/v7.mp3"></audio>
+      <audio id="v8" data-start="122.7" data-duration="13.08" data-track-index="20" data-volume="1" src="assets/voice/v8.mp3"></audio>
+      <audio id="v9" data-start="136.2" data-duration="11.3" data-track-index="20" data-volume="1" src="assets/voice/v9.mp3"></audio>
+      <audio id="music" data-start="0" data-duration="149.0" data-track-index="21" data-volume="0.15" src="assets/music/bed.mp3"></audio>
+      <audio id="sfx-mark" data-start="29.0" data-duration="0.18" data-track-index="22" data-volume="0.5" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-c1" data-start="71.9" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-c6" data-start="75.8" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-approved" data-start="76.9" data-duration="1.48" data-track-index="22" data-volume="0.5" src="assets/sfx/impactBell_heavy_000.ogg"></audio>
+      <audio id="sfx-t1" data-start="110.5" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-t5" data-start="120.2" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-n1" data-start="125.1" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-n6" data-start="133.2" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-outro" data-start="142.5" data-duration="0.12" data-track-index="22" data-volume="0.55" src="assets/sfx/bong_001.ogg"></audio>
     </div>
 
     <script>
       const tl = gsap.timeline({ paused: true });
       const EASE = 'power3.out';
       // narration anchors: when each voice segment starts
-      const a1 = 0.5, a2 = 30.4, a3 = 54.7, a4 = 77.5, a5 = 95.7, a6 = 112.5, a7 = 129.8, TOTAL = 150;
+      const a1 = 0.4, a2 = 29.2, a3 = 51.5, a4 = 65.2, a5 = 83.7, a6 = 95.1, a7 = 110.2, a8 = 122.7, a9 = 136.2, TOTAL = 149.0;
 
       // helpers
       const enter = (sel, at, o = {}) => tl.fromTo(sel, { opacity: 0, y: o.y ?? 40, x: o.x ?? 0, scale: o.scale ?? 1 }, { opacity: 1, y: 0, x: 0, scale: 1, duration: o.d ?? 0.6, ease: o.ease ?? EASE }, at);
       const leave = (sel, at, d = 0.5) => tl.to(sel, { opacity: 0, duration: d, ease: 'power2.in' }, at);
+      const leaveTo = (sel, next) => tl.to(sel, { opacity: 0, duration: 0.4, ease: 'power2.in' }, next - 0.6);
       const counter = (id, to, at, d, fmt) => {
         const el = document.getElementById(id); const o = { v: 0 };
         tl.to(o, { v: to, duration: d, ease: 'power2.out', onUpdate() { el.textContent = fmt ? fmt(o.v) : String(Math.round(o.v)); } }, at);
@@ -741,9 +817,10 @@
       const light = (sel, at) => { tl.fromTo(sel, { opacity: 0.38 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, at); tl.fromTo(sel + ' .num', { backgroundColor: 'rgba(45,226,195,0.12)', color: '#2de2c3' }, { backgroundColor: '#2de2c3', color: '#06241f', duration: 0.4 }, at); };
       const chipIn = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, at);
       const chipOut = (sel, at) => tl.to(sel, { opacity: 0, y: -16, duration: 0.35, ease: 'power2.in' }, at);
-      // a row of the real UI landing (used for check rows, timeline items, cards)
       const rowIn = (sel, at, o = {}) => tl.fromTo(sel, { opacity: 0, x: o.x ?? 24, y: o.y ?? 0 }, { opacity: 1, x: 0, y: 0, duration: o.d ?? 0.45, ease: EASE }, at);
       const fill = (sel, to, at, d) => tl.fromTo(sel, { scaleX: 0 }, { scaleX: to, duration: d, ease: 'power2.inOut' }, at);
+      const press = (sel, at) => tl.fromTo(sel, { scale: 1 }, { scale: 0.97, duration: 0.12, yoyo: true, repeat: 1, ease: 'power1.inOut' }, at);
+      const hl = (sel, at, color) => tl.fromTo(sel, { backgroundColor: 'rgba(0,0,0,0)' }, { backgroundColor: color, duration: 0.45 }, at);
 
       // ---------- background drift for the whole film ----------
       tl.fromTo('#aurora', { y: 140, opacity: 0.3 }, { y: 0, opacity: 0.55, duration: 4, ease: 'power2.out' }, 0);
@@ -752,141 +829,153 @@
       tl.fromTo('#blob-teal', { y: 60 }, { y: -90, duration: TOTAL, ease: 'sine.inOut' }, 0);
       tl.fromTo('#testnet', { opacity: 0 }, { opacity: 1, duration: 0.8 }, a2);
 
-      // ---------- 1. the problem (0 to 32.2) ----------
+      // ---------- 1. the problem ----------
       tl.fromTo('#s1-eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 0.1);
       enter('#s1-a', a1 + 0.3); counter('n-rej', 37, a1 + 0.5, 1.4);
-      enter('#s1-b', a1 + 5.7); counter('n-gap', 92, a1 + 5.9, 1.6);
-      leave('#s1-a', a1 + 9.2); leave('#s1-b', a1 + 9.2);
-      enter('#why-1', a1 + 9.6, { y: 50 });
-      enter('#why-2', a1 + 13.0, { y: 50 });
-      enter('#why-3', a1 + 16.7, { y: 50 });
-      leave('#s1-why', a1 + 19.4);
-      enter('#s1-c', a1 + 19.8); counter('n-chain', 205, a1 + 20.0, 1.8);
-      fill('#s1-fill', 0.43, a1 + 22.6, 1.6);
-      counter('n-stable', 43, a1 + 22.6, 1.6);
-      leave('#s1-c', a1 + 24.3);
-      tl.fromTo('#s1-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a1 + 24.7);
-      tl.fromTo('#s1-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a1 + 26.2);
-      leave('#s1-wrap', a2 - 0.7);
+      enter('#s1-b', a1 + 5.8); counter('n-gap', 92, a1 + 6.0, 1.6);
+      leave('#s1-a', a1 + 8.9); leave('#s1-b', a1 + 8.9);
+      enter('#why-1', a1 + 9.3, { y: 50 });
+      enter('#why-2', a1 + 12.7, { y: 50 });
+      enter('#why-3', a1 + 15.8, { y: 50 });
+      leave('#s1-why', a1 + 18.5);
+      enter('#s1-c', a1 + 18.9); counter('n-chain', 205, a1 + 19.1, 1.8);
+      fill('#s1-fill', 0.43, a1 + 21.6, 1.6);
+      counter('n-stable', 43, a1 + 21.6, 1.6);
+      leave('#s1-c', a1 + 23.4);
+      tl.fromTo('#s1-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a1 + 23.8);
+      tl.fromTo('#s1-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a1 + 25.3);
+      leaveTo('#s1-wrap', a2);
 
-      // ---------- 2. the product (31.8 to 58.0) ----------
+      // ---------- 2. the product ----------
       // sfx: soft impact when the name lands
       tl.fromTo('#s2-mark', { opacity: 0, scale: 1.08, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: EASE }, a2 - 0.2);
       enter('#s2-tag', a2 + 0.5, { y: 24 });
       frameIn('#s2-frame', a2 + 1.2);
       rowIn('#dc-1', a2 + 1.6, { x: 0, y: 30 }); rowIn('#dc-3', a2 + 1.9, { x: 0, y: 30 });
       fill('#dc1-fill', 0.05, a2 + 2.2, 1.0); fill('#dc3-fill', 1, a2 + 2.4, 1.6);
-      leave('#s2-a', a2 + 5.8);
-      enter('#s2-head', a2 + 6.2, { y: 30 });
-      [['#node-1', a2 + 6.4], ['#node-2', a2 + 9.6], ['#node-3', a2 + 12.8]].forEach(([sel, at], i) => {
+      leave('#s2-a', a2 + 6.0);
+      enter('#s2-head', a2 + 6.4, { y: 30 });
+      [['#node-1', a2 + 6.7], ['#node-2', a2 + 10.0], ['#node-3', a2 + 13.9]].forEach(([sel, at], i) => {
         enter(sel, at, { y: 50 });
         if (i > 0) tl.fromTo('#arrow-' + i, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.45, ease: EASE }, at - 0.1);
       });
-      enter('#s2-rule', a2 + 16.2, { y: 30 });
-      enter('#s2-murabaha', a2 + 18.2, { y: 20 });
-      leave('#s2-b', a3 - 0.7);
+      enter('#s2-rule', a2 + 17.6, { y: 30 });
+      enter('#s2-murabaha', a2 + 18.9, { y: 20 });
+      leaveTo('#s2-b', a3);
 
-      // ---------- 3. the importer (57.6 to 81.2) ----------
-      enter('#s3-col', a3 - 0.2, { y: 30 });
-      // onboarding: the name is typed, then the button lands
-      frameIn('#s3-frame-a', a3 + 0.2);
-      light('#s3-st-1', a3 + 0.4);
+      // ---------- 2b. how qafila earns ----------
+      enter('#s2b-col', a3 - 0.2, { y: 30 });
+      frameIn('#s2b-frame', a3 + 0.2);
+      tl.fromTo('#split', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a3 + 5.3);
+      hl('#t-markup', a3 + 5.6, 'rgba(255,255,255,0.07)');
+      rowIn('#split-inv', a3 + 6.9, { x: -20 }); hl('#t-inv', a3 + 7.0, 'rgba(45,226,195,0.12)');
+      rowIn('#split-fee', a3 + 8.3, { x: -20 }); hl('#t-fee', a3 + 8.4, 'rgba(242,178,62,0.14)');
+      rowIn('#split-note', a3 + 8.9, { x: 0, y: 10 });
+      rowIn('#ci-1', a3 + 9.8, { x: 0, y: 10 }); rowIn('#ci-2', a3 + 10.1, { x: 0, y: 10 });
+      chipIn('#s2b-chip', a3 + 9.9);
+      leaveTo('#s2b-wrap', a4);
+
+      // ---------- 3. the importer ----------
+      enter('#s3-col', a4 - 0.2, { y: 30 });
+      frameIn('#s3-frame-a', a4 + 0.2);
+      light('#s3-st-1', a4 + 0.4);
       const typed = document.getElementById('ob-typed'); const typing = { n: 0 };
-      tl.to('#ob-ph', { opacity: 0, duration: 0.2 }, a3 + 2.0);
-      tl.to(typing, { n: 5, duration: 1.1, ease: 'none', onUpdate() { typed.textContent = 'Amina'.slice(0, Math.round(typing.n)); } }, a3 + 2.1);
-      tl.fromTo('#ob-caret', { opacity: 1 }, { opacity: 0, duration: 0.3, repeat: 9, yoyo: true, ease: 'none' }, a3 + 0.4);
-      tl.fromTo('#ob-btn', { scale: 1 }, { scale: 0.97, duration: 0.12, yoyo: true, repeat: 1, ease: 'power1.inOut' }, a3 + 3.9);
-      light('#s3-st-2', a3 + 5.2);
-      leave('#s3-frame-a', a3 + 9.5, 0.4);
-      // the real checks list: rows land as the narrator lists them, then the badge and the ops note
-      frameIn('#s3-frame-b', a3 + 9.8);
-      tl.fromTo('#chk-badge', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.6)' }, a3 + 16.6);
-      light('#s3-st-3', a3 + 9.9);
-      [['#chk-1', a3 + 10.2], ['#chk-2', a3 + 10.8], ['#chk-3', a3 + 11.4], ['#chk-4', a3 + 12.7], ['#chk-5', a3 + 13.9], ['#chk-6', a3 + 15.1]].forEach(([sel, at]) => {
+      tl.to('#ob-ph', { opacity: 0, duration: 0.2 }, a4 + 1.2);
+      tl.to(typing, { n: 5, duration: 1.1, ease: 'none', onUpdate() { typed.textContent = 'Amina'.slice(0, Math.round(typing.n)); } }, a4 + 1.3);
+      tl.fromTo('#ob-caret', { opacity: 1 }, { opacity: 0, duration: 0.3, repeat: 9, yoyo: true, ease: 'none' }, a4 + 0.4);
+      press('#ob-btn', a4 + 2.8);
+      light('#s3-st-2', a4 + 3.2);
+      leave('#s3-frame-a', a4 + 6.0, 0.4);
+      frameIn('#s3-frame-b', a4 + 6.3);
+      light('#s3-st-3', a4 + 6.4);
+      [['#chk-1', a4 + 6.7], ['#chk-2', a4 + 7.2], ['#chk-3', a4 + 7.7], ['#chk-4', a4 + 8.6], ['#chk-5', a4 + 9.6], ['#chk-6', a4 + 10.6]].forEach(([sel, at]) => {
         rowIn(sel, at);
         tl.fromTo(sel + ' .ic', { scale: 0.4 }, { scale: 1, duration: 0.45, ease: 'back.out(2)' }, at + 0.1);
       });
-      rowIn('#chk-note', a3 + 16.7, { x: 0, y: 14 });
-      chipIn('#s3-c5', a3 + 16.8); chipOut('#s3-c5', a3 + 19.6);
-      light('#s3-st-4', a3 + 16.5);
-      leave('#s3-frame-b', a3 + 17.6, 0.4);
-      // the importer's deal page: the promise row lands on the timeline, the deposit shows in the summary
-      frameIn('#s3-frame-c', a3 + 17.8);
-      rowIn('#tl-1', a3 + 18.6, { x: 0, y: 16 });
-      tl.fromTo('#sum-dep', { backgroundColor: 'rgba(242,178,62,0)' }, { backgroundColor: 'rgba(242,178,62,0.12)', duration: 0.5 }, a3 + 19.8);
-      light('#s3-st-5', a3 + 18.0);
-      chipIn('#s3-c6', a3 + 19.9);
-      leave('#s3-wrap', a4 - 0.7);
+      tl.fromTo('#chk-badge', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.6)' }, a4 + 11.7);
+      rowIn('#chk-note', a4 + 11.8, { x: 0, y: 14 });
+      light('#s3-st-4', a4 + 11.6);
+      chipIn('#s3-c5', a4 + 11.8); chipOut('#s3-c5', a4 + 13.9);
+      leave('#s3-frame-b', a4 + 12.9, 0.4);
+      frameIn('#s3-frame-c', a4 + 13.1);
+      light('#s3-st-5', a4 + 13.2);
+      rowIn('#tl-1', a4 + 13.9, { x: 0, y: 16 });
+      hl('#sum-dep', a4 + 15.2, 'rgba(242,178,62,0.12)');
+      chipIn('#s3-c6', a4 + 15.4);
+      leaveTo('#s3-wrap', a5);
 
-      // ---------- 4. the investor (80.8 to 99.7) ----------
-      enter('#s4-col', a4 - 0.2, { y: 30 });
-      frameIn('#s4-frame-a', a4 + 0.2);
-      tl.fromTo('#qr', { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.4)' }, a4 + 0.5);
-      counter('j-joined', 3, a4 + 0.8, 1.0); counter('j-wallets', 5, a4 + 0.8, 1.0); counter('j-funded', 15110, a4 + 0.8, 1.2, thousands);
-      light('#s4-st-1', a4 + 0.5); light('#s4-st-2', a4 + 2.0); light('#s4-st-3', a4 + 3.8);
-      leave('#s4-frame-a', a4 + 5.2, 0.4);
-      leave('#s4-steps', a4 + 5.2, 0.4);
-      // if things go wrong: the deposit box, then the loss order one by one, then the rule
-      frameIn('#s4-frame-b', a4 + 5.5);
-      rowIn('#risk-dep', a4 + 5.9, { x: 0, y: 14 });
-      enter('#s4-loss', a4 + 5.7, { y: 24 });
-      [['#ri-1', a4 + 8.6], ['#ri-2', a4 + 10.0], ['#ri-3', a4 + 11.2]].forEach(([sel, at]) => rowIn(sel, at));
-      light('#s4-l-1', a4 + 8.6); light('#s4-l-2', a4 + 10.0); light('#s4-l-3', a4 + 11.2);
-      rowIn('#risk-worst', a4 + 6.3, { x: 0, y: 12 }); rowIn('#risk-rule', a4 + 6.5, { x: 0, y: 10 });
-      leave('#s4-frame-b', a4 + 12.3, 0.4);
-      // invest panel: fund the deal, the investment lands, the share token card
-      frameIn('#s4-frame-c', a4 + 12.5);
-      fill('#inv-fill', 0.05, a4 + 12.7, 0.6);
-      tl.fromTo('#inv-btn', { scale: 1 }, { scale: 0.97, duration: 0.12, yoyo: true, repeat: 1, ease: 'power1.inOut' }, a4 + 13.2);
-      rowIn('#inv-done', a4 + 13.6, { x: 0, y: 16 });
-      tl.to('#inv-fill', { scaleX: 0.0625, duration: 0.5, ease: 'power2.out' }, a4 + 13.8);
-      rowIn('#share-card', a4 + 14.4, { x: 0, y: 16 });
-      chipIn('#s4-c1', a4 + 14.6);
-      leave('#s4-wrap', a5 - 0.7);
+      // ---------- 4. the investor ----------
+      enter('#s4-col', a5 - 0.2, { y: 30 });
+      frameIn('#s4-frame-a', a5 + 0.2);
+      tl.fromTo('#qr', { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.4)' }, a5 + 0.5);
+      counter('j-joined', 3, a5 + 0.8, 1.0); counter('j-wallets', 5, a5 + 0.8, 1.0); counter('j-funded', 15110, a5 + 0.8, 1.2, thousands);
+      light('#s4-st-1', a5 + 0.4); light('#s4-st-2', a5 + 1.6); light('#s4-st-3', a5 + 3.4);
+      leave('#s4-frame-a', a5 + 3.9, 0.4);
+      frameIn('#s4-frame-b', a5 + 4.1);
+      light('#s4-st-4', a5 + 4.3);
+      [['#aiv-1', a5 + 4.4], ['#aiv-2', a5 + 4.55], ['#aiv-3', a5 + 4.7], ['#aiv-4', a5 + 4.85], ['#aiv-5', a5 + 5.0], ['#aiv-6', a5 + 5.15], ['#aiv-7', a5 + 5.3]].forEach(([sel, at]) => rowIn(sel, at, { x: 0, y: 10, d: 0.35 }));
+      rowIn('#aiv-foot', a5 + 5.5, { x: 0, y: 10 });
+      tl.fromTo('#aiv-badge', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.6)' }, a5 + 5.7);
+      leave('#s4-frame-b', a5 + 6.1, 0.4);
+      frameIn('#s4-frame-c', a5 + 6.3);
+      light('#s4-st-5', a5 + 6.4);
+      fill('#inv-fill', 0.05, a5 + 6.5, 0.5);
+      press('#inv-btn', a5 + 6.9);
+      rowIn('#inv-done', a5 + 7.3, { x: 0, y: 16 });
+      tl.to('#inv-fill', { scaleX: 0.0625, duration: 0.5, ease: 'power2.out' }, a5 + 7.5);
+      rowIn('#share-card', a5 + 7.7, { x: 0, y: 16 });
+      chipIn('#s4-c1', a5 + 7.9);
+      leaveTo('#s4-wrap', a6);
 
-      // ---------- 5. shipment and repayment (99.3 to 116.9) ----------
-      enter('#s5-head', a5 - 0.2, { y: 20 });
-      enter('#s5-rail', a5 - 0.1, { y: 20 });
-      const stops = [a5 + 0.3, a5 + 1.6, a5 + 3.4, a5 + 5.6, a5 + 7.6, a5 + 9.9, a5 + 12.2];
-      tl.fromTo('#s5-progress', { scaleX: 0 }, { scaleX: 0, duration: 0.01 }, a5 - 0.1);
+      // ---------- 5. shipment and repayment ----------
+      enter('#s5-head', a6 - 0.2, { y: 20 });
+      enter('#s5-rail', a6 - 0.1, { y: 20 });
+      const stops = [a6 + 0.3, a6 + 1.6, a6 + 3.4, a6 + 5.6, a6 + 7.5, a6 + 9.6, a6 + 11.8];
+      tl.fromTo('#s5-progress', { scaleX: 0 }, { scaleX: 0, duration: 0.01 }, a6 - 0.1);
       stops.forEach((at, i) => {
         tl.fromTo('#stop-' + (i + 1), { opacity: 0.38 }, { opacity: 1, duration: 0.4 }, at);
         tl.fromTo('#stop-' + (i + 1) + ' .dot', { backgroundColor: '#131b30', borderColor: 'rgba(255,255,255,0.16)' }, { backgroundColor: '#2de2c3', borderColor: '#2de2c3', duration: 0.4 }, at);
         tl.to('#s5-progress', { scaleX: i / 6, duration: 0.6, ease: 'power2.out' }, at);
       });
-      // carrier tracking events and the on-chain rows land with the narration
-      frameIn('#s5-frame-a', a5 + 0.2);
-      rowIn('#oc-0', a5 + 0.3, { x: 0, y: 12 }); rowIn('#oc-1', a5 + 0.6, { x: 0, y: 12 });
-      [['#ev-2', a5 + 1.4], ['#ev-3', a5 + 2.0], ['#ev-4', a5 + 2.7]].forEach(([sel, at]) => rowIn(sel, at, { x: 0, y: 12 }));
-      rowIn('#oc-2', a5 + 3.5, { x: 0, y: 12 });
-      rowIn('#oc-3', a5 + 5.7, { x: 0, y: 12 });
-      leave('#s5-frame-a', a5 + 7.2, 0.4);
-      frameIn('#s5-frame-b', a5 + 7.4);
-      tl.fromTo('#sale-btn', { scale: 1 }, { scale: 0.97, duration: 0.12, yoyo: true, repeat: 1, ease: 'power1.inOut' }, a5 + 8.6);
-      [['#pf-1', a5 + 9.7], ['#pf-2', a5 + 9.9], ['#pf-3', a5 + 10.1], ['#pf-4', a5 + 10.4]].forEach(([sel, at]) => rowIn(sel, at, { x: 0, y: 16 }));
-      chipIn('#s5-chip-a', a5 + 9.8); chipOut('#s5-chip-a', a5 + 11.9);
-      leave('#s5-frame-b', a5 + 11.9, 0.4);
-      frameIn('#s5-frame-c', a5 + 12.1);
-      rowIn('#rr-1', a5 + 12.6, { x: 0, y: 14 });
-      chipIn('#s5-chip-b', a5 + 13.1);
-      leave('#s5-wrap', a6 - 0.7);
+      frameIn('#s5-frame-a', a6 + 0.2);
+      rowIn('#oc-0', a6 + 0.3, { x: 0, y: 12 }); rowIn('#oc-1', a6 + 0.6, { x: 0, y: 12 });
+      [['#ev-2', a6 + 1.4], ['#ev-3', a6 + 2.0], ['#ev-4', a6 + 2.7]].forEach(([sel, at]) => rowIn(sel, at, { x: 0, y: 12 }));
+      rowIn('#oc-2', a6 + 3.5, { x: 0, y: 12 });
+      rowIn('#oc-3', a6 + 5.7, { x: 0, y: 12 });
+      leave('#s5-frame-a', a6 + 7.1, 0.4);
+      frameIn('#s5-frame-b', a6 + 7.3);
+      press('#sale-btn', a6 + 8.4);
+      [['#pf-1', a6 + 9.5], ['#pf-2', a6 + 9.7], ['#pf-3', a6 + 9.9], ['#pf-4', a6 + 10.2]].forEach(([sel, at]) => rowIn(sel, at, { x: 0, y: 16 }));
+      chipIn('#s5-chip-a', a6 + 9.7); chipOut('#s5-chip-a', a6 + 11.4);
+      leave('#s5-frame-b', a6 + 11.5, 0.4);
+      frameIn('#s5-frame-c', a6 + 11.7);
+      rowIn('#rr-1', a6 + 12.2, { x: 0, y: 14 });
+      chipIn('#s5-chip-b', a6 + 12.6);
+      leaveTo('#s5-wrap', a7);
 
-      // ---------- 6. built with (116.5 to 139.4) ----------
-      enter('#s6-head', a6 - 0.2, { y: 30 });
-      [['#tech-1', a6 + 0.3], ['#tech-2', a6 + 3.9], ['#tech-3', a6 + 7.2], ['#tech-4', a6 + 10.1], ['#tech-5', a6 + 11.6]].forEach(([sel, at]) => enter(sel, at, { y: 50 }));
-      leave('#s6-wrap', a7 - 0.7);
+      // ---------- 6. built with ----------
+      enter('#s6-head', a7 - 0.2, { y: 30 });
+      [['#tech-1', a7 + 0.3], ['#tech-2', a7 + 2.8], ['#tech-3', a7 + 6.4], ['#tech-4', a7 + 8.4], ['#tech-5', a7 + 10.0]].forEach(([sel, at]) => enter(sel, at, { y: 50 }));
+      leaveTo('#s6-wrap', a8);
 
-      // ---------- 7. why stellar, outro (138.9 to 162.5) ----------
-      enter('#s7-head', a7 - 0.2, { y: 20 });
-      tl.fromTo('#s7-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a7 + 0.2);
-      tl.fromTo('#s7-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a7 + 2.6);
-      [['#s7-p1', a7 + 5.6], ['#s7-p2', a7 + 6.8], ['#s7-p3', a7 + 7.9]].forEach(([sel, at]) => enter(sel, at, { y: 20, d: 0.5 }));
-      leave('#s7-a', a7 + 8.6);
+      // ---------- 6b. the numbers ----------
+      enter('#s6b-head', a8 - 0.2, { y: 30 });
+      [['#num-1', a8 + 2.4], ['#num-2', a8 + 4.0], ['#num-3', a8 + 6.2], ['#num-4', a8 + 8.1], ['#num-5', a8 + 9.4], ['#num-6', a8 + 10.5]].forEach(([sel, at]) => enter(sel, at, { y: 40, d: 0.55 }));
+      counter('n-tests', 49, a8 + 2.5, 1.0); counter('n-ts', 158, a8 + 8.2, 1.2);
+      rowIn('#num-contract', a8 + 11.6, { x: 0, y: 10 });
+      leaveTo('#s6b-wrap', a9);
+
+      // ---------- 7. why stellar, outro ----------
+      enter('#s7-head', a9 - 0.2, { y: 20 });
+      tl.fromTo('#s7-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a9 + 0.2);
+      tl.fromTo('#s7-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a9 + 2.4);
+      [['#s7-p1', a9 + 3.0], ['#s7-p2', a9 + 3.7], ['#s7-p3', a9 + 4.4]].forEach(([sel, at]) => enter(sel, at, { y: 20, d: 0.5 }));
+      leave('#s7-a', a9 + 5.9);
       // sfx: bong with the final wordmark
-      tl.fromTo('#s7-mark', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.6, ease: EASE }, a7 + 9.0);
-      tl.fromTo('#s7-built', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 9.6);
-      tl.fromTo('#s7-domain', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 12.6);
-      tl.fromTo('#s7-promise', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 13.4);
+      tl.fromTo('#s7-mark', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.6, ease: EASE }, a9 + 6.3);
+      tl.fromTo('#s7-built', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a9 + 6.9);
+      tl.fromTo('#s7-domain', { opacity: 0, y: 16, scale: 1.08 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: EASE }, a9 + 7.6);
+      tl.fromTo('#s7-promise', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a9 + 8.6);
 
       tl.to({}, { duration: 0.01 }, TOTAL - 0.01);
       window.__timelines['main'] = tl;

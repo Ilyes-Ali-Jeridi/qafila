@@ -3,56 +3,72 @@
   "n": 1,
   "title": "The problem",
   "file": "assets/voice/v1.mp3",
-  "duration": 28.58,
-  "words": 83,
-  "text": "Across Africa, small importers ask banks for trade finance, and more than a third are turned down. That is a gap of up to 92 billion dollars a year. Checking a small shipment costs as much as a big one. Forged documents cost the industry about 5 billion dollars a year. And many Muslim business owners refuse loans with interest. Yet Sub-Saharan Africa received 205 billion dollars on-chain last year, half of it in stablecoins. The money is there. The trust is not."
+  "duration": 27.84,
+  "words": 78,
+  "text": "Across Africa, small importers ask banks for trade finance, and more than a third are turned down: a gap of up to 92 billion dollars a year. Small deals cost as much to check as big ones. Forged documents cost about 5 billion dollars a year. And many Muslim business owners refuse loans with interest. Yet Sub-Saharan Africa received 205 billion dollars on-chain last year, half of it in stablecoins. The money is there. The trust is not."
  },
  {
   "n": 2,
   "title": "The product",
   "file": "assets/voice/v2.mp3",
-  "duration": 23.71,
-  "words": 76,
-  "text": "Qafila is a marketplace on Stellar where anyone can fund a real shipment for an importer that banks turn down. A smart contract buys the goods from the supplier, owns them, and sells them to the importer at a price fixed on day one. The investors who paid for the goods share that fixed profit. No interest, nothing grows with time. This is murabaha, the oldest form of Islamic trade finance, now on a public blockchain."
+  "duration": 21.89,
+  "words": 71,
+  "text": "Qafila is a marketplace on Stellar where anyone can fund a real shipment for an importer that banks turn down. A smart contract buys the goods from the supplier, owns them, and sells them to the importer at a price fixed on day one. The investors who paid for the goods share that fixed profit. No interest, nothing grows with time. This is murabaha, the oldest form of Islamic trade finance."
  },
  {
   "n": 3,
-  "title": "The importer",
+  "title": "How Qafila earns",
   "file": "assets/voice/v3.mp3",
-  "duration": 22.22,
-  "words": 62,
-  "text": "The importer signs up with a passkey: her face or fingerprint, no seed phrase. She uploads three documents: the invoice, the packing list and her supplier's licence. Qafila's AI reads them and checks them against each other, the company register, sanctions lists and live ship tracking. A person approves. She signs a plain-language promise to buy and locks a 20 percent deposit."
+  "duration": 13.25,
+  "words": 36,
+  "text": "How does Qafila earn? A fee out of that markup, paid only when the importer repays. On this deal: 8 percent markup, 6 to investors, 2 to Qafila. And Qafila co-invests 5 percent of every deal."
  },
  {
   "n": 4,
-  "title": "The investor",
+  "title": "The importer",
   "file": "assets/voice/v4.mp3",
-  "duration": 17.57,
+  "duration": 18.12,
   "words": 52,
-  "text": "The investor scans a QR code, creates a wallet in thirty seconds and picks a shipment. Before paying, they see the report and who loses first if things go wrong: the importer's deposit, then recoveries, then investors. They fund the deal and receive shares, tokens on Stellar, locked until the deal ends."
+  "text": "The importer signs up with a passkey and uploads three documents: the invoice, the packing list and her supplier's licence. Qafila's AI checks them against each other, the company register, sanctions lists and live ship tracking. A person approves. She signs a plain-language promise to buy and locks a 20 percent deposit."
  },
  {
   "n": 5,
-  "title": "Shipment and repayment",
+  "title": "The investor",
   "file": "assets/voice/v5.mp3",
-  "duration": 16.2,
-  "words": 49,
-  "text": "The contract pays the supplier and the goods ship. An autonomous agent checks the bill of lading and confirms the shipment on-chain. The importer pays the fixed price, and investors claim their money plus the profit. A late fee goes to charity, on a public ledger, never to investors."
+  "duration": 10.99,
+  "words": 34,
+  "text": "The investor scans a QR code, creates a wallet in thirty seconds, picks a shipment, reads the AI report, and funds the deal. Their shares are tokens on Stellar, locked until the deal ends."
  },
  {
   "n": 6,
-  "title": "Built with",
+  "title": "Shipment and repayment",
   "file": "assets/voice/v6.mp3",
-  "duration": 16.73,
-  "words": 45,
-  "text": "Under the hood: a Soroban contract in Rust with forty-nine tests. OpenZeppelin smart accounts for the passkey wallets and for the shipment agent, with our own relayer paying the fees. Signed AI reports that other lenders' agents can buy over x402, through the OpenZeppelin facilitator."
+  "duration": 14.74,
+  "words": 46,
+  "text": "The contract pays the supplier and the goods ship. An autonomous agent checks the bill of lading and confirms the shipment on-chain. The importer pays the fixed price, investors claim their money plus the profit, and any late fee goes to charity, on a public ledger."
  },
  {
   "n": 7,
-  "title": "Why Stellar",
+  "title": "Built with",
   "file": "assets/voice/v7.mp3",
-  "duration": 18.31,
-  "words": 52,
-  "text": "Trade finance in Africa is a forgotten market, 90 billion dollars a year, and Stellar is built for it: cheap settlement, stablecoins, and wallets anyone can use. Qafila was built in one weekend at HackMeridian 2026 and runs on testnet today. Fund a real shipment, own the goods, share a fixed profit."
+  "duration": 12.05,
+  "words": 35,
+  "text": "Under the hood: a Soroban contract in Rust, OpenZeppelin smart accounts for the passkey wallets and the shipment agent, our own relayer paying the fees, and signed AI reports sold to other lenders over x402."
+ },
+ {
+  "n": 8,
+  "title": "Live on testnet",
+  "file": "assets/voice/v8.mp3",
+  "duration": 13.08,
+  "words": 37,
+  "text": "All of it is live on Stellar testnet: forty-nine contract tests, twelve of twelve AI packets judged right, nine of nine lifecycle scenarios, a hundred and fifty-eight TypeScript tests, and a passkey wallet in under ten seconds."
+ },
+ {
+  "n": 9,
+  "title": "Why Stellar",
+  "file": "assets/voice/v9.mp3",
+  "duration": 11.3,
+  "words": 34,
+  "text": "Trade finance in Africa is a forgotten market, 90 billion dollars a year, and Stellar is built for it. Visit qafila dot dev: fund a real shipment, own the goods, share a fixed profit."
  }
 ]
