@@ -149,7 +149,7 @@ Designed for compliance with AAOIFI Shari'ah Standard No. 8 (Murabahah); formal 
 
 ## 10. Adoption during the event
 
-Live counters are on https://qafila.dev and `GET https://api.qafila.dev/stats`. As of Sun 25 Oct 2026 19:44 WET (before the venue push on Monday morning): 3 wallets created, 2 investors approved on-chain, 1 joined through the venue QR flow, 15,100 test dollars funded across the seeded deals, 22,195 test dollars of importer deposits locked. Refreshed again at submission.
+Live counters are on https://qafila.dev and `GET https://api.qafila.dev/stats`. As of Mon 26 Oct 2026 05:30 WET: 6 wallets created, 4 investors approved on-chain, 3 joined through the venue QR flow, 15,110 test dollars funded across the seeded deals, 22,195 test dollars of importer deposits locked, 4 deals on-chain (2 open for funding, 1 shipping, 1 owned) and 3 more in screening for the judges' tour at https://qafila.dev/demo. Refreshed again at submission.
 
 ## 11. Security notes and known limits
 
