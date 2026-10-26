@@ -21,4 +21,5 @@ supabase/.env
 .vercel/
 *.tsbuildinfo
 brag-output/composition/.hyperframes/
+pitch-output/composition/.hyperframes/
 brag-output/composition/node_modules/
