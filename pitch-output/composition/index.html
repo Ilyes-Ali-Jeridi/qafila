@@ -45,10 +45,7 @@
       .display { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; color: var(--ink); }
       .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
       .saffron { color: var(--saffron); }
-      .teal-ink { color: var(--teal); }
-      .panel { position: absolute; border-radius: 28px; border: 1px solid var(--line-strong);
-        background: linear-gradient(180deg, rgba(19, 27, 48, 0.94), rgba(14, 19, 34, 0.94));
-        box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08); overflow: hidden; }
+      .card-bg { border-radius: 28px; border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgba(19, 27, 48, 0.94), rgba(14, 19, 34, 0.94)); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
       .head { position: absolute; left: 160px; top: 110px; width: 1600px; }
       .head h2 { margin-top: 18px; font-size: 88px; }
       .col { position: absolute; left: 140px; top: 120px; width: 600px; }
@@ -57,13 +54,12 @@
       .step { display: flex; align-items: flex-start; gap: 18px; padding: 12px 0; font-size: 30px; line-height: 1.25; color: var(--ink); }
       .step .num { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 22px; background: rgba(45, 226, 195, 0.12); color: var(--teal); }
       .step .txt { padding-top: 6px; }
-      .check { display: flex; align-items: center; gap: 18px; padding: 15px 22px; border-radius: 18px; border: 1px solid var(--line); background: rgba(7, 10, 18, 0.5); font-size: 28px; color: var(--ink); }
-      .check .tick { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: rgba(45, 226, 195, 0.16); color: var(--teal); font-family: var(--mono); font-size: 24px; }
       .chip { position: absolute; display: flex; align-items: center; gap: 14px; padding: 18px 26px; border-radius: 16px; border: 1px solid rgba(45, 226, 195, 0.4); background: rgba(14, 19, 34, 0.96); color: var(--ink); font-size: 28px; line-height: 1.3; box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.9); }
       .chip.gold { border-color: rgba(242, 178, 62, 0.55); }
       .chip .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 14px var(--teal); }
       .chip.gold .dot { background: var(--saffron); box-shadow: 0 0 14px var(--saffron); }
-      .badge { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; border-radius: 999px; background: var(--saffron); color: #1a1200; font-family: var(--display); font-weight: 800; font-size: 30px; letter-spacing: -0.01em; white-space: nowrap; box-shadow: 0 0 40px rgba(242, 178, 62, 0.45); }
+      .pill { display: flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 999px; border: 1px solid rgba(45, 226, 195, 0.35); background: rgba(45, 226, 195, 0.1); color: var(--teal); font-family: var(--mono); font-size: 28px; letter-spacing: 0.02em; }
+      .pill .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 18px var(--teal); }
 
       /* browser frame around a screenshot */
       .frame { position: absolute; border-radius: 22px; border: 1px solid var(--line-strong); background: var(--surface); overflow: hidden;
@@ -74,88 +70,89 @@
       .frame .view { position: absolute; top: 52px; left: 0; right: 0; bottom: 0; overflow: hidden; background: #0a0d16; }
       .frame .view img { display: block; width: 100%; height: auto; }
 
-      /* ---------- scene 1: stats ---------- */
+      /* ---------- scene 1: the problem ---------- */
       #s1-eyebrow { position: absolute; left: 160px; top: 120px; }
-      .stat { position: absolute; padding: 44px 48px; border-radius: 28px; border: 1px solid var(--line-strong);
-        background: linear-gradient(180deg, rgba(19, 27, 48, 0.94), rgba(14, 19, 34, 0.94));
-        box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+      .stat { position: absolute; padding: 44px 48px; }
       .stat .k { font-family: var(--mono); font-size: 26px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
       .stat .n { margin-top: 22px; font-family: var(--display); font-weight: 800; font-size: 176px; letter-spacing: -0.04em; line-height: 1; color: var(--ink); white-space: nowrap; }
       .stat .l { margin-top: 18px; font-size: 34px; line-height: 1.28; color: var(--ink); }
-      .stat .sub { margin-top: 22px; display: flex; width: max-content; align-items: center; padding: 10px 20px; border-radius: 999px; background: rgba(242, 178, 62, 0.12); color: var(--saffron); font-family: var(--mono); font-size: 26px; }
       .stat .src { position: absolute; left: 48px; bottom: 32px; font-family: var(--mono); font-size: 24px; color: var(--muted); }
-      #s1-a { left: 160px; top: 290px; width: 780px; height: 640px; }
-      #s1-b { left: 980px; top: 290px; width: 780px; height: 640px; }
-      #s1-line { position: absolute; left: 160px; top: 440px; width: 1600px; text-align: center; font-size: 136px; }
-      #s1-c { left: 310px; top: 330px; width: 1300px; height: 620px; }
+      #s1-a { left: 160px; top: 290px; width: 780px; height: 620px; }
+      #s1-b { left: 980px; top: 290px; width: 780px; height: 620px; }
+      #s1-why { position: absolute; left: 160px; top: 300px; width: 1600px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+      .why { position: relative; padding: 38px 40px; min-height: 420px; }
+      .why .idx { font-family: var(--mono); font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--saffron); }
+      .why h3 { margin-top: 18px; font-family: var(--display); font-weight: 700; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em; }
+      .why p { margin-top: 18px; font-size: 30px; line-height: 1.35; color: var(--muted); }
+      #s1-c { left: 310px; top: 300px; width: 1300px; height: 620px; }
       #s1-c .n { font-size: 200px; color: var(--teal); }
       #s1-c .barrow { margin-top: 30px; display: flex; align-items: center; gap: 26px; }
       #s1-c .bar { flex: 1; height: 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
       #s1-c .fill { width: 100%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--saffron), var(--teal)); transform-origin: left center; }
       #s1-c .barlbl { font-family: var(--mono); font-size: 30px; color: var(--ink); white-space: nowrap; }
       #s1-c .barlbl b { color: var(--saffron); font-weight: 500; }
+      #s1-lines { position: absolute; left: 160px; top: 380px; width: 1600px; text-align: center; font-size: 150px; }
+      #s1-lines .line { display: block; }
 
-      /* ---------- scene 2: problem ---------- */
-      #s2-grid { position: absolute; left: 160px; top: 330px; width: 1600px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-      .why { position: relative; padding: 38px 42px; border-radius: 26px; border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgba(19, 27, 48, 0.94), rgba(14, 19, 34, 0.94)); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08); min-height: 320px; }
-      .why .idx { font-family: var(--mono); font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--saffron); }
-      .why h3 { margin-top: 16px; font-family: var(--display); font-weight: 700; font-size: 44px; line-height: 1.06; letter-spacing: -0.02em; }
-      .why p { margin-top: 18px; font-size: 30px; line-height: 1.35; color: var(--muted); }
-
-      /* ---------- scene 3: qafila ---------- */
-      #s3-a { position: absolute; inset: 0; }
-      #s3-mark { position: absolute; left: 140px; top: 330px; font-family: var(--display); font-weight: 800; font-size: 200px; letter-spacing: -0.045em; line-height: 1;
+      /* ---------- scene 2: the product ---------- */
+      #s2-a { position: absolute; inset: 0; }
+      #s2-mark { position: absolute; left: 140px; top: 330px; font-family: var(--display); font-weight: 800; font-size: 200px; letter-spacing: -0.045em; line-height: 1;
         background: linear-gradient(100deg, #ffd27a 0%, var(--saffron) 35%, var(--teal) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 32px rgba(242, 178, 62, 0.3)); }
-      #s3-tag { position: absolute; left: 148px; top: 560px; font-size: 46px; font-weight: 500; letter-spacing: -0.01em; }
-      #s3-pill { position: absolute; left: 148px; top: 650px; display: flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 999px; border: 1px solid rgba(45, 226, 195, 0.35); background: rgba(45, 226, 195, 0.1); color: var(--teal); font-family: var(--mono); font-size: 26px; letter-spacing: 0.04em; }
-      #s3-pill .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 18px var(--teal); }
-      #s3-frame { left: 860px; top: 230px; width: 920px; height: 570px; }
-      #s3-b { position: absolute; inset: 0; }
-      #s3-flow { position: absolute; left: 160px; top: 370px; width: 1600px; display: flex; align-items: stretch; gap: 20px; }
-      .node { flex: 1; padding: 32px 34px; border-radius: 24px; border: 1px solid var(--line-strong); background: linear-gradient(180deg, rgba(19, 27, 48, 0.94), rgba(14, 19, 34, 0.94)); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08); min-height: 330px; }
+      #s2-tag { position: absolute; left: 148px; top: 560px; width: 660px; font-size: 44px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.2; }
+      #s2-frame { left: 860px; top: 230px; width: 920px; height: 570px; }
+      #s2-b { position: absolute; inset: 0; }
+      #s2-flow { position: absolute; left: 160px; top: 360px; width: 1600px; display: flex; align-items: stretch; gap: 20px; }
+      .node { flex: 1; padding: 34px 36px; min-height: 330px; }
       .node .idx { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 22px; background: rgba(45, 226, 195, 0.14); color: var(--teal); }
-      .node h3 { margin-top: 26px; font-family: var(--display); font-weight: 700; font-size: 42px; line-height: 1.05; letter-spacing: -0.02em; }
-      .node p { margin-top: 16px; font-size: 28px; line-height: 1.35; color: var(--muted); }
+      .node h3 { margin-top: 26px; font-family: var(--display); font-weight: 700; font-size: 44px; line-height: 1.05; letter-spacing: -0.02em; }
+      .node p { margin-top: 16px; font-size: 30px; line-height: 1.35; color: var(--muted); }
       .arrow { flex: none; width: 40px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 40px; color: var(--muted); }
-      #s3-rule { position: absolute; left: 160px; top: 800px; width: 1600px; text-align: center; font-size: 60px; }
+      #s2-rule { position: absolute; left: 160px; top: 760px; width: 1600px; text-align: center; font-size: 64px; }
+      #s2-murabaha { position: absolute; left: 160px; top: 870px; width: 1600px; text-align: center; font-size: 32px; color: var(--muted); line-height: 1.3; }
+      #s2-murabaha b { color: var(--ink); font-weight: 500; }
 
-      /* ---------- scene 4: importer ---------- */
-      #s4-frame-a, #s4-frame-b, #s4-frame-c { left: 800px; top: 200px; width: 980px; height: 620px; }
-      #s4-callouts { position: absolute; left: 800px; top: 846px; width: 980px; }
-      #s4-callouts .chip { left: 0; top: 0; max-width: 980px; }
+      /* ---------- scenes 3 and 4: importer, investor ---------- */
+      #s3-frame-a, #s3-frame-b, #s3-frame-c, #s4-frame-a, #s4-frame-b, #s4-frame-c { left: 800px; top: 200px; width: 980px; height: 620px; }
+      #s3-callouts, #s4-callouts { position: absolute; left: 800px; top: 846px; width: 980px; }
+      #s3-callouts .chip, #s4-callouts .chip { left: 0; top: 0; max-width: 980px; }
+      #s4-loss { position: absolute; left: 140px; top: 330px; width: 600px; }
+      #s4-loss .steps { margin-top: 28px; }
 
-      /* ---------- scene 5: investor ---------- */
-      #s5-frame-a, #s5-frame-b, #s5-frame-c { left: 800px; top: 200px; width: 980px; height: 620px; }
-      #s5-loss { position: absolute; left: 140px; top: 330px; width: 600px; }
-      #s5-loss .steps { margin-top: 28px; }
-      #s5-chip { left: 820px; top: 740px; }
-
-      /* ---------- scene 6: shipment and repayment ---------- */
-      #s6-head { position: absolute; left: 160px; top: 90px; }
-      #s6-rail { position: absolute; left: 160px; top: 170px; width: 1600px; height: 90px; }
-      #s6-track { position: absolute; left: 0; right: 0; top: 10px; height: 2px; background: var(--line-strong); }
-      #s6-progress { position: absolute; left: 0; right: 0; top: 10px; height: 2px; background: linear-gradient(90deg, var(--saffron), var(--teal)); transform-origin: left center; }
-      #s6-stops { position: absolute; inset: 0; display: flex; justify-content: space-between; }
-      .stop { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 200px; }
+      /* ---------- scene 5: shipment and repayment ---------- */
+      #s5-head { position: absolute; left: 160px; top: 90px; }
+      #s5-rail { position: absolute; left: 160px; top: 170px; width: 1600px; height: 100px; }
+      #s5-track { position: absolute; left: 0; right: 0; top: 10px; height: 2px; background: var(--line-strong); }
+      #s5-progress { position: absolute; left: 0; right: 0; top: 10px; height: 2px; background: linear-gradient(90deg, var(--saffron), var(--teal)); transform-origin: left center; }
+      #s5-stops { position: absolute; inset: 0; display: flex; justify-content: space-between; }
+      .stop { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 220px; }
       .stop .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--surface-2); border: 2px solid var(--line-strong); }
       .stop .lbl { font-family: var(--mono); font-size: 26px; letter-spacing: 0.02em; color: var(--ink); text-align: center; line-height: 1.2; }
-      #s6-frame-a, #s6-frame-b, #s6-frame-c, #s6-frame-d { left: 260px; top: 310px; width: 1400px; height: 690px; }
-      #s6-chip-a, #s6-chip-b { left: 290px; top: 900px; }
+      #s5-frame-a, #s5-frame-b, #s5-frame-c { left: 260px; top: 320px; width: 1400px; height: 680px; }
+      #s5-chip-a, #s5-chip-b { left: 290px; top: 900px; }
 
-      /* ---------- scene 7: live + outro ---------- */
-      #s7-main { position: absolute; inset: 0; }
-      #s7-col { width: 700px; }
-      #s7-list { margin-top: 36px; display: grid; gap: 12px; }
-      #s7-frame { left: 920px; top: 220px; width: 860px; height: 560px; }
+      /* ---------- scene 6: built with ---------- */
+      #s6-grid { position: absolute; left: 160px; top: 290px; width: 1600px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+      .tech { position: relative; padding: 30px 34px; min-height: 250px; grid-column: span 2; }
+      .tech .idx { font-family: var(--mono); font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); }
+      .tech h3 { margin-top: 14px; font-family: var(--display); font-weight: 700; font-size: 40px; line-height: 1.06; letter-spacing: -0.02em; }
+      .tech p { margin-top: 14px; font-size: 28px; line-height: 1.3; color: var(--muted); }
+      #tech-4 { grid-column: 2 / span 2; }
+      #tech-5 { grid-column: 4 / span 2; }
+
+      /* ---------- scene 7: why stellar, outro ---------- */
+      #s7-a { position: absolute; inset: 0; }
+      #s7-lines { position: absolute; left: 160px; top: 300px; width: 1600px; text-align: center; font-size: 150px; }
+      #s7-lines .line { display: block; }
+      #s7-pills { position: absolute; left: 160px; top: 700px; width: 1600px; display: flex; justify-content: center; gap: 24px; }
       #s7-outro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
       #s7-mark { font-family: var(--display); font-weight: 800; font-size: 240px; letter-spacing: -0.045em; line-height: 1; color: var(--ink); filter: drop-shadow(0 0 40px rgba(242, 178, 62, 0.3)); }
-      #s7-domain { margin-top: 22px; font-family: var(--mono); font-size: 48px; color: var(--saffron); }
-      #s7-promise { margin-top: 30px; font-size: 38px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
-      #s7-sub { margin-top: 22px; font-size: 28px; color: var(--muted); }
+      #s7-built { margin-top: 22px; font-size: 30px; color: var(--muted); }
+      #s7-domain { margin-top: 30px; font-family: var(--mono); font-size: 52px; color: var(--saffron); }
+      #s7-promise { margin-top: 26px; font-size: 38px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="207.5" data-width="1920" data-height="1080" data-fps="30">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="162.5" data-width="1920" data-height="1080" data-fps="30">
       <div id="bg">
         <div id="grid"></div>
         <div id="aurora" data-layout-allow-overflow>
@@ -168,354 +165,332 @@
         <div id="testnet"><span class="dot"></span><span>Stellar testnet · test money</span></div>
       </div>
 
-      <!-- 1. cold open: the numbers -->
-      <section id="s1" class="clip" data-start="0" data-duration="25.6" data-track-index="1">
+      <!-- 1. the problem -->
+      <section id="s1" class="clip" data-start="0" data-duration="32.2" data-track-index="1">
         <div id="s1-wrap">
-          <div id="s1-eyebrow" class="eyebrow">Trade finance in Africa · 2025</div>
-          <div class="stat" id="s1-a" data-hold>
-            <div class="k">SME trade finance requests</div>
+          <div id="s1-eyebrow" class="eyebrow">The problem · trade finance in Africa</div>
+          <div class="stat card-bg" id="s1-a" data-hold>
+            <div class="k">Small importers asking banks</div>
             <div class="n saffron"><span id="n-rej">0</span>%</div>
-            <div class="l">rejected by African banks</div>
-            <div class="sub" id="s1-a-sub">Only 63% approved</div>
+            <div class="l">are turned down</div>
             <div class="src" data-layout-ignore>AfDB, Trade Finance in Africa, 2025 report</div>
           </div>
-          <div class="stat" id="s1-b" data-hold>
+          <div class="stat card-bg" id="s1-b" data-hold>
             <div class="k">The gap, every year</div>
             <div class="n">$<span id="n-gap">0</span>bn</div>
-            <div class="l">between what importers need and what banks lend: 74 to 92 billion dollars</div>
+            <div class="l">of trade finance that African importers need and do not get</div>
             <div class="src" data-layout-ignore>AfDB, 2025 report, 2024 data</div>
           </div>
-          <h2 id="s1-line" class="display">The money is there.</h2>
-          <div class="stat" id="s1-c">
-            <div class="k">Sub-Saharan Africa · twelve months to June 2025</div>
+          <div id="s1-why">
+            <div class="why card-bg" id="why-1"><div class="idx">01 · Cost</div><h3>Checking a small shipment costs as much as a big one</h3><p>So small deals are not worth a bank's time.</p></div>
+            <div class="why card-bg" id="why-2"><div class="idx">02 · Fraud</div><h3>Forged documents cost about $5 billion a year</h3><p>The industry's own estimate (ICC).</p></div>
+            <div class="why card-bg" id="why-3"><div class="idx">03 · Interest</div><h3>Many Muslim owners refuse loans with interest</h3><p>So they never ask in the first place.</p></div>
+          </div>
+          <div class="stat card-bg" id="s1-c">
+            <div class="k">Sub-Saharan Africa · last twelve months</div>
             <div class="n">$<span id="n-chain">0</span>bn</div>
             <div class="l">received on-chain, up 52% on the year before</div>
             <div class="barrow"><div class="bar"><div class="fill" id="s1-fill"></div></div><div class="barlbl"><b id="n-stable">0</b>% in stablecoins</div></div>
             <div class="src" data-layout-ignore>Chainalysis, 2025 Geography of Cryptocurrency</div>
           </div>
+          <h2 id="s1-lines" class="display"><span class="line" id="s1-l1">The money is there.</span><span class="line saffron" id="s1-l2">The trust is not.</span></h2>
         </div>
       </section>
 
-      <!-- 2. the problem -->
-      <section id="s2" class="clip" data-start="25.2" data-duration="29" data-track-index="1">
-        <div id="s2-wrap">
+      <!-- 2. the product -->
+      <section id="s2" class="clip" data-start="31.8" data-duration="26.2" data-track-index="1">
+        <div id="s2-a">
+          <div id="s2-mark">Qafila</div>
+          <div id="s2-tag">Fund a real shipment for an importer that banks turn down.</div>
+          <div class="frame" id="s2-frame"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev</span></div><div class="view"><img id="s2-img" data-layout-allow-overflow src="assets/shots/landing.png" alt="" /></div></div>
+        </div>
+        <div id="s2-b">
           <div class="head" id="s2-head">
-            <div class="eyebrow">The problem</div>
-            <h2 class="display">Why banks say no</h2>
-          </div>
-          <div id="s2-grid">
-            <div class="why" id="why-1"><div class="idx">01 · Due diligence</div><h3>Checking costs the same at $10,000 and at $10,000,000</h3><p>Small deals do not pay for their own due diligence.</p></div>
-            <div class="why" id="why-2"><div class="idx">02 · Fraud</div><h3>About $5 billion a year</h3><p>Forged documents and the same invoice financed twice. The industry's own estimate (ICC).</p></div>
-            <div class="why" id="why-3"><div class="idx">03 · Interest</div><h3>Off limits for many owners</h3><p>Many Muslim business owners avoid interest-based credit altogether.</p></div>
-            <div class="why" id="why-4"><div class="idx">04 · Trust</div><h3>The last co-ownership platforms collapsed</h3><p>Nobody could verify the asset, and the operator held the money.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. qafila -->
-      <section id="s3" class="clip" data-start="53.8" data-duration="27" data-track-index="1">
-        <div id="s3-a">
-          <div id="s3-mark">Qafila</div>
-          <div id="s3-tag">A caravan on Stellar.</div>
-          <div id="s3-pill"><span class="dot"></span><span>halal trade finance · no interest</span></div>
-          <div class="frame" id="s3-frame"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev</span></div><div class="view"><img id="s3-img" data-layout-allow-overflow src="assets/shots/landing.png" alt="" /></div></div>
-        </div>
-        <div id="s3-b">
-          <div class="head" id="s3-head">
-            <div class="eyebrow">How a deal works</div>
+            <div class="eyebrow">How it works</div>
             <h2 class="display">Buy, own, sell at a fixed price.</h2>
           </div>
-          <div id="s3-flow">
-            <div class="node" id="node-1"><div class="idx">1</div><h3>Investors</h3><p>fund one specific shipment with test dollars.</p></div>
+          <div id="s2-flow">
+            <div class="node card-bg" id="node-1"><div class="idx">1</div><h3>The contract buys the goods</h3><p>from the supplier, with the investors' money, and owns them.</p></div>
             <div class="arrow" id="arrow-1">→</div>
-            <div class="node" id="node-2"><div class="idx">2</div><h3>The contract</h3><p>buys the goods from the supplier and owns them.</p></div>
+            <div class="node card-bg" id="node-2"><div class="idx">2</div><h3>It sells them to the importer</h3><p>at a price fixed on day one. She pays after the sale.</p></div>
             <div class="arrow" id="arrow-2">→</div>
-            <div class="node" id="node-3"><div class="idx">3</div><h3>The importer</h3><p>buys them at a price fixed on day one.</p></div>
-            <div class="arrow" id="arrow-3">→</div>
-            <div class="node" id="node-4"><div class="idx">4</div><h3>Fixed profit</h3><p>shared with investors. Nothing grows with time.</p></div>
+            <div class="node card-bg" id="node-3"><div class="idx">3</div><h3>Investors share the fixed profit</h3><p>the difference between the two prices, split by their shares.</p></div>
           </div>
-          <h3 id="s3-rule" class="display">Late fees go to charity. <span class="saffron">Never to investors.</span></h3>
+          <h3 id="s2-rule" class="display">No interest. <span class="saffron">Nothing grows with time.</span></h3>
+          <p id="s2-murabaha"><b>Murabaha</b>, the oldest form of Islamic trade finance, on a public blockchain where every step can be checked.</p>
         </div>
       </section>
 
-      <!-- 4. the importer -->
-      <section id="s4" class="clip" data-start="80.4" data-duration="42.2" data-track-index="1">
-        <div id="s4-wrap">
-          <div class="col" id="s4-col">
-            <div class="eyebrow teal">For the importer</div>
+      <!-- 3. the importer -->
+      <section id="s3" class="clip" data-start="57.6" data-duration="23.6" data-track-index="1">
+        <div id="s3-wrap">
+          <div class="col" id="s3-col">
+            <div class="eyebrow teal">The importer</div>
             <h2 class="display">Three documents. One signature.</h2>
             <div class="steps">
-              <div class="step" id="s4-st-1"><span class="num">1</span><span class="txt">Passkey sign-up, no seed phrase</span></div>
-              <div class="step" id="s4-st-2"><span class="num">2</span><span class="txt">Upload the invoice, packing list and licence</span></div>
-              <div class="step" id="s4-st-3"><span class="num">3</span><span class="txt">AI screening in under a minute</span></div>
-              <div class="step" id="s4-st-4"><span class="num">4</span><span class="txt">A policy table decides, a person signs off</span></div>
-              <div class="step" id="s4-st-5"><span class="num">5</span><span class="txt">Sign the purchase promise</span></div>
-              <div class="step" id="s4-st-6"><span class="num">6</span><span class="txt">Security deposit locked, 20% on a first deal</span></div>
+              <div class="step" id="s3-st-1"><span class="num">1</span><span class="txt">Passkey sign-up: face or fingerprint, no seed phrase</span></div>
+              <div class="step" id="s3-st-2"><span class="num">2</span><span class="txt">Upload the invoice, packing list and supplier licence</span></div>
+              <div class="step" id="s3-st-3"><span class="num">3</span><span class="txt">AI reads and cross-checks them</span></div>
+              <div class="step" id="s3-st-4"><span class="num">4</span><span class="txt">A person approves</span></div>
+              <div class="step" id="s3-st-5"><span class="num">5</span><span class="txt">Sign the promise to buy, 20% deposit locked</span></div>
             </div>
           </div>
-          <div class="frame" id="s4-frame-a"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/onboarding</span></div><div class="view"><img id="s4-img-a" data-layout-allow-overflow src="assets/shots/onboarding-mock.png" alt="" /></div></div>
-          <div class="frame" id="s4-frame-b"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/ops/deals/1 · checks and evidence</span></div><div class="view"><img id="s4-img-b" data-layout-allow-overflow src="assets/shots/ops-checks.png" alt="" /></div></div>
-          <div class="frame" id="s4-frame-c"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/importer/1</span></div><div class="view"><img id="s4-img-c" data-layout-allow-overflow src="assets/shots/importer-deal-funding.png" alt="" /></div></div>
-          <div id="s4-callouts">
-            <div class="chip" id="s4-c1"><span class="dot"></span><span>Every field extracted with a quote as evidence</span></div>
-            <div class="chip" id="s4-c2"><span class="dot"></span><span>Deterministic checks on codes, totals, dates and weights</span></div>
-            <div class="chip" id="s4-c3"><span class="dot"></span><span>Supplier looked up in the GLEIF register</span></div>
-            <div class="chip" id="s4-c4"><span class="dot"></span><span>Every party and vessel screened against sanctions lists</span></div>
-            <div class="chip" id="s4-c5"><span class="dot"></span><span>Prices compared with a reference table</span></div>
-            <div class="chip gold" id="s4-c6"><span class="dot"></span><span>Approved · 100/100 · a person signs off</span></div>
-            <div class="chip gold" id="s4-c7"><span class="dot"></span><span>Deposit locked: 400.00 qUSD, 20% of the cost</span></div>
+          <div class="frame" id="s3-frame-a"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/onboarding</span></div><div class="view"><img id="s3-img-a" data-layout-allow-overflow src="assets/shots/onboarding-mock.png" alt="" /></div></div>
+          <div class="frame" id="s3-frame-b"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/ops/deals/1 · checks and evidence</span></div><div class="view"><img id="s3-img-b" data-layout-allow-overflow src="assets/shots/ops-checks.png" alt="" /></div></div>
+          <div class="frame" id="s3-frame-c"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/importer/1</span></div><div class="view"><img id="s3-img-c" data-layout-allow-overflow src="assets/shots/importer-deal-funding.png" alt="" /></div></div>
+          <div id="s3-callouts">
+            <div class="chip" id="s3-c1"><span class="dot"></span><span>Documents checked against each other</span></div>
+            <div class="chip" id="s3-c2"><span class="dot"></span><span>Company register, sanctions lists, live ship tracking</span></div>
+            <div class="chip gold" id="s3-c5"><span class="dot"></span><span>Approved · 100/100 · a person signs off</span></div>
+            <div class="chip gold" id="s3-c6"><span class="dot"></span><span>Promise signed, deposit locked: 400.00 qUSD, 20% of the cost</span></div>
           </div>
         </div>
       </section>
 
-      <!-- 5. the investor -->
-      <section id="s5" class="clip" data-start="122.2" data-duration="27.5" data-track-index="1">
-        <div id="s5-wrap">
-          <div class="col" id="s5-col">
-            <div class="eyebrow teal">For the investor</div>
+      <!-- 4. the investor -->
+      <section id="s4" class="clip" data-start="80.8" data-duration="18.9" data-track-index="1">
+        <div id="s4-wrap">
+          <div class="col" id="s4-col">
+            <div class="eyebrow teal">The investor</div>
             <h2 class="display">Thirty seconds.</h2>
-            <div class="steps" id="s5-steps">
-              <div class="step" id="s5-st-1"><span class="num">1</span><span class="txt">Scan the QR code</span></div>
-              <div class="step" id="s5-st-2"><span class="num">2</span><span class="txt">Create a passkey wallet</span></div>
-              <div class="step" id="s5-st-3"><span class="num">3</span><span class="txt">Tick the risk box</span></div>
-              <div class="step" id="s5-st-4"><span class="num">4</span><span class="txt">Fund the deal</span></div>
+            <div class="steps" id="s4-steps">
+              <div class="step" id="s4-st-1"><span class="num">1</span><span class="txt">Scan the QR code</span></div>
+              <div class="step" id="s4-st-2"><span class="num">2</span><span class="txt">Create a wallet with a passkey</span></div>
+              <div class="step" id="s4-st-3"><span class="num">3</span><span class="txt">Pick a shipment</span></div>
             </div>
           </div>
-          <div id="s5-loss">
-            <div class="eyebrow">Who loses first</div>
+          <div id="s4-loss">
+            <div class="eyebrow">Before paying: who loses first</div>
             <div class="steps">
-              <div class="step" id="s5-l-1"><span class="num">1</span><span class="txt">The importer's own deposit</span></div>
-              <div class="step" id="s5-l-2"><span class="num">2</span><span class="txt">Recoveries: supplier, insurance, resale, legal</span></div>
-              <div class="step" id="s5-l-3"><span class="num">3</span><span class="txt">Investors pro rata, Qafila's own 5% included</span></div>
+              <div class="step" id="s4-l-1"><span class="num">1</span><span class="txt">The importer's own deposit</span></div>
+              <div class="step" id="s4-l-2"><span class="num">2</span><span class="txt">Recoveries: supplier, insurance, resale</span></div>
+              <div class="step" id="s4-l-3"><span class="num">3</span><span class="txt">Investors, Qafila's own 5% included</span></div>
             </div>
           </div>
-          <div class="frame" id="s5-frame-a"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/join</span></div><div class="view"><img id="s5-img-a" data-layout-allow-overflow src="assets/shots/join-poster.png" alt="" /></div></div>
-          <div class="frame" id="s5-frame-b"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1</span></div><div class="view"><img id="s5-img-b" data-layout-allow-overflow src="assets/shots/invest-detail.png" alt="" /></div></div>
-          <div class="frame" id="s5-frame-c"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1 · before you decide</span></div><div class="view"><img id="s5-img-c" data-layout-allow-overflow src="assets/shots/invest-report.png" alt="" /></div></div>
-          <div class="chip" id="s5-chip"><span class="dot"></span><span>1 share per test dollar, locked until the deal ends</span></div>
+          <div class="frame" id="s4-frame-a"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/join</span></div><div class="view"><img id="s4-img-a" data-layout-allow-overflow src="assets/shots/join-poster.png" alt="" /></div></div>
+          <div class="frame" id="s4-frame-b"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1 · before you decide</span></div><div class="view"><img id="s4-img-b" data-layout-allow-overflow src="assets/shots/invest-report.png" alt="" /></div></div>
+          <div class="frame" id="s4-frame-c"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/invest/1</span></div><div class="view"><img id="s4-img-c" data-layout-allow-overflow src="assets/shots/invest-detail.png" alt="" /></div></div>
+          <div id="s4-callouts">
+            <div class="chip" id="s4-c1"><span class="dot"></span><span>Shares are tokens on Stellar: 1 per test dollar, locked until the deal ends</span></div>
+          </div>
         </div>
       </section>
 
-      <!-- 6. shipment and repayment -->
-      <section id="s6" class="clip" data-start="149.3" data-duration="31" data-track-index="1">
+      <!-- 5. shipment and repayment -->
+      <section id="s5" class="clip" data-start="99.3" data-duration="17.6" data-track-index="1">
+        <div id="s5-wrap">
+          <div id="s5-head" class="eyebrow teal">Shipment and repayment</div>
+          <div id="s5-rail">
+            <div id="s5-track"></div>
+            <div id="s5-progress"></div>
+            <div id="s5-stops">
+              <div class="stop" id="stop-1"><span class="dot"></span><span class="lbl">Supplier paid</span></div>
+              <div class="stop" id="stop-2"><span class="dot"></span><span class="lbl">Goods ship</span></div>
+              <div class="stop" id="stop-3"><span class="dot"></span><span class="lbl">B/L checked</span></div>
+              <div class="stop" id="stop-4"><span class="dot"></span><span class="lbl">Agent confirms</span></div>
+              <div class="stop" id="stop-5"><span class="dot"></span><span class="lbl">Importer pays</span></div>
+              <div class="stop" id="stop-6"><span class="dot"></span><span class="lbl">Investors paid</span></div>
+              <div class="stop" id="stop-7"><span class="dot"></span><span class="lbl">Late fee to charity</span></div>
+            </div>
+          </div>
+          <div class="frame" id="s5-frame-a"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/importer/3 · payments and carrier tracking</span></div><div class="view"><img id="s5-img-a" data-layout-allow-overflow src="assets/shots/importer-deal-sign-tracking.png" alt="" /></div></div>
+          <div class="frame" id="s5-frame-b"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/importer/3 · sign the sale</span></div><div class="view"><img id="s5-img-b" data-layout-allow-overflow src="assets/shots/importer-deal-sign.png" alt="" /></div></div>
+          <div class="frame" id="s5-frame-c"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/charity</span></div><div class="view"><img id="s5-img-c" data-layout-allow-overflow src="assets/shots/charity-mock.png" alt="" /></div></div>
+          <div class="chip" id="s5-chip-a"><span class="dot"></span><span>Investors claim their money plus the fixed profit</span></div>
+          <div class="chip gold" id="s5-chip-b"><span class="dot"></span><span>Late fee: 30.00 qUSD to charity, with its transaction link</span></div>
+        </div>
+      </section>
+
+      <!-- 6. built with -->
+      <section id="s6" class="clip" data-start="116.5" data-duration="22.9" data-track-index="1">
         <div id="s6-wrap">
-          <div id="s6-head" class="eyebrow teal">Shipment and repayment</div>
-          <div id="s6-rail">
-            <div id="s6-track"></div>
-            <div id="s6-progress"></div>
-            <div id="s6-stops">
-              <div class="stop" id="stop-1"><span class="dot"></span><span class="lbl">Funded</span></div>
-              <div class="stop" id="stop-2"><span class="dot"></span><span class="lbl">Supplier deposit</span></div>
-              <div class="stop" id="stop-3"><span class="dot"></span><span class="lbl">Shipped</span></div>
-              <div class="stop" id="stop-4"><span class="dot"></span><span class="lbl">B/L matched</span></div>
-              <div class="stop" id="stop-5"><span class="dot"></span><span class="lbl">Agent signs</span></div>
-              <div class="stop" id="stop-6"><span class="dot"></span><span class="lbl">Balance paid</span></div>
-              <div class="stop" id="stop-7"><span class="dot"></span><span class="lbl">Sale signed</span></div>
-              <div class="stop" id="stop-8"><span class="dot"></span><span class="lbl">Repaid</span></div>
-            </div>
+          <div class="head" id="s6-head">
+            <div class="eyebrow">Under the hood</div>
+            <h2 class="display">Built on Stellar</h2>
           </div>
-          <div class="frame" id="s6-frame-a"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/importer/3 · payments and carrier tracking</span></div><div class="view"><img id="s6-img-a" data-layout-allow-overflow src="assets/shots/importer-deal-sign-tracking.png" alt="" /></div></div>
-          <div class="frame" id="s6-frame-b"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/importer/3 · sign the sale</span></div><div class="view"><img id="s6-img-b" data-layout-allow-overflow src="assets/shots/importer-deal-sign.png" alt="" /></div></div>
-          <div class="frame" id="s6-frame-c"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/charity</span></div><div class="view"><img id="s6-img-c" data-layout-allow-overflow src="assets/shots/charity-mock.png" alt="" /></div></div>
-          <div class="frame" id="s6-frame-d"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/portfolio</span></div><div class="view"><img id="s6-img-d" data-layout-allow-overflow src="assets/shots/portfolio.png" alt="" /></div></div>
-          <div class="chip gold" id="s6-chip-a"><span class="dot"></span><span>Late fee: 30.00 qUSD to charity, with its transaction link</span></div>
-          <div class="chip" id="s6-chip-b"><span class="dot"></span><span>Ready to claim: principal plus the fixed profit</span></div>
+          <div id="s6-grid">
+            <div class="tech card-bg" id="tech-1"><div class="idx">Contract</div><h3>Soroban, in Rust</h3><p>49 tests, property tests over the Sharia rules, every state change an event.</p></div>
+            <div class="tech card-bg" id="tech-2"><div class="idx">Wallets</div><h3>OpenZeppelin smart accounts</h3><p>Passkey wallets for users. A rule-limited account for the shipment agent.</p></div>
+            <div class="tech card-bg" id="tech-3"><div class="idx">Fees</div><h3>Our own relayer</h3><p>Sponsors every transaction. Nobody buys XLM.</p></div>
+            <div class="tech card-bg" id="tech-4"><div class="idx">Reports</div><h3>Signed AI reports</h3><p>Any contract can verify one on-chain with verify_attestation.</p></div>
+            <div class="tech card-bg" id="tech-5"><div class="idx">API</div><h3>Paid verification over x402</h3><p>Other lenders' agents buy a check; settled through the OpenZeppelin facilitator.</p></div>
+          </div>
         </div>
       </section>
 
-      <!-- 7. live today, outro -->
-      <section id="s7" class="clip" data-start="179.9" data-duration="27.6" data-track-index="1">
-        <div id="s7-main">
-          <div class="col" id="s7-col">
-            <div class="eyebrow teal">Live on Stellar testnet</div>
-            <h2 class="display">What is live today</h2>
-            <div id="s7-list">
-              <div class="check" id="s7-k-1"><span class="tick">✓</span><span>Contract: 49 tests, property tests over the Sharia rules</span></div>
-              <div class="check" id="s7-k-2"><span class="tick">✓</span><span>Passkey wallets with sponsored fees</span></div>
-              <div class="check" id="s7-k-3"><span class="tick">✓</span><span>The shipment agent, signing on-chain</span></div>
-              <div class="check" id="s7-k-4"><span class="tick">✓</span><span>Signed reports any contract can verify</span></div>
-              <div class="check" id="s7-k-5"><span class="tick">✓</span><span>Paid verification API over x402</span></div>
-              <div class="check" id="s7-k-6"><span class="tick">✓</span><span>Built in one weekend at HackMeridian 2026</span></div>
-            </div>
+      <!-- 7. why stellar, outro -->
+      <section id="s7" class="clip" data-start="138.9" data-duration="23.6" data-track-index="1">
+        <div id="s7-a">
+          <div class="head" id="s7-head"><div class="eyebrow">Why Stellar · HackMeridian 2026</div></div>
+          <h2 id="s7-lines" class="display"><span class="line" id="s7-l1">A forgotten market.</span><span class="line saffron" id="s7-l2">$90bn a year.</span></h2>
+          <div id="s7-pills">
+            <div class="pill" id="s7-p1"><span class="dot"></span><span>cheap settlement</span></div>
+            <div class="pill" id="s7-p2"><span class="dot"></span><span>stablecoins</span></div>
+            <div class="pill" id="s7-p3"><span class="dot"></span><span>wallets anyone can use</span></div>
           </div>
-          <div class="frame" id="s7-frame"><div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>qafila.dev/verifier</span></div><div class="view"><img id="s7-img" data-layout-allow-overflow src="assets/shots/verifier.png" alt="" /></div></div>
         </div>
-        <div id="s7-outro">
+        <div id="s7-outro" data-hold>
           <div id="s7-mark">Qafila</div>
+          <div id="s7-built">Built in one weekend at HackMeridian 2026 · live on Stellar testnet</div>
           <div id="s7-domain">qafila.dev</div>
           <div id="s7-promise">Fund a real shipment. Own the goods. Share a fixed profit.</div>
-          <div id="s7-sub">Built on Stellar at HackMeridian 2026</div>
         </div>
       </section>
 
       <!-- audio: narration, bed, sparse sfx -->
-      <audio id="v1" data-start="0.6" data-duration="24.02" data-track-index="20" data-volume="1" src="assets/voice/v1.mp3"></audio>
-      <audio id="v2" data-start="25.9" data-duration="27.74" data-track-index="20" data-volume="1" src="assets/voice/v2.mp3"></audio>
-      <audio id="v3" data-start="54.5" data-duration="25.68" data-track-index="20" data-volume="1" src="assets/voice/v3.mp3"></audio>
-      <audio id="v4" data-start="81.1" data-duration="40.97" data-track-index="20" data-volume="1" src="assets/voice/v4.mp3"></audio>
-      <audio id="v5" data-start="122.9" data-duration="26.16" data-track-index="20" data-volume="1" src="assets/voice/v5.mp3"></audio>
-      <audio id="v6" data-start="150" data-duration="29.62" data-track-index="20" data-volume="1" src="assets/voice/v6.mp3"></audio>
-      <audio id="v7" data-start="180.6" data-duration="24.96" data-track-index="20" data-volume="1" src="assets/voice/v7.mp3"></audio>
-      <audio id="music" data-start="0" data-duration="207.5" data-track-index="21" data-volume="0.15" src="assets/music/bed.mp3"></audio>
-      <audio id="sfx-mark" data-start="54.3" data-duration="0.18" data-track-index="22" data-volume="0.5" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
-      <audio id="sfx-c1" data-start="93.7" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-c5" data-start="105.7" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-approved" data-start="108.7" data-duration="1.48" data-track-index="22" data-volume="0.5" src="assets/sfx/impactBell_heavy_000.ogg"></audio>
-      <audio id="sfx-k1" data-start="183.4" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-k6" data-start="198.0" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
-      <audio id="sfx-outro" data-start="201.0" data-duration="0.12" data-track-index="22" data-volume="0.55" src="assets/sfx/bong_001.ogg"></audio>
+      <audio id="v1" data-start="0.6" data-duration="29.52" data-track-index="20" data-volume="1" src="assets/voice/v1.mp3"></audio>
+      <audio id="v2" data-start="32.4" data-duration="24.89" data-track-index="20" data-volume="1" src="assets/voice/v2.mp3"></audio>
+      <audio id="v3" data-start="58.2" data-duration="22.32" data-track-index="20" data-volume="1" src="assets/voice/v3.mp3"></audio>
+      <audio id="v4" data-start="81.4" data-duration="17.64" data-track-index="20" data-volume="1" src="assets/voice/v4.mp3"></audio>
+      <audio id="v5" data-start="99.9" data-duration="16.3" data-track-index="20" data-volume="1" src="assets/voice/v5.mp3"></audio>
+      <audio id="v6" data-start="117.1" data-duration="21.58" data-track-index="20" data-volume="1" src="assets/voice/v6.mp3"></audio>
+      <audio id="v7" data-start="139.6" data-duration="20.09" data-track-index="20" data-volume="1" src="assets/voice/v7.mp3"></audio>
+      <audio id="music" data-start="0" data-duration="162.5" data-track-index="21" data-volume="0.15" src="assets/music/bed.mp3"></audio>
+      <audio id="sfx-mark" data-start="32.2" data-duration="0.18" data-track-index="22" data-volume="0.5" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-c1" data-start="69.2" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-c4" data-start="70.8" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-approved" data-start="74.8" data-duration="1.48" data-track-index="22" data-volume="0.5" src="assets/sfx/impactBell_heavy_000.ogg"></audio>
+      <audio id="sfx-t1" data-start="117.4" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-t5" data-start="132.9" data-duration="0.11" data-track-index="22" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-outro" data-start="149.4" data-duration="0.12" data-track-index="22" data-volume="0.55" src="assets/sfx/bong_001.ogg"></audio>
     </div>
 
     <script>
       const tl = gsap.timeline({ paused: true });
       const EASE = 'power3.out';
       // narration anchors: when each voice segment starts
-      const a1 = 0.6, a2 = 25.9, a3 = 54.5, a4 = 81.1, a5 = 122.9, a6 = 150.0, a7 = 180.6;
+      const a1 = 0.6, a2 = 32.4, a3 = 58.2, a4 = 81.4, a5 = 99.9, a6 = 117.1, a7 = 139.6;
 
       // helpers
       const enter = (sel, at, o = {}) => tl.fromTo(sel, { opacity: 0, y: o.y ?? 40, x: o.x ?? 0, scale: o.scale ?? 1 }, { opacity: 1, y: 0, x: 0, scale: 1, duration: o.d ?? 0.6, ease: o.ease ?? EASE }, at);
       const leave = (sel, at, d = 0.5) => tl.to(sel, { opacity: 0, duration: d, ease: 'power2.in' }, at);
-      const counter = (id, to, at, d, fmt) => {
+      const counter = (id, to, at, d) => {
         const el = document.getElementById(id); const o = { v: 0 };
-        tl.to(o, { v: to, duration: d, ease: 'power2.out', onUpdate() { el.textContent = fmt ? fmt(o.v) : Math.round(o.v); } }, at);
+        tl.to(o, { v: to, duration: d, ease: 'power2.out', onUpdate() { el.textContent = Math.round(o.v); } }, at);
       };
       const zoom = (img, at, d, from, to, o = {}) => tl.fromTo(img, { scale: from, y: o.y0 ?? 0, transformOrigin: o.origin ?? '50% 50%' }, { scale: to, y: o.y1 ?? 0, duration: d, ease: 'none' }, at);
       const frameIn = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 30, scale: 0.985 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: EASE }, at);
       const light = (sel, at) => { tl.fromTo(sel, { opacity: 0.38 }, { opacity: 1, duration: 0.4, ease: 'power2.out' }, at); tl.fromTo(sel + ' .num', { backgroundColor: 'rgba(45,226,195,0.12)', color: '#2de2c3' }, { backgroundColor: '#2de2c3', color: '#06241f', duration: 0.4 }, at); };
+      const chipIn = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, at);
+      const chipOut = (sel, at) => tl.to(sel, { opacity: 0, y: -16, duration: 0.35, ease: 'power2.in' }, at);
 
       // ---------- background drift for the whole film ----------
       tl.fromTo('#aurora', { y: 140, opacity: 0.3 }, { y: 0, opacity: 0.55, duration: 4, ease: 'power2.out' }, 0);
-      tl.fromTo('#blob-indigo', { x: -80 }, { x: 120, duration: 207.5, ease: 'sine.inOut' }, 0);
-      tl.fromTo('#blob-saffron', { x: 80 }, { x: -140, duration: 207.5, ease: 'sine.inOut' }, 0);
-      tl.fromTo('#blob-teal', { y: 60 }, { y: -90, duration: 207.5, ease: 'sine.inOut' }, 0);
-      tl.fromTo('#testnet', { opacity: 0 }, { opacity: 1, duration: 0.8 }, a3);
+      tl.fromTo('#blob-indigo', { x: -80 }, { x: 120, duration: 162.5, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#blob-saffron', { x: 80 }, { x: -140, duration: 162.5, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#blob-teal', { y: 60 }, { y: -90, duration: 162.5, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#testnet', { opacity: 0 }, { opacity: 1, duration: 0.8 }, a2);
 
-      // ---------- 1. cold open: the numbers (0 to 25.6) ----------
+      // ---------- 1. the problem (0 to 32.2) ----------
       tl.fromTo('#s1-eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, 0.1);
-      enter('#s1-a', a1 + 0.4);
-      counter('n-rej', 37, a1 + 0.6, 1.6);
-      tl.fromTo('#s1-a-sub', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a1 + 7.0);
-      enter('#s1-b', a1 + 9.8);
-      counter('n-gap', 92, a1 + 10.0, 1.8);
-      leave('#s1-a', a1 + 14.9); leave('#s1-b', a1 + 14.9);
-      tl.fromTo('#s1-line', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE }, a1 + 15.3);
-      tl.to('#s1-line', { y: -300, scale: 0.5, duration: 0.9, ease: 'power3.inOut' }, a1 + 18.2);
-      enter('#s1-c', a1 + 18.6);
-      counter('n-chain', 205, a1 + 18.8, 2.0);
-      tl.fromTo('#s1-fill', { scaleX: 0 }, { scaleX: 0.43, duration: 1.8, ease: 'power2.inOut' }, a1 + 21.6);
-      counter('n-stable', 43, a1 + 21.6, 1.8);
-      leave('#s1-wrap', 25.1);
+      enter('#s1-a', a1 + 0.3); counter('n-rej', 37, a1 + 0.5, 1.4);
+      enter('#s1-b', a1 + 5.9); counter('n-gap', 92, a1 + 6.1, 1.6);
+      leave('#s1-a', a1 + 9.5); leave('#s1-b', a1 + 9.5);
+      enter('#why-1', a1 + 10.0, { y: 50 });
+      enter('#why-2', a1 + 14.8, { y: 50 });
+      enter('#why-3', a1 + 18.7, { y: 50 });
+      leave('#s1-why', a1 + 21.4);
+      enter('#s1-c', a1 + 21.8); counter('n-chain', 205, a1 + 22.0, 1.8);
+      tl.fromTo('#s1-fill', { scaleX: 0 }, { scaleX: 0.43, duration: 1.6, ease: 'power2.inOut' }, a1 + 24.6);
+      counter('n-stable', 43, a1 + 24.6, 1.6);
+      leave('#s1-c', a1 + 26.4);
+      tl.fromTo('#s1-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a1 + 26.8);
+      tl.fromTo('#s1-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a1 + 28.5);
+      leave('#s1-wrap', 31.7);
 
-      // ---------- 2. the problem (25.2 to 54.2) ----------
-      enter('#s2-head', a2 - 0.2, { y: 30 });
-      enter('#why-1', a2 + 2.4, { y: 50 });
-      enter('#why-2', a2 + 10.6, { y: 50 });
-      enter('#why-3', a2 + 18.6, { y: 50 });
-      enter('#why-4', a2 + 22.6, { y: 50 });
-      leave('#s2-wrap', 53.7);
-
-      // ---------- 3. qafila (53.8 to 80.8) ----------
+      // ---------- 2. the product (31.8 to 58.0) ----------
       // sfx: soft impact when the name lands
-      tl.fromTo('#s3-mark', { opacity: 0, scale: 1.08, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: EASE }, a3 - 0.2);
-      enter('#s3-tag', a3 + 0.5, { y: 24 });
-      enter('#s3-pill', a3 + 1.0, { y: 16 });
-      frameIn('#s3-frame', a3 + 2.4);
-      zoom('#s3-img', a3 + 2.4, 8, 1, 1.22, { origin: '22% 42%' });
-      leave('#s3-a', a3 + 9.7);
-      enter('#s3-head', a3 + 10.2, { y: 30 });
-      [['#node-1', a3 + 10.6], ['#node-2', a3 + 13.0], ['#node-3', a3 + 15.8], ['#node-4', a3 + 19.2]].forEach(([sel, at], i) => {
+      tl.fromTo('#s2-mark', { opacity: 0, scale: 1.08, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: EASE }, a2 - 0.2);
+      enter('#s2-tag', a2 + 0.5, { y: 24 });
+      frameIn('#s2-frame', a2 + 1.4);
+      zoom('#s2-img', a2 + 1.4, 5.0, 1, 1.16, { origin: '22% 42%' });
+      leave('#s2-a', a2 + 5.8);
+      enter('#s2-head', a2 + 6.2, { y: 30 });
+      [['#node-1', a2 + 6.5], ['#node-2', a2 + 9.9], ['#node-3', a2 + 13.3]].forEach(([sel, at], i) => {
         enter(sel, at, { y: 50 });
         if (i > 0) tl.fromTo('#arrow-' + i, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.45, ease: EASE }, at - 0.1);
       });
-      enter('#s3-rule', a3 + 22.6, { y: 30 });
-      leave('#s3-b', 80.3);
+      enter('#s2-rule', a2 + 16.8, { y: 30 });
+      enter('#s2-murabaha', a2 + 18.9, { y: 20 });
+      leave('#s2-b', 57.5);
 
-      // ---------- 4. the importer (80.4 to 122.6) ----------
+      // ---------- 3. the importer (57.6 to 81.2) ----------
+      enter('#s3-col', a3 - 0.2, { y: 30 });
+      frameIn('#s3-frame-a', a3 + 0.2);
+      zoom('#s3-img-a', a3 + 0.2, 9.6, 1, 1.16, { origin: '50% 30%' });
+      light('#s3-st-1', a3 + 0.4);
+      light('#s3-st-2', a3 + 5.2);
+      leave('#s3-frame-a', a3 + 9.5, 0.4);
+      frameIn('#s3-frame-b', a3 + 9.8);
+      light('#s3-st-3', a3 + 9.9);
+      zoom('#s3-img-b', a3 + 9.8, 8.0, 1.16, 1.28, { origin: '30% 0%', y0: 0, y1: -220 });
+      const s3chips = [['#s3-c1', a3 + 11.0], ['#s3-c2', a3 + 12.6], ['#s3-c5', a3 + 16.6]];
+      s3chips.forEach(([sel, at], i) => { chipIn(sel, at); const next = s3chips[i + 1]; chipOut(sel, (next ? next[1] : a3 + 19.6) - 0.05); });
+      light('#s3-st-4', a3 + 16.5);
+      leave('#s3-frame-b', a3 + 17.6, 0.4);
+      frameIn('#s3-frame-c', a3 + 17.8);
+      zoom('#s3-img-c', a3 + 17.8, 5.6, 1.05, 1.24, { origin: '28% 88%' });
+      light('#s3-st-5', a3 + 18.0);
+      chipIn('#s3-c6', a3 + 19.9);
+      leave('#s3-wrap', 80.7);
+
+      // ---------- 4. the investor (80.8 to 99.7) ----------
       enter('#s4-col', a4 - 0.2, { y: 30 });
       frameIn('#s4-frame-a', a4 + 0.2);
-      zoom('#s4-img-a', a4 + 0.2, 11, 1, 1.18, { origin: '50% 30%' });
-      light('#s4-st-1', a4 + 3.0);
-      light('#s4-st-2', a4 + 6.6);
-      leave('#s4-frame-a', a4 + 10.8, 0.4);
-      frameIn('#s4-frame-b', a4 + 11.0);
-      light('#s4-st-3', a4 + 11.2);
-      // the real checks list: push in and pan down the evidence while the narration lists the checks
-      zoom('#s4-img-b', a4 + 11.0, 20, 1.16, 1.3, { origin: '30% 0%', y0: 0, y1: -300 });
-      const s4chips = [['#s4-c1', a4 + 12.6], ['#s4-c2', a4 + 15.8], ['#s4-c3', a4 + 19.0], ['#s4-c4', a4 + 21.8], ['#s4-c5', a4 + 24.6], ['#s4-c6', a4 + 27.6]];
-      s4chips.forEach(([sel, at], i) => {
-        tl.fromTo(sel, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, at);
-        const next = s4chips[i + 1]; const out = next ? next[1] : a4 + 31.0;
-        tl.to(sel, { opacity: 0, y: -16, duration: 0.35, ease: 'power2.in' }, out - 0.05);
-      });
-      light('#s4-st-4', a4 + 27.4);
-      leave('#s4-frame-b', a4 + 31.0, 0.4);
-      frameIn('#s4-frame-c', a4 + 31.3);
-      zoom('#s4-img-c', a4 + 31.3, 10.5, 1.05, 1.28, { origin: '28% 88%' });
-      light('#s4-st-5', a4 + 31.6);
-      light('#s4-st-6', a4 + 36.0);
-      tl.fromTo('#s4-c7', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, a4 + 36.4);
-      leave('#s4-wrap', 122.1);
+      zoom('#s4-img-a', a4 + 0.2, 5.2, 1, 1.14, { origin: '50% 58%' });
+      light('#s4-st-1', a4 + 0.5); light('#s4-st-2', a4 + 2.0); light('#s4-st-3', a4 + 3.8);
+      leave('#s4-frame-a', a4 + 5.2, 0.4);
+      leave('#s4-steps', a4 + 5.2, 0.4);
+      frameIn('#s4-frame-b', a4 + 5.5);
+      zoom('#s4-img-b', a4 + 5.5, 7.0, 1.14, 1.26, { origin: '82% 40%', y0: 0, y1: -140 });
+      enter('#s4-loss', a4 + 5.7, { y: 24 });
+      light('#s4-l-1', a4 + 8.6); light('#s4-l-2', a4 + 10.0); light('#s4-l-3', a4 + 11.2);
+      leave('#s4-frame-b', a4 + 12.3, 0.4);
+      frameIn('#s4-frame-c', a4 + 12.5);
+      zoom('#s4-img-c', a4 + 12.5, 6.5, 1.04, 1.18, { origin: '72% 48%' });
+      chipIn('#s4-c1', a4 + 13.6);
+      leave('#s4-wrap', 99.2);
 
-      // ---------- 5. the investor (122.2 to 149.7) ----------
-      enter('#s5-col', a5 - 0.2, { y: 30 });
-      frameIn('#s5-frame-a', a5 + 0.2);
-      zoom('#s5-img-a', a5 + 0.2, 8, 1, 1.16, { origin: '50% 58%' });
-      light('#s5-st-1', a5 + 2.6); light('#s5-st-2', a5 + 4.0); light('#s5-st-3', a5 + 5.4); light('#s5-st-4', a5 + 6.8);
-      leave('#s5-frame-a', a5 + 7.9, 0.4);
-      frameIn('#s5-frame-b', a5 + 8.1);
-      zoom('#s5-img-b', a5 + 8.1, 7.2, 1.04, 1.2, { origin: '72% 48%' });
-      tl.fromTo('#s5-chip', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, a5 + 9.2);
-      tl.to('#s5-chip', { opacity: 0, y: -16, duration: 0.35, ease: 'power2.in' }, a5 + 14.9);
-      leave('#s5-frame-b', a5 + 15.0, 0.4);
-      frameIn('#s5-frame-c', a5 + 15.2);
-      zoom('#s5-img-c', a5 + 15.2, 11.5, 1.14, 1.26, { origin: '82% 40%', y0: 0, y1: -140 });
-      leave('#s5-steps', a5 + 15.0, 0.4);
-      enter('#s5-loss', a5 + 15.5, { y: 24 });
-      light('#s5-l-1', a5 + 20.2); light('#s5-l-2', a5 + 22.0); light('#s5-l-3', a5 + 23.6);
-      leave('#s5-wrap', 149.2);
-
-      // ---------- 6. shipment and repayment (149.3 to 180.3) ----------
-      enter('#s6-head', a6 - 0.2, { y: 20 });
-      enter('#s6-rail', a6 - 0.1, { y: 20 });
-      const stops = [a6 + 0.3, a6 + 2.6, a6 + 5.0, a6 + 8.6, a6 + 12.6, a6 + 15.4, a6 + 18.0, a6 + 22.6];
-      tl.fromTo('#s6-progress', { scaleX: 0 }, { scaleX: 0, duration: 0.01 }, a6 - 0.1);
+      // ---------- 5. shipment and repayment (99.3 to 116.9) ----------
+      enter('#s5-head', a5 - 0.2, { y: 20 });
+      enter('#s5-rail', a5 - 0.1, { y: 20 });
+      const stops = [a5 + 0.3, a5 + 1.6, a5 + 3.4, a5 + 5.6, a5 + 7.6, a5 + 9.9, a5 + 12.2];
+      tl.fromTo('#s5-progress', { scaleX: 0 }, { scaleX: 0, duration: 0.01 }, a5 - 0.1);
       stops.forEach((at, i) => {
         tl.fromTo('#stop-' + (i + 1), { opacity: 0.38 }, { opacity: 1, duration: 0.4 }, at);
         tl.fromTo('#stop-' + (i + 1) + ' .dot', { backgroundColor: '#131b30', borderColor: 'rgba(255,255,255,0.16)' }, { backgroundColor: '#2de2c3', borderColor: '#2de2c3', duration: 0.4 }, at);
-        tl.to('#s6-progress', { scaleX: i / 7, duration: 0.6, ease: 'power2.out' }, at);
+        tl.to('#s5-progress', { scaleX: i / 6, duration: 0.6, ease: 'power2.out' }, at);
       });
-      frameIn('#s6-frame-a', a6 + 0.2);
-      zoom('#s6-img-a', a6 + 0.2, 17, 1, 1.14, { origin: '40% 55%' });
-      leave('#s6-frame-a', a6 + 16.9, 0.4);
-      frameIn('#s6-frame-b', a6 + 17.1);
-      zoom('#s6-img-b', a6 + 17.1, 6.2, 1.08, 1.22, { origin: '24% 52%' });
-      leave('#s6-frame-b', a6 + 22.9, 0.4);
-      frameIn('#s6-frame-c', a6 + 23.1);
-      zoom('#s6-img-c', a6 + 23.1, 4.5, 1.08, 1.18, { origin: '50% 30%' });
-      tl.fromTo('#s6-chip-a', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, a6 + 24.2);
-      tl.to('#s6-chip-a', { opacity: 0, y: -16, duration: 0.35, ease: 'power2.in' }, a6 + 27.1);
-      leave('#s6-frame-c', a6 + 27.2, 0.4);
-      frameIn('#s6-frame-d', a6 + 27.4);
-      zoom('#s6-img-d', a6 + 27.4, 3.0, 1.04, 1.12, { origin: '50% 22%' });
-      tl.fromTo('#s6-chip-b', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, a6 + 27.4);
-      leave('#s6-wrap', 179.8);
+      frameIn('#s5-frame-a', a5 + 0.2);
+      zoom('#s5-img-a', a5 + 0.2, 7.2, 1, 1.12, { origin: '40% 55%' });
+      leave('#s5-frame-a', a5 + 7.2, 0.4);
+      frameIn('#s5-frame-b', a5 + 7.4);
+      zoom('#s5-img-b', a5 + 7.4, 4.6, 1.08, 1.2, { origin: '24% 52%' });
+      chipIn('#s5-chip-a', a5 + 9.6); chipOut('#s5-chip-a', a5 + 11.9);
+      leave('#s5-frame-b', a5 + 11.9, 0.4);
+      frameIn('#s5-frame-c', a5 + 12.1);
+      zoom('#s5-img-c', a5 + 12.1, 4.6, 1.08, 1.16, { origin: '50% 30%' });
+      chipIn('#s5-chip-b', a5 + 12.9);
+      leave('#s5-wrap', 116.4);
 
-      // ---------- 7. live today, outro (179.9 to 207.5) ----------
-      enter('#s7-col', a7 - 0.2, { y: 30 });
-      frameIn('#s7-frame', a7 + 0.2);
-      zoom('#s7-img', a7 + 0.2, 19, 1, 1.16, { origin: '30% 38%' });
-      [['#s7-k-1', a7 + 2.8], ['#s7-k-2', a7 + 6.6], ['#s7-k-3', a7 + 8.7], ['#s7-k-4', a7 + 10.2], ['#s7-k-5', a7 + 13.6], ['#s7-k-6', a7 + 17.4]].forEach(([sel, at]) => {
-        tl.fromTo(sel, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: EASE }, at);
-        tl.fromTo(sel + ' .tick', { scale: 0.4 }, { scale: 1, duration: 0.45, ease: 'back.out(2)' }, at + 0.1);
-      });
-      leave('#s7-main', a7 + 20.0);
+      // ---------- 6. built with (116.5 to 139.4) ----------
+      enter('#s6-head', a6 - 0.2, { y: 30 });
+      [['#tech-1', a6 + 0.3], ['#tech-2', a6 + 4.4], ['#tech-3', a6 + 8.0], ['#tech-4', a6 + 11.5], ['#tech-5', a6 + 15.8]].forEach(([sel, at]) => enter(sel, at, { y: 50 }));
+      leave('#s6-wrap', 138.9);
+
+      // ---------- 7. why stellar, outro (138.9 to 162.5) ----------
+      enter('#s7-head', a7 - 0.2, { y: 20 });
+      tl.fromTo('#s7-l1', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a7 + 0.2);
+      tl.fromTo('#s7-l2', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE }, a7 + 2.6);
+      [['#s7-p1', a7 + 5.6], ['#s7-p2', a7 + 6.8], ['#s7-p3', a7 + 7.9]].forEach(([sel, at]) => enter(sel, at, { y: 20, d: 0.5 }));
+      leave('#s7-a', a7 + 9.3);
       // sfx: bong with the final wordmark
-      tl.fromTo('#s7-mark', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.6, ease: EASE }, a7 + 20.4);
-      tl.fromTo('#s7-domain', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, a7 + 20.8);
-      tl.fromTo('#s7-promise', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 21.2);
-      tl.fromTo('#s7-sub', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, a7 + 21.7);
+      tl.fromTo('#s7-mark', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.6, ease: EASE }, a7 + 9.8);
+      tl.fromTo('#s7-built', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 10.4);
+      tl.fromTo('#s7-domain', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 14.8);
+      tl.fromTo('#s7-promise', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, a7 + 16.2);
 
-      tl.to({}, { duration: 0.01 }, 207.49);
+      tl.to({}, { duration: 0.01 }, 162.49);
       window.__timelines['main'] = tl;
       tl.seek(0);
     </script>
