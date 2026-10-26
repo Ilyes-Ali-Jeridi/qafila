@@ -3,23 +3,23 @@
   "n": 1,
   "title": "The problem",
   "file": "assets/voice/v1.mp3",
-  "duration": 29.52,
-  "words": 86,
-  "text": "Across Africa, small importers ask banks for trade finance, and more than a third are turned down. That is a gap of up to 92 billion dollars a year. Checking a small shipment costs a bank as much as checking a big one. Forged documents cost the industry about 5 billion dollars a year. And many Muslim business owners refuse loans with interest. Yet Sub-Saharan Africa received 205 billion dollars on-chain last year, half of it in stablecoins. The money is there. The trust is not."
+  "duration": 28.58,
+  "words": 83,
+  "text": "Across Africa, small importers ask banks for trade finance, and more than a third are turned down. That is a gap of up to 92 billion dollars a year. Checking a small shipment costs as much as a big one. Forged documents cost the industry about 5 billion dollars a year. And many Muslim business owners refuse loans with interest. Yet Sub-Saharan Africa received 205 billion dollars on-chain last year, half of it in stablecoins. The money is there. The trust is not."
  },
  {
   "n": 2,
   "title": "The product",
   "file": "assets/voice/v2.mp3",
-  "duration": 24.89,
-  "words": 81,
-  "text": "Qafila is a marketplace on Stellar where anyone can fund a real shipment for an importer that banks turn down. A smart contract buys the goods from the supplier, owns them, and sells them to the importer at a price fixed on day one. The investors who paid for the goods share that fixed profit. No interest, nothing grows with time. This is murabaha, the oldest form of Islamic trade finance, on a public blockchain where every step can be checked."
+  "duration": 23.71,
+  "words": 76,
+  "text": "Qafila is a marketplace on Stellar where anyone can fund a real shipment for an importer that banks turn down. A smart contract buys the goods from the supplier, owns them, and sells them to the importer at a price fixed on day one. The investors who paid for the goods share that fixed profit. No interest, nothing grows with time. This is murabaha, the oldest form of Islamic trade finance, now on a public blockchain."
  },
  {
   "n": 3,
   "title": "The importer",
   "file": "assets/voice/v3.mp3",
-  "duration": 22.32,
+  "duration": 22.22,
   "words": 62,
   "text": "The importer signs up with a passkey: her face or fingerprint, no seed phrase. She uploads three documents: the invoice, the packing list and her supplier's licence. Qafila's AI reads them and checks them against each other, the company register, sanctions lists and live ship tracking. A person approves. She signs a plain-language promise to buy and locks a 20 percent deposit."
  },
@@ -27,7 +27,7 @@
   "n": 4,
   "title": "The investor",
   "file": "assets/voice/v4.mp3",
-  "duration": 17.64,
+  "duration": 17.57,
   "words": 52,
   "text": "The investor scans a QR code, creates a wallet in thirty seconds and picks a shipment. Before paying, they see the report and who loses first if things go wrong: the importer's deposit, then recoveries, then investors. They fund the deal and receive shares, tokens on Stellar, locked until the deal ends."
  },
@@ -35,7 +35,7 @@
   "n": 5,
   "title": "Shipment and repayment",
   "file": "assets/voice/v5.mp3",
-  "duration": 16.3,
+  "duration": 16.2,
   "words": 49,
   "text": "The contract pays the supplier and the goods ship. An autonomous agent checks the bill of lading and confirms the shipment on-chain. The importer pays the fixed price, and investors claim their money plus the profit. A late fee goes to charity, on a public ledger, never to investors."
  },
@@ -43,16 +43,16 @@
   "n": 6,
   "title": "Built with",
   "file": "assets/voice/v6.mp3",
-  "duration": 21.58,
-  "words": 57,
-  "text": "Under the hood: a Soroban contract in Rust with forty-nine tests. OpenZeppelin smart accounts for the passkey wallets and for the shipment agent, with our own relayer paying the fees. Every AI report is signed, so other contracts can verify it. And a paid verification API that other lenders' agents buy over x402, through the OpenZeppelin facilitator."
+  "duration": 16.73,
+  "words": 45,
+  "text": "Under the hood: a Soroban contract in Rust with forty-nine tests. OpenZeppelin smart accounts for the passkey wallets and for the shipment agent, with our own relayer paying the fees. Signed AI reports that other lenders' agents can buy over x402, through the OpenZeppelin facilitator."
  },
  {
   "n": 7,
   "title": "Why Stellar",
   "file": "assets/voice/v7.mp3",
-  "duration": 20.09,
-  "words": 55,
-  "text": "Trade finance in Africa is a forgotten market, 90 billion dollars a year, and Stellar is built for it: cheap settlement, stablecoins, and wallets anyone can use. Qafila was built in one weekend at HackMeridian 2026 and runs on testnet today. Qafila dot dev. Fund a real shipment, own the goods, share a fixed profit."
+  "duration": 18.31,
+  "words": 52,
+  "text": "Trade finance in Africa is a forgotten market, 90 billion dollars a year, and Stellar is built for it: cheap settlement, stablecoins, and wallets anyone can use. Qafila was built in one weekend at HackMeridian 2026 and runs on testnet today. Fund a real shipment, own the goods, share a fixed profit."
  }
 ]

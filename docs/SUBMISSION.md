@@ -31,5 +31,5 @@ Sharia board review and fatwa, a pilot corridor (China to Nigeria) with a real i
 ## 9. Links
 - App: https://qafila.dev · API: https://api.qafila.dev · Repository: https://github.com/Ilyes-Ali-Jeridi/qafila (private during the event; share with the judges' accounts or make public at submission)
 - Contract: https://stellar.expert/explorer/testnet/contract/CAJW4MIEZXIUFHGLQISXLDF3XIHJOLGSKGDQQHBIQJ2BJU34ZT3COSPV
-- Video: [link] (rendered file: `pitch-output/pitch.mp4`, 2 min 42 s, script in `pitch-output/narration.md`; the 23 s teaser is `brag-output/brag.mp4`)
+- Video: [link] (rendered file: `pitch-output/pitch.mp4`, 2 min 30 s, script in `pitch-output/narration.md`; the 23 s teaser is `brag-output/brag.mp4`)
 - Deck: [link]
