@@ -3,11 +3,14 @@
  * needs the repo .env (demo importer, investor, supplier and qUSD issuer keys) and ssh to the API box,
  * which signs a one-hour session for the demo profile (the project JWT secret never leaves the server).
  *
- *   pnpm tsx scripts/demo-story.ts hero [--packet 03] [--skip-bl]
+ *   pnpm tsx scripts/demo-story.ts hero [--packet 03] [--skip-bl] [--deal <number>]
  *     New deal from data/packets/<packet>: screened live, purchase promise signed with the security
  *     deposit, listed by ops, funded (5% co-invest, then the two demo investors), supplier deposit
  *     paid, bill of lading uploaded and tracked. Stops at DepositPaid so ops can run the shipment
- *     check on camera (--skip-bl stops before the bill of lading, for an importer upload on camera).
+ *     check on camera (--skip-bl stops before the bill of lading, for an importer upload on camera;
+ *     --deal continues an approved deal from the promise step).
+ *   pnpm tsx scripts/demo-story.ts sweep
+ *     Sends what the contract owes to charity (the agent also does this on its tick).
  *   pnpm tsx scripts/demo-story.ts late <dealNumber>
  *     On an Owned deal: the importer signs the sale, repays after the due date, pays the late fee,
  *     every holder claims and the deal closes. Charity receives the late fee.
@@ -121,12 +124,15 @@ interface Form {
   bl_number?: string;
 }
 
-async function hero(packet: string, skipBl: boolean): Promise<void> {
+async function hero(packet: string, skipBl: boolean, resume?: number): Promise<void> {
   const dir = resolve(import.meta.dirname, '../data/packets', packet);
   const f = JSON.parse(readFileSync(resolve(dir, 'form.json'), 'utf8')) as Form;
   const importerC = clientFor(importer.secret(), env, contractId);
+  const vc = viewClient(env, contractId);
 
-  const created = await api<{ id: string; number: number }>('/deals', {
+  const created = resume
+    ? await api<{ id: string; number: number }>(`/importer/deals/${resume}`)
+    : await api<{ id: string; number: number }>('/deals', {
     json: {
       supplier: { nameEn: f.supplier.name_en, nameZh: f.supplier.name_zh, uscc: f.supplier.uscc?.length === 18 ? f.supplier.uscc : undefined, country: f.supplier.country ?? 'CN', payoutAddress: supplier.publicKey() },
       goodsSummary: f.goods_summary,
@@ -138,9 +144,11 @@ async function hero(packet: string, skipBl: boolean): Promise<void> {
       tenorSecs: 90 * 86_400,
     },
   });
-  log(`deal ${created.number} created from packet ${packet} (${created.id})`);
-  for (const [type, file] of [['invoice', 'invoice.pdf'], ['packing_list', 'packing_list.pdf'], ['business_licence', 'business_licence.pdf']] as const) await upload(created.id, type, resolve(dir, file));
-  await api(`/deals/${created.id}/verify`, { method: 'POST' });
+  log(resume ? `resuming deal ${created.number} (${created.id})` : `deal ${created.number} created from packet ${packet} (${created.id})`);
+  if (!resume) {
+    for (const [type, file] of [['invoice', 'invoice.pdf'], ['packing_list', 'packing_list.pdf'], ['business_licence', 'business_licence.pdf']] as const) await upload(created.id, type, resolve(dir, file));
+    await api(`/deals/${created.id}/verify`, { method: 'POST' });
+  }
   const screened = await poll('the screening', async () => {
     const d = await api<{ stage: string; decision?: string | null; riskScore?: number | null }>(`/importer/deals/${created.id}`);
     return ['rejected', 'review', 'approved'].includes(d.stage) ? d : null;
@@ -151,7 +159,15 @@ async function hero(packet: string, skipBl: boolean): Promise<void> {
   const p = await api<{ textHash: string; listingFingerprint: string; security: string; cost: string }>(`/deals/${created.id}/promise`, { method: 'POST' });
   const security = BigInt(p.security);
   await ensureQusd(importer, security + 10n * ONE, 'importer');
-  const promised = await call(importerC, (c) => c.promise_purchase({ importer: importer.publicKey(), listing_fingerprint: Buffer.from(p.listingFingerprint, 'hex'), promise_hash: Buffer.from(p.textHash, 'hex'), security }));
+  const fp = Buffer.from(p.listingFingerprint, 'hex');
+  const older = await view(await vc.get_promise({ listing_fingerprint: fp }));
+  if (older) {
+    if (older.listed) throw new Error(`these documents are already listed as a deal on-chain (promise by ${older.importer.slice(0, 6)}…); use another packet`);
+    if (older.importer !== importer.publicKey()) throw new Error(`another importer (${older.importer.slice(0, 6)}…) holds the promise for these documents`);
+    const w = await call(importerC, (c) => c.withdraw_promise({ importer: importer.publicKey(), listing_fingerprint: fp }));
+    log(`withdrew an older promise on the same documents, ${older.security / ONE} qUSD back ${tx(w.hash)}`);
+  }
+  const promised = await call(importerC, (c) => c.promise_purchase({ importer: importer.publicKey(), listing_fingerprint: fp, promise_hash: Buffer.from(p.textHash, 'hex'), security }));
   log(`promise signed, ${security / ONE} qUSD locked ${tx(promised.hash)}`);
   await api(`/deals/${created.id}/promise/submitted`, { json: { txHash: promised.hash } });
 
@@ -245,16 +261,22 @@ async function late(number: number): Promise<void> {
   } catch (e) {
     log(`close: ${(e as Error).message.slice(0, 140)} (a deal closes once every holder has claimed)`);
   }
+  await sweep();
+}
+
+/** Sends what the contract owes to charity; the agent does this on its own tick as well. */
+async function sweep(): Promise<void> {
+  const admin = adminClient(env, contractId);
   try {
-    const sw = await call(admin, (c) => c.sweep_charity());
-    log(`charity sweep ${(sw.result as bigint) / ONE} qUSD ${tx(sw.hash)}`);
+    const sent = await admin.queue.run(async () => (await admin.client.sweep_charity()).signAndSend({ force: true }));
+    log(`charity sweep sent ${tx(sent.sendTransactionResponse?.hash)}`);
   } catch (e) {
     log(`sweep: ${(e as Error).message.slice(0, 140)}`);
   }
 }
 
 async function main(): Promise<void> {
-  const { positionals, values } = parseArgs({ allowPositionals: true, options: { packet: { type: 'string', default: '03' }, 'skip-bl': { type: 'boolean', default: false } } });
+  const { positionals, values } = parseArgs({ allowPositionals: true, options: { packet: { type: 'string', default: '03' }, 'skip-bl': { type: 'boolean', default: false }, deal: { type: 'string' } } });
   const cmd = positionals[0];
   const config = await api<{ network: string; contractId: string; settlementToken: { id: string } }>('/config', { auth: false });
   if (config.network !== cfg.network) throw new Error(`the API is on ${config.network}, this .env on ${cfg.network}`);
@@ -264,9 +286,10 @@ async function main(): Promise<void> {
   const me = await api<{ profile: { displayName: string; walletAddress: string | null } }>('/me');
   if (me.profile.walletAddress !== importer.publicKey()) throw new Error(`the demo profile wallet ${me.profile.walletAddress} is not DEMO_IMPORTER_SECRET's ${importer.publicKey()}`);
   log(`${me.profile.displayName} on ${cfg.network}, contract ${contractId}`);
-  if (cmd === 'hero') await hero(values.packet ?? '03', values['skip-bl'] ?? false);
+  if (cmd === 'hero') await hero(values.packet ?? '03', values['skip-bl'] ?? false, values.deal ? Number(values.deal) : undefined);
   else if (cmd === 'late') await late(Number(positionals[1]));
-  else throw new Error('usage: demo-story.ts hero [--packet 03] [--skip-bl] | late <dealNumber>');
+  else if (cmd === 'sweep') await sweep();
+  else throw new Error('usage: demo-story.ts hero [--packet 03] [--skip-bl] [--deal <number>] | late <dealNumber> | sweep');
 }
 
 main().catch((err: unknown) => {
