@@ -41,6 +41,7 @@ function useAction(dealId: string) {
 export function OpsActions({ deal }: { deal: OpsDealDetail }) {
   const a = useAction(deal.id);
   const extensions = useFlag('FF_EXTENSIONS');
+  const demo = useFlag('FF_DEMO_MODE');
   const { data: config } = usePublicConfig();
   const s = deal.stage;
   const panels: ReactNode[] = [];
@@ -84,6 +85,7 @@ export function OpsActions({ deal }: { deal: OpsDealDetail }) {
       </ActionCard>,
     );
   }
+  if (demo && deal.tracking && (deal.tracking.statusCode ?? 0) < 50) panels.push(<DemoShipmentStep key="demo-step" deal={deal} a={a} />);
   return (
     <div className="space-y-4">
       {a.error ? <InlineError>{a.error}</InlineError> : null}
@@ -352,6 +354,22 @@ function ReleaseBl({ deal, a }: { deal: OpsDealDetail; a: A }) {
       </Field>
       <Button variant="outline" onClick={() => a.run('bl', 'release-bl', { note }, 'B/L release recorded')} loading={a.busy === 'bl'} disabled={note.trim().length < 3}>
         Record release
+      </Button>
+    </ActionCard>
+  );
+}
+
+/** FF_DEMO_MODE only: the next recorded carrier event, so a live demo can show the voyage. */
+function DemoShipmentStep({ deal, a }: { deal: OpsDealDetail; a: A }) {
+  const code = deal.tracking?.statusCode ?? 0;
+  const next = code < 35 ? 'Loaded' : code < 40 ? 'Sailing' : code < 45 ? 'Arrived' : 'Discharged';
+  return (
+    <ActionCard eyebrow="Demo data" title="Move the shipment forward">
+      <p className="text-sm text-ink-muted">
+        Test data only. This writes the next carrier event on the recorded tracking so the voyage can be shown without waiting for the ship. The event is marked as a demo step; nothing on-chain changes.
+      </p>
+      <Button variant="outline" onClick={() => a.run('demo-step', 'shipment/advance', {}, `Tracking moved to ${next}`)} loading={a.busy === 'demo-step'} data-testid="ops-demo-shipment-step">
+        Record the next event: {next}
       </Button>
     </ActionCard>
   );

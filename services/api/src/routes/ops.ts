@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { ABORT_REASONS, AbortRequest, AgentLogSchema, EscrowDisputeRequest, EscrowResolveRequest, ExtendRequest, KycQueueSchema, NoteRequest, OpsActionResponseSchema, OpsDealDetailSchema, OpsQueueItemSchema, OverrideRequest, parseAmount, PolicySchema, PolicyUpdateRequest, RecoveryRequest, type OpsDealDetail, type OpsQueueItem } from '@qafila/shared';
 import { requireUser } from '../auth.js';
 import { audit, deadJobs, enqueue, savePolicy } from '../db/repo.js';
-import { agentActions, auditLog, deals, importers, incidents, policy as policyTable, profiles, reports, suppliers } from '../db/schema.js';
+import { agentActions, auditLog, deals, importers, incidents, policy as policyTable, profiles, reports, shipments, suppliers } from '../db/schema.js';
 import { ApiError, reply } from '../lib/http.js';
 import { abortDeal, listDealOnChain, openIncident, toDetail, toSummary, ONCHAIN_STATUS, type DraftTerms } from '../services/deals.js';
 import { disputeEscrowMilestone, releaseEscrowMilestone, resolveEscrowMilestone } from '../services/escrow.js';
@@ -244,6 +244,39 @@ ops.post('/deals/:id/release-bl', async (c) => {
   await svc.db.update(deals).set({ blReleasedAt: new Date(), blReleaseNote: body.note, updatedAt: new Date() }).where(eq(deals.id, deal.id));
   await audit(svc.db, { actor: u.profileId, action: 'release_bl', target: deal.id, reason: body.note });
   return ok(c, { message: 'B/L release recorded' });
+});
+
+/**
+ * FF_DEMO_MODE, never on mainnet: writes the next carrier event on the recorded tracking so a live
+ * demo can show the voyage without waiting for the ship. The event says it is a demo step and the
+ * tracking stays labelled as mock. Nothing on-chain changes; the shipment check still decides.
+ */
+const DEMO_STEPS = [
+  { code: 35, status: 'Loaded', description: 'Loaded on board', where: 'pol' },
+  { code: 40, status: 'Sailing', description: 'Vessel departed', where: 'pol' },
+  { code: 45, status: 'Arrived', description: 'Vessel arrived', where: 'pod' },
+  { code: 50, status: 'Discharged', description: 'Discharged from vessel', where: 'pod' },
+] as const;
+
+ops.post('/deals/:id/shipment/advance', async (c) => {
+  const svc = c.get('svc');
+  const env = c.get('env');
+  const u = c.get('user')!;
+  if (!env.FF_DEMO_MODE || env.STELLAR_NETWORK === 'mainnet') throw new ApiError(404, 'not_found', 'demo tracking steps are off');
+  const deal = await findDeal(svc, c.req.param('id'));
+  const s = await svc.db.query.shipments.findFirst({ where: eq(shipments.dealId, deal.id) });
+  if (!s) throw new ApiError(409, 'no_shipment', 'no bill of lading on this deal yet');
+  const next = DEMO_STEPS.find((st) => st.code > (s.statusCode ?? 0));
+  if (!next) throw new ApiError(409, 'at_end', 'the container is already discharged');
+  const at = new Date();
+  const event = { at: at.toISOString(), location: (next.where === 'pod' ? s.pod : s.pol) ?? null, description: `${next.description} (demo step)`, vessel: s.vessel, voyage: null, isActual: true };
+  const events = [...(Array.isArray(s.events) ? (s.events as unknown[]) : []), event];
+  await svc.db
+    .update(shipments)
+    .set({ statusCode: next.code, events, mode: 'mock', lastPolledAt: at, ...(next.code >= 45 ? { arrival: at } : {}) })
+    .where(eq(shipments.dealId, deal.id));
+  await audit(svc.db, { actor: u.profileId, action: 'demo_shipment_step', target: deal.id, after: { statusCode: next.code, status: next.status } });
+  return ok(c, { message: `Tracking moved to ${next.status}` });
 });
 
 ops.post('/incidents/:id/resolve', async (c) => {
